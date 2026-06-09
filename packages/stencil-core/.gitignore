@@ -1,0 +1,10 @@
+node_modules/
+dist/
+loader/
+www/
+.storybook-out/
+storybook-static/
+.turbo/
+*.tsbuildinfo
+.DS_Store
+.stencil
