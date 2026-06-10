@@ -1,6 +1,7 @@
 import type { Config } from "@stencil/core";
 import { reactOutputTarget } from "@stencil/react-output-target";
 import { angularOutputTarget } from "@stencil/angular-output-target";
+import { vueOutputTarget } from '@stencil/vue-output-target';
 
 export const config: Config = {
   namespace: "componentry",
@@ -29,6 +30,12 @@ export const config: Config = {
       outputType: "standalone",
       customElementsDir: "dist/components",
     }),
+vueOutputTarget({
+  componentCorePackage: '@componentry/stencil',
+  proxiesFile: '../vue/src/generated/components.ts',
+  includeImportCustomElements: true,   // ← this one
+   customElementsDir: 'dist/components',
+}),
   ],
   testing: {
     browserHeadless: "shell",

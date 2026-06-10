@@ -1,0 +1,35 @@
+{
+  "name": "@componentry/vue",
+  "version": "0.0.1",
+  "description": "Componentry Vue Components",
+  "files": ["dist"],
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs && tsc --emitDeclarationOnly",
+    "dev": "rollup -c rollup.config.mjs --watch",
+    "clean": "rimraf dist"
+  },
+  "peerDependencies": {
+    "@componentry/stencil": "workspace:*",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@componentry/stencil": "workspace:*",
+    "@stencil/vue-output-target": "^0.13.2",
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.0.0",
+    "typescript": "^5.4.0",
+    "vue": "^3.0.0"
+  }
+}
