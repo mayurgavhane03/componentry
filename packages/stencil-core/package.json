@@ -1,5 +1,5 @@
 {
- "name": "@componentry/stencil",
+  "name": "@componentry/stencil",
   "version": "0.0.1",
   "description": "Componentry Web Components - source of truth",
   "main": "dist/index.cjs.js",
@@ -21,6 +21,14 @@
       "import": "./dist/components/*",
       "types": "./dist/components/*"
     },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./components/*": {
+      "import": "./dist/components/*",
+      "types": "./dist/components/*"
+    },
     "./loader": {
       "import": "./loader/index.js",
       "require": "./loader/index.cjs.js",
@@ -30,7 +38,7 @@
   "files": [
     "dist/",
     "loader/"
-  ],  
+  ],
   "scripts": {
     "build": "stencil build",
     "dev": "stencil build --dev --watch",
