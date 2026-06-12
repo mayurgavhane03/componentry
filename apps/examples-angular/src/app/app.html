@@ -1,1 +1,395 @@
-<c-button label="Click me" variant="primary" (cClick)="onClick()"></c-button>
+<!-- app.component.html -->
+<main style="padding: 2rem; font-family: sans-serif;">
+  <h1>CButton — Angular: All Usages</h1>
+
+  <!-- ── 1. VARIANTS ──────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">1. Variants</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="default">Default</c-button>
+      <c-button variant="primary">Primary</c-button>
+      <c-button variant="success">Success</c-button>
+      <c-button variant="neutral">Neutral</c-button>
+      <c-button variant="warning">Warning</c-button>
+      <c-button variant="danger">Danger</c-button>
+      <c-button variant="text">Text</c-button>
+    </div>
+  </section>
+
+  <!-- ── 2. SIZES ─────────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">2. Sizes</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button size="small">Small</c-button>
+      <c-button size="medium">Medium</c-button>
+      <c-button size="large">Large</c-button>
+    </div>
+  </section>
+
+  <!-- ── 3. OUTLINED ──────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">3. Outlined</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="default" [outline]="true">Default</c-button>
+      <c-button variant="primary" [outline]="true">Primary</c-button>
+      <c-button variant="success" [outline]="true">Success</c-button>
+      <c-button variant="neutral" [outline]="true">Neutral</c-button>
+      <c-button variant="warning" [outline]="true">Warning</c-button>
+      <c-button variant="danger"  [outline]="true">Danger</c-button>
+    </div>
+  </section>
+
+  <!-- ── 4. PILL ──────────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">4. Pill</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button variant="primary" [pill]="true">Primary Pill</c-button>
+      <c-button variant="success" [pill]="true" [outline]="true">Outline Pill</c-button>
+      <c-button variant="danger"  [pill]="true" size="small">Small Pill</c-button>
+      <c-button variant="neutral" [pill]="true" size="large">Large Pill</c-button>
+    </div>
+  </section>
+
+  <!-- ── 5. CIRCLE ────────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">5. Circle (icon buttons)</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button [circle]="true" variant="default">✕</c-button>
+      <c-button [circle]="true" variant="primary">★</c-button>
+      <c-button [circle]="true" variant="danger"  size="small">🗑</c-button>
+      <c-button [circle]="true" variant="success" size="large">✓</c-button>
+      <c-button [circle]="true" variant="neutral" [outline]="true">⚙</c-button>
+    </div>
+  </section>
+
+  <!-- ── 6. CARET ─────────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">6. Caret</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button [caret]="true">Default + Caret</c-button>
+      <c-button variant="primary" [caret]="true">Primary + Caret</c-button>
+      <c-button variant="neutral" [caret]="true" [outline]="true">Outline + Caret</c-button>
+      <c-button variant="warning" [caret]="true" [pill]="true">Pill + Caret</c-button>
+    </div>
+  </section>
+
+  <!-- ── 7. LOADING ───────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">7. Loading</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button [loading]="true">Default</c-button>
+      <c-button [loading]="true" variant="primary">Primary</c-button>
+      <c-button [loading]="true" variant="danger" [outline]="true">Outline</c-button>
+      <c-button [loading]="true" variant="success" [pill]="true">Pill</c-button>
+      <c-button [loading]="true" [circle]="true" variant="neutral">★</c-button>
+    </div>
+  </section>
+
+  <!-- ── 8. DISABLED ──────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">8. Disabled</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button [disabled]="true">Default</c-button>
+      <c-button [disabled]="true" variant="primary">Primary</c-button>
+      <c-button [disabled]="true" variant="success" [outline]="true">Outline</c-button>
+      <c-button [disabled]="true" variant="danger"  [pill]="true">Pill</c-button>
+      <c-button [disabled]="true" [circle]="true">✕</c-button>
+    </div>
+  </section>
+
+  <!-- ── 9. PREFIX SLOT ────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">9. Prefix slot</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="primary">
+        <span slot="prefix">⬇</span>
+        Download
+      </c-button>
+      <c-button variant="success">
+        <span slot="prefix">✓</span>
+        Confirm
+      </c-button>
+      <c-button variant="danger" [outline]="true">
+        <span slot="prefix">🗑</span>
+        Delete
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 10. SUFFIX SLOT ───────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">10. Suffix slot</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="primary">
+        Next
+        <span slot="suffix">→</span>
+      </c-button>
+      <c-button variant="neutral" [outline]="true">
+        Share
+        <span slot="suffix">↗</span>
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 11. PREFIX + SUFFIX ───────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">11. Prefix + Suffix</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="primary">
+        <span slot="prefix">📁</span>
+        Open File
+        <span slot="suffix">↗</span>
+      </c-button>
+      <c-button variant="warning" [outline]="true">
+        <span slot="prefix">⚠</span>
+        Review
+        <span slot="suffix">→</span>
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 12. LINK BUTTON ───────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">12. Link button (href)</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button href="https://example.com" target="_blank">
+        Open Link
+      </c-button>
+      <c-button href="https://example.com" target="_blank" variant="primary">
+        <span slot="prefix">↗</span>
+        External Link
+      </c-button>
+      <c-button href="/file.pdf" download="report.pdf" variant="success">
+        Download PDF
+      </c-button>
+      <c-button href="https://example.com" [disabled]="true" variant="neutral">
+        Disabled Link
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 13. FORM TYPES ────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">13. Form types</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <form (submit)="handleFormSubmit($event)" style="display: flex; gap: 0.5rem; align-items: center;">
+        <c-button type="submit" variant="primary" name="action" value="save">
+          Submit Form
+        </c-button>
+      </form>
+      <form style="display: flex; gap: 0.5rem; align-items: center;">
+        <input type="text" value="clear me" style="padding: 0.25rem 0.5rem;" />
+        <c-button type="reset" variant="neutral">Reset Form</c-button>
+      </form>
+      <c-button type="button">Plain Button</c-button>
+      <span style="font-size: 0.85rem; color: #555;">{{ clickLog }}</span>
+    </div>
+  </section>
+
+  <!-- ── 14. TOOLTIP ───────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">14. Tooltip</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button tooltip="This saves your progress" variant="primary">Save</c-button>
+      <c-button tooltip="Permanently deletes the record" variant="danger" [circle]="true">🗑</c-button>
+    </div>
+  </section>
+
+  <!-- ── 15. BASIC CLICK ───────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">15. Basic onClick — alert</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="primary" (click)="clickLog = 'Button clicked!'">
+        Click me
+      </c-button>
+      <span style="font-size: 0.85rem; color: #555;">{{ clickLog }}</span>
+    </div>
+  </section>
+
+  <!-- ── 16. CLICK COUNTER ─────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">16. onClick — click counter</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button variant="neutral" (click)="clickCount = clickCount + 1">
+        Clicked {{ clickCount }} time{{ clickCount !== 1 ? 's' : '' }}
+      </c-button>
+      <c-button variant="text" (click)="clickCount = 0">Reset</c-button>
+    </div>
+  </section>
+
+  <!-- ── 17. TOGGLE ────────────────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">17. onClick — toggle (like button)</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button
+        [variant]="liked ? 'success' : 'default'"
+        (click)="liked = !liked"
+      >
+        {{ liked ? '❤️ Liked' : '🤍 Like' }}
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 18. ASYNC / LOADING ───────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">18. onClick — async action with loading state</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button
+        [variant]="isDone ? 'success' : 'primary'"
+        [loading]="isLoading"
+        [disabled]="isLoading"
+        (click)="handleAsyncClick()"
+      >
+        {{ isDone ? '✓ Done!' : 'Save Changes' }}
+      </c-button>
+      <c-button *ngIf="isDone" variant="text" (click)="isDone = false">
+        Reset
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 19. CONFIRM BEFORE ACTION ─────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">19. onClick — confirm before destructive action</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="danger" (click)="handleDelete()">
+        <span slot="prefix">🗑</span>
+        Delete
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 20. DISABLED DOES NOT FIRE ────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">20. disabled — onClick does not fire</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="primary" [disabled]="true" (click)="clickLog = 'Should not fire'">
+        Disabled (no-op)
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 21. LOADING DOES NOT FIRE ─────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">21. loading — onClick is also suppressed</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button variant="primary" [loading]="true" (click)="clickLog = 'Should not fire'">
+        Loading (no-op)
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 22. NATIVE MOUSE EVENT ─────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">22. onClick — access native MouseEvent</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button variant="neutral" (click)="handleCoords($event)">
+        Click to log coords
+      </c-button>
+      <span style="font-size: 0.85rem; color: #555;">{{ eventLog }}</span>
+    </div>
+  </section>
+
+  <!-- ── 23. CONDITIONAL VARIANT SWAP ──────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">23. onClick — conditionally swap variant</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button [variant]="danger ? 'danger' : 'warning'" (click)="danger = !danger">
+        {{ danger ? '🔴 Danger mode' : '🟡 Warning mode' }} — click to toggle
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 24. GUARDED LINK CLICK ─────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">24. onClick on link button — guard navigation</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+      <c-button
+        href="https://example.com"
+        target="_blank"
+        variant="primary"
+        (click)="handleGuardedLink($event)"
+      >
+        <span slot="prefix">↗</span>
+        Guarded external link
+      </c-button>
+    </div>
+  </section>
+
+  <!-- ── 25. cFocus / cBlur EVENTS ─────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">25. cFocus / cBlur events</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button
+        variant="primary"
+        (cFocus)="eventLog = 'cFocus fired'"
+        (cBlur)="eventLog = 'cBlur fired'"
+      >
+        Focus / Blur me
+      </c-button>
+      <span style="font-size: 0.85rem; color: #555;">{{ eventLog }}</span>
+    </div>
+  </section>
+
+  <!-- ── 26. IMPERATIVE METHODS VIA ViewChild ───────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">26. Imperative methods via ViewChild</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button
+        #focusTarget
+        variant="primary"
+        (cFocus)="eventLog = 'cFocus fired'"
+        (cBlur)="eventLog = 'cBlur fired'"
+      >
+        Focus target
+      </c-button>
+      <c-button variant="neutral" (click)="setFocus()">setFocus()</c-button>
+      <c-button variant="neutral" (click)="removeFocus()">removeFocus()</c-button>
+      <c-button variant="neutral" (click)="triggerClick()">triggerClick()</c-button>
+      <span style="font-size: 0.85rem; color: #555;">{{ eventLog }}</span>
+    </div>
+  </section>
+
+  <!-- ── 27. COMBINED COMBOS ───────────────────────────────────────── -->
+  <section style="margin-bottom: 2rem;">
+    <h2 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888;">27. Combined combos</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+      <c-button
+        variant="primary" [pill]="true" [caret]="true" size="large"
+        (click)="clickLog = 'Deploy clicked!'"
+      >
+        <span slot="prefix">🚀</span>
+        Deploy
+      </c-button>
+
+      <c-button variant="danger" [outline]="true" [pill]="true" size="small" [loading]="true">
+        Deleting…
+      </c-button>
+
+      <c-button
+        variant="success" [circle]="true" size="large"
+        tooltip="Approve this item"
+        (click)="clickLog = 'Approved!'"
+      >
+        ✓
+      </c-button>
+
+      <c-button variant="neutral" [outline]="true" [caret]="true" size="small" [disabled]="true">
+        Options
+      </c-button>
+
+      <c-button
+        href="https://example.com" target="_blank"
+        variant="primary" [pill]="true"
+        (click)="handleGuardedLink($event)"
+      >
+        <span slot="prefix">↗</span>
+        External
+        <span slot="suffix">★</span>
+      </c-button>
+
+      <span style="font-size: 0.85rem; color: #555;">{{ clickLog }}</span>
+    </div>
+  </section>
+
+</main>
