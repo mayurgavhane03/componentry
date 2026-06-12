@@ -12,11 +12,27 @@ import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/
 export const CButton: StencilVueComponent<JSX.CButton> = /*@__PURE__*/ defineContainer<JSX.CButton>('c-button', defineCButton, [
   'variant',
   'size',
+  'caret',
   'disabled',
-  'label',
-  'cClick'
+  'loading',
+  'outline',
+  'pill',
+  'circle',
+  'type',
+  'name',
+  'value',
+  'href',
+  'target',
+  'rel',
+  'download',
+  'tooltip',
+  'cBlur',
+  'cFocus',
+  'cInvalid'
 ], [
-  'cClick'
+  'cBlur',
+  'cFocus',
+  'cInvalid'
 ]);
 
 

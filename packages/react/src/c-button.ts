@@ -15,13 +15,21 @@ import { type CButtonCustomEvent } from "@componentry/stencil";
 import type { Components } from "@componentry/stencil/dist/components";
 import { CButton as CButtonElement, defineCustomElement as defineCButton } from "@componentry/stencil/dist/components/c-button.js";
 
-export type CButtonEvents = { onCClick: EventName<CButtonCustomEvent<void>> };
+export type CButtonEvents = {
+    onCBlur: EventName<CButtonCustomEvent<void>>,
+    onCFocus: EventName<CButtonCustomEvent<void>>,
+    onCInvalid: EventName<CButtonCustomEvent<void>>
+};
 
 export const CButton: StencilReactComponent<CButtonElement, CButtonEvents, Components.CButton> = /*@__PURE__*/ createComponent<CButtonElement, CButtonEvents, Components.CButton>({
     tagName: 'c-button',
     elementClass: CButtonElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onCClick: 'cClick' } as CButtonEvents,
+    events: {
+        onCBlur: 'cBlur',
+        onCFocus: 'cFocus',
+        onCInvalid: 'cInvalid'
+    } as CButtonEvents,
     defineCustomElement: defineCButton
 });
