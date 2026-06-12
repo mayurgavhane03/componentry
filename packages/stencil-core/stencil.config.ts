@@ -1,11 +1,15 @@
 import type { Config } from "@stencil/core";
 import { reactOutputTarget } from "@stencil/react-output-target";
 import { angularOutputTarget } from "@stencil/angular-output-target";
-import { vueOutputTarget } from '@stencil/vue-output-target';
+import { vueOutputTarget } from "@stencil/vue-output-target";
 
 export const config: Config = {
   namespace: "componentry",
   outputTargets: [
+    {
+      type: "www",
+      serviceWorker: null,
+    },
     {
       type: "dist",
       esmLoaderPath: "../loader",
@@ -13,8 +17,7 @@ export const config: Config = {
     {
       type: "dist-custom-elements",
       externalRuntime: false,
-        customElementsExportBehavior: 'single-export-module',  
-
+      customElementsExportBehavior: "single-export-module",
     },
     {
       type: "docs-readme",
@@ -30,12 +33,12 @@ export const config: Config = {
       outputType: "standalone",
       customElementsDir: "dist/components",
     }),
-vueOutputTarget({
-  componentCorePackage: '@componentry/stencil',
-  proxiesFile: '../vue/src/generated/components.ts',
-  includeImportCustomElements: true,   // ← this one
-   customElementsDir: 'dist/components',
-}),
+    vueOutputTarget({
+      componentCorePackage: "@componentry/stencil",
+      proxiesFile: "../vue/src/generated/components.ts",
+      includeImportCustomElements: true, // ← this one
+      customElementsDir: "dist/components",
+    }),
   ],
   testing: {
     browserHeadless: "shell",

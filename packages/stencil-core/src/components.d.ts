@@ -6,27 +6,124 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    /**
+     * @summary Buttons represent actions that are available to the user.
+     * @csspart base - The component's base wrapper.
+     * @csspart prefix - The container that wraps the prefix.
+     * @csspart label - The button's label.
+     * @csspart suffix - The container that wraps the suffix.
+     * @csspart caret - The button's caret icon.
+     * @csspart spinner - The spinner shown in loading state.
+     */
     interface CButton {
         /**
-          * Disabled state
+          * Draws the button with a caret.
+          * @default false
+         */
+        "caret": boolean;
+        /**
+          * Checks validity without showing a validation message.
+         */
+        "checkValidity": () => Promise<boolean>;
+        /**
+          * Draws a circular icon button.
+          * @default false
+         */
+        "circle": boolean;
+        /**
+          * Disables the button.
           * @default false
          */
         "disabled": boolean;
         /**
-          * Button label
-          * @default 'Button'
+          * Tells the browser to download the linked file as this filename. Only used when `href` is present.
          */
-        "label": string;
+        "download"?: string;
         /**
-          * Size
-          * @default 'md'
+          * When set, renders as an `<a>` with this href instead of a `<button>`.
+          * @default ""
          */
-        "size": 'sm' | 'md' | 'lg';
+        "href": string;
         /**
-          * Visual variant
-          * @default 'primary'
+          * Draws the button in a loading state.
+          * @default false
          */
-        "variant": 'primary' | 'secondary' | 'ghost';
+        "loading": boolean;
+        /**
+          * The name of the button, submitted as a name/value pair with form data.
+          * @default ""
+         */
+        "name": string;
+        /**
+          * Draws an outlined button.
+          * @default false
+         */
+        "outline": boolean;
+        /**
+          * Draws a pill-style button with rounded edges.
+          * @default false
+         */
+        "pill": boolean;
+        /**
+          * Maps to the underlying link's `rel` attribute. Only used when `href` is present.
+          * @default "noreferrer noopener"
+         */
+        "rel": string;
+        /**
+          * Removes focus from the button.
+         */
+        "removeFocus": () => Promise<void>;
+        /**
+          * Checks validity and shows the browser's validation message if invalid.
+         */
+        "reportValidity": () => Promise<boolean>;
+        /**
+          * Sets a custom validation message. Pass an empty string to restore validity.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Sets focus on the button.
+         */
+        "setFocus": (options?: FocusOptions) => Promise<void>;
+        /**
+          * The button's size.
+          * @default "medium"
+         */
+        "size": "small" | "medium" | "large";
+        /**
+          * Tells the browser where to open the link. Only used when `href` is present.
+         */
+        "target"?: "_blank" | "_parent" | "_self" | "_top";
+        /**
+          * Tooltip title passed through to the native element.
+          * @default ""
+         */
+        "tooltip": string;
+        /**
+          * Simulates a click on the button.
+         */
+        "triggerClick": () => Promise<void>;
+        /**
+          * The type of button. Defaults to `button`. Set to `submit` to submit the surrounding form.
+          * @default "button"
+         */
+        "type": "button" | "submit" | "reset";
+        /**
+          * The value of the button, submitted as a pair with the button's name.
+          * @default ""
+         */
+        "value": string;
+        /**
+          * The button's theme variant.
+          * @default "default"
+         */
+        "variant": | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger"
+    | "text";
     }
 }
 export interface CButtonCustomEvent<T> extends CustomEvent<T> {
@@ -35,8 +132,19 @@ export interface CButtonCustomEvent<T> extends CustomEvent<T> {
 }
 declare global {
     interface HTMLCButtonElementEventMap {
-        "cClick": void;
+        "cBlur": void;
+        "cFocus": void;
+        "cInvalid": void;
     }
+    /**
+     * @summary Buttons represent actions that are available to the user.
+     * @csspart base - The component's base wrapper.
+     * @csspart prefix - The container that wraps the prefix.
+     * @csspart label - The button's label.
+     * @csspart suffix - The container that wraps the suffix.
+     * @csspart caret - The button's caret icon.
+     * @csspart spinner - The spinner shown in loading state.
+     */
     interface HTMLCButtonElement extends Components.CButton, HTMLStencilElement {
         addEventListener<K extends keyof HTMLCButtonElementEventMap>(type: K, listener: (this: HTMLCButtonElement, ev: CButtonCustomEvent<HTMLCButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -56,38 +164,137 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * @summary Buttons represent actions that are available to the user.
+     * @csspart base - The component's base wrapper.
+     * @csspart prefix - The container that wraps the prefix.
+     * @csspart label - The button's label.
+     * @csspart suffix - The container that wraps the suffix.
+     * @csspart caret - The button's caret icon.
+     * @csspart spinner - The spinner shown in loading state.
+     */
     interface CButton {
         /**
-          * Disabled state
+          * Draws the button with a caret.
+          * @default false
+         */
+        "caret"?: boolean;
+        /**
+          * Draws a circular icon button.
+          * @default false
+         */
+        "circle"?: boolean;
+        /**
+          * Disables the button.
           * @default false
          */
         "disabled"?: boolean;
         /**
-          * Button label
-          * @default 'Button'
+          * Tells the browser to download the linked file as this filename. Only used when `href` is present.
          */
-        "label"?: string;
+        "download"?: string;
         /**
-          * Fired when button is clicked
+          * When set, renders as an `<a>` with this href instead of a `<button>`.
+          * @default ""
          */
-        "onCClick"?: (event: CButtonCustomEvent<void>) => void;
+        "href"?: string;
         /**
-          * Size
-          * @default 'md'
+          * Draws the button in a loading state.
+          * @default false
          */
-        "size"?: 'sm' | 'md' | 'lg';
+        "loading"?: boolean;
         /**
-          * Visual variant
-          * @default 'primary'
+          * The name of the button, submitted as a name/value pair with form data.
+          * @default ""
          */
-        "variant"?: 'primary' | 'secondary' | 'ghost';
+        "name"?: string;
+        /**
+          * Emitted when the button loses focus.
+         */
+        "onCBlur"?: (event: CButtonCustomEvent<void>) => void;
+        /**
+          * Emitted when the button gains focus.
+         */
+        "onCFocus"?: (event: CButtonCustomEvent<void>) => void;
+        /**
+          * Emitted when the form control fails constraint validation.
+         */
+        "onCInvalid"?: (event: CButtonCustomEvent<void>) => void;
+        /**
+          * Draws an outlined button.
+          * @default false
+         */
+        "outline"?: boolean;
+        /**
+          * Draws a pill-style button with rounded edges.
+          * @default false
+         */
+        "pill"?: boolean;
+        /**
+          * Maps to the underlying link's `rel` attribute. Only used when `href` is present.
+          * @default "noreferrer noopener"
+         */
+        "rel"?: string;
+        /**
+          * The button's size.
+          * @default "medium"
+         */
+        "size"?: "small" | "medium" | "large";
+        /**
+          * Tells the browser where to open the link. Only used when `href` is present.
+         */
+        "target"?: "_blank" | "_parent" | "_self" | "_top";
+        /**
+          * Tooltip title passed through to the native element.
+          * @default ""
+         */
+        "tooltip"?: string;
+        /**
+          * The type of button. Defaults to `button`. Set to `submit` to submit the surrounding form.
+          * @default "button"
+         */
+        "type"?: "button" | "submit" | "reset";
+        /**
+          * The value of the button, submitted as a pair with the button's name.
+          * @default ""
+         */
+        "value"?: string;
+        /**
+          * The button's theme variant.
+          * @default "default"
+         */
+        "variant"?: | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger"
+    | "text";
     }
 
     interface CButtonAttributes {
-        "variant": 'primary' | 'secondary' | 'ghost';
-        "size": 'sm' | 'md' | 'lg';
+        "variant": | "default"
+    | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger"
+    | "text";
+        "size": "small" | "medium" | "large";
+        "caret": boolean;
         "disabled": boolean;
-        "label": string;
+        "loading": boolean;
+        "outline": boolean;
+        "pill": boolean;
+        "circle": boolean;
+        "type": "button" | "submit" | "reset";
+        "name": string;
+        "value": string;
+        "href": string;
+        "target": "_blank" | "_parent" | "_self" | "_top";
+        "rel": string;
+        "download": string;
+        "tooltip": string;
     }
 
     interface IntrinsicElements {
@@ -98,6 +305,15 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * @summary Buttons represent actions that are available to the user.
+             * @csspart base - The component's base wrapper.
+             * @csspart prefix - The container that wraps the prefix.
+             * @csspart label - The button's label.
+             * @csspart suffix - The container that wraps the suffix.
+             * @csspart caret - The button's caret icon.
+             * @csspart spinner - The spinner shown in loading state.
+             */
             "c-button": LocalJSX.IntrinsicElements["c-button"] & JSXBase.HTMLAttributes<HTMLCButtonElement>;
         }
     }
