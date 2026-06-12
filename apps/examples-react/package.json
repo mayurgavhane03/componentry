@@ -11,6 +11,7 @@
   "dependencies": {
     "@componentry/react": "workspace:*",
     "@componentry/stencil": "workspace:*",
+    "@componentry/theme": "workspace:*",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },
