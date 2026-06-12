@@ -4,7 +4,7 @@
   "packageManager": "pnpm@10.0.0",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "stencil build --dev --watch --serve",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "clean": "turbo run clean"
