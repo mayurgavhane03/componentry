@@ -5,3 +5,4 @@
 
 /* eslint-disable */
 export { CButton } from "./c-button.js";
+export { CInput } from "./c-input.js";

@@ -125,10 +125,206 @@ export namespace Components {
     | "danger"
     | "text";
     }
+    /**
+     * @summary Inputs collect data from the user.
+     * @event c-blur    - Emitted when the control loses focus.
+     * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
+     * @event c-clear   - Emitted when the clear button is activated.
+     * @event c-focus   - Emitted when the control gains focus.
+     * @event c-input   - Emitted when the control receives input.
+     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart form-control           - The form control that wraps the label, input, and help text.
+     * @csspart form-control-label     - The label's wrapper.
+     * @csspart form-control-input     - The input's wrapper.
+     * @csspart form-control-help-text - The help text's wrapper.
+     * @csspart base                   - The component's base wrapper.
+     * @csspart input                  - The internal <input> control.
+     * @csspart prefix                 - The container that wraps the prefix.
+     * @csspart clear-button           - The clear button.
+     * @csspart password-toggle-button - The password toggle button.
+     * @csspart suffix                 - The container that wraps the suffix.
+     */
+    interface CInput {
+        "autocapitalize": | "off"
+    | "none"
+    | "on"
+    | "sentences"
+    | "words"
+    | "characters";
+        "autocomplete": string;
+        "autocorrect": "off" | "on";
+        "autofocus": boolean;
+        /**
+          * Checks for validity but does not show a validation message.
+         */
+        "checkValidity": () => Promise<boolean>;
+        /**
+          * Adds a clear button when the input is not empty.
+          * @default false
+         */
+        "clearable": boolean;
+        /**
+          * Disables the input.
+          * @default false
+         */
+        "disabled": boolean;
+        "enterkeyhint": | "enter"
+    | "done"
+    | "go"
+    | "next"
+    | "previous"
+    | "search"
+    | "send";
+        /**
+          * Draws a filled input.
+          * @default false
+         */
+        "filled": boolean;
+        /**
+          * The input's help text. If you need to display HTML, use the `help-text` slot instead.
+          * @default ""
+         */
+        "helpText": string;
+        /**
+          * Title attribute passed through to the native input.
+          * @default ""
+         */
+        "inputTitle": string;
+        "inputmode": | "none"
+    | "text"
+    | "decimal"
+    | "numeric"
+    | "tel"
+    | "search"
+    | "email"
+    | "url";
+        /**
+          * The input's label. If you need to display HTML, use the `label` slot instead.
+          * @default ""
+         */
+        "label": string;
+        "max": number | string;
+        "maxlength": number;
+        "min": number | string;
+        "minlength": number;
+        /**
+          * The name of the input, submitted as a name/value pair with form data.
+          * @default ""
+         */
+        "name": string;
+        /**
+          * Hides the browser's built-in increment/decrement spin buttons for number inputs.
+          * @default false
+         */
+        "noSpinButtons": boolean;
+        /**
+          * Adds a button to toggle the password's visibility. Only applies to password types.
+          * @default false
+         */
+        "passwordToggle": boolean;
+        /**
+          * A regular expression pattern to validate input against.
+         */
+        "pattern": string;
+        /**
+          * Draws a pill-style input with rounded edges.
+          * @default false
+         */
+        "pill": boolean;
+        /**
+          * Placeholder text to show as a hint when the input is empty.
+          * @default ""
+         */
+        "placeholder": string;
+        /**
+          * Makes the input readonly.
+          * @default false
+         */
+        "readonly": boolean;
+        /**
+          * Removes focus from the input.
+         */
+        "removeFocus": () => Promise<void>;
+        /**
+          * Checks for validity and shows the browser's validation message if invalid.
+         */
+        "reportValidity": () => Promise<boolean>;
+        /**
+          * Makes the input a required field.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Selects all the text in the input.
+         */
+        "select": () => Promise<void>;
+        /**
+          * Sets a custom validation message. Pass an empty string to restore validity.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * Sets focus on the input.
+         */
+        "setFocus": (options?: FocusOptions) => Promise<void>;
+        /**
+          * Replaces a range of text with a new string.
+         */
+        "setRangeText": (replacement: string, start?: number, end?: number, selectMode?: "select" | "start" | "end" | "preserve") => Promise<void>;
+        /**
+          * Sets the start and end positions of the text selection (0-based).
+         */
+        "setSelectionRange": (selectionStart: number, selectionEnd: number, selectionDirection?: "forward" | "backward" | "none") => Promise<void>;
+        /**
+          * Displays the browser picker for an input element (only works if the browser supports it).
+         */
+        "showPicker": () => Promise<void>;
+        /**
+          * The input's size.
+          * @default "medium"
+         */
+        "size": "small" | "medium" | "large";
+        /**
+          * Enables spell checking on the input.
+          * @default true
+         */
+        "spellcheck": boolean;
+        "step": number | "any";
+        /**
+          * Decrements the value of a numeric input type by the value of the step attribute.
+         */
+        "stepDown": () => Promise<void>;
+        /**
+          * Increments the value of a numeric input type by the value of the step attribute.
+         */
+        "stepUp": () => Promise<void>;
+        /**
+          * The type of input. Works the same as a native <input> element, but only a subset of types are supported. Defaults to `text`.
+          * @default "text"
+         */
+        "type": | "date"
+    | "datetime-local"
+    | "email"
+    | "number"
+    | "password"
+    | "search"
+    | "tel"
+    | "text"
+    | "time"
+    | "url";
+        /**
+          * The current value of the input.
+          * @default ""
+         */
+        "value": string;
+    }
 }
 export interface CButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCButtonElement;
+}
+export interface CInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCInputElement;
 }
 declare global {
     interface HTMLCButtonElementEventMap {
@@ -159,11 +355,55 @@ declare global {
         prototype: HTMLCButtonElement;
         new (): HTMLCButtonElement;
     };
+    interface HTMLCInputElementEventMap {
+        "cBlur": void;
+        "cChange": void;
+        "cClear": void;
+        "cFocus": void;
+        "cInput": void;
+        "cInvalid": void;
+    }
+    /**
+     * @summary Inputs collect data from the user.
+     * @event c-blur    - Emitted when the control loses focus.
+     * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
+     * @event c-clear   - Emitted when the clear button is activated.
+     * @event c-focus   - Emitted when the control gains focus.
+     * @event c-input   - Emitted when the control receives input.
+     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart form-control           - The form control that wraps the label, input, and help text.
+     * @csspart form-control-label     - The label's wrapper.
+     * @csspart form-control-input     - The input's wrapper.
+     * @csspart form-control-help-text - The help text's wrapper.
+     * @csspart base                   - The component's base wrapper.
+     * @csspart input                  - The internal <input> control.
+     * @csspart prefix                 - The container that wraps the prefix.
+     * @csspart clear-button           - The clear button.
+     * @csspart password-toggle-button - The password toggle button.
+     * @csspart suffix                 - The container that wraps the suffix.
+     */
+    interface HTMLCInputElement extends Components.CInput, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCInputElementEventMap>(type: K, listener: (this: HTMLCInputElement, ev: CInputCustomEvent<HTMLCInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCInputElementEventMap>(type: K, listener: (this: HTMLCInputElement, ev: CInputCustomEvent<HTMLCInputElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCInputElement: {
+        prototype: HTMLCInputElement;
+        new (): HTMLCInputElement;
+    };
     interface HTMLElementTagNameMap {
         "c-button": HTMLCButtonElement;
+        "c-input": HTMLCInputElement;
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
+
     /**
      * @summary Buttons represent actions that are available to the user.
      * @csspart base - The component's base wrapper.
@@ -271,6 +511,160 @@ declare namespace LocalJSX {
     | "danger"
     | "text";
     }
+    /**
+     * @summary Inputs collect data from the user.
+     * @event c-blur    - Emitted when the control loses focus.
+     * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
+     * @event c-clear   - Emitted when the clear button is activated.
+     * @event c-focus   - Emitted when the control gains focus.
+     * @event c-input   - Emitted when the control receives input.
+     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart form-control           - The form control that wraps the label, input, and help text.
+     * @csspart form-control-label     - The label's wrapper.
+     * @csspart form-control-input     - The input's wrapper.
+     * @csspart form-control-help-text - The help text's wrapper.
+     * @csspart base                   - The component's base wrapper.
+     * @csspart input                  - The internal <input> control.
+     * @csspart prefix                 - The container that wraps the prefix.
+     * @csspart clear-button           - The clear button.
+     * @csspart password-toggle-button - The password toggle button.
+     * @csspart suffix                 - The container that wraps the suffix.
+     */
+    interface CInput {
+        "autocapitalize": | "off"
+    | "none"
+    | "on"
+    | "sentences"
+    | "words"
+    | "characters";
+        "autocomplete": string;
+        "autocorrect": "off" | "on";
+        "autofocus": boolean;
+        /**
+          * Adds a clear button when the input is not empty.
+          * @default false
+         */
+        "clearable"?: boolean;
+        /**
+          * Disables the input.
+          * @default false
+         */
+        "disabled"?: boolean;
+        "enterkeyhint": | "enter"
+    | "done"
+    | "go"
+    | "next"
+    | "previous"
+    | "search"
+    | "send";
+        /**
+          * Draws a filled input.
+          * @default false
+         */
+        "filled"?: boolean;
+        /**
+          * The input's help text. If you need to display HTML, use the `help-text` slot instead.
+          * @default ""
+         */
+        "helpText"?: string;
+        /**
+          * Title attribute passed through to the native input.
+          * @default ""
+         */
+        "inputTitle"?: string;
+        "inputmode": | "none"
+    | "text"
+    | "decimal"
+    | "numeric"
+    | "tel"
+    | "search"
+    | "email"
+    | "url";
+        /**
+          * The input's label. If you need to display HTML, use the `label` slot instead.
+          * @default ""
+         */
+        "label"?: string;
+        "max": number | string;
+        "maxlength": number;
+        "min": number | string;
+        "minlength": number;
+        /**
+          * The name of the input, submitted as a name/value pair with form data.
+          * @default ""
+         */
+        "name"?: string;
+        /**
+          * Hides the browser's built-in increment/decrement spin buttons for number inputs.
+          * @default false
+         */
+        "noSpinButtons"?: boolean;
+        "onCBlur"?: (event: CInputCustomEvent<void>) => void;
+        "onCChange"?: (event: CInputCustomEvent<void>) => void;
+        "onCClear"?: (event: CInputCustomEvent<void>) => void;
+        "onCFocus"?: (event: CInputCustomEvent<void>) => void;
+        "onCInput"?: (event: CInputCustomEvent<void>) => void;
+        "onCInvalid"?: (event: CInputCustomEvent<void>) => void;
+        /**
+          * Adds a button to toggle the password's visibility. Only applies to password types.
+          * @default false
+         */
+        "passwordToggle"?: boolean;
+        /**
+          * A regular expression pattern to validate input against.
+         */
+        "pattern": string;
+        /**
+          * Draws a pill-style input with rounded edges.
+          * @default false
+         */
+        "pill"?: boolean;
+        /**
+          * Placeholder text to show as a hint when the input is empty.
+          * @default ""
+         */
+        "placeholder"?: string;
+        /**
+          * Makes the input readonly.
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * Makes the input a required field.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * The input's size.
+          * @default "medium"
+         */
+        "size"?: "small" | "medium" | "large";
+        /**
+          * Enables spell checking on the input.
+          * @default true
+         */
+        "spellcheck"?: boolean;
+        "step": number | "any";
+        /**
+          * The type of input. Works the same as a native <input> element, but only a subset of types are supported. Defaults to `text`.
+          * @default "text"
+         */
+        "type"?: | "date"
+    | "datetime-local"
+    | "email"
+    | "number"
+    | "password"
+    | "search"
+    | "tel"
+    | "text"
+    | "time"
+    | "url";
+        /**
+          * The current value of the input.
+          * @default ""
+         */
+        "value"?: string;
+    }
 
     interface CButtonAttributes {
         "variant": | "default"
@@ -296,9 +690,68 @@ declare namespace LocalJSX {
         "download": string;
         "tooltip": string;
     }
+    interface CInputAttributes {
+        "type": | "date"
+    | "datetime-local"
+    | "email"
+    | "number"
+    | "password"
+    | "search"
+    | "tel"
+    | "text"
+    | "time"
+    | "url";
+        "name": string;
+        "value": string;
+        "size": "small" | "medium" | "large";
+        "filled": boolean;
+        "pill": boolean;
+        "label": string;
+        "helpText": string;
+        "clearable": boolean;
+        "disabled": boolean;
+        "placeholder": string;
+        "readonly": boolean;
+        "passwordToggle": boolean;
+        "noSpinButtons": boolean;
+        "required": boolean;
+        "pattern": string;
+        "minlength": number;
+        "maxlength": number;
+        "min": string;
+        "max": string;
+        "step": string;
+        "autocapitalize": | "off"
+    | "none"
+    | "on"
+    | "sentences"
+    | "words"
+    | "characters";
+        "autocorrect": "off" | "on";
+        "autocomplete": string;
+        "autofocus": boolean;
+        "enterkeyhint": | "enter"
+    | "done"
+    | "go"
+    | "next"
+    | "previous"
+    | "search"
+    | "send";
+        "inputmode": | "none"
+    | "text"
+    | "decimal"
+    | "numeric"
+    | "tel"
+    | "search"
+    | "email"
+    | "url";
+        "spellcheck": boolean;
+        "inputTitle": string;
+    }
 
     interface IntrinsicElements {
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
+        "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
     }
 }
 export { LocalJSX as JSX };
@@ -315,6 +768,26 @@ declare module "@stencil/core" {
              * @csspart spinner - The spinner shown in loading state.
              */
             "c-button": LocalJSX.IntrinsicElements["c-button"] & JSXBase.HTMLAttributes<HTMLCButtonElement>;
+            /**
+             * @summary Inputs collect data from the user.
+             * @event c-blur    - Emitted when the control loses focus.
+             * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
+             * @event c-clear   - Emitted when the clear button is activated.
+             * @event c-focus   - Emitted when the control gains focus.
+             * @event c-input   - Emitted when the control receives input.
+             * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+             * @csspart form-control           - The form control that wraps the label, input, and help text.
+             * @csspart form-control-label     - The label's wrapper.
+             * @csspart form-control-input     - The input's wrapper.
+             * @csspart form-control-help-text - The help text's wrapper.
+             * @csspart base                   - The component's base wrapper.
+             * @csspart input                  - The internal <input> control.
+             * @csspart prefix                 - The container that wraps the prefix.
+             * @csspart clear-button           - The clear button.
+             * @csspart password-toggle-button - The password toggle button.
+             * @csspart suffix                 - The container that wraps the suffix.
+             */
+            "c-input": LocalJSX.IntrinsicElements["c-input"] & JSXBase.HTMLAttributes<HTMLCInputElement>;
         }
     }
 }
