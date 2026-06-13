@@ -17,6 +17,8 @@
       "import": "./dist/layouts/index.js",
       "require": "./dist/layouts/index.cjs"
     },
+    "./styles/light.css": "./dist/styles/light.css",
+    "./styles/dark.css": "./dist/styles/dark.css",
     "./styles.css": "./dist/styles/index.css",
     "./styles/*": "./dist/styles/*"
   },
@@ -58,5 +60,4 @@
     "typescript-eslint": "^8.15.0",
     "vitest": "^4.1.6"
   }
-
 }
