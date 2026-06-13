@@ -1,0 +1,95 @@
+# Componentry
+
+A modern component library built with Stencil and distributed for multiple frameworks.
+
+## Features
+
+* Framework agnostic
+* React support
+* Vue support
+* Angular support
+* Native Web Components
+* Light & Dark themes
+* Design tokens
+* Accessible by default
+* Type-safe APIs
+
+## Installation
+
+### React
+
+```bash
+npm install @componentry/react
+```
+
+```tsx
+import { CButton } from '@componentry/react'
+
+export function App() {
+  return <CButton>Click Me</CButton>
+}
+```
+
+### Vue
+
+```bash
+npm install @componentry/vue
+```
+
+```vue
+<template>
+  <c-button>Click Me</c-button>
+</template>
+```
+
+### Angular
+
+```bash
+npm install @componentry/angular
+```
+
+```ts
+import { CButton } from '@componentry/angular'
+```
+
+```html
+<c-button>Click Me</c-button>
+```
+
+### Web Components
+
+```bash
+npm install @componentry/stencil
+```
+
+```ts
+import { defineCustomElements } from '@componentry/stencil/loader'
+
+defineCustomElements()
+```
+
+```html
+<c-button>Click Me</c-button>
+```
+
+## Packages
+
+| Package | Description |
+|----------|-------------|
+| `@componentry/react` | React components |
+| `@componentry/vue` | Vue components |
+| `@componentry/angular` | Angular components |
+| `@componentry/stencil-core` | Web Components |
+| `@componentry/theme` | Design tokens and themes |
+
+## Theming
+
+Componentry includes built-in light and dark themes.
+
+```html
+<html class="c-theme-light">
+```
+
+```html
+<html class="c-theme-dark">
+```
