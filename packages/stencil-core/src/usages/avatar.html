@@ -603,131 +603,122 @@
 
 <body>
  <body>
- <body>
   <section>
-    <h2>Variants</h2>
+    <h2>Basic</h2>
     <div class="row">
-      <c-badge variant="primary">Primary</c-badge>
-      <c-badge variant="success">Success</c-badge>
-      <c-badge variant="neutral">Neutral</c-badge>
-      <c-badge variant="warning">Warning</c-badge>
-      <c-badge variant="danger">Danger</c-badge>
+      <c-avatar image="https://i.pravatar.cc/150?img=1"></c-avatar>
+      <c-avatar image="https://i.pravatar.cc/150?img=2"></c-avatar>
+      <c-avatar image="https://i.pravatar.cc/150?img=3"></c-avatar>
     </div>
   </section>
 
   <section>
-    <h2>Pill Badges</h2>
+    <h2>Shapes</h2>
     <div class="row">
-      <c-badge variant="primary" pill>Primary</c-badge>
-      <c-badge variant="success" pill>Success</c-badge>
-      <c-badge variant="neutral" pill>Neutral</c-badge>
-      <c-badge variant="warning" pill>Warning</c-badge>
-      <c-badge variant="danger" pill>Danger</c-badge>
+      <c-avatar initials="CI" shape="circle"></c-avatar>
+      <c-avatar initials="RO" shape="rounded"></c-avatar>
+      <c-avatar initials="SQ" shape="square"></c-avatar>
     </div>
   </section>
 
   <section>
-    <h2>Pulse Badges</h2>
+    <h2>Initials</h2>
     <div class="row">
-      <c-badge variant="primary" pulse>Live</c-badge>
-      <c-badge variant="success" pulse>Online</c-badge>
-      <c-badge variant="warning" pulse>Pending</c-badge>
-      <c-badge variant="danger" pulse>Error</c-badge>
+      <c-avatar initials="JD"></c-avatar>
+      <c-avatar initials="TS"></c-avatar>
+      <c-avatar initials="PP"></c-avatar>
+      <c-avatar initials="SJ"></c-avatar>
     </div>
   </section>
 
   <section>
-    <h2>Pill + Pulse</h2>
+    <h2>Image + Label</h2>
     <div class="row">
-      <c-badge variant="primary" pill pulse>New</c-badge>
-      <c-badge variant="success" pill pulse>Active</c-badge>
-      <c-badge variant="warning" pill pulse>Review</c-badge>
-      <c-badge variant="danger" pill pulse>Alert</c-badge>
+      <c-avatar
+        image="https://i.pravatar.cc/150?img=10"
+        label="Tony Stark">
+      </c-avatar>
+
+      <c-avatar
+        image="https://i.pravatar.cc/150?img=11"
+        label="Peter Parker">
+      </c-avatar>
+
+      <c-avatar
+        image="https://i.pravatar.cc/150?img=12"
+        label="Steve Rogers">
+      </c-avatar>
     </div>
   </section>
 
   <section>
-    <h2>Status Examples</h2>
+    <h2>Custom Icon</h2>
     <div class="row">
-      <c-badge variant="success">Completed</c-badge>
-      <c-badge variant="warning">In Progress</c-badge>
-      <c-badge variant="danger">Failed</c-badge>
-      <c-badge variant="neutral">Draft</c-badge>
+      <c-avatar>
+        <svg
+          slot="icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+          <path d="M2 14s1-4 6-4 6 4 6 4H2z" />
+        </svg>
+      </c-avatar>
     </div>
   </section>
 
   <section>
-    <h2>Notification Counts</h2>
+    <h2>Fallback States</h2>
     <div class="row">
-      <c-badge variant="danger" pill>1</c-badge>
-      <c-badge variant="danger" pill>9</c-badge>
-      <c-badge variant="danger" pill>99+</c-badge>
-      <c-badge variant="primary" pill>125</c-badge>
+      <c-avatar
+        image="https://invalid-url.com/avatar.jpg"
+        initials="MJ">
+      </c-avatar>
+
+      <c-avatar></c-avatar>
     </div>
   </section>
 
   <section>
-    <h2>User Roles</h2>
+    <h2>Avatar Group</h2>
     <div class="row">
-      <c-badge variant="primary">Admin</c-badge>
-      <c-badge variant="success">Member</c-badge>
-      <c-badge variant="warning">Moderator</c-badge>
-      <c-badge variant="neutral">Guest</c-badge>
+      <c-avatar initials="TS"></c-avatar>
+      <c-avatar initials="PP"></c-avatar>
+      <c-avatar initials="SJ"></c-avatar>
+      <c-avatar initials="BW"></c-avatar>
+      <c-avatar initials="TH"></c-avatar>
     </div>
   </section>
 
   <section>
-    <h2>E-commerce</h2>
+    <h2>Custom Size</h2>
     <div class="row">
-      <c-badge variant="success">In Stock</c-badge>
-      <c-badge variant="warning">Limited Stock</c-badge>
-      <c-badge variant="danger">Out of Stock</c-badge>
-      <c-badge variant="primary">New Arrival</c-badge>
+      <c-avatar
+        initials="SM"
+        style="--size: 40px;">
+      </c-avatar>
+
+      <c-avatar
+        initials="MD"
+        style="--size: 64px;">
+      </c-avatar>
+
+      <c-avatar
+        initials="LG"
+        style="--size: 96px;">
+      </c-avatar>
     </div>
   </section>
 
-  <section>
-    <h2>Tags</h2>
-    <div class="row">
-      <c-badge pill>JavaScript</c-badge>
-      <c-badge pill variant="success">React</c-badge>
-      <c-badge pill variant="warning">Angular</c-badge>
-      <c-badge pill variant="danger">Vue</c-badge>
-    </div>
-  </section>
-
-  <section>
-    <h2>All Props</h2>
-    <div class="row">
-      <c-badge
-        variant="primary"
-        pill
-        pulse>
-        Featured
-      </c-badge>
-    </div>
-  </section>
-<c-button variant="primary">
-  Comments
-  <c-badge slot="suffix" variant="neutral" pill>4</c-badge>
-</c-button>
-
-<c-button variant="primary">
-  Replies
-  <c-badge slot="suffix" variant="neutral" pill>12</c-badge>
-</c-button>
-
-<c-button variant="success">
-  Messages
-  <c-badge slot="suffix" variant="danger" pill>99+</c-badge>
-</c-button>
-
-<c-button variant="warning">
-  Pending
-  <c-badge slot="suffix" variant="danger" pill pulse>3</c-badge>
-</c-button>
-</body>
- 
+  <script>
+    document.querySelectorAll('c-avatar').forEach(avatar => {
+      avatar.addEventListener('c-error', () => {
+        alert('Avatar image failed to load');
+      });
+    });
+  </script>
 </body>
 </body>
 

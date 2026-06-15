@@ -44,6 +44,31 @@ export namespace Components {
         "shape": "circle" | "square" | "rounded";
     }
     /**
+     * @summary Badges are used to draw attention and display statuses or counts.
+     * @csspart base - The component's base wrapper.
+     */
+    interface CBadge {
+        /**
+          * Draws a pill-style badge with rounded edges.
+          * @default false
+         */
+        "pill": boolean;
+        /**
+          * Makes the badge pulsate to draw attention.
+          * @default false
+         */
+        "pulse": boolean;
+        /**
+          * The badge's theme variant.
+          * @default "primary"
+         */
+        "variant": | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger";
+    }
+    /**
      * @summary Buttons represent actions that are available to the user.
      * @csspart base - The component's base wrapper.
      * @csspart prefix - The container that wraps the prefix.
@@ -395,6 +420,16 @@ declare global {
         prototype: HTMLCAvatarElement;
         new (): HTMLCAvatarElement;
     };
+    /**
+     * @summary Badges are used to draw attention and display statuses or counts.
+     * @csspart base - The component's base wrapper.
+     */
+    interface HTMLCBadgeElement extends Components.CBadge, HTMLStencilElement {
+    }
+    var HTMLCBadgeElement: {
+        prototype: HTMLCBadgeElement;
+        new (): HTMLCBadgeElement;
+    };
     interface HTMLCButtonElementEventMap {
         "cBlur": void;
         "cFocus": void;
@@ -466,6 +501,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "c-avatar": HTMLCAvatarElement;
+        "c-badge": HTMLCBadgeElement;
         "c-button": HTMLCButtonElement;
         "c-input": HTMLCInputElement;
     }
@@ -513,6 +549,31 @@ declare namespace LocalJSX {
           * @default "circle"
          */
         "shape"?: "circle" | "square" | "rounded";
+    }
+    /**
+     * @summary Badges are used to draw attention and display statuses or counts.
+     * @csspart base - The component's base wrapper.
+     */
+    interface CBadge {
+        /**
+          * Draws a pill-style badge with rounded edges.
+          * @default false
+         */
+        "pill"?: boolean;
+        /**
+          * Makes the badge pulsate to draw attention.
+          * @default false
+         */
+        "pulse"?: boolean;
+        /**
+          * The badge's theme variant.
+          * @default "primary"
+         */
+        "variant"?: | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger";
     }
     /**
      * @summary Buttons represent actions that are available to the user.
@@ -783,6 +844,15 @@ declare namespace LocalJSX {
         "loading": "eager" | "lazy";
         "shape": "circle" | "square" | "rounded";
     }
+    interface CBadgeAttributes {
+        "variant": | "primary"
+    | "success"
+    | "neutral"
+    | "warning"
+    | "danger";
+        "pill": boolean;
+        "pulse": boolean;
+    }
     interface CButtonAttributes {
         "variant": | "default"
     | "primary"
@@ -868,6 +938,7 @@ declare namespace LocalJSX {
 
     interface IntrinsicElements {
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
+        "c-badge": Omit<CBadge, keyof CBadgeAttributes> & { [K in keyof CBadge & keyof CBadgeAttributes]?: CBadge[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `attr:${K}`]?: CBadgeAttributes[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `prop:${K}`]?: CBadge[K] };
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
     }
@@ -887,6 +958,11 @@ declare module "@stencil/core" {
              * @cssproperty --size - The size of the avatar.
              */
             "c-avatar": LocalJSX.IntrinsicElements["c-avatar"] & JSXBase.HTMLAttributes<HTMLCAvatarElement>;
+            /**
+             * @summary Badges are used to draw attention and display statuses or counts.
+             * @csspart base - The component's base wrapper.
+             */
+            "c-badge": LocalJSX.IntrinsicElements["c-badge"] & JSXBase.HTMLAttributes<HTMLCBadgeElement>;
             /**
              * @summary Buttons represent actions that are available to the user.
              * @csspart base - The component's base wrapper.

@@ -6,6 +6,7 @@ import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-t
 import type { JSX } from '@componentry/stencil/dist/components';
 
 import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
+import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 
@@ -20,6 +21,13 @@ export const CAvatar: StencilVueComponent<JSX.CAvatar> = /*@__PURE__*/ defineCon
   'cError'
 ], [
   'cError'
+]);
+
+
+export const CBadge: StencilVueComponent<JSX.CBadge> = /*@__PURE__*/ defineContainer<JSX.CBadge>('c-badge', defineCBadge, [
+  'variant',
+  'pill',
+  'pulse'
 ]);
 
 

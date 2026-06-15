@@ -7,6 +7,7 @@ import { ProxyCmp } from './angular-component-lib/utils';
 import type { Components } from '@componentry/stencil/dist/components';
 
 import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
+import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 @ProxyCmp({
@@ -39,6 +40,29 @@ export declare interface CAvatar extends Components.CAvatar {
    */
   cError: EventEmitter<CAvatarCustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCBadge,
+  inputs: ['pill', 'pulse', 'variant']
+})
+@Component({
+  selector: 'c-badge',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['pill', 'pulse', 'variant'],
+})
+export class CBadge {
+  protected el: HTMLCBadgeElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CBadge extends Components.CBadge {}
 
 
 @ProxyCmp({

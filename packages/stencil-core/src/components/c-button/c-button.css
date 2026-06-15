@@ -456,11 +456,11 @@
 }
 
 /* Badges */
-.button ::slotted(c-badge) {
+::slotted(c-badge) {
   position: absolute;
-  top: 0;
-  right: 0;
-  pointer-events: none;
+  top: -10px;
+  right: -10px;
+  z-index: 10;
 }
 .button__caret {
   display: inline-flex;
