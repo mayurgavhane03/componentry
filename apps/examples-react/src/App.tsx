@@ -1,9 +1,10 @@
-import Input from "./components/Input";
+import Checkbox from "./components/Checkbox";
 
+  
 export default function App() {
   return (
     <>
-      <Input />
+    <Checkbox />
     </>
   );
 }
