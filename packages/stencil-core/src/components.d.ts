@@ -7,6 +7,43 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     /**
+     * @summary Avatars are used to represent a person or object.
+     * @event c-error - The image could not be loaded. This may because of an invalid URL,
+     * a temporary network condition, or some unknown cause.
+     * @csspart base - The component's base wrapper.
+     * @csspart icon - The container that wraps the avatar's icon.
+     * @csspart initials - The container that wraps the avatar's initials.
+     * @csspart image - The avatar image. Only shown when the `image` attribute is set.
+     * @cssproperty --size - The size of the avatar.
+     */
+    interface CAvatar {
+        /**
+          * The image source to use for the avatar.
+          * @default ""
+         */
+        "image": string;
+        /**
+          * Initials to use as a fallback when no image is available (1–2 characters max recommended).
+          * @default ""
+         */
+        "initials": string;
+        /**
+          * A label to use to describe the avatar to assistive devices.
+          * @default ""
+         */
+        "label": string;
+        /**
+          * Indicates how the browser should load the image.
+          * @default "eager"
+         */
+        "loading": "eager" | "lazy";
+        /**
+          * The shape of the avatar. Reflected to the host element so external CSS can target it via attribute.
+          * @default "circle"
+         */
+        "shape": "circle" | "square" | "rounded";
+    }
+    /**
      * @summary Buttons represent actions that are available to the user.
      * @csspart base - The component's base wrapper.
      * @csspart prefix - The container that wraps the prefix.
@@ -318,6 +355,10 @@ export namespace Components {
         "value": string;
     }
 }
+export interface CAvatarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCAvatarElement;
+}
 export interface CButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCButtonElement;
@@ -327,6 +368,33 @@ export interface CInputCustomEvent<T> extends CustomEvent<T> {
     target: HTMLCInputElement;
 }
 declare global {
+    interface HTMLCAvatarElementEventMap {
+        "cError": void;
+    }
+    /**
+     * @summary Avatars are used to represent a person or object.
+     * @event c-error - The image could not be loaded. This may because of an invalid URL,
+     * a temporary network condition, or some unknown cause.
+     * @csspart base - The component's base wrapper.
+     * @csspart icon - The container that wraps the avatar's icon.
+     * @csspart initials - The container that wraps the avatar's initials.
+     * @csspart image - The avatar image. Only shown when the `image` attribute is set.
+     * @cssproperty --size - The size of the avatar.
+     */
+    interface HTMLCAvatarElement extends Components.CAvatar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCAvatarElementEventMap>(type: K, listener: (this: HTMLCAvatarElement, ev: CAvatarCustomEvent<HTMLCAvatarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCAvatarElementEventMap>(type: K, listener: (this: HTMLCAvatarElement, ev: CAvatarCustomEvent<HTMLCAvatarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCAvatarElement: {
+        prototype: HTMLCAvatarElement;
+        new (): HTMLCAvatarElement;
+    };
     interface HTMLCButtonElementEventMap {
         "cBlur": void;
         "cFocus": void;
@@ -397,6 +465,7 @@ declare global {
         new (): HTMLCInputElement;
     };
     interface HTMLElementTagNameMap {
+        "c-avatar": HTMLCAvatarElement;
         "c-button": HTMLCButtonElement;
         "c-input": HTMLCInputElement;
     }
@@ -404,6 +473,47 @@ declare global {
 declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
+    /**
+     * @summary Avatars are used to represent a person or object.
+     * @event c-error - The image could not be loaded. This may because of an invalid URL,
+     * a temporary network condition, or some unknown cause.
+     * @csspart base - The component's base wrapper.
+     * @csspart icon - The container that wraps the avatar's icon.
+     * @csspart initials - The container that wraps the avatar's initials.
+     * @csspart image - The avatar image. Only shown when the `image` attribute is set.
+     * @cssproperty --size - The size of the avatar.
+     */
+    interface CAvatar {
+        /**
+          * The image source to use for the avatar.
+          * @default ""
+         */
+        "image"?: string;
+        /**
+          * Initials to use as a fallback when no image is available (1–2 characters max recommended).
+          * @default ""
+         */
+        "initials"?: string;
+        /**
+          * A label to use to describe the avatar to assistive devices.
+          * @default ""
+         */
+        "label"?: string;
+        /**
+          * Indicates how the browser should load the image.
+          * @default "eager"
+         */
+        "loading"?: "eager" | "lazy";
+        /**
+          * Emitted when the image fails to load.
+         */
+        "onCError"?: (event: CAvatarCustomEvent<void>) => void;
+        /**
+          * The shape of the avatar. Reflected to the host element so external CSS can target it via attribute.
+          * @default "circle"
+         */
+        "shape"?: "circle" | "square" | "rounded";
+    }
     /**
      * @summary Buttons represent actions that are available to the user.
      * @csspart base - The component's base wrapper.
@@ -666,6 +776,13 @@ declare namespace LocalJSX {
         "value"?: string;
     }
 
+    interface CAvatarAttributes {
+        "image": string;
+        "label": string;
+        "initials": string;
+        "loading": "eager" | "lazy";
+        "shape": "circle" | "square" | "rounded";
+    }
     interface CButtonAttributes {
         "variant": | "default"
     | "primary"
@@ -750,6 +867,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
+        "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
     }
@@ -758,6 +876,17 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * @summary Avatars are used to represent a person or object.
+             * @event c-error - The image could not be loaded. This may because of an invalid URL,
+             * a temporary network condition, or some unknown cause.
+             * @csspart base - The component's base wrapper.
+             * @csspart icon - The container that wraps the avatar's icon.
+             * @csspart initials - The container that wraps the avatar's initials.
+             * @csspart image - The avatar image. Only shown when the `image` attribute is set.
+             * @cssproperty --size - The size of the avatar.
+             */
+            "c-avatar": LocalJSX.IntrinsicElements["c-avatar"] & JSXBase.HTMLAttributes<HTMLCAvatarElement>;
             /**
              * @summary Buttons represent actions that are available to the user.
              * @csspart base - The component's base wrapper.

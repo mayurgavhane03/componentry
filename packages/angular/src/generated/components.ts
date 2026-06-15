@@ -6,8 +6,41 @@ import { ProxyCmp } from './angular-component-lib/utils';
 
 import type { Components } from '@componentry/stencil/dist/components';
 
+import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
+@ProxyCmp({
+  defineCustomElementFn: defineCAvatar,
+  inputs: ['image', 'initials', 'label', 'loading', 'shape']
+})
+@Component({
+  selector: 'c-avatar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['image', 'initials', 'label', 'loading', 'shape'],
+  outputs: ['cError'],
+})
+export class CAvatar {
+  protected el: HTMLCAvatarElement;
+  @Output() cError = new EventEmitter<CAvatarCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CAvatarCustomEvent } from '@componentry/stencil/dist/components';
+
+export declare interface CAvatar extends Components.CAvatar {
+  /**
+   * Emitted when the image fails to load.
+   */
+  cError: EventEmitter<CAvatarCustomEvent<void>>;
+}
+
+
 @ProxyCmp({
   defineCustomElementFn: defineCButton,
   inputs: ['caret', 'circle', 'disabled', 'download', 'href', 'loading', 'name', 'outline', 'pill', 'rel', 'size', 'target', 'tooltip', 'type', 'value', 'variant'],

@@ -4,5 +4,6 @@
  */
 
 /* eslint-disable */
+export { CAvatar } from "./c-avatar.js";
 export { CButton } from "./c-button.js";
 export { CInput } from "./c-input.js";

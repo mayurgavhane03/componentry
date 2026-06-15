@@ -602,124 +602,246 @@
 </head>
 
 <body>
- <body>
+
+<form>
+  <div class="row">
+    <c-input type="email" label="Email" placeholder="you@example.com"></c-input>
+    <c-input type="url"   label="URL"   placeholder="https://example.com"></c-input>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+  <!-- Types -->
   <section>
-    <h2>Basic</h2>
+    <h2>Types</h2>
     <div class="row">
-      <c-avatar image="https://i.pravatar.cc/150?img=1"></c-avatar>
-      <c-avatar image="https://i.pravatar.cc/150?img=2"></c-avatar>
-      <c-avatar image="https://i.pravatar.cc/150?img=3"></c-avatar>
+      <c-input type="text" placeholder="text" label="Text"></c-input>
+      <c-input type="email" placeholder="email" label="Email"></c-input>
+      <c-input type="password" placeholder="password" label="Password"></c-input>
+      <c-input type="number" placeholder="number" label="Number"></c-input>
+      <c-input type="search" placeholder="search" label="Search"></c-input>
+      <c-input type="tel" placeholder="tel" label="Tel"></c-input>
+      <c-input type="url" placeholder="url" label="URL"></c-input>
+      <c-input type="date" label="Date"></c-input>
+      <c-input type="datetime-local" label="Datetime Local"></c-input>
+      <c-input type="time" label="Time"></c-input>
     </div>
   </section>
 
+  <!-- Sizes -->
   <section>
-    <h2>Shapes</h2>
+    <h2>Sizes</h2>
     <div class="row">
-      <c-avatar initials="CI" shape="circle"></c-avatar>
-      <c-avatar initials="RO" shape="rounded"></c-avatar>
-      <c-avatar initials="SQ" shape="square"></c-avatar>
+      <c-input size="small" placeholder="Small" label="Small"></c-input>
+      <c-input size="medium" placeholder="Medium" label="Medium"></c-input>
+      <c-input size="large" placeholder="Large" label="Large"></c-input>
     </div>
   </section>
 
+  <!-- Filled -->
   <section>
-    <h2>Initials</h2>
+    <h2>Filled</h2>
     <div class="row">
-      <c-avatar initials="JD"></c-avatar>
-      <c-avatar initials="TS"></c-avatar>
-      <c-avatar initials="PP"></c-avatar>
-      <c-avatar initials="SJ"></c-avatar>
+      <c-input filled placeholder="Small filled" size="small" label="Small"></c-input>
+      <c-input filled placeholder="Medium filled" size="medium" label="Medium"></c-input>
+      <c-input filled placeholder="Large filled" size="large" label="Large"></c-input>
     </div>
   </section>
 
+  <!-- Pill -->
   <section>
-    <h2>Image + Label</h2>
+    <h2>Pill</h2>
     <div class="row">
-      <c-avatar
-        image="https://i.pravatar.cc/150?img=10"
-        label="Tony Stark">
-      </c-avatar>
-
-      <c-avatar
-        image="https://i.pravatar.cc/150?img=11"
-        label="Peter Parker">
-      </c-avatar>
-
-      <c-avatar
-        image="https://i.pravatar.cc/150?img=12"
-        label="Steve Rogers">
-      </c-avatar>
+      <c-input pill size="small" placeholder="Small pill" label="Small"></c-input>
+      <c-input pill size="medium" placeholder="Medium pill" label="Medium"></c-input>
+      <c-input pill size="large" placeholder="Large pill" label="Large"></c-input>
     </div>
   </section>
 
+  <!-- States -->
   <section>
-    <h2>Custom Icon</h2>
+    <h2>States</h2>
     <div class="row">
-      <c-avatar>
-        <svg
-          slot="icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="currentColor"
-          viewBox="0 0 16 16">
-          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-          <path d="M2 14s1-4 6-4 6 4 6 4H2z" />
+      <c-input placeholder="Default" label="Default"></c-input>
+      <c-input placeholder="Disabled" label="Disabled" disabled></c-input>
+      <c-input placeholder="Readonly" label="Readonly" readonly value="Readonly value"></c-input>
+      <c-input placeholder="Required" label="Required" required></c-input>
+    </div>
+  </section>
+
+  <!-- Label + Help Text -->
+  <section>
+    <h2>Label & Help Text</h2>
+    <div class="row">
+      <c-input label="Username" help-text="Enter your username." placeholder="johndoe"></c-input>
+      <c-input label="Email" help-text="We'll never share your email." placeholder="you@example.com"
+        type="email"></c-input>
+    </div>
+  </section>
+
+  <!-- Clearable -->
+  <section>
+    <h2>Clearable</h2>
+    <div class="row">
+      <c-input clearable value="Clear me" size="small" label="Small clearable"></c-input>
+      <c-input clearable value="Clear me" size="medium" label="Medium clearable"></c-input>
+      <c-input clearable value="Clear me" size="large" label="Large clearable"></c-input>
+    </div>
+  </section>
+
+  <!-- Password Toggle -->
+  <section>
+    <h2>Password Toggle</h2>
+    <div class="row">
+      <c-input type="password" password-toggle value="secret123" size="small" label="Small"></c-input>
+      <c-input type="password" password-toggle value="secret123" size="medium" label="Medium"></c-input>
+      <c-input type="password" password-toggle value="secret123" size="large" label="Large"></c-input>
+    </div>
+  </section>
+
+  <!-- Prefix & Suffix Slots -->
+  <section>
+    <h2>Prefix & Suffix Slots</h2>
+    <div class="row">
+      <c-input label="With prefix icon" placeholder="Search...">
+        <svg slot="prefix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
         </svg>
-      </c-avatar>
+      </c-input>
+
+      <c-input label="With suffix icon" placeholder="Enter URL">
+        <svg slot="suffix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          <polyline points="15 3 21 3 21 9" />
+          <line x1="10" y1="14" x2="21" y2="3" />
+        </svg>
+      </c-input>
+
+      <c-input label="Prefix text" placeholder="0.00">
+        <span slot="prefix" style="font-size:0.875rem;color:#888">$</span>
+      </c-input>
+
+      <c-input label="Suffix text" placeholder="weight">
+        <span slot="suffix" style="font-size:0.875rem;color:#888">kg</span>
+      </c-input>
     </div>
   </section>
 
+  <!-- Clearable + Prefix -->
   <section>
-    <h2>Fallback States</h2>
+    <h2>Clearable + Prefix</h2>
     <div class="row">
-      <c-avatar
-        image="https://invalid-url.com/avatar.jpg"
-        initials="MJ">
-      </c-avatar>
-
-      <c-avatar></c-avatar>
+      <c-input clearable label="Search" value="React components" placeholder="Search...">
+        <svg slot="prefix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      </c-input>
     </div>
   </section>
 
+  <!-- No Spin Buttons (Number) -->
   <section>
-    <h2>Avatar Group</h2>
+    <h2>Number – No Spin Buttons</h2>
     <div class="row">
-      <c-avatar initials="TS"></c-avatar>
-      <c-avatar initials="PP"></c-avatar>
-      <c-avatar initials="SJ"></c-avatar>
-      <c-avatar initials="BW"></c-avatar>
-      <c-avatar initials="TH"></c-avatar>
+      <c-input type="number" label="With spin" placeholder="0"></c-input>
+      <c-input type="number" label="No spin" no-spin-buttons placeholder="0"></c-input>
     </div>
   </section>
 
+  <!-- Min / Max / Step -->
   <section>
-    <h2>Custom Size</h2>
+    <h2>Min / Max / Step</h2>
     <div class="row">
-      <c-avatar
-        initials="SM"
-        style="--size: 40px;">
-      </c-avatar>
-
-      <c-avatar
-        initials="MD"
-        style="--size: 64px;">
-      </c-avatar>
-
-      <c-avatar
-        initials="LG"
-        style="--size: 96px;">
-      </c-avatar>
+      <c-input type="number" label="1–10, step 2" min="1" max="10" step="2" value="1"></c-input>
+      <c-input type="date" label="Date range" min="2024-01-01" max="2024-12-31"></c-input>
     </div>
   </section>
 
-  <script>
-    document.querySelectorAll('c-avatar').forEach(avatar => {
-      avatar.addEventListener('c-error', () => {
-        alert('Avatar image failed to load');
-      });
-    });
-  </script>
-</body>
+  <!-- Minlength / Maxlength / Pattern -->
+  <section>
+    <h2>Validation Constraints</h2>
+    <div class="row">
+      <c-input label="Min 3, Max 10 chars" minlength="3" maxlength="10" placeholder="3–10 chars"
+        help-text="Between 3 and 10 characters"></c-input>
+      <c-input label="Hex color pattern" pattern="^#[0-9A-Fa-f]{6}$" placeholder="#ff0000"
+        help-text="Format: #rrggbb"></c-input>
+    </div>
+  </section>
+
+  <!-- Autocomplete -->
+  <section>
+    <h2>Autocomplete</h2>
+    <div class="row">
+      <c-input type="email" label="Email" autocomplete="email" placeholder="you@example.com"></c-input>
+      <c-input type="password" label="Password" autocomplete="current-password" placeholder="password"></c-input>
+      <c-input type="text" label="Name" autocomplete="name" placeholder="Full name"></c-input>
+    </div>
+  </section>
+
+  <!-- Input Modes -->
+  <section>
+    <h2>Input Modes</h2>
+    <div class="row">
+      <c-input inputmode="numeric" label="Numeric" placeholder="1234"></c-input>
+      <c-input inputmode="decimal" label="Decimal" placeholder="3.14"></c-input>
+      <c-input inputmode="email" label="Email" placeholder="you@example.com"></c-input>
+      <c-input inputmode="url" label="URL" placeholder="https://..."></c-input>
+      <c-input inputmode="search" label="Search" placeholder="Search..."></c-input>
+      <c-input inputmode="tel" label="Tel" placeholder="+1 555 000"></c-input>
+    </div>
+  </section>
+
+  <!-- Spellcheck -->
+  <section>
+    <h2>Spellcheck</h2>
+    <div class="row">
+      <c-input label="Spellcheck on" spellcheck="true" placeholder="Spellcheck enabled"></c-input>
+      <c-input label="Spellcheck off" spellcheck="false" placeholder="Spellcheck disabled"></c-input>
+    </div>
+  </section>
+
+  <!-- Label Slot -->
+  <section>
+    <h2>Label Slot (Custom HTML Label)</h2>
+    <div class="row">
+      <c-input placeholder="custom label slot">
+        <span slot="label">Custom <strong>HTML</strong> label <span style="color:red">*</span></span>
+      </c-input>
+    </div>
+  </section>
+
+  <!-- Help Text Slot -->
+  <section>
+    <h2>Help Text Slot (Custom HTML Help Text)</h2>
+    <div class="row">
+      <c-input label="Website" placeholder="https://...">
+        <span slot="help-text">Must start with <code>https://</code></span>
+      </c-input>
+    </div>
+  </section>
+
+  <!-- All features combined -->
+  <section>
+    <h2>Kitchen Sink</h2>
+    <div class="row">
+      <c-input type="email" label="Work Email" placeholder="you@company.com" help-text="We'll send confirmation here."
+        clearable required autocomplete="email" size="large" pill>
+        <svg slot="prefix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <rect width="20" height="16" x="2" y="4" rx="2" />
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+        </svg>
+      </c-input>
+
+      <c-input type="password" label="Password" placeholder="min 8 characters"
+        help-text="Use letters, numbers & symbols." password-toggle minlength="8" required size="large" pill
+        filled></c-input>
+    </div>
+  </section>
 </body>
 
 </html>
