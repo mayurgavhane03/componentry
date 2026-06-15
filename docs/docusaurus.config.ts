@@ -88,7 +88,7 @@ const config: Config = {
           position: "left",
           label: "Components",
         },
-        { to: "/theme", label: "Theme", position: "left" },
+        { to: "/docs/theme", label: "Theme", position: "left" },
 
         { to: "/blog", label: "Blog", position: "left" },
         {
