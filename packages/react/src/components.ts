@@ -7,4 +7,5 @@
 export { CAvatar } from "./c-avatar.js";
 export { CBadge } from "./c-badge.js";
 export { CButton } from "./c-button.js";
+export { CCheckbox } from "./c-checkbox.js";
 export { CInput } from "./c-input.js";

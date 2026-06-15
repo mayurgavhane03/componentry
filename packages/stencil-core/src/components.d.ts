@@ -188,6 +188,102 @@ export namespace Components {
     | "text";
     }
     /**
+     * @summary Checkboxes allow the user to toggle an option on or off.
+     * @event c-blur    - Emitted when the checkbox loses focus.
+     * @event c-change  - Emitted when the checked state changes.
+     * @event c-focus   - Emitted when the checkbox gains focus.
+     * @event c-input   - Emitted when the checkbox receives input.
+     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart base                   - The component's base wrapper.
+     * @csspart control                - The square container that wraps the checkbox's checked state.
+     * @csspart control--checked       - Matches the control part when the checkbox is checked.
+     * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
+     * @csspart checked-icon           - The checked icon element.
+     * @csspart indeterminate-icon     - The indeterminate icon element.
+     * @csspart label                  - The container that wraps the checkbox's label.
+     * @csspart form-control-help-text - The help text's wrapper.
+     */
+    interface CCheckbox {
+        /**
+          * Removes focus from the checkbox.
+         */
+        "checkBlur": () => Promise<void>;
+        /**
+          * Passed through to the native input's title attribute.
+          * @default ""
+         */
+        "checkBoxtitle": string;
+        /**
+          * Simulates a click on the checkbox.
+         */
+        "checkClick": () => Promise<void>;
+        /**
+          * Sets focus on the checkbox.
+         */
+        "checkFocus": (options?: FocusOptions) => Promise<void>;
+        /**
+          * Checks for validity but does not show a validation message. Returns `true` when valid.
+         */
+        "checkValidity": () => Promise<boolean>;
+        /**
+          * Draws the checkbox in a checked state.
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * The default checked state. Primarily used for resetting the form control.
+          * @default false
+         */
+        "defaultChecked": boolean;
+        /**
+          * Disables the checkbox.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Associates the control with a form element by id. The form must be in the same document or shadow root.
+          * @default ""
+         */
+        "form": string;
+        /**
+          * The checkbox's help text. Use the `help-text` slot for HTML content.
+          * @default ""
+         */
+        "helpText": string;
+        /**
+          * Draws the checkbox in an indeterminate state. Usually applied to "select all/none" checkboxes when associated checkboxes have a mix of checked and unchecked states.
+          * @default false
+         */
+        "indeterminate": boolean;
+        /**
+          * The name of the checkbox, submitted as a name/value pair with form data.
+          * @default ""
+         */
+        "name": string;
+        /**
+          * Checks for validity and shows the browser's validation message if the control is invalid.
+         */
+        "reportValidity": () => Promise<boolean>;
+        /**
+          * Makes the checkbox a required field.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Sets a custom validation message. Pass an empty string to clear it.
+         */
+        "setCustomValidity": (message: string) => Promise<void>;
+        /**
+          * The checkbox's size.
+          * @default "medium"
+         */
+        "size": "small" | "medium" | "large";
+        /**
+          * The current value of the checkbox, submitted as a name/value pair with form data.
+         */
+        "value": string;
+    }
+    /**
      * @summary Inputs collect data from the user.
      * @event c-blur    - Emitted when the control loses focus.
      * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
@@ -388,6 +484,10 @@ export interface CButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCButtonElement;
 }
+export interface CCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCCheckboxElement;
+}
 export interface CInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCInputElement;
@@ -458,6 +558,43 @@ declare global {
         prototype: HTMLCButtonElement;
         new (): HTMLCButtonElement;
     };
+    interface HTMLCCheckboxElementEventMap {
+        "cBlur": void;
+        "cChange": void;
+        "cFocus": void;
+        "cInput": void;
+        "cInvalid": void;
+    }
+    /**
+     * @summary Checkboxes allow the user to toggle an option on or off.
+     * @event c-blur    - Emitted when the checkbox loses focus.
+     * @event c-change  - Emitted when the checked state changes.
+     * @event c-focus   - Emitted when the checkbox gains focus.
+     * @event c-input   - Emitted when the checkbox receives input.
+     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart base                   - The component's base wrapper.
+     * @csspart control                - The square container that wraps the checkbox's checked state.
+     * @csspart control--checked       - Matches the control part when the checkbox is checked.
+     * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
+     * @csspart checked-icon           - The checked icon element.
+     * @csspart indeterminate-icon     - The indeterminate icon element.
+     * @csspart label                  - The container that wraps the checkbox's label.
+     * @csspart form-control-help-text - The help text's wrapper.
+     */
+    interface HTMLCCheckboxElement extends Components.CCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCCheckboxElementEventMap>(type: K, listener: (this: HTMLCCheckboxElement, ev: CCheckboxCustomEvent<HTMLCCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCCheckboxElementEventMap>(type: K, listener: (this: HTMLCCheckboxElement, ev: CCheckboxCustomEvent<HTMLCCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCCheckboxElement: {
+        prototype: HTMLCCheckboxElement;
+        new (): HTMLCCheckboxElement;
+    };
     interface HTMLCInputElementEventMap {
         "cBlur": void;
         "cChange": void;
@@ -503,6 +640,7 @@ declare global {
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
         "c-button": HTMLCButtonElement;
+        "c-checkbox": HTMLCCheckboxElement;
         "c-input": HTMLCInputElement;
     }
 }
@@ -681,6 +819,83 @@ declare namespace LocalJSX {
     | "warning"
     | "danger"
     | "text";
+    }
+    /**
+     * @summary Checkboxes allow the user to toggle an option on or off.
+     * @event c-blur    - Emitted when the checkbox loses focus.
+     * @event c-change  - Emitted when the checked state changes.
+     * @event c-focus   - Emitted when the checkbox gains focus.
+     * @event c-input   - Emitted when the checkbox receives input.
+     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart base                   - The component's base wrapper.
+     * @csspart control                - The square container that wraps the checkbox's checked state.
+     * @csspart control--checked       - Matches the control part when the checkbox is checked.
+     * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
+     * @csspart checked-icon           - The checked icon element.
+     * @csspart indeterminate-icon     - The indeterminate icon element.
+     * @csspart label                  - The container that wraps the checkbox's label.
+     * @csspart form-control-help-text - The help text's wrapper.
+     */
+    interface CCheckbox {
+        /**
+          * Passed through to the native input's title attribute.
+          * @default ""
+         */
+        "checkBoxtitle"?: string;
+        /**
+          * Draws the checkbox in a checked state.
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * The default checked state. Primarily used for resetting the form control.
+          * @default false
+         */
+        "defaultChecked"?: boolean;
+        /**
+          * Disables the checkbox.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Associates the control with a form element by id. The form must be in the same document or shadow root.
+          * @default ""
+         */
+        "form"?: string;
+        /**
+          * The checkbox's help text. Use the `help-text` slot for HTML content.
+          * @default ""
+         */
+        "helpText"?: string;
+        /**
+          * Draws the checkbox in an indeterminate state. Usually applied to "select all/none" checkboxes when associated checkboxes have a mix of checked and unchecked states.
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        /**
+          * The name of the checkbox, submitted as a name/value pair with form data.
+          * @default ""
+         */
+        "name"?: string;
+        "onCBlur"?: (event: CCheckboxCustomEvent<void>) => void;
+        "onCChange"?: (event: CCheckboxCustomEvent<void>) => void;
+        "onCFocus"?: (event: CCheckboxCustomEvent<void>) => void;
+        "onCInput"?: (event: CCheckboxCustomEvent<void>) => void;
+        "onCInvalid"?: (event: CCheckboxCustomEvent<void>) => void;
+        /**
+          * Makes the checkbox a required field.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * The checkbox's size.
+          * @default "medium"
+         */
+        "size"?: "small" | "medium" | "large";
+        /**
+          * The current value of the checkbox, submitted as a name/value pair with form data.
+         */
+        "value": string;
     }
     /**
      * @summary Inputs collect data from the user.
@@ -877,6 +1092,19 @@ declare namespace LocalJSX {
         "download": string;
         "tooltip": string;
     }
+    interface CCheckboxAttributes {
+        "checkBoxtitle": string;
+        "name": string;
+        "value": string;
+        "size": "small" | "medium" | "large";
+        "disabled": boolean;
+        "checked": boolean;
+        "indeterminate": boolean;
+        "defaultChecked": boolean;
+        "form": string;
+        "required": boolean;
+        "helpText": string;
+    }
     interface CInputAttributes {
         "type": | "date"
     | "datetime-local"
@@ -940,6 +1168,7 @@ declare namespace LocalJSX {
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
         "c-badge": Omit<CBadge, keyof CBadgeAttributes> & { [K in keyof CBadge & keyof CBadgeAttributes]?: CBadge[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `attr:${K}`]?: CBadgeAttributes[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `prop:${K}`]?: CBadge[K] };
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
+        "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
     }
 }
@@ -973,6 +1202,23 @@ declare module "@stencil/core" {
              * @csspart spinner - The spinner shown in loading state.
              */
             "c-button": LocalJSX.IntrinsicElements["c-button"] & JSXBase.HTMLAttributes<HTMLCButtonElement>;
+            /**
+             * @summary Checkboxes allow the user to toggle an option on or off.
+             * @event c-blur    - Emitted when the checkbox loses focus.
+             * @event c-change  - Emitted when the checked state changes.
+             * @event c-focus   - Emitted when the checkbox gains focus.
+             * @event c-input   - Emitted when the checkbox receives input.
+             * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+             * @csspart base                   - The component's base wrapper.
+             * @csspart control                - The square container that wraps the checkbox's checked state.
+             * @csspart control--checked       - Matches the control part when the checkbox is checked.
+             * @csspart control--indeterminate - Matches the control part when the checkbox is indeterminate.
+             * @csspart checked-icon           - The checked icon element.
+             * @csspart indeterminate-icon     - The indeterminate icon element.
+             * @csspart label                  - The container that wraps the checkbox's label.
+             * @csspart form-control-help-text - The help text's wrapper.
+             */
+            "c-checkbox": LocalJSX.IntrinsicElements["c-checkbox"] & JSXBase.HTMLAttributes<HTMLCCheckboxElement>;
             /**
              * @summary Inputs collect data from the user.
              * @event c-blur    - Emitted when the control loses focus.

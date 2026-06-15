@@ -8,6 +8,7 @@ import type { JSX } from '@componentry/stencil/dist/components';
 import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
+import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 
 
@@ -54,6 +55,32 @@ export const CButton: StencilVueComponent<JSX.CButton> = /*@__PURE__*/ defineCon
 ], [
   'cBlur',
   'cFocus',
+  'cInvalid'
+]);
+
+
+export const CCheckbox: StencilVueComponent<JSX.CCheckbox> = /*@__PURE__*/ defineContainer<JSX.CCheckbox>('c-checkbox', defineCCheckbox, [
+  'checkBoxtitle',
+  'name',
+  'value',
+  'size',
+  'disabled',
+  'checked',
+  'indeterminate',
+  'defaultChecked',
+  'form',
+  'required',
+  'helpText',
+  'cBlur',
+  'cChange',
+  'cFocus',
+  'cInput',
+  'cInvalid'
+], [
+  'cBlur',
+  'cChange',
+  'cFocus',
+  'cInput',
   'cInvalid'
 ]);
 

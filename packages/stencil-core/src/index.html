@@ -603,130 +603,78 @@
 
 <body>
  <body>
- <body>
-  <section>
-    <h2>Variants</h2>
-    <div class="row">
-      <c-badge variant="primary">Primary</c-badge>
-      <c-badge variant="success">Success</c-badge>
-      <c-badge variant="neutral">Neutral</c-badge>
-      <c-badge variant="warning">Warning</c-badge>
-      <c-badge variant="danger">Danger</c-badge>
-    </div>
-  </section>
+ <c-checkbox>Default Checkbox</c-checkbox>
 
-  <section>
-    <h2>Pill Badges</h2>
-    <div class="row">
-      <c-badge variant="primary" pill>Primary</c-badge>
-      <c-badge variant="success" pill>Success</c-badge>
-      <c-badge variant="neutral" pill>Neutral</c-badge>
-      <c-badge variant="warning" pill>Warning</c-badge>
-      <c-badge variant="danger" pill>Danger</c-badge>
-    </div>
-  </section>
+<c-checkbox checked>
+  Checked Checkbox
+</c-checkbox>
 
-  <section>
-    <h2>Pulse Badges</h2>
-    <div class="row">
-      <c-badge variant="primary" pulse>Live</c-badge>
-      <c-badge variant="success" pulse>Online</c-badge>
-      <c-badge variant="warning" pulse>Pending</c-badge>
-      <c-badge variant="danger" pulse>Error</c-badge>
-    </div>
-  </section>
+<c-checkbox indeterminate>
+  Indeterminate Checkbox
+</c-checkbox>
 
-  <section>
-    <h2>Pill + Pulse</h2>
-    <div class="row">
-      <c-badge variant="primary" pill pulse>New</c-badge>
-      <c-badge variant="success" pill pulse>Active</c-badge>
-      <c-badge variant="warning" pill pulse>Review</c-badge>
-      <c-badge variant="danger" pill pulse>Alert</c-badge>
-    </div>
-  </section>
+<c-checkbox disabled>
+  Disabled Checkbox
+</c-checkbox>
 
-  <section>
-    <h2>Status Examples</h2>
-    <div class="row">
-      <c-badge variant="success">Completed</c-badge>
-      <c-badge variant="warning">In Progress</c-badge>
-      <c-badge variant="danger">Failed</c-badge>
-      <c-badge variant="neutral">Draft</c-badge>
-    </div>
-  </section>
+<c-checkbox checked disabled>
+  Disabled Checked
+</c-checkbox>
 
-  <section>
-    <h2>Notification Counts</h2>
-    <div class="row">
-      <c-badge variant="danger" pill>1</c-badge>
-      <c-badge variant="danger" pill>9</c-badge>
-      <c-badge variant="danger" pill>99+</c-badge>
-      <c-badge variant="primary" pill>125</c-badge>
-    </div>
-  </section>
+<c-checkbox required>
+  Required Checkbox
+</c-checkbox>
 
-  <section>
-    <h2>User Roles</h2>
-    <div class="row">
-      <c-badge variant="primary">Admin</c-badge>
-      <c-badge variant="success">Member</c-badge>
-      <c-badge variant="warning">Moderator</c-badge>
-      <c-badge variant="neutral">Guest</c-badge>
-    </div>
-  </section>
+<c-checkbox size="small">
+  Small Checkbox
+</c-checkbox>
 
-  <section>
-    <h2>E-commerce</h2>
-    <div class="row">
-      <c-badge variant="success">In Stock</c-badge>
-      <c-badge variant="warning">Limited Stock</c-badge>
-      <c-badge variant="danger">Out of Stock</c-badge>
-      <c-badge variant="primary">New Arrival</c-badge>
-    </div>
-  </section>
+<c-checkbox size="medium">
+  Medium Checkbox
+</c-checkbox>
 
-  <section>
-    <h2>Tags</h2>
-    <div class="row">
-      <c-badge pill>JavaScript</c-badge>
-      <c-badge pill variant="success">React</c-badge>
-      <c-badge pill variant="warning">Angular</c-badge>
-      <c-badge pill variant="danger">Vue</c-badge>
-    </div>
-  </section>
+<c-checkbox size="large">
+  Large Checkbox
+</c-checkbox>
 
-  <section>
-    <h2>All Props</h2>
-    <div class="row">
-      <c-badge
-        variant="primary"
-        pill
-        pulse>
-        Featured
-      </c-badge>
-    </div>
-  </section>
-<c-button variant="primary">
-  Comments
-  <c-badge slot="suffix" variant="neutral" pill>4</c-badge>
-</c-button>
+<c-checkbox
+  name="newsletter"
+  value="yes">
+  Newsletter Subscription
+</c-checkbox>
 
-<c-button variant="primary">
-  Replies
-  <c-badge slot="suffix" variant="neutral" pill>12</c-badge>
-</c-button>
+<c-checkbox
+  checkBoxtitle="Accept Terms">
+  Hover for title
+</c-checkbox>
 
-<c-button variant="success">
-  Messages
-  <c-badge slot="suffix" variant="danger" pill>99+</c-badge>
-</c-button>
+<c-checkbox
+  help-text="You must accept before continuing">
+  Terms & Conditions
+</c-checkbox>
 
-<c-button variant="warning">
-  Pending
-  <c-badge slot="suffix" variant="danger" pill pulse>3</c-badge>
-</c-button>
-</body>
+<c-checkbox>
+  Email Notifications
+  <span slot="help-text">
+    Receive updates via email.
+  </span>
+</c-checkbox>
+
+<c-checkbox checked>
+  Remember Me
+</c-checkbox>
+
+<c-checkbox indeterminate>
+  Select All
+</c-checkbox>
+
+<c-checkbox checked>
+  Item 1
+</c-checkbox>
+
+<c-checkbox>
+  Item 2
+</c-checkbox>
  
 </body>
 </body>

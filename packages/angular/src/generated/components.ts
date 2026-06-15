@@ -9,6 +9,7 @@ import type { Components } from '@componentry/stencil/dist/components';
 import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
+import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 @ProxyCmp({
   defineCustomElementFn: defineCAvatar,
@@ -105,6 +106,49 @@ export declare interface CButton extends Components.CButton {
    * Emitted when the form control fails constraint validation.
    */
   cInvalid: EventEmitter<CButtonCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCheckbox,
+  inputs: ['checkBoxtitle', 'checked', 'defaultChecked', 'disabled', 'form', 'helpText', 'indeterminate', 'name', 'required', 'size', 'value'],
+  methods: ['checkClick', 'checkFocus', 'checkBlur', 'checkValidity', 'reportValidity', 'setCustomValidity']
+})
+@Component({
+  selector: 'c-checkbox',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checkBoxtitle', 'checked', 'defaultChecked', 'disabled', 'form', 'helpText', 'indeterminate', 'name', 'required', 'size', { name: 'value', required: true }],
+  outputs: ['cBlur', 'cChange', 'cFocus', 'cInput', 'cInvalid'],
+})
+export class CCheckbox {
+  protected el: HTMLCCheckboxElement;
+  @Output() cBlur = new EventEmitter<CCheckboxCustomEvent<void>>();
+  @Output() cChange = new EventEmitter<CCheckboxCustomEvent<void>>();
+  @Output() cFocus = new EventEmitter<CCheckboxCustomEvent<void>>();
+  @Output() cInput = new EventEmitter<CCheckboxCustomEvent<void>>();
+  @Output() cInvalid = new EventEmitter<CCheckboxCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CCheckboxCustomEvent } from '@componentry/stencil/dist/components';
+
+export declare interface CCheckbox extends Components.CCheckbox {
+
+  cBlur: EventEmitter<CCheckboxCustomEvent<void>>;
+
+  cChange: EventEmitter<CCheckboxCustomEvent<void>>;
+
+  cFocus: EventEmitter<CCheckboxCustomEvent<void>>;
+
+  cInput: EventEmitter<CCheckboxCustomEvent<void>>;
+
+  cInvalid: EventEmitter<CCheckboxCustomEvent<void>>;
 }
 
 
