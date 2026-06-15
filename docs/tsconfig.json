@@ -3,6 +3,7 @@
 // and can also run the package.json "typecheck" script manually.
 {
   "compilerOptions": {
+    "jsx": "react",
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
     "strict": true

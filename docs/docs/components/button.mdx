@@ -1,0 +1,1099 @@
+---
+title: Button
+description: Buttons represent actions that are available to the user.
+---
+
+import FrameworkTabs from '@site/src/components/FrameworkTabs';
+import { CButton } from '@componentry/react';
+
+# Button
+
+Displays a button or a component that looks like a button.
+
+---
+
+## Import
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";`}
+  vue={`import { CButton } from "@componentry/vue";`}
+  angular={`import { CButton } from "@componentry/angular";
+// Add CButton to your NgModule or standalone component imports`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>`}
+/>
+
+---
+
+## Examples
+
+### Variants
+
+Use the `variant` prop to change the button's visual style. Available variants are `default`, `primary`, `success`, `neutral`, `warning`, `danger`, and `text`.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton variant="default">Default</CButton>
+  <CButton variant="primary">Primary</CButton>
+  <CButton variant="success">Success</CButton>
+  <CButton variant="neutral">Neutral</CButton>
+  <CButton variant="warning">Warning</CButton>
+  <CButton variant="danger">Danger</CButton>
+  <CButton variant="text">Text</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton variant="default">Default</CButton>
+    <CButton variant="primary">Primary</CButton>
+    <CButton variant="success">Success</CButton>
+    <CButton variant="neutral">Neutral</CButton>
+    <CButton variant="warning">Warning</CButton>
+    <CButton variant="danger">Danger</CButton>
+    <CButton variant="text">Text</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton variant="default">Default</CButton>
+  <CButton variant="primary">Primary</CButton>
+  <CButton variant="success">Success</CButton>
+  <CButton variant="neutral">Neutral</CButton>
+  <CButton variant="warning">Warning</CButton>
+  <CButton variant="danger">Danger</CButton>
+  <CButton variant="text">Text</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button variant="default">Default</c-button>
+    <c-button variant="primary">Primary</c-button>
+    <c-button variant="success">Success</c-button>
+    <c-button variant="neutral">Neutral</c-button>
+    <c-button variant="warning">Warning</c-button>
+    <c-button variant="danger">Danger</c-button>
+    <c-button variant="text">Text</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button variant="default">Default</c-button>
+<c-button variant="primary">Primary</c-button>
+<c-button variant="success">Success</c-button>
+<c-button variant="neutral">Neutral</c-button>
+<c-button variant="warning">Warning</c-button>
+<c-button variant="danger">Danger</c-button>
+<c-button variant="text">Text</c-button>`}
+/>
+
+---
+
+### Sizes
+
+Use the `size` prop to change the button's size. Available sizes are `small`, `medium` (default), and `large`.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton size="small" variant="primary">Small</CButton>
+  <CButton size="medium" variant="primary">Medium</CButton>
+  <CButton size="large" variant="primary">Large</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton size="small" variant="primary">Small</CButton>
+    <CButton size="medium" variant="primary">Medium</CButton>
+    <CButton size="large" variant="primary">Large</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton size="small" variant="primary">Small</CButton>
+  <CButton size="medium" variant="primary">Medium</CButton>
+  <CButton size="large" variant="primary">Large</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button size="small" variant="primary">Small</c-button>
+    <c-button size="medium" variant="primary">Medium</c-button>
+    <c-button size="large" variant="primary">Large</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button size="small" variant="primary">Small</c-button>
+<c-button size="medium" variant="primary">Medium</c-button>
+<c-button size="large" variant="primary">Large</c-button>`}
+/>
+
+---
+
+### Outline
+
+Use the `outline` prop to draw an outlined (ghost) style button. Works with all variants.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton variant="default" outline>Default</CButton>
+  <CButton variant="primary" outline>Primary</CButton>
+  <CButton variant="success" outline>Success</CButton>
+  <CButton variant="neutral" outline>Neutral</CButton>
+  <CButton variant="warning" outline>Warning</CButton>
+  <CButton variant="danger" outline>Danger</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton variant="default" outline>Default</CButton>
+    <CButton variant="primary" outline>Primary</CButton>
+    <CButton variant="success" outline>Success</CButton>
+    <CButton variant="neutral" outline>Neutral</CButton>
+    <CButton variant="warning" outline>Warning</CButton>
+    <CButton variant="danger" outline>Danger</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton variant="default" outline>Default</CButton>
+  <CButton variant="primary" outline>Primary</CButton>
+  <CButton variant="success" outline>Success</CButton>
+  <CButton variant="neutral" outline>Neutral</CButton>
+  <CButton variant="warning" outline>Warning</CButton>
+  <CButton variant="danger" outline>Danger</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button variant="default" outline>Default</c-button>
+    <c-button variant="primary" outline>Primary</c-button>
+    <c-button variant="success" outline>Success</c-button>
+    <c-button variant="neutral" outline>Neutral</c-button>
+    <c-button variant="warning" outline>Warning</c-button>
+    <c-button variant="danger" outline>Danger</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button variant="default" outline>Default</c-button>
+<c-button variant="primary" outline>Primary</c-button>
+<c-button variant="success" outline>Success</c-button>
+<c-button variant="neutral" outline>Neutral</c-button>
+<c-button variant="warning" outline>Warning</c-button>
+<c-button variant="danger" outline>Danger</c-button>`}
+/>
+
+---
+
+### Pill
+
+Use the `pill` prop to give the button fully rounded edges.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton size="small" variant="primary" pill>Small</CButton>
+  <CButton size="medium" variant="primary" pill>Medium</CButton>
+  <CButton size="large" variant="primary" pill>Large</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton size="small" variant="primary" pill>Small</CButton>
+    <CButton size="medium" variant="primary" pill>Medium</CButton>
+    <CButton size="large" variant="primary" pill>Large</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton size="small" variant="primary" pill>Small</CButton>
+  <CButton size="medium" variant="primary" pill>Medium</CButton>
+  <CButton size="large" variant="primary" pill>Large</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button size="small" variant="primary" pill>Small</c-button>
+    <c-button size="medium" variant="primary" pill>Medium</c-button>
+    <c-button size="large" variant="primary" pill>Large</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button size="small" variant="primary" pill>Small</c-button>
+<c-button size="medium" variant="primary" pill>Medium</c-button>
+<c-button size="large" variant="primary" pill>Large</c-button>`}
+/>
+
+---
+
+### Circle
+
+Use the `circle` prop to create a circular icon button. Best used with a single icon as the button's content and no label.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton size="small" variant="primary" circle>+</CButton>
+  <CButton size="medium" variant="primary" circle>+</CButton>
+  <CButton size="large" variant="primary" circle>+</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton size="small" variant="primary" circle>
+      {/* icon */}+
+    </CButton>
+    <CButton size="medium" variant="primary" circle>
+      {/* icon */}+
+    </CButton>
+    <CButton size="large" variant="primary" circle>
+      {/* icon */}+
+    </CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton size="small" variant="primary" circle>+</CButton>
+  <CButton size="medium" variant="primary" circle>+</CButton>
+  <CButton size="large" variant="primary" circle>+</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button size="small" variant="primary" circle>+</c-button>
+    <c-button size="medium" variant="primary" circle>+</c-button>
+    <c-button size="large" variant="primary" circle>+</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button size="small" variant="primary" circle>+</c-button>
+<c-button size="medium" variant="primary" circle>+</c-button>
+<c-button size="large" variant="primary" circle>+</c-button>`}
+/>
+
+---
+
+### Caret
+
+Use the `caret` prop to show a dropdown caret indicator. Useful for trigger buttons of menus or dropdowns.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton size="small" caret>Small</CButton>
+  <CButton size="medium" caret>Medium</CButton>
+  <CButton size="large" caret>Large</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton size="small" caret>Small</CButton>
+    <CButton size="medium" caret>Medium</CButton>
+    <CButton size="large" caret>Large</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton size="small" caret>Small</CButton>
+  <CButton size="medium" caret>Medium</CButton>
+  <CButton size="large" caret>Large</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button size="small" caret>Small</c-button>
+    <c-button size="medium" caret>Medium</c-button>
+    <c-button size="large" caret>Large</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button size="small" caret>Small</c-button>
+<c-button size="medium" caret>Medium</c-button>
+<c-button size="large" caret>Large</c-button>`}
+/>
+
+---
+
+### Loading
+
+Use the `loading` prop to show a spinner and put the button into a non-interactive loading state. The button's content is hidden while loading.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton variant="default" loading>Default</CButton>
+  <CButton variant="primary" loading>Primary</CButton>
+  <CButton variant="success" loading>Success</CButton>
+  <CButton variant="neutral" loading>Neutral</CButton>
+  <CButton variant="warning" loading>Warning</CButton>
+  <CButton variant="danger" loading>Danger</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton variant="default" loading>Default</CButton>
+    <CButton variant="primary" loading>Primary</CButton>
+    <CButton variant="success" loading>Success</CButton>
+    <CButton variant="neutral" loading>Neutral</CButton>
+    <CButton variant="warning" loading>Warning</CButton>
+    <CButton variant="danger" loading>Danger</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton variant="default" loading>Default</CButton>
+  <CButton variant="primary" loading>Primary</CButton>
+  <CButton variant="success" loading>Success</CButton>
+  <CButton variant="neutral" loading>Neutral</CButton>
+  <CButton variant="warning" loading>Warning</CButton>
+  <CButton variant="danger" loading>Danger</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button variant="default" loading>Default</c-button>
+    <c-button variant="primary" loading>Primary</c-button>
+    <c-button variant="success" loading>Success</c-button>
+    <c-button variant="neutral" loading>Neutral</c-button>
+    <c-button variant="warning" loading>Warning</c-button>
+    <c-button variant="danger" loading>Danger</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button variant="default" loading>Default</c-button>
+<c-button variant="primary" loading>Primary</c-button>
+<c-button variant="success" loading>Success</c-button>
+<c-button variant="neutral" loading>Neutral</c-button>
+<c-button variant="warning" loading>Warning</c-button>
+<c-button variant="danger" loading>Danger</c-button>`}
+/>
+
+---
+
+### Disabled
+
+Use the `disabled` prop to prevent the user from interacting with the button. Disabled buttons are not focusable and will not submit forms.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton variant="default" disabled>Default</CButton>
+  <CButton variant="primary" disabled>Primary</CButton>
+  <CButton variant="success" disabled>Success</CButton>
+  <CButton variant="neutral" disabled>Neutral</CButton>
+  <CButton variant="warning" disabled>Warning</CButton>
+  <CButton variant="danger" disabled>Danger</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton variant="default" disabled>Default</CButton>
+    <CButton variant="primary" disabled>Primary</CButton>
+    <CButton variant="success" disabled>Success</CButton>
+    <CButton variant="neutral" disabled>Neutral</CButton>
+    <CButton variant="warning" disabled>Warning</CButton>
+    <CButton variant="danger" disabled>Danger</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton variant="default" disabled>Default</CButton>
+  <CButton variant="primary" disabled>Primary</CButton>
+  <CButton variant="success" disabled>Success</CButton>
+  <CButton variant="neutral" disabled>Neutral</CButton>
+  <CButton variant="warning" disabled>Warning</CButton>
+  <CButton variant="danger" disabled>Danger</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button variant="default" disabled>Default</c-button>
+    <c-button variant="primary" disabled>Primary</c-button>
+    <c-button variant="success" disabled>Success</c-button>
+    <c-button variant="neutral" disabled>Neutral</c-button>
+    <c-button variant="warning" disabled>Warning</c-button>
+    <c-button variant="danger" disabled>Danger</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button variant="default" disabled>Default</c-button>
+<c-button variant="primary" disabled>Primary</c-button>
+<c-button variant="success" disabled>Success</c-button>
+<c-button variant="neutral" disabled>Neutral</c-button>
+<c-button variant="warning" disabled>Warning</c-button>
+<c-button variant="danger" disabled>Danger</c-button>`}
+/>
+
+---
+
+### Prefix & Suffix Slots
+
+Use the `prefix` and `suffix` slots to add icons or other elements before or after the button label.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton variant="primary">
+    <span slot="prefix">⬅</span>
+    Back
+  </CButton>
+  <CButton variant="primary">
+    Next
+    <span slot="suffix">➡</span>
+  </CButton>
+  <CButton variant="primary">
+    <span slot="prefix">★</span>
+    Favourite
+    <span slot="suffix">★</span>
+  </CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton variant="primary">
+      <span slot="prefix">⬅</span>
+      Back
+    </CButton>
+    <CButton variant="primary">
+      Next
+      <span slot="suffix">➡</span>
+    </CButton>
+    <CButton variant="primary">
+      <span slot="prefix">★</span>
+      Favourite
+      <span slot="suffix">★</span>
+    </CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton variant="primary">
+    <template #prefix>⬅</template>
+    Back
+  </CButton>
+  <CButton variant="primary">
+    Next
+    <template #suffix>➡</template>
+  </CButton>
+  <CButton variant="primary">
+    <template #prefix>★</template>
+    Favourite
+    <template #suffix>★</template>
+  </CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button variant="primary">
+      <span slot="prefix">⬅</span>
+      Back
+    </c-button>
+    <c-button variant="primary">
+      Next
+      <span slot="suffix">➡</span>
+    </c-button>
+    <c-button variant="primary">
+      <span slot="prefix">★</span>
+      Favourite
+      <span slot="suffix">★</span>
+    </c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button variant="primary">
+  <span slot="prefix">⬅</span>
+  Back
+</c-button>
+
+<c-button variant="primary">
+  Next
+  <span slot="suffix">➡</span>
+</c-button>
+
+<c-button variant="primary">
+  <span slot="prefix">★</span>
+  Favourite
+  <span slot="suffix">★</span>
+</c-button>`}
+/>
+
+---
+
+### Link Buttons
+
+Use the `href` prop to render the button as an `<a>` element. You can optionally set `target` to control where the link opens and `download` to prompt a file download.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton href="https://example.com" variant="primary">Open Link</CButton>
+  <CButton href="https://example.com" target="_blank" variant="neutral">Open in New Tab</CButton>
+  <CButton href="/file.pdf" download="report.pdf" variant="default">Download File</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton href="https://example.com" variant="primary">Open Link</CButton>
+    <CButton href="https://example.com" target="_blank" variant="neutral">Open in New Tab</CButton>
+    <CButton href="/file.pdf" download="report.pdf" variant="default">Download File</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton href="https://example.com" variant="primary">Open Link</CButton>
+  <CButton href="https://example.com" target="_blank" variant="neutral">Open in New Tab</CButton>
+  <CButton href="/file.pdf" download="report.pdf" variant="default">Download File</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button href="https://example.com" variant="primary">Open Link</c-button>
+    <c-button href="https://example.com" target="_blank" variant="neutral">Open in New Tab</c-button>
+    <c-button href="/file.pdf" download="report.pdf" variant="default">Download File</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button href="https://example.com" variant="primary">Open Link</c-button>
+<c-button href="https://example.com" target="_blank" variant="neutral">Open in New Tab</c-button>
+<c-button href="/file.pdf" download="report.pdf" variant="default">Download File</c-button>`}
+/>
+
+---
+
+### Form Buttons
+
+Use the `type` prop to control how the button interacts with a surrounding `<form>`. Set `type="submit"` to submit the form or `type="reset"` to clear it. The `name` and `value` props are submitted as part of the form data when using `type="submit"`.
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <form onSubmit={(e) => { e.preventDefault(); alert('Submitted!'); }}>
+    <input name="username" placeholder="Username" />
+    <CButton type="submit" variant="primary">Submit</CButton>
+    <CButton type="reset" variant="neutral">Reset</CButton>
+  </form>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+
+function handleSubmit(e: Event) {
+  e.preventDefault();
+  alert('Submitted!');
+}
+</script>
+
+<template>
+  <form @submit="handleSubmit">
+    <input name="username" placeholder="Username" />
+    <CButton type="submit" variant="primary">Submit</CButton>
+    <CButton type="reset" variant="neutral">Reset</CButton>
+  </form>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <form (submit)="handleSubmit($event)">
+      <input name="username" placeholder="Username" />
+      <c-button type="submit" variant="primary">Submit</c-button>
+      <c-button type="reset" variant="neutral">Reset</c-button>
+    </form>
+  \`,
+})
+export class AppComponent {
+  handleSubmit(e: Event) {
+    e.preventDefault();
+    alert('Submitted!');
+  }
+}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<form onsubmit="event.preventDefault(); alert('Submitted!')">
+  <input name="username" placeholder="Username" />
+  <c-button type="submit" variant="primary">Submit</c-button>
+  <c-button type="reset" variant="neutral">Reset</c-button>
+</form>`}
+/>
+
+---
+
+### Tooltip
+
+Use the `tooltip` prop to add a native browser tooltip that appears on hover.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton variant="primary" tooltip="This is a tooltip">Hover me</CButton>
+  <CButton variant="neutral" tooltip="Delete this item" disabled>Disabled with tooltip</CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton variant="primary" tooltip="This is a tooltip">Hover me</CButton>
+    <CButton variant="neutral" tooltip="Delete this item" disabled>Disabled with tooltip</CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton variant="primary" tooltip="This is a tooltip">Hover me</CButton>
+  <CButton variant="neutral" tooltip="Delete this item" disabled>Disabled with tooltip</CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button variant="primary" tooltip="This is a tooltip">Hover me</c-button>
+    <c-button variant="neutral" tooltip="Delete this item" disabled>Disabled with tooltip</c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button variant="primary" tooltip="This is a tooltip">Hover me</c-button>
+<c-button variant="neutral" tooltip="Delete this item" disabled>Disabled with tooltip</c-button>`}
+/>
+
+---
+
+### Combining Props
+
+Props can be freely combined. For example, an outlined pill button with a caret and a prefix icon in a loading state.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '8px',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CButton variant="primary" outline pill caret>Outlined Pill + Caret</CButton>
+  <CButton variant="success" pill loading>Saving…</CButton>
+  <CButton variant="danger" outline disabled>
+    <span slot="prefix">🗑</span>
+    Delete (disabled)
+  </CButton>
+</div>
+
+<FrameworkTabs
+  react={`import { CButton } from "@componentry/react";
+
+const App = () => (
+  <>
+    <CButton variant="primary" outline pill caret>Outlined Pill + Caret</CButton>
+    <CButton variant="success" pill loading>Saving…</CButton>
+    <CButton variant="danger" outline disabled>
+      <span slot="prefix">🗑</span>
+      Delete (disabled)
+    </CButton>
+  </>
+);`}
+  vue={`<script setup lang="ts">
+import { CButton } from '@componentry/vue';
+</script>
+
+<template>
+  <CButton variant="primary" outline pill caret>Outlined Pill + Caret</CButton>
+  <CButton variant="success" pill loading>Saving…</CButton>
+  <CButton variant="danger" outline disabled>
+    <template #prefix>🗑</template>
+    Delete (disabled)
+  </CButton>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CButton } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CButton],
+  template: \`
+    <c-button variant="primary" outline pill caret>Outlined Pill + Caret</c-button>
+    <c-button variant="success" pill loading>Saving…</c-button>
+    <c-button variant="danger" outline disabled>
+      <span slot="prefix">🗑</span>
+      Delete (disabled)
+    </c-button>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  defineCustomElementCButton();
+</script>
+
+<c-button variant="primary" outline pill caret>Outlined Pill + Caret</c-button>
+<c-button variant="success" pill loading>Saving…</c-button>
+<c-button variant="danger" outline disabled>
+  <span slot="prefix">🗑</span>
+  Delete (disabled)
+</c-button>`}
+/>
+
+---
+
+## Methods
+
+The button exposes the following public methods for programmatic control.
+
+| Method | Description |
+|--------|-------------|
+| `triggerClick()` | Simulates a click on the button. |
+| `setFocus(options?)` | Sets focus on the button. |
+| `removeFocus()` | Removes focus from the button. |
+| `checkValidity()` | Checks validity without showing a validation message. Returns `Promise<boolean>`. |
+| `reportValidity()` | Checks validity and shows the browser's validation message if invalid. Returns `Promise<boolean>`. |
+| `setCustomValidity(message)` | Sets a custom validation message. Pass an empty string to restore validity. |
+
+---
+
+## Events
+
+| Event | Description |
+|-------|-------------|
+| `cBlur` | Emitted when the button loses focus. |
+| `cFocus` | Emitted when the button gains focus. |
+| `cInvalid` | Emitted when the form control fails constraint validation. Cancelable. |
+
+---
+
+## Slots
+
+| Slot | Description |
+|------|-------------|
+| _(default)_ | The button's label. |
+| `prefix` | A presentational prefix icon or element placed before the label. |
+| `suffix` | A presentational suffix icon or element placed after the label. |
+
+---
+
+## CSS Parts
+
+Use `::part()` to style the internal shadow DOM elements.
+
+| Part | Description |
+|------|-------------|
+| `base` | The component's base wrapper (`<button>` or `<a>`). |
+| `prefix` | The container wrapping the prefix slot. |
+| `label` | The button's label container. |
+| `suffix` | The container wrapping the suffix slot. |
+| `caret` | The caret icon container. |
+| `spinner` | The spinner shown in loading state. |
+
+```css
+/* Example: custom primary button style */
+c-button[variant="primary"]::part(base) {
+  background-color: hotpink;
+  border-color: hotpink;
+}
+```
+
+---
+
+## Properties
+
+| Property | Attribute | Type | Default | Description |
+|----------|-----------|------|---------|-------------|
+| `variant` | `variant` | `'default' \| 'primary' \| 'success' \| 'neutral' \| 'warning' \| 'danger' \| 'text'` | `'default'` | The button's theme variant. |
+| `size` | `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | The button's size. |
+| `caret` | `caret` | `boolean` | `false` | Draws the button with a dropdown caret. |
+| `disabled` | `disabled` | `boolean` | `false` | Disables the button. |
+| `loading` | `loading` | `boolean` | `false` | Draws the button in a loading state. |
+| `outline` | `outline` | `boolean` | `false` | Draws an outlined button. |
+| `pill` | `pill` | `boolean` | `false` | Draws a pill-style button with rounded edges. |
+| `circle` | `circle` | `boolean` | `false` | Draws a circular icon button. |
+| `type` | `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | The native button type. |
+| `name` | `name` | `string` | `''` | The name submitted with form data. |
+| `value` | `value` | `string` | `''` | The value submitted with form data. |
+| `href` | `href` | `string` | `''` | Renders as an `<a>` when set. |
+| `target` | `target` | `'_blank' \| '_parent' \| '_self' \| '_top'` | — | Where to open the link (requires `href`). |
+| `rel` | `rel` | `string` | `'noreferrer noopener'` | The link's `rel` attribute (requires `href`). |
+| `download` | `download` | `string` | — | Prompts a file download with this filename (requires `href`). |
+| `tooltip` | `tooltip` | `string` | `''` | Native browser tooltip shown on hover. |

@@ -1,11 +1,14 @@
+import React from 'react';
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
-
+ import Heading from '@theme/Heading';
+import "@componentry/theme/styles/light.css"
+import "@componentry/theme/styles/dark.css"
+import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+defineCustomElementCButton()
 import styles from './index.module.css';
 
 function HomepageHeader() {
@@ -36,9 +39,7 @@ export default function Home(): ReactNode {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
+ 
     </Layout>
   );
 }
