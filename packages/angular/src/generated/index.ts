@@ -5,6 +5,7 @@ export const DIRECTIVES = [
   d.CAvatar,
   d.CBadge,
   d.CButton,
+  d.CButtonGroup,
   d.CCheckbox,
   d.CInput
 ];

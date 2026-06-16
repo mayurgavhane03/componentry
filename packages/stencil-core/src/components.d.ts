@@ -187,6 +187,16 @@ export namespace Components {
     | "danger"
     | "text";
     }
+    interface CButtonGroup {
+        /**
+          * @default ''
+         */
+        "label": string;
+        /**
+          * @default 'horizontal'
+         */
+        "orientation": 'horizontal' | 'vertical';
+    }
     /**
      * @summary Checkboxes allow the user to toggle an option on or off.
      * @event c-blur    - Emitted when the checkbox loses focus.
@@ -558,6 +568,12 @@ declare global {
         prototype: HTMLCButtonElement;
         new (): HTMLCButtonElement;
     };
+    interface HTMLCButtonGroupElement extends Components.CButtonGroup, HTMLStencilElement {
+    }
+    var HTMLCButtonGroupElement: {
+        prototype: HTMLCButtonGroupElement;
+        new (): HTMLCButtonGroupElement;
+    };
     interface HTMLCCheckboxElementEventMap {
         "cBlur": void;
         "cChange": void;
@@ -640,6 +656,7 @@ declare global {
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
         "c-button": HTMLCButtonElement;
+        "c-button-group": HTMLCButtonGroupElement;
         "c-checkbox": HTMLCCheckboxElement;
         "c-input": HTMLCInputElement;
     }
@@ -819,6 +836,16 @@ declare namespace LocalJSX {
     | "warning"
     | "danger"
     | "text";
+    }
+    interface CButtonGroup {
+        /**
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * @default 'horizontal'
+         */
+        "orientation"?: 'horizontal' | 'vertical';
     }
     /**
      * @summary Checkboxes allow the user to toggle an option on or off.
@@ -1092,6 +1119,10 @@ declare namespace LocalJSX {
         "download": string;
         "tooltip": string;
     }
+    interface CButtonGroupAttributes {
+        "label": string;
+        "orientation": 'horizontal' | 'vertical';
+    }
     interface CCheckboxAttributes {
         "checkBoxtitle": string;
         "name": string;
@@ -1168,6 +1199,7 @@ declare namespace LocalJSX {
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
         "c-badge": Omit<CBadge, keyof CBadgeAttributes> & { [K in keyof CBadge & keyof CBadgeAttributes]?: CBadge[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `attr:${K}`]?: CBadgeAttributes[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `prop:${K}`]?: CBadge[K] };
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
+        "c-button-group": Omit<CButtonGroup, keyof CButtonGroupAttributes> & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes]?: CButtonGroup[K] } & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes as `attr:${K}`]?: CButtonGroupAttributes[K] } & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes as `prop:${K}`]?: CButtonGroup[K] };
         "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
     }
@@ -1202,6 +1234,7 @@ declare module "@stencil/core" {
              * @csspart spinner - The spinner shown in loading state.
              */
             "c-button": LocalJSX.IntrinsicElements["c-button"] & JSXBase.HTMLAttributes<HTMLCButtonElement>;
+            "c-button-group": LocalJSX.IntrinsicElements["c-button-group"] & JSXBase.HTMLAttributes<HTMLCButtonGroupElement>;
             /**
              * @summary Checkboxes allow the user to toggle an option on or off.
              * @event c-blur    - Emitted when the checkbox loses focus.

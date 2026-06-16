@@ -8,6 +8,7 @@ import type { JSX } from '@componentry/stencil/dist/components';
 import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
+import { defineCustomElement as defineCButtonGroup } from '@componentry/stencil/dist/components/c-button-group.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 
@@ -56,6 +57,12 @@ export const CButton: StencilVueComponent<JSX.CButton> = /*@__PURE__*/ defineCon
   'cBlur',
   'cFocus',
   'cInvalid'
+]);
+
+
+export const CButtonGroup: StencilVueComponent<JSX.CButtonGroup> = /*@__PURE__*/ defineContainer<JSX.CButtonGroup>('c-button-group', defineCButtonGroup, [
+  'label',
+  'orientation'
 ]);
 
 

@@ -9,6 +9,7 @@ import type { Components } from '@componentry/stencil/dist/components';
 import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
+import { defineCustomElement as defineCButtonGroup } from '@componentry/stencil/dist/components/c-button-group.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 @ProxyCmp({
@@ -107,6 +108,29 @@ export declare interface CButton extends Components.CButton {
    */
   cInvalid: EventEmitter<CButtonCustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCButtonGroup,
+  inputs: ['label', 'orientation']
+})
+@Component({
+  selector: 'c-button-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label', 'orientation'],
+})
+export class CButtonGroup {
+  protected el: HTMLCButtonGroupElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CButtonGroup extends Components.CButtonGroup {}
 
 
 @ProxyCmp({
