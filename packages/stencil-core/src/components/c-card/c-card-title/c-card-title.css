@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  font-size: var(--c-font-size-medium);
+  font-weight: var(--c-font-weight-semibold);
+  color: var(--c-color-neutral-900);
+  line-height: var(--c-line-height-dense);
+}

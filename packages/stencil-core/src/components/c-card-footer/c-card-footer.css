@@ -1,8 +1,0 @@
-:host {
-  display: flex;
-  align-items: center;
-  border-radius: 0 0 0.75rem 0.75rem;
-  border-top: 1px solid var(--card-border, rgba(0, 0, 0, 0.08));
-  background-color: var(--card-footer-bg, rgba(0, 0, 0, 0.02));
-  padding: var(--card-spacing, 1.5rem);
-}

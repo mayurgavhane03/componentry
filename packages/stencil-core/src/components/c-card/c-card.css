@@ -1,23 +1,17 @@
 :host {
-  --card-spacing: 1.5rem;
-  --card-bg: #ffffff;
-  --card-fg: #0f172a;
-  --card-muted-fg: #64748b;
-  --card-border: rgba(0, 0, 0, 0.1);
-  --card-footer-bg: rgba(0, 0, 0, 0.02);
-
+  --card-spacing: var(--c-spacing-large);
   display: flex;
   flex-direction: column;
-  gap: var(--card-spacing);
   overflow: hidden;
-  border-radius: 0.75rem;
-  background-color: var(--card-bg);
-  color: var(--card-fg);
-  font-size: 0.875rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
- }
+  border-radius: var(--c-border-radius-large);
+  background-color: var(--c-panel-background-color);
+  color: var(--c-color-neutral-900);
+  font-size: var(--c-font-size-small);
+  font-family: var(--c-font-sans);
+  box-shadow: var(--c-shadow-small);
+  border: var(--c-panel-border-width) solid var(--c-panel-border-color);
+}
 
 :host([data-size='sm']) {
-  --card-spacing: 1rem;
+  --card-spacing: var(--c-spacing-medium);
 }

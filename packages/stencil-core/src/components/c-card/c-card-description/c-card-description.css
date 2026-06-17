@@ -1,0 +1,6 @@
+:host {
+  display: block;
+  font-size: var(--c-font-size-small);
+  color: var(--c-input-help-text-color);
+  line-height: var(--c-line-height-dense);
+}

@@ -1,0 +1,8 @@
+:host {
+  display: flex;
+  align-items: center;
+  border-radius: 0 0 var(--c-border-radius-large) var(--c-border-radius-large);
+  border-top: var(--c-panel-border-width) solid var(--c-panel-border-color);
+  background-color: var(--c-color-neutral-50);
+  padding: var(--card-spacing);
+}

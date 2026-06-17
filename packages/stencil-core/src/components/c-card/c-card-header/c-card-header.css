@@ -3,7 +3,6 @@
   grid-template-columns: 1fr auto;
   align-items: start;
   padding-inline: var(--card-spacing, 1.5rem);
-  padding-bottom: var(--card-spacing, 1.5rem);
 }
 
 .header-main {
