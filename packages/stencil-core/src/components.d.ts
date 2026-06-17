@@ -197,6 +197,25 @@ export namespace Components {
          */
         "orientation": 'horizontal' | 'vertical';
     }
+    interface CCard {
+        /**
+          * Controls spacing density. 'sm' uses tighter padding.
+          * @default 'default'
+         */
+        "size": 'default' | 'sm';
+    }
+    interface CCardAction {
+    }
+    interface CCardContent {
+    }
+    interface CCardDescription {
+    }
+    interface CCardFooter {
+    }
+    interface CCardHeader {
+    }
+    interface CCardTitle {
+    }
     /**
      * @summary Checkboxes allow the user to toggle an option on or off.
      * @event c-blur    - Emitted when the checkbox loses focus.
@@ -574,6 +593,48 @@ declare global {
         prototype: HTMLCButtonGroupElement;
         new (): HTMLCButtonGroupElement;
     };
+    interface HTMLCCardElement extends Components.CCard, HTMLStencilElement {
+    }
+    var HTMLCCardElement: {
+        prototype: HTMLCCardElement;
+        new (): HTMLCCardElement;
+    };
+    interface HTMLCCardActionElement extends Components.CCardAction, HTMLStencilElement {
+    }
+    var HTMLCCardActionElement: {
+        prototype: HTMLCCardActionElement;
+        new (): HTMLCCardActionElement;
+    };
+    interface HTMLCCardContentElement extends Components.CCardContent, HTMLStencilElement {
+    }
+    var HTMLCCardContentElement: {
+        prototype: HTMLCCardContentElement;
+        new (): HTMLCCardContentElement;
+    };
+    interface HTMLCCardDescriptionElement extends Components.CCardDescription, HTMLStencilElement {
+    }
+    var HTMLCCardDescriptionElement: {
+        prototype: HTMLCCardDescriptionElement;
+        new (): HTMLCCardDescriptionElement;
+    };
+    interface HTMLCCardFooterElement extends Components.CCardFooter, HTMLStencilElement {
+    }
+    var HTMLCCardFooterElement: {
+        prototype: HTMLCCardFooterElement;
+        new (): HTMLCCardFooterElement;
+    };
+    interface HTMLCCardHeaderElement extends Components.CCardHeader, HTMLStencilElement {
+    }
+    var HTMLCCardHeaderElement: {
+        prototype: HTMLCCardHeaderElement;
+        new (): HTMLCCardHeaderElement;
+    };
+    interface HTMLCCardTitleElement extends Components.CCardTitle, HTMLStencilElement {
+    }
+    var HTMLCCardTitleElement: {
+        prototype: HTMLCCardTitleElement;
+        new (): HTMLCCardTitleElement;
+    };
     interface HTMLCCheckboxElementEventMap {
         "cBlur": void;
         "cChange": void;
@@ -657,6 +718,13 @@ declare global {
         "c-badge": HTMLCBadgeElement;
         "c-button": HTMLCButtonElement;
         "c-button-group": HTMLCButtonGroupElement;
+        "c-card": HTMLCCardElement;
+        "c-card-action": HTMLCCardActionElement;
+        "c-card-content": HTMLCCardContentElement;
+        "c-card-description": HTMLCCardDescriptionElement;
+        "c-card-footer": HTMLCCardFooterElement;
+        "c-card-header": HTMLCCardHeaderElement;
+        "c-card-title": HTMLCCardTitleElement;
         "c-checkbox": HTMLCCheckboxElement;
         "c-input": HTMLCInputElement;
     }
@@ -846,6 +914,25 @@ declare namespace LocalJSX {
           * @default 'horizontal'
          */
         "orientation"?: 'horizontal' | 'vertical';
+    }
+    interface CCard {
+        /**
+          * Controls spacing density. 'sm' uses tighter padding.
+          * @default 'default'
+         */
+        "size"?: 'default' | 'sm';
+    }
+    interface CCardAction {
+    }
+    interface CCardContent {
+    }
+    interface CCardDescription {
+    }
+    interface CCardFooter {
+    }
+    interface CCardHeader {
+    }
+    interface CCardTitle {
     }
     /**
      * @summary Checkboxes allow the user to toggle an option on or off.
@@ -1123,6 +1210,9 @@ declare namespace LocalJSX {
         "label": string;
         "orientation": 'horizontal' | 'vertical';
     }
+    interface CCardAttributes {
+        "size": 'default' | 'sm';
+    }
     interface CCheckboxAttributes {
         "checkBoxtitle": string;
         "name": string;
@@ -1200,6 +1290,13 @@ declare namespace LocalJSX {
         "c-badge": Omit<CBadge, keyof CBadgeAttributes> & { [K in keyof CBadge & keyof CBadgeAttributes]?: CBadge[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `attr:${K}`]?: CBadgeAttributes[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `prop:${K}`]?: CBadge[K] };
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
         "c-button-group": Omit<CButtonGroup, keyof CButtonGroupAttributes> & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes]?: CButtonGroup[K] } & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes as `attr:${K}`]?: CButtonGroupAttributes[K] } & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes as `prop:${K}`]?: CButtonGroup[K] };
+        "c-card": Omit<CCard, keyof CCardAttributes> & { [K in keyof CCard & keyof CCardAttributes]?: CCard[K] } & { [K in keyof CCard & keyof CCardAttributes as `attr:${K}`]?: CCardAttributes[K] } & { [K in keyof CCard & keyof CCardAttributes as `prop:${K}`]?: CCard[K] };
+        "c-card-action": CCardAction;
+        "c-card-content": CCardContent;
+        "c-card-description": CCardDescription;
+        "c-card-footer": CCardFooter;
+        "c-card-header": CCardHeader;
+        "c-card-title": CCardTitle;
         "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
     }
@@ -1235,6 +1332,13 @@ declare module "@stencil/core" {
              */
             "c-button": LocalJSX.IntrinsicElements["c-button"] & JSXBase.HTMLAttributes<HTMLCButtonElement>;
             "c-button-group": LocalJSX.IntrinsicElements["c-button-group"] & JSXBase.HTMLAttributes<HTMLCButtonGroupElement>;
+            "c-card": LocalJSX.IntrinsicElements["c-card"] & JSXBase.HTMLAttributes<HTMLCCardElement>;
+            "c-card-action": LocalJSX.IntrinsicElements["c-card-action"] & JSXBase.HTMLAttributes<HTMLCCardActionElement>;
+            "c-card-content": LocalJSX.IntrinsicElements["c-card-content"] & JSXBase.HTMLAttributes<HTMLCCardContentElement>;
+            "c-card-description": LocalJSX.IntrinsicElements["c-card-description"] & JSXBase.HTMLAttributes<HTMLCCardDescriptionElement>;
+            "c-card-footer": LocalJSX.IntrinsicElements["c-card-footer"] & JSXBase.HTMLAttributes<HTMLCCardFooterElement>;
+            "c-card-header": LocalJSX.IntrinsicElements["c-card-header"] & JSXBase.HTMLAttributes<HTMLCCardHeaderElement>;
+            "c-card-title": LocalJSX.IntrinsicElements["c-card-title"] & JSXBase.HTMLAttributes<HTMLCCardTitleElement>;
             /**
              * @summary Checkboxes allow the user to toggle an option on or off.
              * @event c-blur    - Emitted when the checkbox loses focus.

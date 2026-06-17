@@ -1,0 +1,22 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  padding-inline: var(--card-spacing, 1.5rem);
+  padding-bottom: var(--card-spacing, 1.5rem);
+}
+
+.header-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  grid-column: 1;
+  min-width: 0;
+}
+
+.header-action {
+  grid-column: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}

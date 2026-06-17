@@ -9,6 +9,13 @@ import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/
 import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
 import { defineCustomElement as defineCButtonGroup } from '@componentry/stencil/dist/components/c-button-group.js';
+import { defineCustomElement as defineCCard } from '@componentry/stencil/dist/components/c-card.js';
+import { defineCustomElement as defineCCardAction } from '@componentry/stencil/dist/components/c-card-action.js';
+import { defineCustomElement as defineCCardContent } from '@componentry/stencil/dist/components/c-card-content.js';
+import { defineCustomElement as defineCCardDescription } from '@componentry/stencil/dist/components/c-card-description.js';
+import { defineCustomElement as defineCCardFooter } from '@componentry/stencil/dist/components/c-card-footer.js';
+import { defineCustomElement as defineCCardHeader } from '@componentry/stencil/dist/components/c-card-header.js';
+import { defineCustomElement as defineCCardTitle } from '@componentry/stencil/dist/components/c-card-title.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 
@@ -64,6 +71,29 @@ export const CButtonGroup: StencilVueComponent<JSX.CButtonGroup> = /*@__PURE__*/
   'label',
   'orientation'
 ]);
+
+
+export const CCard: StencilVueComponent<JSX.CCard> = /*@__PURE__*/ defineContainer<JSX.CCard>('c-card', defineCCard, [
+  'size'
+]);
+
+
+export const CCardAction: StencilVueComponent<JSX.CCardAction> = /*@__PURE__*/ defineContainer<JSX.CCardAction>('c-card-action', defineCCardAction);
+
+
+export const CCardContent: StencilVueComponent<JSX.CCardContent> = /*@__PURE__*/ defineContainer<JSX.CCardContent>('c-card-content', defineCCardContent);
+
+
+export const CCardDescription: StencilVueComponent<JSX.CCardDescription> = /*@__PURE__*/ defineContainer<JSX.CCardDescription>('c-card-description', defineCCardDescription);
+
+
+export const CCardFooter: StencilVueComponent<JSX.CCardFooter> = /*@__PURE__*/ defineContainer<JSX.CCardFooter>('c-card-footer', defineCCardFooter);
+
+
+export const CCardHeader: StencilVueComponent<JSX.CCardHeader> = /*@__PURE__*/ defineContainer<JSX.CCardHeader>('c-card-header', defineCCardHeader);
+
+
+export const CCardTitle: StencilVueComponent<JSX.CCardTitle> = /*@__PURE__*/ defineContainer<JSX.CCardTitle>('c-card-title', defineCCardTitle);
 
 
 export const CCheckbox: StencilVueComponent<JSX.CCheckbox> = /*@__PURE__*/ defineContainer<JSX.CCheckbox>('c-checkbox', defineCCheckbox, [

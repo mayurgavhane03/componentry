@@ -602,106 +602,42 @@
 </head>
 
 <body>
-  <body>
-  <h1>c-button-group Examples</h1>
+<c-card style="max-width: 380px; padding: 1rem;">
+      <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRAGG9ed0nHfbjIfXTmaww_U3r9yeZFNeUqx0E3aepyWPWUY5OU" alt="">
 
-  <!-- Basic -->
-  <section>
-    <h2>Basic</h2>
-    <c-button-group label="Actions">
-      <c-button>Cancel</c-button>
-      <c-button>Save</c-button>
-      <c-button>Submit</c-button>
-    </c-button-group>
-  </section>
+  <c-card-header>
+    <c-card-title slot="title">Login to your account</c-card-title>
+    <c-card-description slot="description">
+      Enter your email below to login to your account
+    </c-card-description>
+    <c-card-action slot="action">
+      <c-button size="small" variant="link">Sign Up</c-button>
+    </c-card-action>
+  </c-card-header>
 
-  <!-- Two Buttons -->
-  <section>
-    <h2>Two Buttons</h2>
-    <c-button-group label="Confirmation">
-      <c-button variant="secondary">No</c-button>
-      <c-button variant="primary">Yes</c-button>
-    </c-button-group>
-  </section>
+  <c-card-content>
+    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div style="display: grid; gap: 0.5rem;">
+        <label for="email">Email</label>
+        <c-input id="email" type="email" placeholder="m@example.com" />
+      </div>
+      <div style="display: grid; gap: 0.5rem;">
+        <div style="display: flex; align-items: center;">
+          <label for="password">Password</label>
+          <a href="#" style="margin-left: auto; font-size: 0.875rem;">
+            Forgot your password?
+          </a>
+        </div>
+        <c-input id="password" type="password" />
+      </div>
+    </div>
+  </c-card-content>
 
-  <!-- Four Buttons -->
-  <section>
-    <h2>Four Buttons</h2>
-    <c-button-group label="Views">
-      <c-button>Grid</c-button>
-      <c-button>List</c-button>
-      <c-button>Table</c-button>
-      <c-button>Board</c-button>
-    </c-button-group>
-  </section>
-
-  <!-- Disabled -->
-  <section>
-    <h2>Disabled Buttons</h2>
-    <c-button-group label="Navigation">
-      <c-button disabled>Previous</c-button>
-      <c-button>Current</c-button>
-      <c-button>Next</c-button>
-    </c-button-group>
-  </section>
-
-  <!-- Radio Buttons -->
-  <section>
-    <h2>Radio Buttons</h2>
-    <c-button-group label="Display Mode">
-      <c-radio-button name="view" checked>
-        Grid
-      </c-radio-button>
-
-      <c-radio-button name="view">
-        List
-      </c-radio-button>
-
-      <c-radio-button name="view">
-        Table
-      </c-radio-button>
-    </c-button-group>
-  </section>
-
-  <!-- Single Button -->
-  <section>
-    <h2>Single Button</h2>
-    <c-button-group label="Single Action">
-      <c-button>Submit</c-button>
-    </c-button-group>
-  </section>
-
-  <!-- Orientation -->
-<c-button-group orientation="vertical">
-  <c-button>Button 1</c-button>
-  <c-button>Button 2</c-button>
-</c-button-group>
-
-<!-- Separator -->
-<c-button-group>
-  <c-button>Save</c-button>
-  <c-button-group-separator></c-button-group-separator>
-  <c-button>Delete</c-button>
-</c-button-group>
-
-<!-- Text label -->
-<c-button-group>
-  <c-button-group-text>https://</c-button-group-text>
-  <c-input placeholder="example.com"></c-input>
-</c-button-group>
-
-<!-- Nested groups for spacing -->
-<c-button-group>
-  <c-button-group>
-    <c-button>Bold</c-button>
-    <c-button>Italic</c-button>
-  </c-button-group>
-  <c-button-group>
-    <c-button>Left</c-button>
-    <c-button>Center</c-button>
-  </c-button-group>
-</c-button-group>
-</body>
+  <c-card-footer style="flex-direction: column; gap: 8px;">
+    <c-button variant="primary" style="width: 100%">Login</c-button>
+    <c-button variant="ghost" style="width: 100%">Cancel</c-button>
+  </c-card-footer>
+</c-card>
 </body>
 
 </html>

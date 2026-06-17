@@ -10,6 +10,13 @@ import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/
 import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
 import { defineCustomElement as defineCButtonGroup } from '@componentry/stencil/dist/components/c-button-group.js';
+import { defineCustomElement as defineCCard } from '@componentry/stencil/dist/components/c-card.js';
+import { defineCustomElement as defineCCardAction } from '@componentry/stencil/dist/components/c-card-action.js';
+import { defineCustomElement as defineCCardContent } from '@componentry/stencil/dist/components/c-card-content.js';
+import { defineCustomElement as defineCCardDescription } from '@componentry/stencil/dist/components/c-card-description.js';
+import { defineCustomElement as defineCCardFooter } from '@componentry/stencil/dist/components/c-card-footer.js';
+import { defineCustomElement as defineCCardHeader } from '@componentry/stencil/dist/components/c-card-header.js';
+import { defineCustomElement as defineCCardTitle } from '@componentry/stencil/dist/components/c-card-title.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
 @ProxyCmp({
@@ -131,6 +138,161 @@ export class CButtonGroup {
 
 
 export declare interface CButtonGroup extends Components.CButtonGroup {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCard,
+  inputs: ['size']
+})
+@Component({
+  selector: 'c-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['size'],
+})
+export class CCard {
+  protected el: HTMLCCardElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCard extends Components.CCard {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCardAction
+})
+@Component({
+  selector: 'c-card-action',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class CCardAction {
+  protected el: HTMLCCardActionElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCardAction extends Components.CCardAction {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCardContent
+})
+@Component({
+  selector: 'c-card-content',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class CCardContent {
+  protected el: HTMLCCardContentElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCardContent extends Components.CCardContent {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCardDescription
+})
+@Component({
+  selector: 'c-card-description',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class CCardDescription {
+  protected el: HTMLCCardDescriptionElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCardDescription extends Components.CCardDescription {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCardFooter
+})
+@Component({
+  selector: 'c-card-footer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class CCardFooter {
+  protected el: HTMLCCardFooterElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCardFooter extends Components.CCardFooter {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCardHeader
+})
+@Component({
+  selector: 'c-card-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class CCardHeader {
+  protected el: HTMLCCardHeaderElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCardHeader extends Components.CCardHeader {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCardTitle
+})
+@Component({
+  selector: 'c-card-title',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class CCardTitle {
+  protected el: HTMLCCardTitleElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCardTitle extends Components.CCardTitle {}
 
 
 @ProxyCmp({
