@@ -1,0 +1,972 @@
+---
+title: Card
+description: Displays content within a bordered container, with optional header, content, and footer regions.
+---
+
+import FrameworkTabs from '@site/src/components/FrameworkTabs';
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CCardFooter,
+  CButton,
+  CInput,
+} from '@componentry/react';
+
+# Card
+
+A container for grouping related content. A card is composed of a root `c-card` element plus optional `c-card-header`, `c-card-content`, and `c-card-footer` regions.
+
+---
+
+## Import
+
+<FrameworkTabs
+  react={`import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CCardFooter,
+} from "@componentry/react";`}
+  vue={`import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CCardFooter,
+} from "@componentry/vue";`}
+  angular={`import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CCardFooter,
+} from "@componentry/angular";
+// Add each to your NgModule or standalone component imports`}
+  html={`<script type="module">
+  import {
+    defineCustomElementCCard,
+    defineCustomElementCCardHeader,
+    defineCustomElementCCardTitle,
+    defineCustomElementCCardDescription,
+    defineCustomElementCCardAction,
+    defineCustomElementCCardContent,
+    defineCustomElementCCardFooter,
+  } from '@componentry/stencil/dist/components';
+
+  defineCustomElementCCard();
+  defineCustomElementCCardHeader();
+  defineCustomElementCCardTitle();
+  defineCustomElementCCardDescription();
+  defineCustomElementCCardAction();
+  defineCustomElementCCardContent();
+  defineCustomElementCCardFooter();
+</script>`}
+/>
+
+---
+
+## Anatomy
+
+A card is assembled from the following parts. `c-card-header` exposes three **named** slots; every other part uses a default slot.
+
+| Part | Tag | Slot |
+|---|---|---|
+| Root container | `c-card` | default (accepts header / content / footer) |
+| Header region | `c-card-header` | named: `title`, `description`, `action` |
+| Title | `c-card-title` | default — pass into header via `slot="title"` |
+| Description | `c-card-description` | default — pass into header via `slot="description"` |
+| Header-aligned action | `c-card-action` | default — pass into header via `slot="action"` |
+| Body content | `c-card-content` | default |
+| Footer region | `c-card-footer` | default |
+
+---
+
+## Examples
+
+### Basic Card
+
+A header with a title and description, plus a content region.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    justifyContent: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CCard style={{ maxWidth: '380px', width: '100%' }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Notifications</CCardTitle>
+      <CCardDescription slot="description">
+        You have 3 unread messages.
+      </CCardDescription>
+    </CCardHeader>
+    <CCardContent>
+      <p style={{ margin: 0 }}>
+        Check your inbox to catch up on the latest updates from your team.
+      </p>
+    </CCardContent>
+  </CCard>
+</div>
+
+<FrameworkTabs
+  react={`import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardContent,
+} from "@componentry/react";
+
+const App = () => (
+  <CCard style={{ maxWidth: "380px" }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Notifications</CCardTitle>
+      <CCardDescription slot="description">
+        You have 3 unread messages.
+      </CCardDescription>
+    </CCardHeader>
+    <CCardContent>
+      <p>Check your inbox to catch up on the latest updates from your team.</p>
+    </CCardContent>
+  </CCard>
+);`}
+  vue={`<script setup lang="ts">
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardContent,
+} from '@componentry/vue';
+</script>
+
+<template>
+  <CCard style="max-width: 380px">
+    <CCardHeader>
+      <CCardTitle slot="title">Notifications</CCardTitle>
+      <CCardDescription slot="description">
+        You have 3 unread messages.
+      </CCardDescription>
+    </CCardHeader>
+    <CCardContent>
+      <p>Check your inbox to catch up on the latest updates from your team.</p>
+    </CCardContent>
+  </CCard>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardContent,
+} from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CCard, CCardHeader, CCardTitle, CCardDescription, CCardContent],
+  template: \`
+    <c-card style="max-width: 380px">
+      <c-card-header>
+        <c-card-title slot="title">Notifications</c-card-title>
+        <c-card-description slot="description">
+          You have 3 unread messages.
+        </c-card-description>
+      </c-card-header>
+      <c-card-content>
+        <p>Check your inbox to catch up on the latest updates from your team.</p>
+      </c-card-content>
+    </c-card>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import {
+    defineCustomElementCCard,
+    defineCustomElementCCardHeader,
+    defineCustomElementCCardTitle,
+    defineCustomElementCCardDescription,
+    defineCustomElementCCardContent,
+  } from '@componentry/stencil/dist/components';
+
+  defineCustomElementCCard();
+  defineCustomElementCCardHeader();
+  defineCustomElementCCardTitle();
+  defineCustomElementCCardDescription();
+  defineCustomElementCCardContent();
+</script>
+
+<c-card style="max-width: 380px">
+  <c-card-header>
+    <c-card-title slot="title">Notifications</c-card-title>
+    <c-card-description slot="description">
+      You have 3 unread messages.
+    </c-card-description>
+  </c-card-header>
+  <c-card-content>
+    <p>Check your inbox to catch up on the latest updates from your team.</p>
+  </c-card-content>
+</c-card>`}
+/>
+
+---
+
+### Card with Footer Actions
+
+Use `c-card-footer` to anchor primary and secondary actions beneath the content.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    justifyContent: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CCard style={{ maxWidth: '380px', width: '100%' }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Delete project</CCardTitle>
+      <CCardDescription slot="description">
+        This action cannot be undone.
+      </CCardDescription>
+    </CCardHeader>
+    <CCardContent>
+      <p style={{ margin: 0 }}>
+        This will permanently remove the project and all of its data.
+      </p>
+    </CCardContent>
+    <CCardFooter style={{ justifyContent: 'flex-end', gap: '8px' }}>
+      <CButton variant="default" size="small">Cancel</CButton>
+      <CButton variant="danger" size="small">Delete</CButton>
+    </CCardFooter>
+  </CCard>
+</div>
+
+<FrameworkTabs
+  react={`import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardContent,
+  CCardFooter,
+  CButton,
+} from "@componentry/react";
+
+const App = () => (
+  <CCard style={{ maxWidth: "380px" }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Delete project</CCardTitle>
+      <CCardDescription slot="description">
+        This action cannot be undone.
+      </CCardDescription>
+    </CCardHeader>
+    <CCardContent>
+      <p>This will permanently remove the project and all of its data.</p>
+    </CCardContent>
+    <CCardFooter style={{ justifyContent: "flex-end", gap: "8px" }}>
+      <CButton variant="default" size="small">Cancel</CButton>
+      <CButton variant="danger" size="small">Delete</CButton>
+    </CCardFooter>
+  </CCard>
+);`}
+  vue={`<script setup lang="ts">
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardContent,
+  CCardFooter,
+  CButton,
+} from '@componentry/vue';
+</script>
+
+<template>
+  <CCard style="max-width: 380px">
+    <CCardHeader>
+      <CCardTitle slot="title">Delete project</CCardTitle>
+      <CCardDescription slot="description">
+        This action cannot be undone.
+      </CCardDescription>
+    </CCardHeader>
+    <CCardContent>
+      <p>This will permanently remove the project and all of its data.</p>
+    </CCardContent>
+    <CCardFooter style="justify-content: flex-end; gap: 8px">
+      <CButton variant="default" size="small">Cancel</CButton>
+      <CButton variant="danger" size="small">Delete</CButton>
+    </CCardFooter>
+  </CCard>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardContent,
+  CCardFooter,
+  CButton,
+} from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    CCard,
+    CCardHeader,
+    CCardTitle,
+    CCardDescription,
+    CCardContent,
+    CCardFooter,
+    CButton,
+  ],
+  template: \`
+    <c-card style="max-width: 380px">
+      <c-card-header>
+        <c-card-title slot="title">Delete project</c-card-title>
+        <c-card-description slot="description">
+          This action cannot be undone.
+        </c-card-description>
+      </c-card-header>
+      <c-card-content>
+        <p>This will permanently remove the project and all of its data.</p>
+      </c-card-content>
+      <c-card-footer style="justify-content: flex-end; gap: 8px">
+        <c-button variant="default" size="small">Cancel</c-button>
+        <c-button variant="danger" size="small">Delete</c-button>
+      </c-card-footer>
+    </c-card>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import {
+    defineCustomElementCCard,
+    defineCustomElementCCardHeader,
+    defineCustomElementCCardTitle,
+    defineCustomElementCCardDescription,
+    defineCustomElementCCardContent,
+    defineCustomElementCCardFooter,
+    defineCustomElementCButton,
+  } from '@componentry/stencil/dist/components';
+
+  defineCustomElementCCard();
+  defineCustomElementCCardHeader();
+  defineCustomElementCCardTitle();
+  defineCustomElementCCardDescription();
+  defineCustomElementCCardContent();
+  defineCustomElementCCardFooter();
+  defineCustomElementCButton();
+</script>
+
+<c-card style="max-width: 380px">
+  <c-card-header>
+    <c-card-title slot="title">Delete project</c-card-title>
+    <c-card-description slot="description">
+      This action cannot be undone.
+    </c-card-description>
+  </c-card-header>
+  <c-card-content>
+    <p>This will permanently remove the project and all of its data.</p>
+  </c-card-content>
+  <c-card-footer style="justify-content: flex-end; gap: 8px">
+    <c-button variant="default" size="small">Cancel</c-button>
+    <c-button variant="danger" size="small">Delete</c-button>
+  </c-card-footer>
+</c-card>`}
+/>
+
+---
+
+### Card with Header Action
+
+Use `c-card-action`, slotted into `c-card-header` with `slot="action"`, to align a control to the top-right of the header — useful for an overflow menu, dismiss button, or a secondary link.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    justifyContent: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CCard style={{ maxWidth: '380px', width: '100%' }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Team members</CCardTitle>
+      <CCardDescription slot="description">
+        Manage who has access to this workspace.
+      </CCardDescription>
+      <CCardAction slot="action">
+        <CButton variant="text" size="small">Invite</CButton>
+      </CCardAction>
+    </CCardHeader>
+    <CCardContent>
+      <p style={{ margin: 0 }}>5 members · 2 pending invitations</p>
+    </CCardContent>
+  </CCard>
+</div>
+
+<FrameworkTabs
+  react={`import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CButton,
+} from "@componentry/react";
+
+const App = () => (
+  <CCard style={{ maxWidth: "380px" }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Team members</CCardTitle>
+      <CCardDescription slot="description">
+        Manage who has access to this workspace.
+      </CCardDescription>
+      <CCardAction slot="action">
+        <CButton variant="text" size="small">Invite</CButton>
+      </CCardAction>
+    </CCardHeader>
+    <CCardContent>
+      <p>5 members · 2 pending invitations</p>
+    </CCardContent>
+  </CCard>
+);`}
+  vue={`<script setup lang="ts">
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CButton,
+} from '@componentry/vue';
+</script>
+
+<template>
+  <CCard style="max-width: 380px">
+    <CCardHeader>
+      <CCardTitle slot="title">Team members</CCardTitle>
+      <CCardDescription slot="description">
+        Manage who has access to this workspace.
+      </CCardDescription>
+      <CCardAction slot="action">
+        <CButton variant="text" size="small">Invite</CButton>
+      </CCardAction>
+    </CCardHeader>
+    <CCardContent>
+      <p>5 members · 2 pending invitations</p>
+    </CCardContent>
+  </CCard>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CButton,
+} from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    CCard,
+    CCardHeader,
+    CCardTitle,
+    CCardDescription,
+    CCardAction,
+    CCardContent,
+    CButton,
+  ],
+  template: \`
+    <c-card style="max-width: 380px">
+      <c-card-header>
+        <c-card-title slot="title">Team members</c-card-title>
+        <c-card-description slot="description">
+          Manage who has access to this workspace.
+        </c-card-description>
+        <c-card-action slot="action">
+          <c-button variant="text" size="small">Invite</c-button>
+        </c-card-action>
+      </c-card-header>
+      <c-card-content>
+        <p>5 members · 2 pending invitations</p>
+      </c-card-content>
+    </c-card>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import {
+    defineCustomElementCCard,
+    defineCustomElementCCardHeader,
+    defineCustomElementCCardTitle,
+    defineCustomElementCCardDescription,
+    defineCustomElementCCardAction,
+    defineCustomElementCCardContent,
+    defineCustomElementCButton,
+  } from '@componentry/stencil/dist/components';
+
+  defineCustomElementCCard();
+  defineCustomElementCCardHeader();
+  defineCustomElementCCardTitle();
+  defineCustomElementCCardDescription();
+  defineCustomElementCCardAction();
+  defineCustomElementCCardContent();
+  defineCustomElementCButton();
+</script>
+
+<c-card style="max-width: 380px">
+  <c-card-header>
+    <c-card-title slot="title">Team members</c-card-title>
+    <c-card-description slot="description">
+      Manage who has access to this workspace.
+    </c-card-description>
+    <c-card-action slot="action">
+      <c-button variant="text" size="small">Invite</c-button>
+    </c-card-action>
+  </c-card-header>
+  <c-card-content>
+    <p>5 members · 2 pending invitations</p>
+  </c-card-content>
+</c-card>`}
+/>
+
+---
+
+### Login Form Card
+
+A complete example combining the header `action` slot, form inputs in the content region, and stacked footer buttons.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    justifyContent: 'center',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CCard style={{ maxWidth: '380px', width: '100%', padding: '1rem' }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Login to your account</CCardTitle>
+      <CCardDescription slot="description">
+        Enter your email below to login to your account
+      </CCardDescription>
+      <CCardAction slot="action">
+        <CButton size="small" variant="text">Sign Up</CButton>
+      </CCardAction>
+    </CCardHeader>
+    <CCardContent>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div style={{ display: 'grid', gap: '0.5rem' }}>
+          <label htmlFor="email">Email</label>
+          <CInput id="email" type="email" placeholder="m@example.com" />
+        </div>
+        <div style={{ display: 'grid', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <label htmlFor="password">Password</label>
+            <a href="#" style={{ marginLeft: 'auto', fontSize: '0.875rem' }}>
+              Forgot your password?
+            </a>
+          </div>
+          <CInput id="password" type="password" />
+        </div>
+      </div>
+    </CCardContent>
+    <CCardFooter style={{ flexDirection: 'column', gap: '8px' }}>
+      <CButton variant="primary" style={{ width: '100%' }}>Login</CButton>
+      <CButton variant="default" style={{ width: '100%' }}>Cancel</CButton>
+    </CCardFooter>
+  </CCard>
+</div>
+
+<FrameworkTabs
+  react={`import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CCardFooter,
+  CButton,
+  CInput,
+} from "@componentry/react";
+
+const App = () => (
+  <CCard style={{ maxWidth: "380px", padding: "1rem" }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Login to your account</CCardTitle>
+      <CCardDescription slot="description">
+        Enter your email below to login to your account
+      </CCardDescription>
+      <CCardAction slot="action">
+        <CButton size="small" variant="text">Sign Up</CButton>
+      </CCardAction>
+    </CCardHeader>
+
+    <CCardContent>
+      <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+        <div style={{ display: "grid", gap: "0.5rem" }}>
+          <label htmlFor="email">Email</label>
+          <CInput id="email" type="email" placeholder="m@example.com" />
+        </div>
+        <div style={{ display: "grid", gap: "0.5rem" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <label htmlFor="password">Password</label>
+            <a href="#" style={{ marginLeft: "auto", fontSize: "0.875rem" }}>
+              Forgot your password?
+            </a>
+          </div>
+          <CInput id="password" type="password" />
+        </div>
+      </div>
+    </CCardContent>
+
+    <CCardFooter style={{ flexDirection: "column", gap: "8px" }}>
+      <CButton variant="primary" style={{ width: "100%" }}>Login</CButton>
+      <CButton variant="default" style={{ width: "100%" }}>Cancel</CButton>
+    </CCardFooter>
+  </CCard>
+);`}
+  vue={`<script setup lang="ts">
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CCardFooter,
+  CButton,
+  CInput,
+} from '@componentry/vue';
+</script>
+
+<template>
+  <CCard style="max-width: 380px; padding: 1rem">
+    <CCardHeader>
+      <CCardTitle slot="title">Login to your account</CCardTitle>
+      <CCardDescription slot="description">
+        Enter your email below to login to your account
+      </CCardDescription>
+      <CCardAction slot="action">
+        <CButton size="small" variant="text">Sign Up</CButton>
+      </CCardAction>
+    </CCardHeader>
+
+    <CCardContent>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem">
+        <div style="display: grid; gap: 0.5rem">
+          <label for="email">Email</label>
+          <CInput id="email" type="email" placeholder="m@example.com" />
+        </div>
+        <div style="display: grid; gap: 0.5rem">
+          <div style="display: flex; align-items: center">
+            <label for="password">Password</label>
+            <a href="#" style="margin-left: auto; font-size: 0.875rem">
+              Forgot your password?
+            </a>
+          </div>
+          <CInput id="password" type="password" />
+        </div>
+      </div>
+    </CCardContent>
+
+    <CCardFooter style="flex-direction: column; gap: 8px">
+      <CButton variant="primary" style="width: 100%">Login</CButton>
+      <CButton variant="default" style="width: 100%">Cancel</CButton>
+    </CCardFooter>
+  </CCard>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import {
+  CCard,
+  CCardHeader,
+  CCardTitle,
+  CCardDescription,
+  CCardAction,
+  CCardContent,
+  CCardFooter,
+  CButton,
+  CInput,
+} from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    CCard,
+    CCardHeader,
+    CCardTitle,
+    CCardDescription,
+    CCardAction,
+    CCardContent,
+    CCardFooter,
+    CButton,
+    CInput,
+  ],
+  template: \`
+    <c-card style="max-width: 380px; padding: 1rem">
+      <c-card-header>
+        <c-card-title slot="title">Login to your account</c-card-title>
+        <c-card-description slot="description">
+          Enter your email below to login to your account
+        </c-card-description>
+        <c-card-action slot="action">
+          <c-button size="small" variant="text">Sign Up</c-button>
+        </c-card-action>
+      </c-card-header>
+
+      <c-card-content>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem">
+          <div style="display: grid; gap: 0.5rem">
+            <label for="email">Email</label>
+            <c-input id="email" type="email" placeholder="m@example.com"></c-input>
+          </div>
+          <div style="display: grid; gap: 0.5rem">
+            <div style="display: flex; align-items: center">
+              <label for="password">Password</label>
+              <a href="#" style="margin-left: auto; font-size: 0.875rem">
+                Forgot your password?
+              </a>
+            </div>
+            <c-input id="password" type="password"></c-input>
+          </div>
+        </div>
+      </c-card-content>
+
+      <c-card-footer style="flex-direction: column; gap: 8px">
+        <c-button variant="primary" style="width: 100%">Login</c-button>
+        <c-button variant="default" style="width: 100%">Cancel</c-button>
+      </c-card-footer>
+    </c-card>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import {
+    defineCustomElementCCard,
+    defineCustomElementCCardHeader,
+    defineCustomElementCCardTitle,
+    defineCustomElementCCardDescription,
+    defineCustomElementCCardAction,
+    defineCustomElementCCardContent,
+    defineCustomElementCCardFooter,
+    defineCustomElementCButton,
+    defineCustomElementCInput,
+  } from '@componentry/stencil/dist/components';
+
+  defineCustomElementCCard();
+  defineCustomElementCCardHeader();
+  defineCustomElementCCardTitle();
+  defineCustomElementCCardDescription();
+  defineCustomElementCCardAction();
+  defineCustomElementCCardContent();
+  defineCustomElementCCardFooter();
+  defineCustomElementCButton();
+  defineCustomElementCInput();
+</script>
+
+<c-card style="max-width: 380px; padding: 1rem">
+  <c-card-header>
+    <c-card-title slot="title">Login to your account</c-card-title>
+    <c-card-description slot="description">
+      Enter your email below to login to your account
+    </c-card-description>
+    <c-card-action slot="action">
+      <c-button size="small" variant="text">Sign Up</c-button>
+    </c-card-action>
+  </c-card-header>
+
+  <c-card-content>
+    <div style="display: flex; flex-direction: column; gap: 1.5rem">
+      <div style="display: grid; gap: 0.5rem">
+        <label for="email">Email</label>
+        <c-input id="email" type="email" placeholder="m@example.com"></c-input>
+      </div>
+      <div style="display: grid; gap: 0.5rem">
+        <div style="display: flex; align-items: center">
+          <label for="password">Password</label>
+          <a href="#" style="margin-left: auto; font-size: 0.875rem">
+            Forgot your password?
+          </a>
+        </div>
+        <c-input id="password" type="password"></c-input>
+      </div>
+    </div>
+  </c-card-content>
+
+  <c-card-footer style="flex-direction: column; gap: 8px">
+    <c-button variant="primary" style="width: 100%">Login</c-button>
+    <c-button variant="default" style="width: 100%">Cancel</c-button>
+  </c-card-footer>
+</c-card>`}
+/>
+
+---
+
+### Compact Card
+
+Use the `size` prop with a value of `sm` to reduce internal spacing — useful for dense layouts like sidebars or grids of cards.
+
+<div
+  style={{
+    padding: '2rem',
+    border: '1px solid var(--ifm-color-emphasis-300)',
+    borderRadius: '8px',
+    display: 'flex',
+    gap: '12px',
+    flexWrap: 'wrap',
+    background: 'var(--ifm-background-surface-color)',
+  }}
+>
+  <CCard size="sm" style={{ maxWidth: '260px' }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Storage</CCardTitle>
+    </CCardHeader>
+    <CCardContent>
+      <p style={{ margin: 0 }}>12.4 GB of 20 GB used</p>
+    </CCardContent>
+  </CCard>
+  <CCard style={{ maxWidth: '260px' }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Storage</CCardTitle>
+    </CCardHeader>
+    <CCardContent>
+      <p style={{ margin: 0 }}>12.4 GB of 20 GB used</p>
+    </CCardContent>
+  </CCard>
+</div>
+
+<FrameworkTabs
+  react={`import { CCard, CCardHeader, CCardTitle, CCardContent } from "@componentry/react";
+
+const App = () => (
+  <CCard size="sm" style={{ maxWidth: "260px" }}>
+    <CCardHeader>
+      <CCardTitle slot="title">Storage</CCardTitle>
+    </CCardHeader>
+    <CCardContent>
+      <p>12.4 GB of 20 GB used</p>
+    </CCardContent>
+  </CCard>
+);`}
+  vue={`<script setup lang="ts">
+import { CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry/vue';
+</script>
+
+<template>
+  <CCard size="sm" style="max-width: 260px">
+    <CCardHeader>
+      <CCardTitle slot="title">Storage</CCardTitle>
+    </CCardHeader>
+    <CCardContent>
+      <p>12.4 GB of 20 GB used</p>
+    </CCardContent>
+  </CCard>
+</template>`}
+  angular={`import { Component } from '@angular/core';
+import { CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry/angular';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CCard, CCardHeader, CCardTitle, CCardContent],
+  template: \`
+    <c-card size="sm" style="max-width: 260px">
+      <c-card-header>
+        <c-card-title slot="title">Storage</c-card-title>
+      </c-card-header>
+      <c-card-content>
+        <p>12.4 GB of 20 GB used</p>
+      </c-card-content>
+    </c-card>
+  \`,
+})
+export class AppComponent {}`}
+  html={`<script type="module">
+  import {
+    defineCustomElementCCard,
+    defineCustomElementCCardHeader,
+    defineCustomElementCCardTitle,
+    defineCustomElementCCardContent,
+  } from '@componentry/stencil/dist/components';
+
+  defineCustomElementCCard();
+  defineCustomElementCCardHeader();
+  defineCustomElementCCardTitle();
+  defineCustomElementCCardContent();
+</script>
+
+<c-card size="sm" style="max-width: 260px">
+  <c-card-header>
+    <c-card-title slot="title">Storage</c-card-title>
+  </c-card-header>
+  <c-card-content>
+    <p>12.4 GB of 20 GB used</p>
+  </c-card-content>
+</c-card>`}
+/>
+
+---
+
+## Props
+
+### CCard
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `'default' \| 'sm'` | `'default'` | Controls spacing density. `sm` reduces internal gap and padding via `--card-spacing`. |
+
+All other parts (`c-card-header`, `c-card-title`, `c-card-description`, `c-card-action`, `c-card-content`, `c-card-footer`) take no props — they're purely structural/slot wrappers.
+
+---
+
+## Slots Reference
+
+| Component | Slot | Required |
+|---|---|---|
+| `c-card` | default | Accepts `c-card-header`, `c-card-content`, `c-card-footer` (and any other content) in render order. |
+| `c-card-header` | `title` | No — omit if the header has no title. |
+| `c-card-header` | `description` | No |
+| `c-card-header` | `action` | No — typically a `c-card-action` wrapping a button or link. |
+| `c-card-title` | default | — |
+| `c-card-description` | default | — |
+| `c-card-action` | default | — |
+| `c-card-content` | default | — |
+| `c-card-footer` | default | — |
+
+:::tip
+`c-card-title`, `c-card-description`, and `c-card-action` only need a `slot` attribute when placed **inside** `c-card-header`. Outside of that context the attribute has no effect.
+:::
