@@ -1,6 +1,6 @@
 {
   "name": "@componentry/react",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "Componentry React Components",
   "main": "dist/index.js",
   "sideEffects": [

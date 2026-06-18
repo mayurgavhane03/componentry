@@ -1,5 +1,11 @@
 # @componentry/theme
 
+## 0.0.1
+
+### Patch Changes
+
+- patch first test version
+
 ## 0.0.100
 
 ### Patch Changes

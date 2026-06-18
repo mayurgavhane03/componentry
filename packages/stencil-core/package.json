@@ -1,6 +1,6 @@
 {
   "name": "@componentry/stencil",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "Componentry Web Components - source of truth",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",

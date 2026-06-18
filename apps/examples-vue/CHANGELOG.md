@@ -1,5 +1,14 @@
 # examples-vue
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @componentry/stencil@0.0.1
+  - @componentry/theme@0.0.1
+  - @componentry/vue@0.0.1
+
 ## 0.0.2
 
 ### Patch Changes

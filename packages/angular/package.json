@@ -1,6 +1,6 @@
 {
   "name": "@componentry/angular",
-  "version": "0.0.3",
+  "version": "0.0.1",
   "description": "Componentry Angular Components",
   "files": [
     "dist"
