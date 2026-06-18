@@ -1,5 +1,5 @@
 {
-  "name": "@componentry/theme",
+  "name": "@componentry-ui/theme",
   "version": "0.0.1",
   "description": "Theme",
   "type": "module",

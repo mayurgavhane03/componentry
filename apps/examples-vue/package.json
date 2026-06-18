@@ -11,9 +11,9 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
-    "@componentry/stencil": "workspace:^",
-    "@componentry/vue": "workspace:^",
-    "@componentry/theme": "workspace:*",
+    "@componentry-ui/stencil": "workspace:^",
+    "@componentry-ui/vue": "workspace:^",
+    "@componentry-ui/theme": "workspace:*",
     "vue": "^3.5.32",
     "vue-router": "^5.0.4"
   },

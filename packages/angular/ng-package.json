@@ -5,7 +5,7 @@
   },
   "dest": "dist",
   "allowedNonPeerDependencies": [
-    "@componentry/stencil",
+    "@componentry-ui/stencil",
     "tslib"
   ]
 }

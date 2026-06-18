@@ -1,3 +1,3 @@
 export type * from './components.d.ts';
-import "@componentry/theme/styles/light.css"
-import "@componentry/theme/styles/dark.css"
+import "@componentry-ui/theme/styles/light.css"
+import "@componentry-ui/theme/styles/dark.css"

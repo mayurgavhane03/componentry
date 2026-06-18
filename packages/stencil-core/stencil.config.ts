@@ -27,14 +27,14 @@ export const config: Config = {
       esModules: true,
     }),
     angularOutputTarget({
-      componentCorePackage: "@componentry/stencil",
+      componentCorePackage: "@componentry-ui/stencil",
       directivesProxyFile: "../angular/src/generated/components.ts",
       directivesArrayFile: "../angular/src/generated/index.ts",
       outputType: "standalone",
       customElementsDir: "dist/components",
     }),
     vueOutputTarget({
-      componentCorePackage: "@componentry/stencil",
+      componentCorePackage: "@componentry-ui/stencil",
       proxiesFile: "../vue/src/generated/components.ts",
       includeImportCustomElements: true, // ← this one
       customElementsDir: "dist/components",

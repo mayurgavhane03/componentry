@@ -1,4 +1,4 @@
-# @componentry/theme
+# @componentry-ui/theme
 
 ## 0.0.1
 

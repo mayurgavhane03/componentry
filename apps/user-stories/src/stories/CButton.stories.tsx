@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
-import { CButton } from '@componentry/react'
+import { CButton } from '@componentry-ui/react'
 
 const meta = {
   title: 'Components/CButton',

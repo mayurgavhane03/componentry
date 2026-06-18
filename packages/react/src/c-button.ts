@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type CButtonCustomEvent } from "@componentry/stencil";
-import type { Components } from "@componentry/stencil/dist/components";
-import { CButton as CButtonElement, defineCustomElement as defineCButton } from "@componentry/stencil/dist/components/c-button.js";
+import { type CButtonCustomEvent } from "@componentry-ui/stencil";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CButton as CButtonElement, defineCustomElement as defineCButton } from "@componentry-ui/stencil/dist/components/c-button.js";
 
 export type CButtonEvents = {
     onCBlur: EventName<CButtonCustomEvent<void>>,

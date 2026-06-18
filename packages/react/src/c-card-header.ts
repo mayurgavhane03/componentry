@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@componentry/stencil/dist/components";
-import { CCardHeader as CCardHeaderElement, defineCustomElement as defineCCardHeader } from "@componentry/stencil/dist/components/c-card-header.js";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CCardHeader as CCardHeaderElement, defineCustomElement as defineCCardHeader } from "@componentry-ui/stencil/dist/components/c-card-header.js";
 
 export type CCardHeaderEvents = NonNullable<unknown>;
 

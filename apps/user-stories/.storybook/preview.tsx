@@ -2,9 +2,9 @@
 import type { Preview } from '@storybook/react-vite'
 
 // @ts-ignore
-import '@componentry/theme/styles/light.css'
+import '@componentry-ui/theme/styles/light.css'
 // @ts-ignore
-import '@componentry/theme/styles/dark.css'
+import '@componentry-ui/theme/styles/dark.css'
 
 const preview: Preview = {
   globalTypes: {

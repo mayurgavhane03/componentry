@@ -1,5 +1,5 @@
 {
-  "name": "@componentry/vue",
+  "name": "@componentry-ui/vue",
   "version": "0.0.1",
   "description": "Componentry Vue Components",
   "files": [
@@ -21,11 +21,11 @@
     "clean": "rimraf dist"
   },
   "peerDependencies": {
-    "@componentry/stencil": "workspace:*",
+    "@componentry-ui/stencil": "workspace:*",
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@componentry/stencil": "workspace:*",
+    "@componentry-ui/stencil": "workspace:*",
     "@stencil/vue-output-target": "^0.13.2",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^11.0.0",

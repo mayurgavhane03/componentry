@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@componentry/stencil/dist/components";
-import { CButtonGroup as CButtonGroupElement, defineCustomElement as defineCButtonGroup } from "@componentry/stencil/dist/components/c-button-group.js";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CButtonGroup as CButtonGroupElement, defineCustomElement as defineCButtonGroup } from "@componentry-ui/stencil/dist/components/c-button-group.js";
 
 export type CButtonGroupEvents = NonNullable<unknown>;
 

@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@componentry/stencil/dist/components";
-import { CCardFooter as CCardFooterElement, defineCustomElement as defineCCardFooter } from "@componentry/stencil/dist/components/c-card-footer.js";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CCardFooter as CCardFooterElement, defineCustomElement as defineCCardFooter } from "@componentry-ui/stencil/dist/components/c-card-footer.js";
 
 export type CCardFooterEvents = NonNullable<unknown>;
 

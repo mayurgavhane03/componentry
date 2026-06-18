@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CButton } from '@componentry/vue'
+import { CButton } from '@componentry-ui/vue'
 
 const focusTargetRef = ref<HTMLElement | null>(null)
 const eventLog = ref('—')

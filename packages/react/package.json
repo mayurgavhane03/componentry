@@ -1,5 +1,5 @@
 {
-  "name": "@componentry/react",
+  "name": "@componentry-ui/react",
   "version": "0.0.1",
   "description": "Componentry React Components",
   "main": "dist/index.js",
@@ -22,7 +22,7 @@
     "react-dom": "^18 || ^19"
   },
   "dependencies": {
-    "@componentry/stencil": "workspace:*",
+    "@componentry-ui/stencil": "workspace:*",
     "@stencil/react-output-target": "^1.5.3"
   },
   "devDependencies": {

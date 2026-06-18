@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@componentry/stencil/dist/components";
-import { CBadge as CBadgeElement, defineCustomElement as defineCBadge } from "@componentry/stencil/dist/components/c-badge.js";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CBadge as CBadgeElement, defineCustomElement as defineCBadge } from "@componentry-ui/stencil/dist/components/c-badge.js";
 
 export type CBadgeEvents = NonNullable<unknown>;
 

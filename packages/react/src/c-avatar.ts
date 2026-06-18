@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type CAvatarCustomEvent } from "@componentry/stencil";
-import type { Components } from "@componentry/stencil/dist/components";
-import { CAvatar as CAvatarElement, defineCustomElement as defineCAvatar } from "@componentry/stencil/dist/components/c-avatar.js";
+import { type CAvatarCustomEvent } from "@componentry-ui/stencil";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CAvatar as CAvatarElement, defineCustomElement as defineCAvatar } from "@componentry-ui/stencil/dist/components/c-avatar.js";
 
 export type CAvatarEvents = { onCError: EventName<CAvatarCustomEvent<void>> };
 

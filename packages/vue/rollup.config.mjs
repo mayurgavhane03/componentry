@@ -13,7 +13,7 @@ export default {
       format: 'cjs',
     },
   ],
-  external: ['vue', '@componentry/stencil'],
+  external: ['vue', '@componentry-ui/stencil'],
   plugins: [
     resolve(),
     typescript({ tsconfig: './tsconfig.json', declarationDir: 'dist/types' }),

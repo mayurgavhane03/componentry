@@ -6,10 +6,10 @@ A multi-framework design system built with Stencil web components.
 
 | Package | Description |
 |---|---|
-| `@componentry/stencil` | Web components source of truth |
-| `@componentry/react` | React wrappers (auto-generated) |
-| `@componentry/angular` | Angular wrappers (auto-generated) |
-| `@componentry/shared` | Shared types & utilities |
+| `@componentry-ui/stencil` | Web components source of truth |
+| `@componentry-ui/react` | React wrappers (auto-generated) |
+| `@componentry-ui/angular` | Angular wrappers (auto-generated) |
+| `@componentry-ui/shared` | Shared types & utilities |
 
 ## Apps
 

@@ -11,7 +11,7 @@
     "lib": ["ES2022", "dom"],
     "allowJs": true,
    "paths": {
-      "@componentry/angular": ["../../packages/angular/dist"]
+      "@componentry-ui/angular": ["../../packages/angular/dist"]
     }
   },
   "angularCompilerOptions": {

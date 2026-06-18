@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@componentry/stencil/dist/components";
-import { CButtonGroupSeparator as CButtonGroupSeparatorElement, defineCustomElement as defineCButtonGroupSeparator } from "@componentry/stencil/dist/components/c-button-group-separator.js";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CButtonGroupSeparator as CButtonGroupSeparatorElement, defineCustomElement as defineCButtonGroupSeparator } from "@componentry-ui/stencil/dist/components/c-button-group-separator.js";
 
 export type CButtonGroupSeparatorEvents = NonNullable<unknown>;
 

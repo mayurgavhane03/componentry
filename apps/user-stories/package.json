@@ -14,9 +14,9 @@
   "dependencies": {
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "@componentry/react": "workspace:*",
-    "@componentry/stencil": "workspace:*",
-    "@componentry/theme": "workspace:*"
+    "@componentry-ui/react": "workspace:*",
+    "@componentry-ui/stencil": "workspace:*",
+    "@componentry-ui/theme": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

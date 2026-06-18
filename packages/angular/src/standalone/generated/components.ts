@@ -4,9 +4,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
-import type { Components } from '@componentry/stencil/components';
+import type { Components } from '@componentry-ui/stencil/components';
 
-import { defineCustomElement as defineCButton } from '@componentry/stencil/components/c-button.js';
+import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/components/c-button.js';
 @ProxyCmp({
   defineCustomElementFn: defineCButton,
   inputs: ['disabled', 'label', 'size', 'variant']
@@ -29,7 +29,7 @@ export class CButton {
 }
 
 
-import type { CButtonCustomEvent } from '@componentry/stencil/components';
+import type { CButtonCustomEvent } from '@componentry-ui/stencil/components';
 
 export declare interface CButton extends Components.CButton {
   /**

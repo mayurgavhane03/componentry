@@ -1,4 +1,4 @@
-import { CInput } from '@componentry/react'
+import { CInput } from '@componentry-ui/react'
 import React from 'react'
 
 const Input = () => {

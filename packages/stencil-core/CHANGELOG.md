@@ -1,4 +1,4 @@
-# @componentry/stencil
+# @componentry-ui/stencil
 
 ## 0.0.1
 
@@ -6,7 +6,7 @@
 
 - patch first test version
 - Updated dependencies
-  - @componentry/theme@0.0.1
+  - @componentry-ui/theme@0.0.1
 
 ## 0.0.3
 
@@ -14,7 +14,7 @@
 
 - patch test version
 - Updated dependencies
-  - @componentry/theme@0.0.100
+  - @componentry-ui/theme@0.0.100
 
 ## 0.0.2
 
@@ -22,4 +22,4 @@
 
 - patched first version
 - Updated dependencies
-  - @componentry/theme@0.0.99
+  - @componentry-ui/theme@0.0.99

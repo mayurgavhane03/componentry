@@ -14,7 +14,7 @@ import {
   CCardFooter,
   CButton,
   CInput,
-} from '@componentry/react';
+} from '@componentry-ui/react';
 
 # Card
 
@@ -33,7 +33,7 @@ A container for grouping related content. A card is composed of a root `c-card` 
   CCardAction,
   CCardContent,
   CCardFooter,
-} from "@componentry/react";`}
+} from "@componentry-ui/react";`}
   vue={`import {
   CCard,
   CCardHeader,
@@ -42,7 +42,7 @@ A container for grouping related content. A card is composed of a root `c-card` 
   CCardAction,
   CCardContent,
   CCardFooter,
-} from "@componentry/vue";`}
+} from "@componentry-ui/vue";`}
   angular={`import {
   CCard,
   CCardHeader,
@@ -51,7 +51,7 @@ A container for grouping related content. A card is composed of a root `c-card` 
   CCardAction,
   CCardContent,
   CCardFooter,
-} from "@componentry/angular";
+} from "@componentry-ui/angular";
 // Add each to your NgModule or standalone component imports`}
   html={`<script type="module">
   import {
@@ -62,7 +62,7 @@ A container for grouping related content. A card is composed of a root `c-card` 
     defineCustomElementCCardAction,
     defineCustomElementCCardContent,
     defineCustomElementCCardFooter,
-  } from '@componentry/stencil/dist/components';
+  } from '@componentry-ui/stencil/dist/components';
 
   defineCustomElementCCard();
   defineCustomElementCCardHeader();
@@ -130,7 +130,7 @@ A header with a title and description, plus a content region.
   CCardTitle,
   CCardDescription,
   CCardContent,
-} from "@componentry/react";
+} from "@componentry-ui/react";
 
 const App = () => (
   <CCard style={{ maxWidth: "380px" }}>
@@ -152,7 +152,7 @@ import {
   CCardTitle,
   CCardDescription,
   CCardContent,
-} from '@componentry/vue';
+} from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -175,7 +175,7 @@ import {
   CCardTitle,
   CCardDescription,
   CCardContent,
-} from '@componentry/angular';
+} from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -203,7 +203,7 @@ export class AppComponent {}`}
     defineCustomElementCCardTitle,
     defineCustomElementCCardDescription,
     defineCustomElementCCardContent,
-  } from '@componentry/stencil/dist/components';
+  } from '@componentry-ui/stencil/dist/components';
 
   defineCustomElementCCard();
   defineCustomElementCCardHeader();
@@ -269,7 +269,7 @@ Use `c-card-footer` to anchor primary and secondary actions beneath the content.
   CCardContent,
   CCardFooter,
   CButton,
-} from "@componentry/react";
+} from "@componentry-ui/react";
 
 const App = () => (
   <CCard style={{ maxWidth: "380px" }}>
@@ -297,7 +297,7 @@ import {
   CCardContent,
   CCardFooter,
   CButton,
-} from '@componentry/vue';
+} from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -326,7 +326,7 @@ import {
   CCardContent,
   CCardFooter,
   CButton,
-} from '@componentry/angular';
+} from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -368,7 +368,7 @@ export class AppComponent {}`}
     defineCustomElementCCardContent,
     defineCustomElementCCardFooter,
     defineCustomElementCButton,
-  } from '@componentry/stencil/dist/components';
+  } from '@componentry-ui/stencil/dist/components';
 
   defineCustomElementCCard();
   defineCustomElementCCardHeader();
@@ -437,7 +437,7 @@ Use `c-card-action`, slotted into `c-card-header` with `slot="action"`, to align
   CCardAction,
   CCardContent,
   CButton,
-} from "@componentry/react";
+} from "@componentry-ui/react";
 
 const App = () => (
   <CCard style={{ maxWidth: "380px" }}>
@@ -464,7 +464,7 @@ import {
   CCardAction,
   CCardContent,
   CButton,
-} from '@componentry/vue';
+} from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -492,7 +492,7 @@ import {
   CCardAction,
   CCardContent,
   CButton,
-} from '@componentry/angular';
+} from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -533,7 +533,7 @@ export class AppComponent {}`}
     defineCustomElementCCardAction,
     defineCustomElementCCardContent,
     defineCustomElementCButton,
-  } from '@componentry/stencil/dist/components';
+  } from '@componentry-ui/stencil/dist/components';
 
   defineCustomElementCCard();
   defineCustomElementCCardHeader();
@@ -621,7 +621,7 @@ A complete example combining the header `action` slot, form inputs in the conten
   CCardFooter,
   CButton,
   CInput,
-} from "@componentry/react";
+} from "@componentry-ui/react";
 
 const App = () => (
   <CCard style={{ maxWidth: "380px", padding: "1rem" }}>
@@ -670,7 +670,7 @@ import {
   CCardFooter,
   CButton,
   CInput,
-} from '@componentry/vue';
+} from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -720,7 +720,7 @@ import {
   CCardFooter,
   CButton,
   CInput,
-} from '@componentry/angular';
+} from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -785,7 +785,7 @@ export class AppComponent {}`}
     defineCustomElementCCardFooter,
     defineCustomElementCButton,
     defineCustomElementCInput,
-  } from '@componentry/stencil/dist/components';
+  } from '@componentry-ui/stencil/dist/components';
 
   defineCustomElementCCard();
   defineCustomElementCCardHeader();
@@ -870,7 +870,7 @@ Use the `size` prop with a value of `sm` to reduce internal spacing — useful f
 </div>
 
 <FrameworkTabs
-  react={`import { CCard, CCardHeader, CCardTitle, CCardContent } from "@componentry/react";
+  react={`import { CCard, CCardHeader, CCardTitle, CCardContent } from "@componentry-ui/react";
 
 const App = () => (
   <CCard size="sm" style={{ maxWidth: "260px" }}>
@@ -883,7 +883,7 @@ const App = () => (
   </CCard>
 );`}
   vue={`<script setup lang="ts">
-import { CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry/vue';
+import { CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -897,7 +897,7 @@ import { CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry/vue';
   </CCard>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry/angular';
+import { CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -921,7 +921,7 @@ export class AppComponent {}`}
     defineCustomElementCCardHeader,
     defineCustomElementCCardTitle,
     defineCustomElementCCardContent,
-  } from '@componentry/stencil/dist/components';
+  } from '@componentry-ui/stencil/dist/components';
 
   defineCustomElementCCard();
   defineCustomElementCCardHeader();

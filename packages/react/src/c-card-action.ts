@@ -11,8 +11,8 @@ import type { StencilReactComponent } from '@stencil/react-output-target/runtime
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import type { Components } from "@componentry/stencil/dist/components";
-import { CCardAction as CCardActionElement, defineCustomElement as defineCCardAction } from "@componentry/stencil/dist/components/c-card-action.js";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CCardAction as CCardActionElement, defineCustomElement as defineCCardAction } from "@componentry-ui/stencil/dist/components/c-card-action.js";
 
 export type CCardActionEvents = NonNullable<unknown>;
 

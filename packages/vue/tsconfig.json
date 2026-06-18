@@ -11,7 +11,7 @@
     "outDir": "dist",
     "lib": ["ES2020", "dom"],
     "paths": {
-      "@componentry/stencil/*": ["../stencil-core/dist/components/*"]
+      "@componentry-ui/stencil/*": ["../stencil-core/dist/components/*"]
     }
   },
   "include": ["src"],

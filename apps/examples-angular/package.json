@@ -9,9 +9,9 @@
     "test": "ng test"
   },
   "dependencies": {
-    "@componentry/angular": "workspace:*",
-    "@componentry/stencil": "workspace:*",
-    "@componentry/theme": "workspace:*",
+    "@componentry-ui/angular": "workspace:*",
+    "@componentry-ui/stencil": "workspace:*",
+    "@componentry-ui/theme": "workspace:*",
     "@angular/animations": "^22.0.0",
     "@angular/common": "^22.0.0",
     "@angular/compiler": "^22.0.0",

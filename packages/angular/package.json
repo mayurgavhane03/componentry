@@ -1,5 +1,5 @@
 {
-  "name": "@componentry/angular",
+  "name": "@componentry-ui/angular",
   "version": "0.0.1",
   "description": "Componentry Angular Components",
   "files": [
@@ -13,7 +13,7 @@
   "peerDependencies": {
     "@angular/common": "^17 || ^18 || ^19 || ^20 || ^21 || ^22",
     "@angular/core": "^17 || ^18 || ^19 || ^20 || ^21 || ^22",
-    "@componentry/stencil": "workspace:*",
+    "@componentry-ui/stencil": "workspace:*",
     "rxjs": "^7.0.0"
   },
   "dependencies": {

@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type CInputCustomEvent } from "@componentry/stencil";
-import type { Components } from "@componentry/stencil/dist/components";
-import { CInput as CInputElement, defineCustomElement as defineCInput } from "@componentry/stencil/dist/components/c-input.js";
+import { type CInputCustomEvent } from "@componentry-ui/stencil";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CInput as CInputElement, defineCustomElement as defineCInput } from "@componentry-ui/stencil/dist/components/c-input.js";
 
 export type CInputEvents = {
     onCBlur: EventName<CInputCustomEvent<void>>,

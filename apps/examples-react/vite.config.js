@@ -5,8 +5,8 @@ export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     include: [
-      '@componentry/react',
-      '@componentry/stencil/loader',
+      '@componentry-ui/react',
+      '@componentry-ui/stencil/loader',
     ],
   },
   build: {

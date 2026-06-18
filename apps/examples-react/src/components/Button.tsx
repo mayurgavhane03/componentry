@@ -1,4 +1,4 @@
-import { CButton } from "@componentry/react";
+import { CButton } from "@componentry-ui/react";
 import React, { useRef, useState } from "react";
 
 const Row = ({ children }: { children: React.ReactNode }) => (

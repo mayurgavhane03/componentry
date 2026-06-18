@@ -1,4 +1,4 @@
-import { CCheckbox, CButton } from "@componentry/react";
+import { CCheckbox, CButton } from "@componentry-ui/react";
 import React, { useRef, useState } from "react";
 
 const Row = ({ children }: { children: React.ReactNode }) => (

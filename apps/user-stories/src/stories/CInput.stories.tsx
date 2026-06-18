@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { fn } from 'storybook/test'
-import { CInput } from '@componentry/react'
+import { CInput } from '@componentry-ui/react'
 
 const meta = {
   title: 'Components/CInput',

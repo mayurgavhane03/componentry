@@ -5,9 +5,9 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
  import Heading from '@theme/Heading';
-import "@componentry/theme/styles/light.css"
-import "@componentry/theme/styles/dark.css"
-import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+import "@componentry-ui/theme/styles/light.css"
+import "@componentry-ui/theme/styles/dark.css"
+import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
 defineCustomElementCButton()
 import styles from './index.module.css';
 

@@ -11,9 +11,9 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type CCheckboxCustomEvent } from "@componentry/stencil";
-import type { Components } from "@componentry/stencil/dist/components";
-import { CCheckbox as CCheckboxElement, defineCustomElement as defineCCheckbox } from "@componentry/stencil/dist/components/c-checkbox.js";
+import { type CCheckboxCustomEvent } from "@componentry-ui/stencil";
+import type { Components } from "@componentry-ui/stencil/dist/components";
+import { CCheckbox as CCheckboxElement, defineCustomElement as defineCCheckbox } from "@componentry-ui/stencil/dist/components/c-checkbox.js";
 
 export type CCheckboxEvents = {
     onCBlur: EventName<CCheckboxCustomEvent<void>>,

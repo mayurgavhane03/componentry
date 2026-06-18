@@ -3,21 +3,21 @@
 /* auto-generated vue proxies */
 import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-target/runtime';
 
-import type { JSX } from '@componentry/stencil/dist/components';
+import type { JSX } from '@componentry-ui/stencil/dist/components';
 
-import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
-import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
-import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
-import { defineCustomElement as defineCButtonGroup } from '@componentry/stencil/dist/components/c-button-group.js';
-import { defineCustomElement as defineCCard } from '@componentry/stencil/dist/components/c-card.js';
-import { defineCustomElement as defineCCardAction } from '@componentry/stencil/dist/components/c-card-action.js';
-import { defineCustomElement as defineCCardContent } from '@componentry/stencil/dist/components/c-card-content.js';
-import { defineCustomElement as defineCCardDescription } from '@componentry/stencil/dist/components/c-card-description.js';
-import { defineCustomElement as defineCCardFooter } from '@componentry/stencil/dist/components/c-card-footer.js';
-import { defineCustomElement as defineCCardHeader } from '@componentry/stencil/dist/components/c-card-header.js';
-import { defineCustomElement as defineCCardTitle } from '@componentry/stencil/dist/components/c-card-title.js';
-import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
-import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
+import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
+import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
+import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/dist/components/c-button.js';
+import { defineCustomElement as defineCButtonGroup } from '@componentry-ui/stencil/dist/components/c-button-group.js';
+import { defineCustomElement as defineCCard } from '@componentry-ui/stencil/dist/components/c-card.js';
+import { defineCustomElement as defineCCardAction } from '@componentry-ui/stencil/dist/components/c-card-action.js';
+import { defineCustomElement as defineCCardContent } from '@componentry-ui/stencil/dist/components/c-card-content.js';
+import { defineCustomElement as defineCCardDescription } from '@componentry-ui/stencil/dist/components/c-card-description.js';
+import { defineCustomElement as defineCCardFooter } from '@componentry-ui/stencil/dist/components/c-card-footer.js';
+import { defineCustomElement as defineCCardHeader } from '@componentry-ui/stencil/dist/components/c-card-header.js';
+import { defineCustomElement as defineCCardTitle } from '@componentry-ui/stencil/dist/components/c-card-title.js';
+import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
+import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 
 
 

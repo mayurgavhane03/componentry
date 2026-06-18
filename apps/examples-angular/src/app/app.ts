@@ -1,6 +1,6 @@
 // app.ts
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 import { CommonModule } from '@angular/common';
 
 @Component({

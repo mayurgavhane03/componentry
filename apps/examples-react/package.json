@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@componentry/react": "workspace:*",
-    "@componentry/stencil": "workspace:*",
-    "@componentry/theme": "workspace:*",
+    "@componentry-ui/react": "workspace:*",
+    "@componentry-ui/stencil": "workspace:*",
+    "@componentry-ui/theme": "workspace:*",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },

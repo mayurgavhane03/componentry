@@ -4,21 +4,21 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp } from './angular-component-lib/utils';
 
-import type { Components } from '@componentry/stencil/dist/components';
+import type { Components } from '@componentry-ui/stencil/dist/components';
 
-import { defineCustomElement as defineCAvatar } from '@componentry/stencil/dist/components/c-avatar.js';
-import { defineCustomElement as defineCBadge } from '@componentry/stencil/dist/components/c-badge.js';
-import { defineCustomElement as defineCButton } from '@componentry/stencil/dist/components/c-button.js';
-import { defineCustomElement as defineCButtonGroup } from '@componentry/stencil/dist/components/c-button-group.js';
-import { defineCustomElement as defineCCard } from '@componentry/stencil/dist/components/c-card.js';
-import { defineCustomElement as defineCCardAction } from '@componentry/stencil/dist/components/c-card-action.js';
-import { defineCustomElement as defineCCardContent } from '@componentry/stencil/dist/components/c-card-content.js';
-import { defineCustomElement as defineCCardDescription } from '@componentry/stencil/dist/components/c-card-description.js';
-import { defineCustomElement as defineCCardFooter } from '@componentry/stencil/dist/components/c-card-footer.js';
-import { defineCustomElement as defineCCardHeader } from '@componentry/stencil/dist/components/c-card-header.js';
-import { defineCustomElement as defineCCardTitle } from '@componentry/stencil/dist/components/c-card-title.js';
-import { defineCustomElement as defineCCheckbox } from '@componentry/stencil/dist/components/c-checkbox.js';
-import { defineCustomElement as defineCInput } from '@componentry/stencil/dist/components/c-input.js';
+import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
+import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
+import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/dist/components/c-button.js';
+import { defineCustomElement as defineCButtonGroup } from '@componentry-ui/stencil/dist/components/c-button-group.js';
+import { defineCustomElement as defineCCard } from '@componentry-ui/stencil/dist/components/c-card.js';
+import { defineCustomElement as defineCCardAction } from '@componentry-ui/stencil/dist/components/c-card-action.js';
+import { defineCustomElement as defineCCardContent } from '@componentry-ui/stencil/dist/components/c-card-content.js';
+import { defineCustomElement as defineCCardDescription } from '@componentry-ui/stencil/dist/components/c-card-description.js';
+import { defineCustomElement as defineCCardFooter } from '@componentry-ui/stencil/dist/components/c-card-footer.js';
+import { defineCustomElement as defineCCardHeader } from '@componentry-ui/stencil/dist/components/c-card-header.js';
+import { defineCustomElement as defineCCardTitle } from '@componentry-ui/stencil/dist/components/c-card-title.js';
+import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
+import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 @ProxyCmp({
   defineCustomElementFn: defineCAvatar,
   inputs: ['image', 'initials', 'label', 'loading', 'shape']
@@ -41,7 +41,7 @@ export class CAvatar {
 }
 
 
-import type { CAvatarCustomEvent } from '@componentry/stencil/dist/components';
+import type { CAvatarCustomEvent } from '@componentry-ui/stencil/dist/components';
 
 export declare interface CAvatar extends Components.CAvatar {
   /**
@@ -99,7 +99,7 @@ export class CButton {
 }
 
 
-import type { CButtonCustomEvent } from '@componentry/stencil/dist/components';
+import type { CButtonCustomEvent } from '@componentry-ui/stencil/dist/components';
 
 export declare interface CButton extends Components.CButton {
   /**
@@ -322,7 +322,7 @@ export class CCheckbox {
 }
 
 
-import type { CCheckboxCustomEvent } from '@componentry/stencil/dist/components';
+import type { CCheckboxCustomEvent } from '@componentry-ui/stencil/dist/components';
 
 export declare interface CCheckbox extends Components.CCheckbox {
 
@@ -366,7 +366,7 @@ export class CInput {
 }
 
 
-import type { CInputCustomEvent } from '@componentry/stencil/dist/components';
+import type { CInputCustomEvent } from '@componentry-ui/stencil/dist/components';
 
 export declare interface CInput extends Components.CInput {
 

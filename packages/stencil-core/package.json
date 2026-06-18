@@ -1,5 +1,5 @@
 {
-  "name": "@componentry/stencil",
+  "name": "@componentry-ui/stencil",
   "version": "0.0.1",
   "description": "Componentry Web Components - source of truth",
   "main": "dist/index.cjs.js",
@@ -58,7 +58,7 @@
     "vitest": "^4.0.0"
   },
   "dependencies": {
-    "@componentry/theme": "workspace:*"
+    "@componentry-ui/theme": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

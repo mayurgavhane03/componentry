@@ -4,7 +4,7 @@ description: Buttons represent actions that are available to the user.
 ---
 
 import FrameworkTabs from '@site/src/components/FrameworkTabs';
-import { CButton } from '@componentry/react';
+import { CButton } from '@componentry-ui/react';
 
 # Button
 
@@ -15,12 +15,12 @@ Displays a button or a component that looks like a button.
 ## Import
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";`}
-  vue={`import { CButton } from "@componentry/vue";`}
-  angular={`import { CButton } from "@componentry/angular";
+  react={`import { CButton } from "@componentry-ui/react";`}
+  vue={`import { CButton } from "@componentry-ui/vue";`}
+  angular={`import { CButton } from "@componentry-ui/angular";
 // Add CButton to your NgModule or standalone component imports`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>`}
 />
@@ -55,7 +55,7 @@ Use the `variant` prop to change the button's visual style. Available variants a
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -69,7 +69,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -82,7 +82,7 @@ import { CButton } from '@componentry/vue';
   <CButton variant="text">Text</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -100,7 +100,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -137,7 +137,7 @@ Use the `size` prop to change the button's size. Available sizes are `small`, `m
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -147,7 +147,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -156,7 +156,7 @@ import { CButton } from '@componentry/vue';
   <CButton size="large" variant="primary">Large</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -170,7 +170,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -206,7 +206,7 @@ Use the `outline` prop to draw an outlined (ghost) style button. Works with all 
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -219,7 +219,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -231,7 +231,7 @@ import { CButton } from '@componentry/vue';
   <CButton variant="danger" outline>Danger</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -248,7 +248,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -284,7 +284,7 @@ Use the `pill` prop to give the button fully rounded edges.
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -294,7 +294,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -303,7 +303,7 @@ import { CButton } from '@componentry/vue';
   <CButton size="large" variant="primary" pill>Large</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -317,7 +317,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -350,7 +350,7 @@ Use the `circle` prop to create a circular icon button. Best used with a single 
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -366,7 +366,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -375,7 +375,7 @@ import { CButton } from '@componentry/vue';
   <CButton size="large" variant="primary" circle>+</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -389,7 +389,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -422,7 +422,7 @@ Use the `caret` prop to show a dropdown caret indicator. Useful for trigger butt
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -432,7 +432,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -441,7 +441,7 @@ import { CButton } from '@componentry/vue';
   <CButton size="large" caret>Large</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -455,7 +455,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -491,7 +491,7 @@ Use the `loading` prop to show a spinner and put the button into a non-interacti
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -504,7 +504,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -516,7 +516,7 @@ import { CButton } from '@componentry/vue';
   <CButton variant="danger" loading>Danger</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -533,7 +533,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -572,7 +572,7 @@ Use the `disabled` prop to prevent the user from interacting with the button. Di
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -585,7 +585,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -597,7 +597,7 @@ import { CButton } from '@componentry/vue';
   <CButton variant="danger" disabled>Danger</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -614,7 +614,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -660,7 +660,7 @@ Use the `prefix` and `suffix` slots to add icons or other elements before or aft
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -680,7 +680,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -699,7 +699,7 @@ import { CButton } from '@componentry/vue';
   </CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -723,7 +723,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -768,7 +768,7 @@ Use the `href` prop to render the button as an `<a>` element. You can optionally
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -778,7 +778,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -787,7 +787,7 @@ import { CButton } from '@componentry/vue';
   <CButton href="/file.pdf" download="report.pdf" variant="default">Download File</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -801,7 +801,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -817,7 +817,7 @@ export class AppComponent {}`}
 Use the `type` prop to control how the button interacts with a surrounding `<form>`. Set `type="submit"` to submit the form or `type="reset"` to clear it. The `name` and `value` props are submitted as part of the form data when using `type="submit"`.
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <form onSubmit={(e) => { e.preventDefault(); alert('Submitted!'); }}>
@@ -827,7 +827,7 @@ const App = () => (
   </form>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 
 function handleSubmit(e: Event) {
   e.preventDefault();
@@ -843,7 +843,7 @@ function handleSubmit(e: Event) {
   </form>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -864,7 +864,7 @@ export class AppComponent {
   }
 }`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -898,7 +898,7 @@ Use the `tooltip` prop to add a native browser tooltip that appears on hover.
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -907,7 +907,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -915,7 +915,7 @@ import { CButton } from '@componentry/vue';
   <CButton variant="neutral" tooltip="Delete this item" disabled>Disabled with tooltip</CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -928,7 +928,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
@@ -963,7 +963,7 @@ Props can be freely combined. For example, an outlined pill button with a caret 
 </div>
 
 <FrameworkTabs
-  react={`import { CButton } from "@componentry/react";
+  react={`import { CButton } from "@componentry-ui/react";
 
 const App = () => (
   <>
@@ -976,7 +976,7 @@ const App = () => (
   </>
 );`}
   vue={`<script setup lang="ts">
-import { CButton } from '@componentry/vue';
+import { CButton } from '@componentry-ui/vue';
 </script>
 
 <template>
@@ -988,7 +988,7 @@ import { CButton } from '@componentry/vue';
   </CButton>
 </template>`}
   angular={`import { Component } from '@angular/core';
-import { CButton } from '@componentry/angular';
+import { CButton } from '@componentry-ui/angular';
 
 @Component({
   selector: 'app-root',
@@ -1005,7 +1005,7 @@ import { CButton } from '@componentry/angular';
 })
 export class AppComponent {}`}
   html={`<script type="module">
-  import { defineCustomElementCButton } from '@componentry/stencil/dist/components';
+  import { defineCustomElementCButton } from '@componentry-ui/stencil/dist/components';
   defineCustomElementCButton();
 </script>
 
