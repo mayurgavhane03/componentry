@@ -1,6 +1,6 @@
 {
   "name": "@componentry/angular",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Componentry Angular Components",
   "files": [
     "dist"
@@ -29,5 +29,8 @@
     "rimraf": "^6.0.1",
     "rxjs": "^7.8.0",
     "typescript": "~6.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
