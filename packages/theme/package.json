@@ -1,6 +1,6 @@
 {
   "name": "@componentry/theme",
-  "version": "0.0.99",
+  "version": "0.0.100",
   "description": "Theme",
   "type": "module",
   "main": "./dist/index.cjs",

@@ -1,6 +1,6 @@
 {
   "name": "@componentry/vue",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Componentry Vue Components",
   "files": [
     "dist"
