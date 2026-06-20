@@ -216,6 +216,49 @@ export namespace Components {
     }
     interface CCardTitle {
     }
+    interface CCarousel {
+        /**
+          * @default false
+         */
+        "autoplay": boolean;
+        /**
+          * @default 3000
+         */
+        "autoplayInterval": number;
+        "goToSlide": (index: number, behavior?: ScrollBehavior) => Promise<void>;
+        /**
+          * @default false
+         */
+        "loop": boolean;
+        /**
+          * @default false
+         */
+        "mouseDragging": boolean;
+        /**
+          * @default false
+         */
+        "navigation": boolean;
+        "next": (behavior?: ScrollBehavior) => Promise<void>;
+        /**
+          * @default "horizontal"
+         */
+        "orientation": "horizontal" | "vertical";
+        /**
+          * @default false
+         */
+        "pagination": boolean;
+        "previous": (behavior?: ScrollBehavior) => Promise<void>;
+        /**
+          * @default 1
+         */
+        "slidesPerMove": number;
+        /**
+          * @default 1
+         */
+        "slidesPerPage": number;
+    }
+    interface CCarouselItem {
+    }
     /**
      * @summary Checkboxes allow the user to toggle an option on or off.
      * @event c-blur    - Emitted when the checkbox loses focus.
@@ -513,6 +556,10 @@ export interface CButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCButtonElement;
 }
+export interface CCarouselCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCCarouselElement;
+}
 export interface CCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCCheckboxElement;
@@ -635,6 +682,32 @@ declare global {
         prototype: HTMLCCardTitleElement;
         new (): HTMLCCardTitleElement;
     };
+    interface HTMLCCarouselElementEventMap {
+        "cSlideChange": {
+    index: number;
+    slide: HTMLElement;
+  };
+    }
+    interface HTMLCCarouselElement extends Components.CCarousel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCCarouselElementEventMap>(type: K, listener: (this: HTMLCCarouselElement, ev: CCarouselCustomEvent<HTMLCCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCCarouselElementEventMap>(type: K, listener: (this: HTMLCCarouselElement, ev: CCarouselCustomEvent<HTMLCCarouselElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCCarouselElement: {
+        prototype: HTMLCCarouselElement;
+        new (): HTMLCCarouselElement;
+    };
+    interface HTMLCCarouselItemElement extends Components.CCarouselItem, HTMLStencilElement {
+    }
+    var HTMLCCarouselItemElement: {
+        prototype: HTMLCCarouselItemElement;
+        new (): HTMLCCarouselItemElement;
+    };
     interface HTMLCCheckboxElementEventMap {
         "cBlur": void;
         "cChange": void;
@@ -725,6 +798,8 @@ declare global {
         "c-card-footer": HTMLCCardFooterElement;
         "c-card-header": HTMLCCardHeaderElement;
         "c-card-title": HTMLCCardTitleElement;
+        "c-carousel": HTMLCCarouselElement;
+        "c-carousel-item": HTMLCCarouselItemElement;
         "c-checkbox": HTMLCCheckboxElement;
         "c-input": HTMLCInputElement;
     }
@@ -933,6 +1008,50 @@ declare namespace LocalJSX {
     interface CCardHeader {
     }
     interface CCardTitle {
+    }
+    interface CCarousel {
+        /**
+          * @default false
+         */
+        "autoplay"?: boolean;
+        /**
+          * @default 3000
+         */
+        "autoplayInterval"?: number;
+        /**
+          * @default false
+         */
+        "loop"?: boolean;
+        /**
+          * @default false
+         */
+        "mouseDragging"?: boolean;
+        /**
+          * @default false
+         */
+        "navigation"?: boolean;
+        "onCSlideChange"?: (event: CCarouselCustomEvent<{
+    index: number;
+    slide: HTMLElement;
+  }>) => void;
+        /**
+          * @default "horizontal"
+         */
+        "orientation"?: "horizontal" | "vertical";
+        /**
+          * @default false
+         */
+        "pagination"?: boolean;
+        /**
+          * @default 1
+         */
+        "slidesPerMove"?: number;
+        /**
+          * @default 1
+         */
+        "slidesPerPage"?: number;
+    }
+    interface CCarouselItem {
     }
     /**
      * @summary Checkboxes allow the user to toggle an option on or off.
@@ -1213,6 +1332,17 @@ declare namespace LocalJSX {
     interface CCardAttributes {
         "size": 'default' | 'sm';
     }
+    interface CCarouselAttributes {
+        "loop": boolean;
+        "navigation": boolean;
+        "pagination": boolean;
+        "autoplay": boolean;
+        "autoplayInterval": number;
+        "slidesPerPage": number;
+        "slidesPerMove": number;
+        "orientation": "horizontal" | "vertical";
+        "mouseDragging": boolean;
+    }
     interface CCheckboxAttributes {
         "checkBoxtitle": string;
         "name": string;
@@ -1297,6 +1427,8 @@ declare namespace LocalJSX {
         "c-card-footer": CCardFooter;
         "c-card-header": CCardHeader;
         "c-card-title": CCardTitle;
+        "c-carousel": Omit<CCarousel, keyof CCarouselAttributes> & { [K in keyof CCarousel & keyof CCarouselAttributes]?: CCarousel[K] } & { [K in keyof CCarousel & keyof CCarouselAttributes as `attr:${K}`]?: CCarouselAttributes[K] } & { [K in keyof CCarousel & keyof CCarouselAttributes as `prop:${K}`]?: CCarousel[K] };
+        "c-carousel-item": CCarouselItem;
         "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
     }
@@ -1339,6 +1471,8 @@ declare module "@stencil/core" {
             "c-card-footer": LocalJSX.IntrinsicElements["c-card-footer"] & JSXBase.HTMLAttributes<HTMLCCardFooterElement>;
             "c-card-header": LocalJSX.IntrinsicElements["c-card-header"] & JSXBase.HTMLAttributes<HTMLCCardHeaderElement>;
             "c-card-title": LocalJSX.IntrinsicElements["c-card-title"] & JSXBase.HTMLAttributes<HTMLCCardTitleElement>;
+            "c-carousel": LocalJSX.IntrinsicElements["c-carousel"] & JSXBase.HTMLAttributes<HTMLCCarouselElement>;
+            "c-carousel-item": LocalJSX.IntrinsicElements["c-carousel-item"] & JSXBase.HTMLAttributes<HTMLCCarouselItemElement>;
             /**
              * @summary Checkboxes allow the user to toggle an option on or off.
              * @event c-blur    - Emitted when the checkbox loses focus.

@@ -13,6 +13,8 @@ export const DIRECTIVES = [
   d.CCardFooter,
   d.CCardHeader,
   d.CCardTitle,
+  d.CCarousel,
+  d.CCarouselItem,
   d.CCheckbox,
   d.CInput
 ];

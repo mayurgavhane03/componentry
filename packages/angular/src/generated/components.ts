@@ -17,6 +17,8 @@ import { defineCustomElement as defineCCardDescription } from '@componentry-ui/s
 import { defineCustomElement as defineCCardFooter } from '@componentry-ui/stencil/dist/components/c-card-footer.js';
 import { defineCustomElement as defineCCardHeader } from '@componentry-ui/stencil/dist/components/c-card-header.js';
 import { defineCustomElement as defineCCardTitle } from '@componentry-ui/stencil/dist/components/c-card-title.js';
+import { defineCustomElement as defineCCarousel } from '@componentry-ui/stencil/dist/components/c-carousel.js';
+import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/stencil/dist/components/c-carousel-item.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 @ProxyCmp({
@@ -293,6 +295,59 @@ export class CCardTitle {
 
 
 export declare interface CCardTitle extends Components.CCardTitle {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCarousel,
+  inputs: ['autoplay', 'autoplayInterval', 'loop', 'mouseDragging', 'navigation', 'orientation', 'pagination', 'slidesPerMove', 'slidesPerPage'],
+  methods: ['previous', 'next', 'goToSlide']
+})
+@Component({
+  selector: 'c-carousel',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['autoplay', 'autoplayInterval', 'loop', 'mouseDragging', 'navigation', 'orientation', 'pagination', 'slidesPerMove', 'slidesPerPage'],
+  outputs: ['cSlideChange'],
+})
+export class CCarousel {
+  protected el: HTMLCCarouselElement;
+  @Output() cSlideChange = new EventEmitter<CCarouselCustomEvent<{ index: number; slide: HTMLElement; }>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CCarouselCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CCarousel extends Components.CCarousel {
+
+  cSlideChange: EventEmitter<CCarouselCustomEvent<{ index: number; slide: HTMLElement; }>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCarouselItem
+})
+@Component({
+  selector: 'c-carousel-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+})
+export class CCarouselItem {
+  protected el: HTMLCCarouselItemElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CCarouselItem extends Components.CCarouselItem {}
 
 
 @ProxyCmp({

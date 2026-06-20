@@ -15,5 +15,7 @@ export { CCardFooter } from "./c-card-footer.js";
 export { CCardHeader } from "./c-card-header.js";
 export { CCardTitle } from "./c-card-title.js";
 export { CCard } from "./c-card.js";
+export { CCarouselItem } from "./c-carousel-item.js";
+export { CCarousel } from "./c-carousel.js";
 export { CCheckbox } from "./c-checkbox.js";
 export { CInput } from "./c-input.js";

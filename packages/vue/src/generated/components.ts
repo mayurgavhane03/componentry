@@ -16,6 +16,8 @@ import { defineCustomElement as defineCCardDescription } from '@componentry-ui/s
 import { defineCustomElement as defineCCardFooter } from '@componentry-ui/stencil/dist/components/c-card-footer.js';
 import { defineCustomElement as defineCCardHeader } from '@componentry-ui/stencil/dist/components/c-card-header.js';
 import { defineCustomElement as defineCCardTitle } from '@componentry-ui/stencil/dist/components/c-card-title.js';
+import { defineCustomElement as defineCCarousel } from '@componentry-ui/stencil/dist/components/c-carousel.js';
+import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/stencil/dist/components/c-carousel-item.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 
@@ -94,6 +96,25 @@ export const CCardHeader: StencilVueComponent<JSX.CCardHeader> = /*@__PURE__*/ d
 
 
 export const CCardTitle: StencilVueComponent<JSX.CCardTitle> = /*@__PURE__*/ defineContainer<JSX.CCardTitle>('c-card-title', defineCCardTitle);
+
+
+export const CCarousel: StencilVueComponent<JSX.CCarousel> = /*@__PURE__*/ defineContainer<JSX.CCarousel>('c-carousel', defineCCarousel, [
+  'loop',
+  'navigation',
+  'pagination',
+  'autoplay',
+  'autoplayInterval',
+  'slidesPerPage',
+  'slidesPerMove',
+  'orientation',
+  'mouseDragging',
+  'cSlideChange'
+], [
+  'cSlideChange'
+]);
+
+
+export const CCarouselItem: StencilVueComponent<JSX.CCarouselItem> = /*@__PURE__*/ defineContainer<JSX.CCarouselItem>('c-carousel-item', defineCCarouselItem);
 
 
 export const CCheckbox: StencilVueComponent<JSX.CCheckbox> = /*@__PURE__*/ defineContainer<JSX.CCheckbox>('c-checkbox', defineCCheckbox, [

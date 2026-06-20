@@ -1,0 +1,181 @@
+:host {
+  --slide-gap: var(--c-spacing-medium, 1rem);
+  --aspect-ratio: 16 / 9;
+  --scroll-hint: 0px;
+  display: flex;
+}
+
+.carousel {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  grid-template-rows: 1fr min-content;
+  grid-template-areas:
+    'previous slides next'
+    '.        pagination .';
+  gap: var(--c-spacing-medium);
+  align-items: center;
+  min-height: 100%;
+  min-width: 100%;
+  position: relative;
+}
+
+:host([orientation="vertical"]) .carousel {
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content min-content;
+  grid-template-areas:
+    'previous'
+    'slides'
+    'next'
+    'pagination';
+  justify-items: center;
+}
+
+.carousel__pagination {
+  grid-area: pagination;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--c-spacing-small);
+}
+
+.carousel__slides {
+  grid-area: slides;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+  align-items: center;
+  justify-items: center;
+  overflow: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: var(--c-border-radius-small);
+  --slide-size: calc((100% - (var(--slides-per-page) - 1) * var(--slide-gap)) / var(--slides-per-page));
+}
+
+@media (prefers-reduced-motion) {
+  :where(.carousel__slides) {
+    scroll-behavior: auto;
+  }
+}
+
+.carousel__slides--horizontal {
+  grid-auto-flow: column;
+  grid-auto-columns: var(--slide-size);
+  grid-auto-rows: 100%;
+  column-gap: var(--slide-gap);
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--scroll-hint);
+  padding-inline: var(--scroll-hint);
+  overflow-y: hidden;
+  aspect-ratio: calc(var(--aspect-ratio) * var(--slides-per-page));
+}
+
+.carousel__slides--vertical {
+  grid-auto-flow: row;
+  grid-auto-columns: 100%;
+  grid-auto-rows: var(--slide-size);
+  row-gap: var(--slide-gap);
+  scroll-snap-type: y mandatory;
+  scroll-padding-block: var(--scroll-hint);
+  padding-block: var(--scroll-hint);
+  overflow-x: hidden;
+}
+
+:host([orientation="vertical"]) ::slotted(c-carousel-item) {
+  height: 100%;
+}
+
+.carousel__slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__navigation {
+  display: contents;
+  font-size: var(--c-font-size-x-large);
+}
+
+.carousel__navigation-button {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: var(--c-border-radius-small);
+  font-size: inherit;
+  color: var(--c-color-neutral-600);
+  padding: var(--c-spacing-x-small);
+  cursor: pointer;
+  transition: var(--c-transition-medium) color;
+  appearance: none;
+}
+
+.carousel__navigation-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.carousel__navigation-button--previous {
+  grid-area: previous;
+  justify-self: start;
+}
+
+.carousel__navigation-button--next {
+  grid-area: next;
+  justify-self: end;
+}
+
+:host([orientation="vertical"]) .carousel__navigation-button--previous,
+:host([orientation="vertical"]) .carousel__navigation-button--next {
+  justify-self: center;
+}
+
+:host([orientation="vertical"]) .carousel__navigation-button {
+  transform: rotate(90deg);
+}
+
+.carousel__pagination-item {
+  display: block;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  border-radius: var(--c-border-radius-circle);
+  width: var(--c-spacing-small);
+  height: var(--c-spacing-small);
+  background-color: var(--c-color-neutral-300);
+  padding: 0;
+  margin: 0;
+  transition: transform var(--c-transition-medium), background-color var(--c-transition-medium);
+}
+
+.carousel__pagination-item--active {
+  background-color: var(--c-color-neutral-700);
+  transform: scale(1.2);
+}
+
+::slotted(c-carousel-item) {
+  --aspect-ratio: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  aspect-ratio: var(--aspect-ratio);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+:host([orientation="vertical"]) ::slotted(c-carousel-item) {
+  aspect-ratio: auto;
+}
+
+.carousel__slides:focus-visible,
+.carousel__navigation-button:focus-visible,
+.carousel__pagination-item:focus-visible {
+  outline: var(--c-focus-ring);
+  outline-offset: var(--c-focus-ring-offset);
+}
