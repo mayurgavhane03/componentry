@@ -19,3 +19,5 @@ export { CCarouselItem } from "./c-carousel-item.js";
 export { CCarousel } from "./c-carousel.js";
 export { CCheckbox } from "./c-checkbox.js";
 export { CInput } from "./c-input.js";
+export { CMenuItem } from "./c-menu-item.js";
+export { CMenu } from "./c-menu.js";

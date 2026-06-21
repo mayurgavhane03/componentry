@@ -1,0 +1,14 @@
+  :host {
+    display: block;
+    position: relative;
+    background: var(--c-panel-background-color);
+    border: solid var(--c-panel-border-width) var(--c-panel-border-color);
+    border-radius: var(--c-border-radius-medium);
+    padding: var(--c-spacing-x-small) 0;
+    overflow: auto;
+    overscroll-behavior: none;
+  }
+
+  ::slotted(sl-divider) {
+    --spacing: var(--c-spacing-x-small);
+  }

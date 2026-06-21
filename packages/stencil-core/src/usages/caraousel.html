@@ -696,46 +696,246 @@
     }
    </style>
 </head>
- <body>
-  
-  <!-- Basic item -->
-<c-menu>
-  <c-menu-item value="cut">Cut</c-menu-item>
-  <c-menu-item value="copy">Copy</c-menu-item>
-  <c-menu-item value="paste">Paste</c-menu-item>
-</c-menu>
 
-<!-- Checkbox items -->
-<c-menu>
-  <c-menu-item type="checkbox" value="bold" checked>Bold</c-menu-item>
-  <c-menu-item type="checkbox" value="italic">Italic</c-menu-item>
-</c-menu>
+   <!-- ====================================== -->
+  <!-- Hero Banner Carousel -->
+  <!-- ====================================== -->
 
-<!-- Disabled / loading -->
-<c-menu>
-  <c-menu-item value="undo" disabled>Undo</c-menu-item>
-  <c-menu-item value="save" loading>Save</c-menu-item>
-</c-menu>
+  <h2>Hero Banner Carousel</h2>
 
-<!-- Prefix / suffix slots -->
-<c-menu>
-  <c-menu-item value="download">
-    <span slot="prefix">⬇</span>
-    Download
-    <span slot="suffix">⌘D</span>
-  </c-menu-item>
-</c-menu>
+  <c-carousel navigation pagination autoplay loop autoplay-interval="4000" slides-per-page="3" slides-per-move="2">
+  <c-carousel-item>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1600&q=80" alt="City">
+        <div class="hero-content">
+          <h1>1Urban Adventures</h1>
+          <p>Experience the energy of modern cities.</p>
+        </div>
+      </div>
+    </c-carousel-item>
+      <c-carousel-item>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1600&q=80" alt="City">
+        <div class="hero-content">
+          <h1>2Urban Adventures</h1>
+          <p>Experience the energy of modern cities.</p>
+        </div>
+      </div>
+    </c-carousel-item>
+    <c-carousel-item >
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600&q=80" alt="Mountain">
+        <div class="hero-content">
+          <h1>Explore Nature</h1>
+          <p>Discover breathtaking destinations around the world.</p>
+        </div>
+      </div>
+    </c-carousel-item>
 
-<!-- Listen for selection -->
-<c-menu id="my-menu">
-  <c-menu-item value="a">Option A</c-menu-item>
-  <c-menu-item value="b">Option B</c-menu-item>
-</c-menu>
+    <c-carousel-item>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1600&q=80" alt="City">
+        <div class="hero-content">
+          <h1>Urban Adventures</h1>
+          <p>Experience the energy of modern cities.</p>
+        </div>
+      </div>
+    </c-carousel-item>
 
-<script>
-  document.getElementById('my-menu').addEventListener('cSelect', e => {
-    console.log('selected value:', e.detail.item.value);
-  });
-</script>
- </body>
+    <c-carousel-item>
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600&q=80" alt="Lake">
+        <div class="hero-content">
+          <h1>Peaceful Escapes</h1>
+          <p>Find serenity in beautiful landscapes.</p>
+        </div>
+      </div>
+    </c-carousel-item>
+
+  </c-carousel>
+
+  <!-- ====================================== -->
+  <!-- Product Cards -->
+  <!-- ====================================== -->
+
+  <h2>Product Carousel</h2>
+
+  <c-carousel navigation pagination slides-per-page="3" slides-per-move="3">
+
+    <c-carousel-item>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&q=80">
+        <div class="card-content">
+          <div class="card-title">Nike Running Shoes</div>
+          <div class="card-text">Performance footwear for daily training.</div>
+        </div>
+      </div>
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&q=80">
+        <div class="card-content">
+          <div class="card-title">Smart Watch</div>
+          <div class="card-text">Track health and fitness effortlessly.</div>
+        </div>
+      </div>
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&q=80">
+        <div class="card-content">
+          <div class="card-title">Headphones</div>
+          <div class="card-text">Immersive audio experience.</div>
+        </div>
+      </div>
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80">
+        <div class="card-content">
+          <div class="card-title">Smartphone</div>
+          <div class="card-text">Premium camera and performance.</div>
+        </div>
+      </div>
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?w=800&q=80">
+        <div class="card-content">
+          <div class="card-title">Laptop</div>
+          <div class="card-text">Designed for productivity.</div>
+        </div>
+      </div>
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&q=80">
+        <div class="card-content">
+          <div class="card-title">Gaming Setup</div>
+          <div class="card-text">High-performance workstation.</div>
+        </div>
+      </div>
+    </c-carousel-item>
+
+  </c-carousel>
+
+  <!-- ====================================== -->
+  <!-- Infinite Loop -->
+  <!-- ====================================== -->
+
+  <h2>Infinite Loop Carousel</h2>
+
+  <c-carousel loop navigation pagination>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1493558103817-58b2924bce98?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+  </c-carousel>
+
+  <!-- ====================================== -->
+  <!-- Vertical Carousel -->
+  <!-- ====================================== -->
+
+  <h2>Vertical Carousel</h2>
+
+  <c-carousel
+    orientation="vertical"
+    navigation
+    pagination
+  >
+
+    <c-carousel-item>
+      <div class="vertical-card">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80">
+      </div>
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <div class="vertical-card">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=80">
+      </div>
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <div class="vertical-card">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=80">
+      </div>
+    </c-carousel-item>
+
+  </c-carousel>
+
+  <!-- ====================================== -->
+  <!-- Mouse Dragging -->
+  <!-- ====================================== -->
+
+  <h2>Mouse Dragging Enabled</h2>
+
+  <c-carousel mouse-dragging navigation pagination>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+  </c-carousel>
+
+  <!-- ====================================== -->
+  <!-- Custom Navigation -->
+  <!-- ====================================== -->
+
+  <h2>Custom Navigation Icons</h2>
+
+  <c-carousel navigation pagination>
+
+    <span slot="previous-icon" class="custom-arrow">⬅</span>
+    <span slot="next-icon" class="custom-arrow">➡</span>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+    <c-carousel-item>
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?w=1200&q=80" style="width:100%;border-radius:12px;">
+    </c-carousel-item>
+
+  </c-carousel>
+
+</body>
 </html>

@@ -21,6 +21,8 @@ import { defineCustomElement as defineCCarousel } from '@componentry-ui/stencil/
 import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/stencil/dist/components/c-carousel-item.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
+import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
+import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
 @ProxyCmp({
   defineCustomElementFn: defineCAvatar,
   inputs: ['image', 'initials', 'label', 'loading', 'shape']
@@ -436,6 +438,68 @@ export declare interface CInput extends Components.CInput {
   cInput: EventEmitter<CInputCustomEvent<void>>;
 
   cInvalid: EventEmitter<CInputCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCMenu,
+  methods: ['getAllItems']
+})
+@Component({
+  selector: 'c-menu',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [],
+  outputs: ['cSelect'],
+})
+export class CMenu {
+  protected el: HTMLCMenuElement;
+  @Output() cSelect = new EventEmitter<CMenuCustomEvent<ICMenuMenuSelectEventDetail>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CMenuCustomEvent } from '@componentry-ui/stencil/dist/components';
+import type { MenuSelectEventDetail as ICMenuMenuSelectEventDetail } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CMenu extends Components.CMenu {
+
+  cSelect: EventEmitter<CMenuCustomEvent<ICMenuMenuSelectEventDetail>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCMenuItem,
+  inputs: ['checked', 'disabled', 'loading', 'type', 'value'],
+  methods: ['getTextLabel']
+})
+@Component({
+  selector: 'c-menu-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['checked', 'disabled', 'loading', 'type', 'value'],
+  outputs: ['slotchange'],
+})
+export class CMenuItem {
+  protected el: HTMLCMenuItemElement;
+  @Output() slotchange = new EventEmitter<CMenuItemCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CMenuItemCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CMenuItem extends Components.CMenuItem {
+
+  slotchange: EventEmitter<CMenuItemCustomEvent<void>>;
 }
 
 

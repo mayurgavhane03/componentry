@@ -20,6 +20,8 @@ import { defineCustomElement as defineCCarousel } from '@componentry-ui/stencil/
 import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/stencil/dist/components/c-carousel-item.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
+import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
+import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
 
 
 
@@ -186,6 +188,25 @@ export const CInput: StencilVueComponent<JSX.CInput> = /*@__PURE__*/ defineConta
   'cFocus',
   'cInput',
   'cInvalid'
+]);
+
+
+export const CMenu: StencilVueComponent<JSX.CMenu> = /*@__PURE__*/ defineContainer<JSX.CMenu>('c-menu', defineCMenu, [
+  'cSelect'
+], [
+  'cSelect'
+]);
+
+
+export const CMenuItem: StencilVueComponent<JSX.CMenuItem> = /*@__PURE__*/ defineContainer<JSX.CMenuItem>('c-menu-item', defineCMenuItem, [
+  'type',
+  'checked',
+  'value',
+  'loading',
+  'disabled',
+  'slotchange'
+], [
+  'slotchange'
 ]);
 
 

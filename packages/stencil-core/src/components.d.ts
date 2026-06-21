@@ -5,6 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { MenuSelectEventDetail } from "./components/c-menu/c-menu";
+import { Element } from "@stencil/core";
+export { MenuSelectEventDetail } from "./components/c-menu/c-menu";
+export { Element } from "@stencil/core";
 export namespace Components {
     /**
      * @summary Avatars are used to represent a person or object.
@@ -547,6 +551,41 @@ export namespace Components {
          */
         "value": string;
     }
+    /**
+     * @event cSelect - Emitted when a menu item is selected.
+     */
+    interface CMenu {
+        /**
+          * Gets all slotted menu items, ignoring dividers and other elements.
+         */
+        "getAllItems": () => Promise<Element[]>;
+    }
+    /**
+     * @cssprop [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
+     */
+    interface CMenuItem {
+        /**
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        "getTextLabel": () => Promise<string>;
+        /**
+          * @default false
+         */
+        "loading": boolean;
+        /**
+          * @default "normal"
+         */
+        "type": "normal" | "checkbox";
+        /**
+          * @default ""
+         */
+        "value": string;
+    }
 }
 export interface CAvatarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -567,6 +606,14 @@ export interface CCheckboxCustomEvent<T> extends CustomEvent<T> {
 export interface CInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCInputElement;
+}
+export interface CMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCMenuElement;
+}
+export interface CMenuItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCMenuItemElement;
 }
 declare global {
     interface HTMLCAvatarElementEventMap {
@@ -786,6 +833,46 @@ declare global {
         prototype: HTMLCInputElement;
         new (): HTMLCInputElement;
     };
+    interface HTMLCMenuElementEventMap {
+        "cSelect": MenuSelectEventDetail;
+    }
+    /**
+     * @event cSelect - Emitted when a menu item is selected.
+     */
+    interface HTMLCMenuElement extends Components.CMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCMenuElementEventMap>(type: K, listener: (this: HTMLCMenuElement, ev: CMenuCustomEvent<HTMLCMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCMenuElementEventMap>(type: K, listener: (this: HTMLCMenuElement, ev: CMenuCustomEvent<HTMLCMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCMenuElement: {
+        prototype: HTMLCMenuElement;
+        new (): HTMLCMenuElement;
+    };
+    interface HTMLCMenuItemElementEventMap {
+        "slotchange": void;
+    }
+    /**
+     * @cssprop [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
+     */
+    interface HTMLCMenuItemElement extends Components.CMenuItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCMenuItemElementEventMap>(type: K, listener: (this: HTMLCMenuItemElement, ev: CMenuItemCustomEvent<HTMLCMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCMenuItemElementEventMap>(type: K, listener: (this: HTMLCMenuItemElement, ev: CMenuItemCustomEvent<HTMLCMenuItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCMenuItemElement: {
+        prototype: HTMLCMenuItemElement;
+        new (): HTMLCMenuItemElement;
+    };
     interface HTMLElementTagNameMap {
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
@@ -802,6 +889,8 @@ declare global {
         "c-carousel-item": HTMLCCarouselItemElement;
         "c-checkbox": HTMLCCheckboxElement;
         "c-input": HTMLCInputElement;
+        "c-menu": HTMLCMenuElement;
+        "c-menu-item": HTMLCMenuItemElement;
     }
 }
 declare namespace LocalJSX {
@@ -1284,6 +1373,38 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    /**
+     * @event cSelect - Emitted when a menu item is selected.
+     */
+    interface CMenu {
+        "onCSelect"?: (event: CMenuCustomEvent<MenuSelectEventDetail>) => void;
+    }
+    /**
+     * @cssprop [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
+     */
+    interface CMenuItem {
+        /**
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "loading"?: boolean;
+        "onSlotchange"?: (event: CMenuItemCustomEvent<void>) => void;
+        /**
+          * @default "normal"
+         */
+        "type"?: "normal" | "checkbox";
+        /**
+          * @default ""
+         */
+        "value"?: string;
+    }
 
     interface CAvatarAttributes {
         "image": string;
@@ -1414,6 +1535,13 @@ declare namespace LocalJSX {
         "spellcheck": boolean;
         "inputTitle": string;
     }
+    interface CMenuItemAttributes {
+        "type": "normal" | "checkbox";
+        "checked": boolean;
+        "value": string;
+        "loading": boolean;
+        "disabled": boolean;
+    }
 
     interface IntrinsicElements {
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
@@ -1431,6 +1559,8 @@ declare namespace LocalJSX {
         "c-carousel-item": CCarouselItem;
         "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
+        "c-menu": CMenu;
+        "c-menu-item": Omit<CMenuItem, keyof CMenuItemAttributes> & { [K in keyof CMenuItem & keyof CMenuItemAttributes]?: CMenuItem[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `attr:${K}`]?: CMenuItemAttributes[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `prop:${K}`]?: CMenuItem[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -1510,6 +1640,14 @@ declare module "@stencil/core" {
              * @csspart suffix                 - The container that wraps the suffix.
              */
             "c-input": LocalJSX.IntrinsicElements["c-input"] & JSXBase.HTMLAttributes<HTMLCInputElement>;
+            /**
+             * @event cSelect - Emitted when a menu item is selected.
+             */
+            "c-menu": LocalJSX.IntrinsicElements["c-menu"] & JSXBase.HTMLAttributes<HTMLCMenuElement>;
+            /**
+             * @cssprop [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
+             */
+            "c-menu-item": LocalJSX.IntrinsicElements["c-menu-item"] & JSXBase.HTMLAttributes<HTMLCMenuItemElement>;
         }
     }
 }
