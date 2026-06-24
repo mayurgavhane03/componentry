@@ -586,6 +586,122 @@ export namespace Components {
          */
         "value": string;
     }
+    /**
+     * @summary Radios represent a single option within a mutually exclusive set.
+     * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
+     * @event radioBlur  - Emitted when the control loses focus.
+     * @event radioFocus - Emitted when the control gains focus.
+     * @csspart control      - The circular container that wraps the radio's checked state.
+     * @csspart checked-icon - The checked icon (SVG circle).
+     * @csspart label        - The container that wraps the radio's label.
+     * @cssproperty --checked-icon-color - The color of the checked icon.
+     * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
+     */
+    interface CRadio {
+        /**
+          * The radio's visual appearance.
+          * @default "default"
+         */
+        "appearance": "default" | "button";
+        /**
+          * Whether the radio is checked. Managed externally by `<c-radio-group>` via setAttribute / toggleAttribute.
+          * @default false
+         */
+        "checked": boolean;
+        /**
+          * Disables the radio.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default false
+         */
+        "forceDisabled": boolean;
+        "setFocus": (options?: FocusOptions) => Promise<void>;
+        /**
+          * The radio's size. When used inside a `<c-radio-group>`, the group's size overrides this attribute.
+         */
+        "size": | "xs"
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "small"
+    | "medium"
+    | "large";
+        /**
+          * The radio's value. When selected, the parent radio group will receive this value.
+         */
+        "value": string;
+    }
+    /**
+     * @summary Radio groups wrap a set of radios so they function as a single form control with one shared value.
+     * They handle keyboard navigation, labeling, and validation for the group as a whole.
+     * @event change    - Emitted when the radio group's selected value changes.
+     * @event input     - Emitted when the radio group receives user input.
+     * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart form-control       - The form control that wraps the label, input, and hint.
+     * @csspart form-control-label - The label's wrapper.
+     * @csspart form-control-input - The input's wrapper.
+     * @csspart hint               - The hint's wrapper.
+     */
+    interface CRadioGroup {
+        /**
+          * The default value of the form control (used on form reset).
+          * @default null
+         */
+        "defaultValue": string | null;
+        /**
+          * Disables the radio group and all child radios.
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * The radio group's hint text.
+          * @default ""
+         */
+        "hint": string;
+        /**
+          * The radio group's label. Required for proper accessibility.
+          * @default ""
+         */
+        "label": string;
+        /**
+          * The name submitted with form data.
+          * @default null
+         */
+        "name": string | null;
+        /**
+          * The orientation in which to show radio items.
+          * @default "vertical"
+         */
+        "orientation": "horizontal" | "vertical";
+        /**
+          * Ensures a child radio is checked before the containing form can submit.
+          * @default false
+         */
+        "required": boolean;
+        /**
+          * Sets focus on the radio group (focuses the checked radio, or the first enabled one).
+         */
+        "setFocus": (options?: FocusOptions) => Promise<void>;
+        /**
+          * The radio group's size — propagated to all child `<c-radio>` elements.
+         */
+        "size": | "xs"
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "small"
+    | "medium"
+    | "large";
+        /**
+          * The current value of the radio group. Setting this property marks `valueHasChanged` so the default value is no longer used as a fallback.
+          * @default null
+         */
+        "value": string | null;
+    }
 }
 export interface CAvatarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -614,6 +730,14 @@ export interface CMenuCustomEvent<T> extends CustomEvent<T> {
 export interface CMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCMenuItemElement;
+}
+export interface CRadioCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCRadioElement;
+}
+export interface CRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCRadioGroupElement;
 }
 declare global {
     interface HTMLCAvatarElementEventMap {
@@ -873,6 +997,64 @@ declare global {
         prototype: HTMLCMenuItemElement;
         new (): HTMLCMenuItemElement;
     };
+    interface HTMLCRadioElementEventMap {
+        "radioFocus": void;
+        "radioBlur": void;
+    }
+    /**
+     * @summary Radios represent a single option within a mutually exclusive set.
+     * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
+     * @event radioBlur  - Emitted when the control loses focus.
+     * @event radioFocus - Emitted when the control gains focus.
+     * @csspart control      - The circular container that wraps the radio's checked state.
+     * @csspart checked-icon - The checked icon (SVG circle).
+     * @csspart label        - The container that wraps the radio's label.
+     * @cssproperty --checked-icon-color - The color of the checked icon.
+     * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
+     */
+    interface HTMLCRadioElement extends Components.CRadio, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCRadioElementEventMap>(type: K, listener: (this: HTMLCRadioElement, ev: CRadioCustomEvent<HTMLCRadioElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCRadioElementEventMap>(type: K, listener: (this: HTMLCRadioElement, ev: CRadioCustomEvent<HTMLCRadioElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCRadioElement: {
+        prototype: HTMLCRadioElement;
+        new (): HTMLCRadioElement;
+    };
+    interface HTMLCRadioGroupElementEventMap {
+        "change": void;
+        "input": void;
+    }
+    /**
+     * @summary Radio groups wrap a set of radios so they function as a single form control with one shared value.
+     * They handle keyboard navigation, labeling, and validation for the group as a whole.
+     * @event change    - Emitted when the radio group's selected value changes.
+     * @event input     - Emitted when the radio group receives user input.
+     * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart form-control       - The form control that wraps the label, input, and hint.
+     * @csspart form-control-label - The label's wrapper.
+     * @csspart form-control-input - The input's wrapper.
+     * @csspart hint               - The hint's wrapper.
+     */
+    interface HTMLCRadioGroupElement extends Components.CRadioGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCRadioGroupElementEventMap>(type: K, listener: (this: HTMLCRadioGroupElement, ev: CRadioGroupCustomEvent<HTMLCRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCRadioGroupElementEventMap>(type: K, listener: (this: HTMLCRadioGroupElement, ev: CRadioGroupCustomEvent<HTMLCRadioGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCRadioGroupElement: {
+        prototype: HTMLCRadioGroupElement;
+        new (): HTMLCRadioGroupElement;
+    };
     interface HTMLElementTagNameMap {
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
@@ -891,6 +1073,8 @@ declare global {
         "c-input": HTMLCInputElement;
         "c-menu": HTMLCMenuElement;
         "c-menu-item": HTMLCMenuItemElement;
+        "c-radio": HTMLCRadioElement;
+        "c-radio-group": HTMLCRadioGroupElement;
     }
 }
 declare namespace LocalJSX {
@@ -1405,6 +1589,127 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    /**
+     * @summary Radios represent a single option within a mutually exclusive set.
+     * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
+     * @event radioBlur  - Emitted when the control loses focus.
+     * @event radioFocus - Emitted when the control gains focus.
+     * @csspart control      - The circular container that wraps the radio's checked state.
+     * @csspart checked-icon - The checked icon (SVG circle).
+     * @csspart label        - The container that wraps the radio's label.
+     * @cssproperty --checked-icon-color - The color of the checked icon.
+     * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
+     */
+    interface CRadio {
+        /**
+          * The radio's visual appearance.
+          * @default "default"
+         */
+        "appearance"?: "default" | "button";
+        /**
+          * Whether the radio is checked. Managed externally by `<c-radio-group>` via setAttribute / toggleAttribute.
+          * @default false
+         */
+        "checked"?: boolean;
+        /**
+          * Disables the radio.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "forceDisabled"?: boolean;
+        /**
+          * Emitted when the control loses focus.
+         */
+        "onRadioBlur"?: (event: CRadioCustomEvent<void>) => void;
+        /**
+          * Emitted when the control gains focus.
+         */
+        "onRadioFocus"?: (event: CRadioCustomEvent<void>) => void;
+        /**
+          * The radio's size. When used inside a `<c-radio-group>`, the group's size overrides this attribute.
+         */
+        "size": | "xs"
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "small"
+    | "medium"
+    | "large";
+        /**
+          * The radio's value. When selected, the parent radio group will receive this value.
+         */
+        "value": string;
+    }
+    /**
+     * @summary Radio groups wrap a set of radios so they function as a single form control with one shared value.
+     * They handle keyboard navigation, labeling, and validation for the group as a whole.
+     * @event change    - Emitted when the radio group's selected value changes.
+     * @event input     - Emitted when the radio group receives user input.
+     * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @csspart form-control       - The form control that wraps the label, input, and hint.
+     * @csspart form-control-label - The label's wrapper.
+     * @csspart form-control-input - The input's wrapper.
+     * @csspart hint               - The hint's wrapper.
+     */
+    interface CRadioGroup {
+        /**
+          * The default value of the form control (used on form reset).
+          * @default null
+         */
+        "defaultValue"?: string | null;
+        /**
+          * Disables the radio group and all child radios.
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * The radio group's hint text.
+          * @default ""
+         */
+        "hint"?: string;
+        /**
+          * The radio group's label. Required for proper accessibility.
+          * @default ""
+         */
+        "label"?: string;
+        /**
+          * The name submitted with form data.
+          * @default null
+         */
+        "name"?: string | null;
+        "onChange"?: (event: CRadioGroupCustomEvent<void>) => void;
+        "onInput"?: (event: CRadioGroupCustomEvent<void>) => void;
+        /**
+          * The orientation in which to show radio items.
+          * @default "vertical"
+         */
+        "orientation"?: "horizontal" | "vertical";
+        /**
+          * Ensures a child radio is checked before the containing form can submit.
+          * @default false
+         */
+        "required"?: boolean;
+        /**
+          * The radio group's size — propagated to all child `<c-radio>` elements.
+         */
+        "size": | "xs"
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "small"
+    | "medium"
+    | "large";
+        /**
+          * The current value of the radio group. Setting this property marks `valueHasChanged` so the default value is no longer used as a fallback.
+          * @default null
+         */
+        "value"?: string | null;
+    }
 
     interface CAvatarAttributes {
         "image": string;
@@ -1542,6 +1847,39 @@ declare namespace LocalJSX {
         "loading": boolean;
         "disabled": boolean;
     }
+    interface CRadioAttributes {
+        "value": string;
+        "appearance": "default" | "button";
+        "size": | "xs"
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "small"
+    | "medium"
+    | "large";
+        "disabled": boolean;
+        "checked": boolean;
+        "forceDisabled": boolean;
+    }
+    interface CRadioGroupAttributes {
+        "label": string;
+        "hint": string;
+        "name": string | null;
+        "disabled": boolean;
+        "orientation": "horizontal" | "vertical";
+        "value": string | null;
+        "defaultValue": string | null;
+        "size": | "xs"
+    | "s"
+    | "m"
+    | "l"
+    | "xl"
+    | "small"
+    | "medium"
+    | "large";
+        "required": boolean;
+    }
 
     interface IntrinsicElements {
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
@@ -1561,6 +1899,8 @@ declare namespace LocalJSX {
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
         "c-menu": CMenu;
         "c-menu-item": Omit<CMenuItem, keyof CMenuItemAttributes> & { [K in keyof CMenuItem & keyof CMenuItemAttributes]?: CMenuItem[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `attr:${K}`]?: CMenuItemAttributes[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `prop:${K}`]?: CMenuItem[K] };
+        "c-radio": Omit<CRadio, keyof CRadioAttributes> & { [K in keyof CRadio & keyof CRadioAttributes]?: CRadio[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `attr:${K}`]?: CRadioAttributes[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `prop:${K}`]?: CRadio[K] } & OneOf<"value", CRadio["value"], CRadioAttributes["value"]> & OneOf<"size", CRadio["size"], CRadioAttributes["size"]>;
+        "c-radio-group": Omit<CRadioGroup, keyof CRadioGroupAttributes> & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes]?: CRadioGroup[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `attr:${K}`]?: CRadioGroupAttributes[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `prop:${K}`]?: CRadioGroup[K] } & OneOf<"size", CRadioGroup["size"], CRadioGroupAttributes["size"]>;
     }
 }
 export { LocalJSX as JSX };
@@ -1648,6 +1988,30 @@ declare module "@stencil/core" {
              * @cssprop [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
              */
             "c-menu-item": LocalJSX.IntrinsicElements["c-menu-item"] & JSXBase.HTMLAttributes<HTMLCMenuItemElement>;
+            /**
+             * @summary Radios represent a single option within a mutually exclusive set.
+             * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
+             * @event radioBlur  - Emitted when the control loses focus.
+             * @event radioFocus - Emitted when the control gains focus.
+             * @csspart control      - The circular container that wraps the radio's checked state.
+             * @csspart checked-icon - The checked icon (SVG circle).
+             * @csspart label        - The container that wraps the radio's label.
+             * @cssproperty --checked-icon-color - The color of the checked icon.
+             * @cssproperty --checked-icon-scale - The size of the checked icon relative to the radio.
+             */
+            "c-radio": LocalJSX.IntrinsicElements["c-radio"] & JSXBase.HTMLAttributes<HTMLCRadioElement>;
+            /**
+             * @summary Radio groups wrap a set of radios so they function as a single form control with one shared value.
+             * They handle keyboard navigation, labeling, and validation for the group as a whole.
+             * @event change    - Emitted when the radio group's selected value changes.
+             * @event input     - Emitted when the radio group receives user input.
+             * @event wa-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+             * @csspart form-control       - The form control that wraps the label, input, and hint.
+             * @csspart form-control-label - The label's wrapper.
+             * @csspart form-control-input - The input's wrapper.
+             * @csspart hint               - The hint's wrapper.
+             */
+            "c-radio-group": LocalJSX.IntrinsicElements["c-radio-group"] & JSXBase.HTMLAttributes<HTMLCRadioGroupElement>;
         }
     }
 }

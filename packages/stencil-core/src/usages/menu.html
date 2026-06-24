@@ -606,235 +606,136 @@
       background: #f5f7fa;
     }
 
-   
+    h2 {
+      margin: 40px 0 16px;
+      color: #222;
+    }
+
+    c-carousel {
+      display: block;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      height: 220px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      padding: 12px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .hero-slide {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-content {
+      position: absolute;
+      left: 40px;
+      bottom: 40px;
+      color: white;
+      max-width: 500px;
+    }
+
+    .hero-content h1 {
+      margin: 0 0 12px;
+      font-size: 42px;
+    }
+
+    .hero-content p {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .vertical-card {
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .vertical-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .custom-arrow {
+      font-size: 24px;
+      font-weight: bold;
+      padding: 8px;
+    }
    </style>
 </head>
- <body><c-radio-group label="Spacing" name="spacing" value="comfortable">
-  <c-radio value="default">
-    Default
-    <span slot="description">Standard spacing for most use cases.</span>
-  </c-radio>
-  <c-radio value="comfortable">
-    Comfortable
-    <span slot="description">More space between elements.</span>
-  </c-radio>
-  <c-radio value="compact">
-    Compact
-    <span slot="description">Minimal spacing for dense layouts.</span>
-  </c-radio>
-</c-radio-group>
-    <!-- 1. Basic -->
-  <c-radio-group label="Favorite fruit" name="fruit" value="apple">
-    <c-radio value="apple">Apple</c-radio>
-    <c-radio value="banana">Banana</c-radio>
-    <c-radio value="cherry">Cherry</c-radio>
-  </c-radio-group>
+ <body>
+  
+  <!-- Basic item -->
+<c-menu>
+  <c-menu-item value="cut">Cut</c-menu-item>
+  <c-menu-item value="copy">Copy</c-menu-item>
+  <c-menu-item value="paste">Paste</c-menu-item>
+</c-menu>
 
-  <!-- 2. With hint attribute -->
-  <c-radio-group label="Environment" name="env" hint="Choose where to deploy.">
-    <c-radio value="dev">Development</c-radio>
-    <c-radio value="staging">Staging</c-radio>
-    <c-radio value="prod">Production</c-radio>
-  </c-radio-group>
+<!-- Checkbox items -->
+<c-menu>
+  <c-menu-item type="checkbox" value="bold" checked>Bold</c-menu-item>
+  <c-menu-item type="checkbox" value="italic">Italic</c-menu-item>
+</c-menu>
 
-  <!-- 3. Label + hint via slots (rich HTML) -->
-  <c-radio-group name="plan" required>
-    <span slot="label">Subscription <strong>Plan</strong></span>
-    <span slot="hint">You can change this later from billing settings.</span>
-    <c-radio value="free">Free</c-radio>
-    <c-radio value="pro">Pro</c-radio>
-    <c-radio value="enterprise">Enterprise</c-radio>
-  </c-radio-group>
+<!-- Disabled / loading -->
+<c-menu>
+  <c-menu-item value="undo" disabled>Undo</c-menu-item>
+  <c-menu-item value="save" loading>Save</c-menu-item>
+</c-menu>
 
-  <!-- 4. Horizontal orientation -->
-  <c-radio-group label="Gender" name="gender" orientation="horizontal">
-    <c-radio value="male">Male</c-radio>
-    <c-radio value="female">Female</c-radio>
-    <c-radio value="other">Other</c-radio>
-  </c-radio-group>
+<!-- Prefix / suffix slots -->
+<c-menu>
+  <c-menu-item value="download">
+    <span slot="prefix">⬇</span>
+    Download
+    <span slot="suffix">⌘D</span>
+  </c-menu-item>
+</c-menu>
 
-  <!-- 5. Entire group disabled -->
-  <c-radio-group label="Region" name="region" disabled value="us">
-    <c-radio value="us">United States</c-radio>
-    <c-radio value="eu">Europe</c-radio>
-    <c-radio value="ap">Asia Pacific</c-radio>
-  </c-radio-group>
+<!-- Listen for selection -->
+<c-menu id="my-menu">
+  <c-menu-item value="a">Option A</c-menu-item>
+  <c-menu-item value="b">Option B</c-menu-item>
+</c-menu>
 
-  <!-- 6. Individual radio disabled -->
-  <c-radio-group label="Priority" name="priority">
-    <c-radio value="low">Low</c-radio>
-    <c-radio value="medium">Medium</c-radio>
-    <c-radio value="high" disabled>High (unavailable)</c-radio>
-  </c-radio-group>
-
-  <!-- 7. Required (form validation) -->
-  <form id="my-form">
-    <c-radio-group label="Agreement" name="agree" required>
-      <c-radio value="yes">Yes, I agree</c-radio>
-      <c-radio value="no">No, I disagree</c-radio>
-    </c-radio-group>
-    <button type="submit">Submit</button>
-  </form>
-
-  <!-- 8. With size -->
-  <c-radio-group label="Notification frequency" name="freq" size="l">
-    <c-radio value="realtime">Real-time</c-radio>
-    <c-radio value="daily">Daily digest</c-radio>
-    <c-radio value="weekly">Weekly summary</c-radio>
-  </c-radio-group>
-
-  <!-- 9. No default value (uncontrolled) -->
-  <c-radio-group label="Theme" name="theme">
-    <c-radio value="light">Light</c-radio>
-    <c-radio value="dark">Dark</c-radio>
-    <c-radio value="system">System default</c-radio>
-  </c-radio-group>
-
-  <!-- 10. JS: reading value on change -->
-  <c-radio-group label="Sort by" name="sort" id="sort-group">
-    <c-radio value="name">Name</c-radio>
-    <c-radio value="date">Date</c-radio>
-    <c-radio value="size">Size</c-radio>
-  </c-radio-group>
-
-  <!-- 11. JS: setting value programmatically -->
-  <c-radio-group label="Mode" name="mode" id="mode-group">
-    <c-radio value="view">View</c-radio>
-    <c-radio value="edit">Edit</c-radio>
-    <c-radio value="review">Review</c-radio>
-  </c-radio-group>
-  <button id="set-edit">Switch to Edit</button>
-
-  <!-- 12. JS: setFocus() -->
-  <c-radio-group label="Color" name="color" id="color-group">
-    <c-radio value="red">Red</c-radio>
-    <c-radio value="green">Green</c-radio>
-    <c-radio value="blue">Blue</c-radio>
-  </c-radio-group>
-  <button id="focus-btn">Focus radio group</button>
-<div style="display:flex; flex-direction:column; gap:24px;">
-
-  <!-- Basic -->
-  <c-radio-group label="Basic Example">
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- With Hint -->
-  <c-radio-group
-    label="With Hint"
-    hint="Select one option"
-  >
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Required -->
-  <c-radio-group
-    label="Required Group"
-    required
-  >
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Horizontal -->
-  <c-radio-group
-    label="Horizontal Layout"
-    orientation="horizontal"
-  >
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-    <c-radio value="3">Option 3</c-radio>
-  </c-radio-group>
-
-  <!-- Default Selected -->
-  <c-radio-group
-    label="Default Value"
-    default-value="2"
-  >
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-    <c-radio value="3">Option 3</c-radio>
-  </c-radio-group>
-
-  <!-- Disabled Option -->
-  <c-radio-group label="Disabled Radio">
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2" disabled>Disabled Option</c-radio>
-    <c-radio value="3">Option 3</c-radio>
-  </c-radio-group>
-
-  <!-- Disabled Group -->
-  <c-radio-group
-    label="Disabled Group"
-    disabled
-    default-value="1"
-  >
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Size XS -->
-  <c-radio-group label="Size XS" size="xs">
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Size S -->
-  <c-radio-group label="Size S" size="s">
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Size M -->
-  <c-radio-group label="Size M" size="m">
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Size L -->
-  <c-radio-group label="Size L" size="l">
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Size XL -->
-  <c-radio-group label="Size XL" size="xl">
-    <c-radio size="xl" value="1">Option 1</c-radio>
-    <c-radio size="xl" value="2">Option 2</c-radio>
-  </c-radio-group>
-
-  <!-- Using Slots -->
-  <c-radio-group>
-    <span slot="label">Slot Label Example</span>
-
-    <c-radio value="1">Option 1</c-radio>
-    <c-radio value="2">Option 2</c-radio>
-
-    <span slot="hint">
-      This hint is provided using a slot.
-    </span>
-  </c-radio-group>
-
-</div>
-  <script>
-    // 10. Reading value on change
-    document.getElementById('sort-group').addEventListener('change', (e) => {
-      console.log('Sort value:', e.target.value);
-    });
-
-    // 11. Setting value programmatically
-    document.getElementById('set-edit').addEventListener('click', () => {
-      document.getElementById('mode-group').value = 'edit';
-    });
-
-    // 12. Calling setFocus()
-    document.getElementById('focus-btn').addEventListener('click', () => {
-      document.getElementById('color-group').setFocus();
-    });
-  </script>
-
-
+<script>
+  document.getElementById('my-menu').addEventListener('cSelect', e => {
+    console.log('selected value:', e.detail.item.value);
+  });
+</script>
  </body>
 </html>

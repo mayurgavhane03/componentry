@@ -22,6 +22,8 @@ import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
+import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
+import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
 
 
 
@@ -207,6 +209,39 @@ export const CMenuItem: StencilVueComponent<JSX.CMenuItem> = /*@__PURE__*/ defin
   'slotchange'
 ], [
   'slotchange'
+]);
+
+
+export const CRadio: StencilVueComponent<JSX.CRadio> = /*@__PURE__*/ defineContainer<JSX.CRadio>('c-radio', defineCRadio, [
+  'value',
+  'appearance',
+  'size',
+  'disabled',
+  'checked',
+  'forceDisabled',
+  'radioFocus',
+  'radioBlur'
+], [
+  'radioFocus',
+  'radioBlur'
+]);
+
+
+export const CRadioGroup: StencilVueComponent<JSX.CRadioGroup> = /*@__PURE__*/ defineContainer<JSX.CRadioGroup>('c-radio-group', defineCRadioGroup, [
+  'label',
+  'hint',
+  'name',
+  'disabled',
+  'orientation',
+  'value',
+  'defaultValue',
+  'size',
+  'required',
+  'change',
+  'input'
+], [
+  'change',
+  'input'
 ]);
 
 

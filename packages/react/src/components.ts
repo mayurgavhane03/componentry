@@ -21,3 +21,5 @@ export { CCheckbox } from "./c-checkbox.js";
 export { CInput } from "./c-input.js";
 export { CMenuItem } from "./c-menu-item.js";
 export { CMenu } from "./c-menu.js";
+export { CRadioGroup } from "./c-radio-group.js";
+export { CRadio } from "./c-radio.js";
