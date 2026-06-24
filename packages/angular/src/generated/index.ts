@@ -18,5 +18,7 @@ export const DIRECTIVES = [
   d.CCheckbox,
   d.CInput,
   d.CMenu,
-  d.CMenuItem
+  d.CMenuItem,
+  d.CRadio,
+  d.CRadioGroup
 ];

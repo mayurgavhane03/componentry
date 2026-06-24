@@ -23,6 +23,8 @@ import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
+import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
+import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
 @ProxyCmp({
   defineCustomElementFn: defineCAvatar,
   inputs: ['image', 'initials', 'label', 'loading', 'shape']
@@ -500,6 +502,78 @@ import type { CMenuItemCustomEvent } from '@componentry-ui/stencil/dist/componen
 export declare interface CMenuItem extends Components.CMenuItem {
 
   slotchange: EventEmitter<CMenuItemCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCRadio,
+  inputs: ['appearance', 'checked', 'disabled', 'size', 'value'],
+  methods: ['setFocus']
+})
+@Component({
+  selector: 'c-radio',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['appearance', 'checked', 'disabled', { name: 'size', required: true }, { name: 'value', required: true }],
+  outputs: ['radioFocus', 'radioBlur'],
+})
+export class CRadio {
+  protected el: HTMLCRadioElement;
+  @Output() radioFocus = new EventEmitter<CRadioCustomEvent<void>>();
+  @Output() radioBlur = new EventEmitter<CRadioCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CRadioCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CRadio extends Components.CRadio {
+  /**
+   * Emitted when the control gains focus.
+   */
+  radioFocus: EventEmitter<CRadioCustomEvent<void>>;
+  /**
+   * Emitted when the control loses focus.
+   */
+  radioBlur: EventEmitter<CRadioCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCRadioGroup,
+  inputs: ['defaultValue', 'disabled', 'hint', 'label', 'name', 'orientation', 'required', 'size', 'value'],
+  methods: ['setFocus']
+})
+@Component({
+  selector: 'c-radio-group',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['defaultValue', 'disabled', 'hint', 'label', 'name', 'orientation', 'required', { name: 'size', required: true }, 'value'],
+  outputs: ['change', 'input'],
+})
+export class CRadioGroup {
+  protected el: HTMLCRadioGroupElement;
+  @Output() change = new EventEmitter<CRadioGroupCustomEvent<void>>();
+  @Output() input = new EventEmitter<CRadioGroupCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CRadioGroupCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CRadioGroup extends Components.CRadioGroup {
+
+  change: EventEmitter<CRadioGroupCustomEvent<void>>;
+
+  input: EventEmitter<CRadioGroupCustomEvent<void>>;
 }
 
 

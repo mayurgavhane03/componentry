@@ -1,0 +1,263 @@
+:host {
+  --c-form-control-toggle-size: var(--c-toggle-size-medium); /* 1.125rem */
+  --c-form-control-border-color: var(--c-input-border-color); /* neutral-300 */
+  --c-form-control-border-style: solid;
+  --c-form-control-border-width: var(--c-input-border-width); /* 1px */
+  --c-form-control-background-color: var(
+    --c-input-background-color
+  ); /* neutral-0 */
+  --c-form-control-activated-color: var(--c-color-primary-600);
+  --c-form-control-value-color: var(--c-input-color); /* neutral-700 */
+  --c-form-control-value-font-weight: var(--c-font-weight-normal);
+  --c-form-control-value-line-height: var(
+    --c-line-height-dense
+  ); /* 1.4 — was 1.8, too tall */
+  --checked-icon-color: var(--c-form-control-activated-color);
+  --checked-icon-scale: 0.5;
+
+  color: var(--c-form-control-value-color);
+  display: inline-flex;
+  flex-direction: row;
+   align-items: center;
+ 
+  font-family: inherit;
+  font-weight: var(--c-form-control-value-font-weight);
+  line-height: var(--c-form-control-value-line-height);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.label-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: inline;
+  font-weight: var(--c-font-weight-semibold, 500);
+  color: var(--c-form-control-value-color);
+}
+
+.description {
+  font-size: var(--c-input-help-text-font-size-medium);            /* font-size-small = 0.875rem */
+  color: var(--c-input-help-text-color);                           /* neutral-500 */
+  line-height: var(--c-line-height-dense);                         /* 1.4 */
+}
+
+
+/* hide description span when empty */
+.description:empty {
+  display: none;
+}
+:host(:focus) {
+  outline: none;
+}
+
+/* ── Default appearance spacing ── */
+:host([appearance="default"]) {
+  margin-block: 0.375em;
+}
+
+:host([appearance="default"][data-wa-radio-horizontal]) {
+  margin-block: 0;
+  margin-inline: 0.5em;
+}
+
+:host([appearance="default"][data-wa-radio-first]) {
+  margin-block-start: 0;
+  margin-inline-start: 0;
+}
+
+:host([appearance="default"][data-wa-radio-last]) {
+  margin-block-end: 0;
+  margin-inline-end: 0;
+}
+
+/* ── Control circle (default) ── */
+:host([appearance="default"]) .control {
+  flex: 0 0 auto;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--c-form-control-toggle-size);
+  height: var(--c-form-control-toggle-size);
+  border-color: var(--c-form-control-border-color);
+  border-radius: 50%;
+  border-style: var(--c-form-control-border-style);
+  border-width: var(--c-form-control-border-width);
+  background-color: var(--c-form-control-background-color);
+  color: transparent;
+  transition:
+    background var(--c-transition-medium, 250ms),
+    border-color var(--c-transition-fast, 150ms),
+    box-shadow var(--c-transition-fast, 150ms),
+    color var(--c-transition-fast, 150ms);
+  margin-inline-end: 0.5em;
+ }
+:host([has-description]) {
+  align-items: flex-start;
+}
+:host([has-description]) .control {
+  margin-block-start: 0.2em;
+}
+:host([appearance="default"]) .checked-icon {
+  display: flex;
+  fill: currentColor;
+  width: var(--c-form-control-toggle-size);
+  height: var(--c-form-control-toggle-size);
+  scale: var(--checked-icon-scale);
+}
+
+/* ── Checked (attribute-based, works with reflect:true) ── */
+:host([checked]) .control {
+  color: var(--checked-icon-color);
+  border-color: var(--c-form-control-activated-color);
+  background-color: var(--c-form-control-background-color);
+}
+
+/* ── Focus visible ── */
+:host(:focus-visible) .control {
+  outline: var(--c-focus-ring, solid 3px #0284c7);
+  outline-offset: var(--c-focus-ring-offset, 1px);
+}
+
+/* ── Disabled ── */
+:host([disabled]),
+:host([force-disabled]) {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Button appearance ── */
+:host([appearance="button"]) {
+  margin: 0;
+  align-items: center;
+  min-height: var(--c-form-control-height, 2.5rem);
+  background-color: var(--c-color-neutral-0, #fff);
+  border: var(--c-form-control-border-width) var(--c-form-control-border-style)
+    var(--c-form-control-border-color);
+  border-radius: var(--c-border-radius-medium, 0.25rem);
+  padding: 0 var(--c-spacing-medium, 1rem);
+  transition:
+    background-color var(--c-transition-fast, 150ms),
+    border-color var(--c-transition-fast, 150ms);
+}
+
+:host([appearance="button"]) .control {
+  display: none;
+}
+
+:host([appearance="button"][checked]) {
+  border-color: var(--c-form-control-activated-color);
+  background-color: var(--c-color-primary-100, #e0f2fe);
+}
+
+:host([appearance="button"]:focus-visible) {
+  outline: var(--c-focus-ring, solid 3px #0284c7);
+  outline-offset: var(--c-focus-ring-offset, 1px);
+  z-index: 2;
+}
+
+@media (hover: hover) {
+  :host(
+    [appearance="button"]:not([checked]):not([disabled]):not(
+        [force-disabled]
+      ):hover
+  ) {
+    background-color: var(--c-color-neutral-50, #fafafa);
+  }
+}
+
+/* ── Button group border radius (horizontal) ── */
+:host([appearance="button"][data-wa-radio-horizontal][data-wa-radio-inner]) {
+  border-radius: 0;
+}
+
+:host([appearance="button"][data-wa-radio-horizontal][data-wa-radio-first]) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+:host([appearance="button"][data-wa-radio-horizontal][data-wa-radio-last]) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+/* ── Button group border radius (vertical) ── */
+:host([appearance="button"][data-wa-radio-vertical][data-wa-radio-inner]) {
+  border-radius: 0;
+}
+
+:host([appearance="button"][data-wa-radio-vertical][data-wa-radio-first]) {
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+:host([appearance="button"][data-wa-radio-vertical][data-wa-radio-last]) {
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+/* ── Button overlap margins ── */
+:host(
+  [appearance="button"][data-wa-radio-horizontal]:not([data-wa-radio-first])
+) {
+  margin-inline-start: calc(-1 * var(--c-form-control-border-width));
+}
+
+:host(
+  [appearance="button"][data-wa-radio-vertical]:not([data-wa-radio-first])
+) {
+  margin-block-start: calc(-1 * var(--c-form-control-border-width));
+}
+
+:host([appearance="button"]:hover),
+:host([appearance="button"][checked]) {
+  position: relative;
+  z-index: 1;
+}
+/* ── Size mappings ── */
+:host([size="xs"]) {
+  --c-form-control-toggle-size: var(--c-toggle-size-small); /* 0.875rem */
+  font-size: var(--c-font-size-x-small); /* 0.75rem */
+}
+
+:host([size="s"]) {
+  --c-form-control-toggle-size: var(--c-toggle-size-small); /* 0.875rem */
+  font-size: var(--c-font-size-small); /* 0.875rem */
+}
+
+:host([size="m"]) {
+  --c-form-control-toggle-size: var(--c-toggle-size-medium); /* 1.125rem */
+  font-size: var(--c-font-size-medium); /* 1rem */
+}
+
+:host([size="l"]) {
+  --c-form-control-toggle-size: var(--c-toggle-size-large); /* 1.375rem */
+  font-size: var(--c-font-size-large); /* 1.25rem */
+}
+
+:host([size="xl"]) {
+  --c-form-control-toggle-size: 1.625rem; /* no token, hardcoded */
+  font-size: var(--c-font-size-x-large); /* 1.5rem */
+}
+
+/* label font sizes — use input-label tokens */
+:host([size="xs"]) .label {
+  font-size: var(--c-input-label-font-size-small);
+} /* font-size-small */
+:host([size="s"]) .label {
+  font-size: var(--c-input-label-font-size-small);
+}
+:host([size="m"]) .label {
+  font-size: var(--c-input-label-font-size-medium);
+} /* font-size-medium */
+:host([size="l"]) .label {
+  font-size: var(--c-input-label-font-size-large);
+} /* font-size-large */
+:host([size="xl"]) .label {
+  font-size: var(--c-font-size-x-large);
+}
