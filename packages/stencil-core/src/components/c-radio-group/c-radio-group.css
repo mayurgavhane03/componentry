@@ -40,3 +40,13 @@
   font-size: var(--c-input-help-text-font-size-medium, 0.875rem);
   color: var(--c-input-help-text-color, #888);
 }
+/* card appearance stacks with gap instead of overlap */
+:host([appearance="card"]) [part~="form-control-input"],
+.form-control-input:has(c-radio[appearance="card"]) {
+  display: flex;
+  flex-direction: column;
+  gap: var(--c-spacing-x-small);
+} /* add to c-radio-group.css */
+:host([card]) [part~="form-control-input"] {
+  gap: var(--c-spacing-x-small);
+}

@@ -602,7 +602,7 @@ export namespace Components {
           * The radio's visual appearance.
           * @default "default"
          */
-        "appearance": "default" | "button";
+        "appearance": "default" | "button" | "card";
         /**
           * Whether the radio is checked. Managed externally by `<c-radio-group>` via setAttribute / toggleAttribute.
           * @default false
@@ -1605,7 +1605,7 @@ declare namespace LocalJSX {
           * The radio's visual appearance.
           * @default "default"
          */
-        "appearance"?: "default" | "button";
+        "appearance"?: "default" | "button" | "card";
         /**
           * Whether the radio is checked. Managed externally by `<c-radio-group>` via setAttribute / toggleAttribute.
           * @default false
@@ -1849,7 +1849,7 @@ declare namespace LocalJSX {
     }
     interface CRadioAttributes {
         "value": string;
-        "appearance": "default" | "button";
+        "appearance": "default" | "button" | "card";
         "size": | "xs"
     | "s"
     | "m"

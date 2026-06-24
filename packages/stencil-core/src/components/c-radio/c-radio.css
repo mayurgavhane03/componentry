@@ -262,3 +262,90 @@
 :host([size="xl"]) .label {
   font-size: var(--c-font-size-x-large);
 }
+/* ── Card appearance ── */
+:host([appearance="card"]) {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--c-spacing-medium);
+  background-color: var(--c-color-neutral-0);
+  border: var(--c-form-control-border-width) var(--c-form-control-border-style)
+    var(--c-form-control-border-color);
+  border-radius: var(--c-border-radius-large);
+  transition:
+    background-color var(--c-transition-fast),
+    border-color var(--c-transition-fast);
+  box-sizing: border-box;
+}
+
+/* move control to the right */
+:host([appearance="card"]) .control {
+  order: 2;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--c-form-control-toggle-size);
+  height: var(--c-form-control-toggle-size);
+  border-color: var(--c-form-control-border-color);
+  border-radius: 50%;
+  border-style: var(--c-form-control-border-style);
+  border-width: var(--c-form-control-border-width);
+  background-color: var(--c-form-control-background-color);
+  color: transparent;
+  margin-inline-start: var(--c-spacing-medium);
+  margin-inline-end: 0;
+  margin-block-start: 0.1em;
+  transition:
+    border-color var(--c-transition-fast),
+    color var(--c-transition-fast);
+}
+
+:host([appearance="card"]) .label-wrapper {
+  order: 1;
+  flex: 1;
+}
+
+:host([appearance="card"]) .checked-icon {
+  display: flex;
+  fill: currentColor;
+  width: var(--c-form-control-toggle-size);
+  height: var(--c-form-control-toggle-size);
+  scale: var(--checked-icon-scale);
+}
+
+/* checked state */
+:host([appearance="card"][checked]) {
+  background-color: var(--c-color-neutral-100);
+  border-color: var(--c-color-neutral-400);
+}
+
+:host([appearance="card"][checked]) .control {
+  color: var(--checked-icon-color);
+  border-color: var(--c-form-control-activated-color);
+}
+
+/* hover */
+@media (hover: hover) {
+  :host(
+    [appearance="card"]:not([checked]):not([disabled]):not(
+        [force-disabled]
+      ):hover
+  ) {
+    background-color: var(--c-color-neutral-50);
+    border-color: var(--c-color-neutral-400);
+  }
+}
+
+/* focus */
+:host([appearance="card"]:focus-visible) {
+  outline: var(--c-focus-ring);
+  outline-offset: var(--c-focus-ring-offset);
+}
+
+/* card spacing — no margin between, gap handled by group */
+:host([appearance="card"]) {
+  margin-block: 0;
+}

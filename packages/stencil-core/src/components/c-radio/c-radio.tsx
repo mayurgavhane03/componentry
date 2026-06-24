@@ -39,7 +39,7 @@ export class CRadio {
   @Prop({ reflect: true }) value!: string;
 
   /** The radio's visual appearance. */
-  @Prop({ reflect: true }) appearance: "default" | "button" = "default";
+  @Prop({ reflect: true }) appearance: "default" | "button" | "card" = "default";
 
   /**
    * The radio's size. When used inside a `<c-radio-group>`, the group's size overrides this attribute.
