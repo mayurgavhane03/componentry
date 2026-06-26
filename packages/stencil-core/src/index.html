@@ -354,6 +354,61 @@
       --c-color-neutral-0: hsl(0, 0%, 100%);
       --c-color-neutral-1000: hsl(0, 0%, 0%);
 
+      
+      /* Global surface semantics */
+      --c-color-background: var(--c-color-neutral-0);
+      --c-color-foreground: var(--c-color-neutral-900);
+      --c-color-card: var(--c-color-neutral-0);
+      --c-color-card-foreground: var(--c-color-neutral-900);
+      --c-color-popover: var(--c-color-neutral-0);
+      --c-color-popover-foreground: var(--c-color-neutral-900);
+      --c-color-muted: var(--c-color-neutral-100);
+      --c-color-muted-foreground: var(--c-color-neutral-500);
+      --c-color-accent: var(--c-color-neutral-100);
+      --c-color-accent-foreground: var(--c-color-neutral-900);
+
+      /* Global border + ring */
+      --c-color-border: var(--c-color-neutral-200);
+      --c-color-ring: var(--c-color-primary-600);
+
+      /* Foreground companions */
+      /* ─── Primary ─── */
+      --c-color-primary-bg: var(--c-color-primary-600);
+      --c-color-primary-bg-hover: var(--c-color-primary-700);
+      --c-color-primary-bg-active: var(--c-color-primary-800);
+      --c-color-primary-foreground: var(--c-color-neutral-0);
+      --c-color-primary-foreground-hover: var(--c-color-neutral-0);
+      --c-color-primary-foreground-active: var(--c-color-neutral-0);
+
+      /* ─── Success ─── */
+      --c-color-success-bg: var(--c-color-success-600);
+      --c-color-success-bg-hover: var(--c-color-success-700);
+      --c-color-success-bg-active: var(--c-color-success-800);
+      --c-color-success-foreground: var(--c-color-neutral-0);
+      --c-color-success-foreground-hover: var(--c-color-neutral-0);
+      --c-color-success-foreground-active: var(--c-color-neutral-0);
+
+      /* ─── Warning ─── */
+      --c-color-warning-bg: var(--c-color-warning-400);
+      --c-color-warning-bg-hover: var(--c-color-warning-500);
+      --c-color-warning-bg-active: var(--c-color-warning-600);
+      --c-color-warning-foreground: var(--c-color-neutral-900);
+      --c-color-warning-foreground-hover: var(--c-color-neutral-900);
+      --c-color-warning-foreground-active: var(--c-color-neutral-900);
+
+      /* ─── Danger ─── */
+      --c-color-danger-bg: var(--c-color-danger-600);
+      --c-color-danger-bg-hover: var(--c-color-danger-700);
+      --c-color-danger-bg-active: var(--c-color-danger-800);
+      --c-color-danger-foreground: var(--c-color-neutral-0);
+      --c-color-danger-foreground-hover: var(--c-color-neutral-0);
+      --c-color-danger-foreground-active: var(--c-color-neutral-0);
+      /* Chart palette */
+      --c-color-chart-1: var(--c-color-sky-500);
+      --c-color-chart-2: var(--c-color-emerald-500);
+      --c-color-chart-3: var(--c-color-amber-500);
+      --c-color-chart-4: var(--c-color-violet-500);
+      --c-color-chart-5: var(--c-color-rose-500);
       /*
    * Border radii
    */
@@ -609,230 +664,74 @@
 </head>
 
 <body>
-  <c-radio-group label="Plan" name="plan" value="plus" card>
-    <c-radio appearance="card" value="plus">
-      Plus
-      <span slot="description">For individuals and small teams.</span>
-    </c-radio>
-    <c-radio appearance="card" value="pro">
-      Pro
-      <span slot="description">For growing businesses.</span>
-    </c-radio>
-    <c-radio appearance="card" value="enterprise">
-      Enterprise
-      <span slot="description">For large teams and enterprises.</span>
-    </c-radio>
-  </c-radio-group>
+  <!-- Single Select -->
+  <c-combobox placeholder="Select framework" show-clear>
+    <c-combobox-item value="next">Next.js</c-combobox-item>
+    <c-combobox-item value="sveltekit">SvelteKit</c-combobox-item>
+    <c-combobox-item value="nuxt">Nuxt.js</c-combobox-item>
+    <c-combobox-item value="remix">Remix</c-combobox-item>
+  </c-combobox>
 
-  <c-radio-group label="Spacing" name="spacing" value="comfortable">
-    <c-radio value="default">
-      Default
-      <span slot="description">Standard spacing for most use cases.</span>
-    </c-radio>
-    <c-radio value="comfortable">
-      Comfortable
-      <span slot="description">More space between elements.</span>
-    </c-radio>
-    <c-radio value="compact">
-      Compact
-      <span slot="description">Minimal spacing for dense layouts.</span>
-    </c-radio>
-  </c-radio-group>
-  <!-- 1. Basic -->
-  <c-radio-group label="Favorite fruit" name="fruit" value="apple">
-    <c-radio value="apple">Apple</c-radio>
-    <c-radio value="banana">Banana</c-radio>
-    <c-radio value="cherry">Cherry</c-radio>
-  </c-radio-group>
+  <!-- Multi Select with Chips -->
+  <c-combobox multiple placeholder="Add frameworks" show-clear>
+    <c-combobox-item value="react">React</c-combobox-item>
+    <c-combobox-item value="vue">Vue</c-combobox-item>
+    <c-combobox-item value="angular">Angular</c-combobox-item>
+    <c-combobox-item value="svelte">Svelte</c-combobox-item>
+  </c-combobox>
 
-  <!-- 2. With hint attribute -->
-  <c-radio-group label="Environment" name="env" hint="Choose where to deploy.">
-    <c-radio value="dev">Development</c-radio>
-    <c-radio value="staging">Staging</c-radio>
-    <c-radio value="prod">Production</c-radio>
-  </c-radio-group>
+  <!-- Controlled Selection (pre-selected value) -->
+  <c-combobox value="next" placeholder="Select framework">
+    <c-combobox-item value="next">Next.js</c-combobox-item>
+    <c-combobox-item value="sveltekit">SvelteKit</c-combobox-item>
+  </c-combobox>
 
-  <!-- 3. Label + hint via slots (rich HTML) -->
-  <c-radio-group name="plan" required>
-    <span slot="label">Subscription <strong>Plan</strong></span>
-    <span slot="hint">You can change this later from billing settings.</span>
-    <c-radio value="free">Free</c-radio>
-    <c-radio value="pro">Pro</c-radio>
-    <c-radio value="enterprise">Enterprise</c-radio>
-  </c-radio-group>
+  <!-- With Auto-Highlight (first match highlighted when filtering) -->
+  <c-combobox placeholder="Search..." auto-highlight>
+    <c-combobox-item value="apple">Apple</c-combobox-item>
+    <c-combobox-item value="banana">Banana</c-combobox-item>
+    <c-combobox-item value="cherry">Cherry</c-combobox-item>
+  </c-combobox>
 
-  <!-- 4. Horizontal orientation -->
-  <c-radio-group label="Gender" name="gender" orientation="horizontal">
-    <c-radio value="male">Male</c-radio>
-    <c-radio value="female">Female</c-radio>
-    <c-radio value="other">Other</c-radio>
-  </c-radio-group>
+  <!-- Disabled State -->
+  <c-combobox placeholder="Cannot interact" disabled>
+    <c-combobox-item value="1">Option 1</c-combobox-item>
+    <c-combobox-item value="2">Option 2</c-combobox-item>
+  </c-combobox>
 
-  <!-- 5. Entire group disabled -->
-  <c-radio-group label="Region" name="region" disabled value="us">
-    <c-radio value="us">United States</c-radio>
-    <c-radio value="eu">Europe</c-radio>
-    <c-radio value="ap">Asia Pacific</c-radio>
-  </c-radio-group>
+  <!-- With Validation Error -->
+  <c-combobox placeholder="Select..." aria-invalid>
+    <c-combobox-item value="valid">Valid Option</c-combobox-item>
+    <c-combobox-item value="invalid">Invalid Option</c-combobox-item>
+  </c-combobox>
 
-  <!-- 6. Individual radio disabled -->
-  <c-radio-group label="Priority" name="priority">
-    <c-radio value="low">Low</c-radio>
-    <c-radio value="medium">Medium</c-radio>
-    <c-radio value="high" disabled>High (unavailable)</c-radio>
-  </c-radio-group>
+  <!-- Custom Empty State -->
+  <c-combobox placeholder="Search fruits...">
+    <c-combobox-item value="apple">Apple</c-combobox-item>
+    <c-combobox-item value="banana">Banana</c-combobox-item>
+    <span slot="empty">No fruits match your search</span>
+  </c-combobox>
 
-  <!-- 7. Required (form validation) -->
-  <form id="my-form">
-    <c-radio-group label="Agreement" name="agree" required>
-      <c-radio value="yes">Yes, I agree</c-radio>
-      <c-radio value="no">No, I disagree</c-radio>
-    </c-radio-group>
-    <button type="submit">Submit</button>
-  </form>
+  <!-- Listening to Events (JavaScript) -->
+  <c-combobox id="my-combobox" placeholder="Select...">
+    <c-combobox-item value="a">Option A</c-combobox-item>
+    <c-combobox-item value="b">Option B</c-combobox-item>
+  </c-combobox>
 
-  <!-- 8. With size -->
-  <c-radio-group label="Notification frequency" name="freq" size="l">
-    <c-radio value="realtime">Real-time</c-radio>
-    <c-radio value="daily">Daily digest</c-radio>
-    <c-radio value="weekly">Weekly summary</c-radio>
-  </c-radio-group>
-
-  <!-- 9. No default value (uncontrolled) -->
-  <c-radio-group label="Theme" name="theme">
-    <c-radio value="light">Light</c-radio>
-    <c-radio value="dark">Dark</c-radio>
-    <c-radio value="system">System default</c-radio>
-  </c-radio-group>
-
-  <!-- 10. JS: reading value on change -->
-  <c-radio-group label="Sort by" name="sort" id="sort-group">
-    <c-radio value="name">Name</c-radio>
-    <c-radio value="date">Date</c-radio>
-    <c-radio value="size">Size</c-radio>
-  </c-radio-group>
-
-  <!-- 11. JS: setting value programmatically -->
-  <c-radio-group label="Mode" name="mode" id="mode-group">
-    <c-radio value="view">View</c-radio>
-    <c-radio value="edit">Edit</c-radio>
-    <c-radio value="review">Review</c-radio>
-  </c-radio-group>
-  <button id="set-edit">Switch to Edit</button>
-
-  <!-- 12. JS: setFocus() -->
-  <c-radio-group label="Color" name="color" id="color-group">
-    <c-radio value="red">Red</c-radio>
-    <c-radio value="green">Green</c-radio>
-    <c-radio value="blue">Blue</c-radio>
-  </c-radio-group>
-  <button id="focus-btn">Focus radio group</button>
-  <div style="display:flex; flex-direction:column; gap:24px;">
-
-    <!-- Basic -->
-    <c-radio-group label="Basic Example">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- With Hint -->
-    <c-radio-group label="With Hint" hint="Select one option">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Required -->
-    <c-radio-group label="Required Group" required>
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Horizontal -->
-    <c-radio-group label="Horizontal Layout" orientation="horizontal">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-      <c-radio value="3">Option 3</c-radio>
-    </c-radio-group>
-
-    <!-- Default Selected -->
-    <c-radio-group label="Default Value" default-value="2">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-      <c-radio value="3">Option 3</c-radio>
-    </c-radio-group>
-
-    <!-- Disabled Option -->
-    <c-radio-group label="Disabled Radio">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2" disabled>Disabled Option</c-radio>
-      <c-radio value="3">Option 3</c-radio>
-    </c-radio-group>
-
-    <!-- Disabled Group -->
-    <c-radio-group label="Disabled Group" disabled default-value="1">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Size XS -->
-    <c-radio-group label="Size XS" size="xs">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Size S -->
-    <c-radio-group label="Size S" size="s">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Size M -->
-    <c-radio-group label="Size M" size="m">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Size L -->
-    <c-radio-group label="Size L" size="l">
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Size XL -->
-    <c-radio-group label="Size XL" size="xl">
-      <c-radio size="xl" value="1">Option 1</c-radio>
-      <c-radio size="xl" value="2">Option 2</c-radio>
-    </c-radio-group>
-
-    <!-- Using Slots -->
-    <c-radio-group>
-      <span slot="label">Slot Label Example</span>
-
-      <c-radio value="1">Option 1</c-radio>
-      <c-radio value="2">Option 2</c-radio>
-
-      <span slot="hint">
-        This hint is provided using a slot.
-      </span>
-    </c-radio-group>
-
-  </div>
   <script>
-    // 10. Reading value on change
-    document.getElementById('sort-group').addEventListener('change', (e) => {
-      console.log('Sort value:', e.target.value);
+    const combobox = document.getElementById('my-combobox');
+
+    // Listen for value changes
+    combobox.addEventListener('valueChange', (e) => {
+      console.log('Selected:', e.detail); // string for single, string[] for multi
     });
 
-    // 11. Setting value programmatically
-    document.getElementById('set-edit').addEventListener('click', () => {
-      document.getElementById('mode-group').value = 'edit';
-    });
-
-    // 12. Calling setFocus()
-    document.getElementById('focus-btn').addEventListener('click', () => {
-      document.getElementById('color-group').setFocus();
+    // Listen for open/close
+    combobox.addEventListener('openChange', (e) => {
+      console.log('Dropdown open:', e.detail); // boolean
     });
   </script>
+
 
 
 </body>

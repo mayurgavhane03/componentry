@@ -18,6 +18,8 @@ export { CCard } from "./c-card.js";
 export { CCarouselItem } from "./c-carousel-item.js";
 export { CCarousel } from "./c-carousel.js";
 export { CCheckbox } from "./c-checkbox.js";
+export { CComboboxItem } from "./c-combobox-item.js";
+export { CCombobox } from "./c-combobox.js";
 export { CInput } from "./c-input.js";
 export { CMenuItem } from "./c-menu-item.js";
 export { CMenu } from "./c-menu.js";

@@ -313,7 +313,60 @@
   /* Neutral one-offs */
   --c-color-neutral-0: hsl(0, 0%, 100%);
   --c-color-neutral-1000: hsl(0, 0%, 0%);
+  /* Global surface semantics */
+  --c-color-background: var(--c-color-neutral-0);
+  --c-color-foreground: var(--c-color-neutral-900);
+  --c-color-card: var(--c-color-neutral-0);
+  --c-color-card-foreground: var(--c-color-neutral-900);
+  --c-color-popover: var(--c-color-neutral-0);
+  --c-color-popover-foreground: var(--c-color-neutral-900);
+  --c-color-muted: var(--c-color-neutral-100);
+  --c-color-muted-foreground: var(--c-color-neutral-500);
+  --c-color-accent: var(--c-color-neutral-100);
+  --c-color-accent-foreground: var(--c-color-neutral-900);
 
+  /* Global border + ring */
+  --c-color-border: var(--c-color-neutral-200);
+  --c-color-ring: var(--c-color-primary-600);
+
+  /* Foreground companions */
+  /* ─── Primary ─── */
+  --c-color-primary-bg: var(--c-color-primary-600);
+  --c-color-primary-bg-hover: var(--c-color-primary-700);
+  --c-color-primary-bg-active: var(--c-color-primary-800);
+  --c-color-primary-foreground: var(--c-color-neutral-0);
+  --c-color-primary-foreground-hover: var(--c-color-neutral-0);
+  --c-color-primary-foreground-active: var(--c-color-neutral-0);
+
+  /* ─── Success ─── */
+  --c-color-success-bg: var(--c-color-success-600);
+  --c-color-success-bg-hover: var(--c-color-success-700);
+  --c-color-success-bg-active: var(--c-color-success-800);
+  --c-color-success-foreground: var(--c-color-neutral-0);
+  --c-color-success-foreground-hover: var(--c-color-neutral-0);
+  --c-color-success-foreground-active: var(--c-color-neutral-0);
+
+  /* ─── Warning ─── */
+  --c-color-warning-bg: var(--c-color-warning-400);
+  --c-color-warning-bg-hover: var(--c-color-warning-500);
+  --c-color-warning-bg-active: var(--c-color-warning-600);
+  --c-color-warning-foreground: var(--c-color-neutral-900);
+  --c-color-warning-foreground-hover: var(--c-color-neutral-900);
+  --c-color-warning-foreground-active: var(--c-color-neutral-900);
+
+  /* ─── Danger ─── */
+  --c-color-danger-bg: var(--c-color-danger-600);
+  --c-color-danger-bg-hover: var(--c-color-danger-700);
+  --c-color-danger-bg-active: var(--c-color-danger-800);
+  --c-color-danger-foreground: var(--c-color-neutral-0);
+  --c-color-danger-foreground-hover: var(--c-color-neutral-0);
+  --c-color-danger-foreground-active: var(--c-color-neutral-0);
+  /* Chart palette */
+  --c-color-chart-1: var(--c-color-sky-500);
+  --c-color-chart-2: var(--c-color-emerald-500);
+  --c-color-chart-3: var(--c-color-amber-500);
+  --c-color-chart-4: var(--c-color-violet-500);
+  --c-color-chart-5: var(--c-color-rose-500);
   /*
    * Border radii
    */
@@ -366,10 +419,11 @@
    */
 
   /* Fonts */
-  --c-font-mono: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
-  --c-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --c-font-serif: Georgia, 'Times New Roman', serif;
+  --c-font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  --c-font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --c-font-serif: Georgia, "Times New Roman", serif;
 
   /* Font sizes */
   --c-font-size-2x-small: 0.625rem; /* 10px */
@@ -406,7 +460,8 @@
   --c-focus-ring-color: var(--c-color-primary-600);
   --c-focus-ring-style: solid;
   --c-focus-ring-width: 3px;
-  --c-focus-ring: var(--c-focus-ring-style) var(--c-focus-ring-width) var(--c-focus-ring-color);
+  --c-focus-ring: var(--c-focus-ring-style) var(--c-focus-ring-width)
+    var(--c-focus-ring-color);
   --c-focus-ring-offset: 1px;
 
   /*
@@ -432,7 +487,7 @@
   --c-input-border-color-focus: var(--c-color-primary-500);
   --c-input-border-color-disabled: var(--c-color-neutral-300);
   --c-input-border-width: 1px;
-  --c-input-required-content: '*';
+  --c-input-required-content: "*";
   --c-input-required-content-offset: -2px;
   --c-input-required-content-color: var(--c-input-label-color);
 

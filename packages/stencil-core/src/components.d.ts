@@ -359,6 +359,58 @@ export namespace Components {
          */
         "value": string;
     }
+    interface CCombobox {
+        /**
+          * @default false
+         */
+        "ariaInvalid": boolean;
+        /**
+          * @default false
+         */
+        "autoHighlight": boolean;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default false
+         */
+        "multiple": boolean;
+        /**
+          * @default "Select..."
+         */
+        "placeholder": string;
+        /**
+          * @default false
+         */
+        "showClear": boolean;
+        /**
+          * @default ""
+         */
+        "value": string | string[];
+    }
+    interface CComboboxItem {
+        /**
+          * @default false
+         */
+        "hidden": boolean;
+        /**
+          * @default false
+         */
+        "highlighted": boolean;
+        /**
+          * @default ""
+         */
+        "label": string;
+        /**
+          * @default false
+         */
+        "selected": boolean;
+        /**
+          * @default ""
+         */
+        "value": string;
+    }
     /**
      * @summary Inputs collect data from the user.
      * @event c-blur    - Emitted when the control loses focus.
@@ -719,6 +771,14 @@ export interface CCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCCheckboxElement;
 }
+export interface CComboboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCComboboxElement;
+}
+export interface CComboboxItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCComboboxItemElement;
+}
 export interface CInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCInputElement;
@@ -916,6 +976,41 @@ declare global {
         prototype: HTMLCCheckboxElement;
         new (): HTMLCCheckboxElement;
     };
+    interface HTMLCComboboxElementEventMap {
+        "valueChange": string | string[];
+        "openChange": boolean;
+    }
+    interface HTMLCComboboxElement extends Components.CCombobox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCComboboxElementEventMap>(type: K, listener: (this: HTMLCComboboxElement, ev: CComboboxCustomEvent<HTMLCComboboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCComboboxElementEventMap>(type: K, listener: (this: HTMLCComboboxElement, ev: CComboboxCustomEvent<HTMLCComboboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCComboboxElement: {
+        prototype: HTMLCComboboxElement;
+        new (): HTMLCComboboxElement;
+    };
+    interface HTMLCComboboxItemElementEventMap {
+        "itemSelect": string;
+    }
+    interface HTMLCComboboxItemElement extends Components.CComboboxItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCComboboxItemElementEventMap>(type: K, listener: (this: HTMLCComboboxItemElement, ev: CComboboxItemCustomEvent<HTMLCComboboxItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCComboboxItemElementEventMap>(type: K, listener: (this: HTMLCComboboxItemElement, ev: CComboboxItemCustomEvent<HTMLCComboboxItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCComboboxItemElement: {
+        prototype: HTMLCComboboxItemElement;
+        new (): HTMLCComboboxItemElement;
+    };
     interface HTMLCInputElementEventMap {
         "cBlur": void;
         "cChange": void;
@@ -1070,6 +1165,8 @@ declare global {
         "c-carousel": HTMLCCarouselElement;
         "c-carousel-item": HTMLCCarouselItemElement;
         "c-checkbox": HTMLCCheckboxElement;
+        "c-combobox": HTMLCComboboxElement;
+        "c-combobox-item": HTMLCComboboxItemElement;
         "c-input": HTMLCInputElement;
         "c-menu": HTMLCMenuElement;
         "c-menu-item": HTMLCMenuItemElement;
@@ -1402,6 +1499,61 @@ declare namespace LocalJSX {
           * The current value of the checkbox, submitted as a name/value pair with form data.
          */
         "value": string;
+    }
+    interface CCombobox {
+        /**
+          * @default false
+         */
+        "ariaInvalid"?: boolean;
+        /**
+          * @default false
+         */
+        "autoHighlight"?: boolean;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "multiple"?: boolean;
+        "onOpenChange"?: (event: CComboboxCustomEvent<boolean>) => void;
+        "onValueChange"?: (event: CComboboxCustomEvent<string | string[]>) => void;
+        /**
+          * @default "Select..."
+         */
+        "placeholder"?: string;
+        /**
+          * @default false
+         */
+        "showClear"?: boolean;
+        /**
+          * @default ""
+         */
+        "value"?: string | string[];
+    }
+    interface CComboboxItem {
+        /**
+          * @default false
+         */
+        "hidden"?: boolean;
+        /**
+          * @default false
+         */
+        "highlighted"?: boolean;
+        /**
+          * @default ""
+         */
+        "label"?: string;
+        "onItemSelect"?: (event: CComboboxItemCustomEvent<string>) => void;
+        /**
+          * @default false
+         */
+        "selected"?: boolean;
+        /**
+          * @default ""
+         */
+        "value"?: string;
     }
     /**
      * @summary Inputs collect data from the user.
@@ -1782,6 +1934,22 @@ declare namespace LocalJSX {
         "required": boolean;
         "helpText": string;
     }
+    interface CComboboxAttributes {
+        "multiple": boolean;
+        "value": string | string[];
+        "placeholder": string;
+        "disabled": boolean;
+        "showClear": boolean;
+        "autoHighlight": boolean;
+        "ariaInvalid": boolean;
+    }
+    interface CComboboxItemAttributes {
+        "value": string;
+        "label": string;
+        "selected": boolean;
+        "highlighted": boolean;
+        "hidden": boolean;
+    }
     interface CInputAttributes {
         "type": | "date"
     | "datetime-local"
@@ -1896,6 +2064,8 @@ declare namespace LocalJSX {
         "c-carousel": Omit<CCarousel, keyof CCarouselAttributes> & { [K in keyof CCarousel & keyof CCarouselAttributes]?: CCarousel[K] } & { [K in keyof CCarousel & keyof CCarouselAttributes as `attr:${K}`]?: CCarouselAttributes[K] } & { [K in keyof CCarousel & keyof CCarouselAttributes as `prop:${K}`]?: CCarousel[K] };
         "c-carousel-item": CCarouselItem;
         "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
+        "c-combobox": Omit<CCombobox, keyof CComboboxAttributes> & { [K in keyof CCombobox & keyof CComboboxAttributes]?: CCombobox[K] } & { [K in keyof CCombobox & keyof CComboboxAttributes as `attr:${K}`]?: CComboboxAttributes[K] } & { [K in keyof CCombobox & keyof CComboboxAttributes as `prop:${K}`]?: CCombobox[K] };
+        "c-combobox-item": Omit<CComboboxItem, keyof CComboboxItemAttributes> & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes]?: CComboboxItem[K] } & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes as `attr:${K}`]?: CComboboxItemAttributes[K] } & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes as `prop:${K}`]?: CComboboxItem[K] };
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
         "c-menu": CMenu;
         "c-menu-item": Omit<CMenuItem, keyof CMenuItemAttributes> & { [K in keyof CMenuItem & keyof CMenuItemAttributes]?: CMenuItem[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `attr:${K}`]?: CMenuItemAttributes[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `prop:${K}`]?: CMenuItem[K] };
@@ -1960,6 +2130,8 @@ declare module "@stencil/core" {
              * @csspart form-control-help-text - The help text's wrapper.
              */
             "c-checkbox": LocalJSX.IntrinsicElements["c-checkbox"] & JSXBase.HTMLAttributes<HTMLCCheckboxElement>;
+            "c-combobox": LocalJSX.IntrinsicElements["c-combobox"] & JSXBase.HTMLAttributes<HTMLCComboboxElement>;
+            "c-combobox-item": LocalJSX.IntrinsicElements["c-combobox-item"] & JSXBase.HTMLAttributes<HTMLCComboboxItemElement>;
             /**
              * @summary Inputs collect data from the user.
              * @event c-blur    - Emitted when the control loses focus.

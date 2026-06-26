@@ -16,6 +16,8 @@ export const DIRECTIVES = [
   d.CCarousel,
   d.CCarouselItem,
   d.CCheckbox,
+  d.CCombobox,
+  d.CComboboxItem,
   d.CInput,
   d.CMenu,
   d.CMenuItem,

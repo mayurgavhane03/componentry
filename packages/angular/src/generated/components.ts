@@ -20,6 +20,8 @@ import { defineCustomElement as defineCCardTitle } from '@componentry-ui/stencil
 import { defineCustomElement as defineCCarousel } from '@componentry-ui/stencil/dist/components/c-carousel.js';
 import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/stencil/dist/components/c-carousel-item.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
+import { defineCustomElement as defineCCombobox } from '@componentry-ui/stencil/dist/components/c-combobox.js';
+import { defineCustomElement as defineCComboboxItem } from '@componentry-ui/stencil/dist/components/c-combobox-item.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
@@ -394,6 +396,69 @@ export declare interface CCheckbox extends Components.CCheckbox {
   cInput: EventEmitter<CCheckboxCustomEvent<void>>;
 
   cInvalid: EventEmitter<CCheckboxCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCCombobox,
+  inputs: ['ariaInvalid', 'autoHighlight', 'disabled', 'multiple', 'placeholder', 'showClear', 'value']
+})
+@Component({
+  selector: 'c-combobox',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['ariaInvalid', 'autoHighlight', 'disabled', 'multiple', 'placeholder', 'showClear', 'value'],
+  outputs: ['valueChange', 'openChange'],
+})
+export class CCombobox {
+  protected el: HTMLCComboboxElement;
+  @Output() valueChange = new EventEmitter<CComboboxCustomEvent<string | string[]>>();
+  @Output() openChange = new EventEmitter<CComboboxCustomEvent<boolean>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CComboboxCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CCombobox extends Components.CCombobox {
+
+  valueChange: EventEmitter<CComboboxCustomEvent<string | string[]>>;
+
+  openChange: EventEmitter<CComboboxCustomEvent<boolean>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCComboboxItem,
+  inputs: ['hidden', 'highlighted', 'label', 'selected', 'value']
+})
+@Component({
+  selector: 'c-combobox-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['hidden', 'highlighted', 'label', 'selected', 'value'],
+  outputs: ['itemSelect'],
+})
+export class CComboboxItem {
+  protected el: HTMLCComboboxItemElement;
+  @Output() itemSelect = new EventEmitter<CComboboxItemCustomEvent<string>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CComboboxItemCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CComboboxItem extends Components.CComboboxItem {
+
+  itemSelect: EventEmitter<CComboboxItemCustomEvent<string>>;
 }
 
 

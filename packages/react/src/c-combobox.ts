@@ -11,16 +11,13 @@ import type { EventName, StencilReactComponent } from '@stencil/react-output-tar
 import { createComponent } from '@stencil/react-output-target/runtime';
 import React from 'react';
 
-import { type CComboboxCustomEvent, type ComboboxValueChangeDetail } from "@componentry-ui/stencil";
+import { type CComboboxCustomEvent } from "@componentry-ui/stencil";
 import type { Components } from "@componentry-ui/stencil/dist/components";
 import { CCombobox as CComboboxElement, defineCustomElement as defineCCombobox } from "@componentry-ui/stencil/dist/components/c-combobox.js";
 
 export type CComboboxEvents = {
-    onValueChange: EventName<CComboboxCustomEvent<ComboboxValueChangeDetail>>,
-    onOpenChange: EventName<CComboboxCustomEvent<boolean>>,
-    onInputChange: EventName<CComboboxCustomEvent<string>>,
-    onComboboxBlur: EventName<CComboboxCustomEvent<void>>,
-    onComboboxFocus: EventName<CComboboxCustomEvent<void>>
+    onValueChange: EventName<CComboboxCustomEvent<string | string[]>>,
+    onOpenChange: EventName<CComboboxCustomEvent<boolean>>
 };
 
 export const CCombobox: StencilReactComponent<CComboboxElement, CComboboxEvents, Components.CCombobox> = /*@__PURE__*/ createComponent<CComboboxElement, CComboboxEvents, Components.CCombobox>({
@@ -30,10 +27,7 @@ export const CCombobox: StencilReactComponent<CComboboxElement, CComboboxEvents,
     react: React,
     events: {
         onValueChange: 'valueChange',
-        onOpenChange: 'openChange',
-        onInputChange: 'inputChange',
-        onComboboxBlur: 'comboboxBlur',
-        onComboboxFocus: 'comboboxFocus'
+        onOpenChange: 'openChange'
     } as CComboboxEvents,
     defineCustomElement: defineCCombobox
 });

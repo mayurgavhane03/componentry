@@ -19,6 +19,8 @@ import { defineCustomElement as defineCCardTitle } from '@componentry-ui/stencil
 import { defineCustomElement as defineCCarousel } from '@componentry-ui/stencil/dist/components/c-carousel.js';
 import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/stencil/dist/components/c-carousel-item.js';
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
+import { defineCustomElement as defineCCombobox } from '@componentry-ui/stencil/dist/components/c-combobox.js';
+import { defineCustomElement as defineCComboboxItem } from '@componentry-ui/stencil/dist/components/c-combobox-item.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
@@ -144,6 +146,34 @@ export const CCheckbox: StencilVueComponent<JSX.CCheckbox> = /*@__PURE__*/ defin
   'cFocus',
   'cInput',
   'cInvalid'
+]);
+
+
+export const CCombobox: StencilVueComponent<JSX.CCombobox> = /*@__PURE__*/ defineContainer<JSX.CCombobox>('c-combobox', defineCCombobox, [
+  'multiple',
+  'value',
+  'placeholder',
+  'disabled',
+  'showClear',
+  'autoHighlight',
+  'ariaInvalid',
+  'valueChange',
+  'openChange'
+], [
+  'valueChange',
+  'openChange'
+]);
+
+
+export const CComboboxItem: StencilVueComponent<JSX.CComboboxItem> = /*@__PURE__*/ defineContainer<JSX.CComboboxItem>('c-combobox-item', defineCComboboxItem, [
+  'value',
+  'label',
+  'selected',
+  'highlighted',
+  'hidden',
+  'itemSelect'
+], [
+  'itemSelect'
 ]);
 
 
