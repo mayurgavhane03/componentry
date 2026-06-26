@@ -1,0 +1,50 @@
+:host {
+  display: block;
+}
+
+:host([hidden]) {
+  display: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--c-spacing-x-small) var(--c-spacing-small);
+  border-radius: var(--c-border-radius-medium);
+  font-family: var(--c-input-font-family);
+  font-size: var(--c-input-font-size-small);
+  font-weight: var(--c-input-font-weight);
+  letter-spacing: var(--c-input-letter-spacing);
+  cursor: pointer;
+  color: var(--c-input-color);
+  user-select: none;
+  transition: background-color var(--c-transition-fast), color var(--c-transition-fast);
+}
+
+.item:hover,
+.item--highlighted {
+  background: var(--color-primary-bg-hover);
+  color: var(--c-color-accent-foreground);
+}
+
+.item--selected {
+  background: var(--c-color-primary-bg);
+  color: var(--c-color-primary-foreground);
+  font-weight: var(--c-font-weight-semibold);
+}
+
+.item--hidden {
+  display: none;
+}
+
+.item__check {
+  color: inherit;
+  font-size: var(--c-input-font-size-small);
+  display: flex;
+  align-items: center;
+}
+
+.item__check svg {
+  display: block;
+}
