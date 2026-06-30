@@ -9,7 +9,7 @@
 
 | Property             | Attribute    | Description                                                                                               | Type                                                                  | Default     |
 | -------------------- | ------------ | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- | ----------- |
-| `appearance`         | `appearance` | The radio's visual appearance.                                                                            | `"button" \| "default"`                                               | `"default"` |
+| `appearance`         | `appearance` | The radio's visual appearance.                                                                            | `"button" \| "card" \| "default"`                                     | `"default"` |
 | `checked`            | `checked`    | Whether the radio is checked. Managed externally by `<c-radio-group>` via setAttribute / toggleAttribute. | `boolean`                                                             | `false`     |
 | `disabled`           | `disabled`   | Disables the radio.                                                                                       | `boolean`                                                             | `false`     |
 | `size` _(required)_  | `size`       | The radio's size. When used inside a `<c-radio-group>`, the group's size overrides this attribute.        | `"l" \| "large" \| "m" \| "medium" \| "s" \| "small" \| "xl" \| "xs"` | `undefined` |

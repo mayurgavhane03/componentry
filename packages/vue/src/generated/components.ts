@@ -21,6 +21,7 @@ import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/sten
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCCombobox } from '@componentry-ui/stencil/dist/components/c-combobox.js';
 import { defineCustomElement as defineCComboboxItem } from '@componentry-ui/stencil/dist/components/c-combobox-item.js';
+import { defineCustomElement as defineCDrawer } from '@componentry-ui/stencil/dist/components/c-drawer.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
@@ -156,7 +157,7 @@ export const CCombobox: StencilVueComponent<JSX.CCombobox> = /*@__PURE__*/ defin
   'disabled',
   'showClear',
   'autoHighlight',
-  'ariaInvalid',
+  'invalid',
   'valueChange',
   'openChange'
 ], [
@@ -170,10 +171,32 @@ export const CComboboxItem: StencilVueComponent<JSX.CComboboxItem> = /*@__PURE__
   'label',
   'selected',
   'highlighted',
-  'hidden',
+  'itemHidden',
   'itemSelect'
 ], [
   'itemSelect'
+]);
+
+
+export const CDrawer: StencilVueComponent<JSX.CDrawer> = /*@__PURE__*/ defineContainer<JSX.CDrawer>('c-drawer', defineCDrawer, [
+  'open',
+  'label',
+  'placement',
+  'contained',
+  'noHeader',
+  'cShow',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide',
+  'cInitialFocus',
+  'cRequestClose'
+], [
+  'cShow',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide',
+  'cInitialFocus',
+  'cRequestClose'
 ]);
 
 
@@ -199,12 +222,12 @@ export const CInput: StencilVueComponent<JSX.CInput> = /*@__PURE__*/ defineConta
   'min',
   'max',
   'step',
-  'autocapitalize',
-  'autocorrect',
-  'autocomplete',
-  'autofocus',
-  'enterkeyhint',
-  'inputmode',
+  'inputAutocapitalize',
+  'inputAutocorrect',
+  'inputAutocomplete',
+  'inputAutofocus',
+  'inputEnterkeyhint',
+  'inputInputmode',
   'spellcheck',
   'inputTitle',
   'cBlur',

@@ -11,38 +11,9 @@ import {
   h,
 } from "@stencil/core";
 
-/**
- * @summary Inputs collect data from the user.
- *
- * @slot label - The input's label. Alternatively, you can use the `label` attribute.
- * @slot prefix - Used to prepend a presentational icon or similar element to the input.
- * @slot suffix - Used to append a presentational icon or similar element to the input.
- * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot show-password-icon - An icon to use in lieu of the default show password icon.
- * @slot hide-password-icon - An icon to use in lieu of the default hide password icon.
- * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
- *
- * @event c-blur    - Emitted when the control loses focus.
- * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
- * @event c-clear   - Emitted when the clear button is activated.
- * @event c-focus   - Emitted when the control gains focus.
- * @event c-input   - Emitted when the control receives input.
- * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- *
- * @csspart form-control           - The form control that wraps the label, input, and help text.
- * @csspart form-control-label     - The label's wrapper.
- * @csspart form-control-input     - The input's wrapper.
- * @csspart form-control-help-text - The help text's wrapper.
- * @csspart base                   - The component's base wrapper.
- * @csspart input                  - The internal <input> control.
- * @csspart prefix                 - The container that wraps the prefix.
- * @csspart clear-button           - The clear button.
- * @csspart password-toggle-button - The password toggle button.
- * @csspart suffix                 - The container that wraps the suffix.
- */
 @Component({
   tag: "c-input",
-  styleUrl: "c-input.css", // reuse your existing CSS file
+  styleUrl: "c-input.css",
   shadow: true,
 })
 export class CInput {
@@ -50,12 +21,9 @@ export class CInput {
 
   private inputEl!: HTMLInputElement;
 
-  // ─── Internal state ───────────────────────────────────────────────────────
-
   @State() private hasFocus = false;
   @State() private passwordVisible = false;
 
-  // Used to mirror valueAsDate / valueAsNumber without a rendered element
   private __numberInput = Object.assign(document.createElement("input"), {
     type: "number",
   });
@@ -65,10 +33,6 @@ export class CInput {
 
   // ─── Public props ─────────────────────────────────────────────────────────
 
-  /**
-   * The type of input. Works the same as a native <input> element, but only a subset of types are
-   * supported. Defaults to `text`.
-   */
   @Prop({ reflect: true }) type:
     | "date"
     | "datetime-local"
@@ -81,165 +45,80 @@ export class CInput {
     | "time"
     | "url" = "text";
 
-  /** The name of the input, submitted as a name/value pair with form data. */
   @Prop() name = "";
-
-  /** The current value of the input. */
   @Prop({ mutable: true }) value = "";
-
-  /** The input's size. */
   @Prop({ reflect: true }) size: "small" | "medium" | "large" = "medium";
-
-  /** Draws a filled input. */
   @Prop({ reflect: true }) filled = false;
-
-  /** Draws a pill-style input with rounded edges. */
   @Prop({ reflect: true }) pill = false;
-
-  /** The input's label. If you need to display HTML, use the `label` slot instead. */
   @Prop() label = "";
-
-  /** The input's help text. If you need to display HTML, use the `help-text` slot instead. */
   @Prop({ attribute: "help-text" }) helpText = "";
-
-  /** Adds a clear button when the input is not empty. */
   @Prop() clearable = false;
-
-  /** Disables the input. */
   @Prop({ reflect: true }) disabled = false;
-
-  /** Placeholder text to show as a hint when the input is empty. */
   @Prop() placeholder = "";
-
-  /** Makes the input readonly. */
   @Prop({ reflect: true }) readonly = false;
-
-  /** Adds a button to toggle the password's visibility. Only applies to password types. */
   @Prop({ attribute: "password-toggle" }) passwordToggle = false;
-
-  /** Hides the browser's built-in increment/decrement spin buttons for number inputs. */
   @Prop({ attribute: "no-spin-buttons" }) noSpinButtons = false;
-
-  /** Makes the input a required field. */
   @Prop({ reflect: true }) required = false;
 
-  /** A regular expression pattern to validate input against. */
-  @Prop() pattern!: string;
+  @Prop() pattern = "";
+  @Prop() minlength = -1;
+  @Prop() maxlength = -1;
+  @Prop() min = "";
+  @Prop() max = "";
+  @Prop() step = "";
+  @Prop() inputAutocapitalize = "";
+  @Prop() inputAutocorrect = "";
+  @Prop() inputAutocomplete = "";
+  @Prop() inputAutofocus = false;
+  @Prop() inputEnterkeyhint = "";
+  @Prop() inputInputmode = "";
 
-  @Prop() minlength!: number;
-
-  @Prop() maxlength!: number;
-
-  @Prop() min!: number | string;
-
-  @Prop() max!: number | string;
-
-  @Prop() step!: number | "any";
-
-  @Prop() autocapitalize!:
-    | "off"
-    | "none"
-    | "on"
-    | "sentences"
-    | "words"
-    | "characters";
-
-  @Prop() autocorrect!: "off" | "on";
-
-  @Prop() autocomplete!: string;
-
-  @Prop() autofocus!: boolean;
-
-  @Prop() enterkeyhint!:
-    | "enter"
-    | "done"
-    | "go"
-    | "next"
-    | "previous"
-    | "search"
-    | "send";
-
-  @Prop() inputmode!:
-    | "none"
-    | "text"
-    | "decimal"
-    | "numeric"
-    | "tel"
-    | "search"
-    | "email"
-    | "url";
-
-  /** Enables spell checking on the input. */
   @Prop() spellcheck = true;
-
-  /** Tells the browser what type of data will be entered by the user. */
-
-  /** Title attribute passed through to the native input. */
   @Prop() inputTitle = "";
 
   // ─── Events ───────────────────────────────────────────────────────────────
 
-  @Event({ bubbles: true, composed: true })
-  cBlur!: EventEmitter<void>;
-
-  @Event({ bubbles: true, composed: true })
-  cChange!: EventEmitter<void>;
-
-  @Event({ bubbles: true, composed: true })
-  cClear!: EventEmitter<void>;
-
-  @Event({ bubbles: true, composed: true })
-  cFocus!: EventEmitter<void>;
-
-  @Event({ bubbles: true, composed: true })
-  cInput!: EventEmitter<void>;
-
-  @Event({ bubbles: true, composed: true })
-  cInvalid!: EventEmitter<void>;
+  @Event({ bubbles: true, composed: true }) cBlur!: EventEmitter<void>;
+  @Event({ bubbles: true, composed: true }) cChange!: EventEmitter<void>;
+  @Event({ bubbles: true, composed: true }) cClear!: EventEmitter<void>;
+  @Event({ bubbles: true, composed: true }) cFocus!: EventEmitter<void>;
+  @Event({ bubbles: true, composed: true }) cInput!: EventEmitter<void>;
+  @Event({ bubbles: true, composed: true }) cInvalid!: EventEmitter<void>;
 
   // ─── Watchers ─────────────────────────────────────────────────────────────
 
   @Watch("disabled")
   handleDisabledChange() {
-    // Disabled form controls are always valid — update data attributes accordingly
     this.updateValidityAttributes(this.disabled);
   }
 
   @Watch("step")
   handleStepChange() {
     if (this.inputEl) {
-      this.inputEl.step = String(this.step);
+      this.inputEl.step = this.step;
     }
   }
 
   @Watch("value")
-  async handleValueChange() {
-    // Nothing extra needed; Stencil re-renders automatically.
-    // Call custom validity update if you wire up a FormControlController equivalent.
-  }
+  async handleValueChange() {}
 
   // ─── Public methods ───────────────────────────────────────────────────────
 
-  /** Sets focus on the input. */
   @Method()
   async setFocus(options?: FocusOptions) {
     this.inputEl?.focus(options);
   }
-
-  /** Removes focus from the input. */
 
   @Method()
   async removeFocus() {
     this.inputEl?.blur();
   }
 
-  /** Selects all the text in the input. */
   @Method()
   async select() {
     this.inputEl?.select();
   }
 
-  /** Sets the start and end positions of the text selection (0-based). */
   @Method()
   async setSelectionRange(
     selectionStart: number,
@@ -253,7 +132,6 @@ export class CInput {
     );
   }
 
-  /** Replaces a range of text with a new string. */
   @Method()
   async setRangeText(
     replacement: string,
@@ -270,7 +148,6 @@ export class CInput {
     }
   }
 
-  /** Displays the browser picker for an input element (only works if the browser supports it). */
   @Method()
   async showPicker() {
     if ("showPicker" in HTMLInputElement.prototype) {
@@ -278,7 +155,6 @@ export class CInput {
     }
   }
 
-  /** Increments the value of a numeric input type by the value of the step attribute. */
   @Method()
   async stepUp() {
     this.inputEl?.stepUp();
@@ -287,7 +163,6 @@ export class CInput {
     }
   }
 
-  /** Decrements the value of a numeric input type by the value of the step attribute. */
   @Method()
   async stepDown() {
     this.inputEl?.stepDown();
@@ -296,19 +171,16 @@ export class CInput {
     }
   }
 
-  /** Checks for validity but does not show a validation message. */
   @Method()
   async checkValidity() {
     return this.inputEl?.checkValidity() ?? true;
   }
 
-  /** Checks for validity and shows the browser's validation message if invalid. */
   @Method()
   async reportValidity() {
     return this.inputEl?.reportValidity() ?? true;
   }
 
-  /** Sets a custom validation message. Pass an empty string to restore validity. */
   @Method()
   async setCustomValidity(message: string) {
     this.inputEl?.setCustomValidity(message);
@@ -388,7 +260,6 @@ export class CInput {
     if (event.key === "Enter" && !hasModifier) {
       setTimeout(() => {
         if (!event.defaultPrevented && !(event as any).isComposing) {
-          // Submit the closest form if one exists
           const form = this.el.closest("form");
           form?.requestSubmit?.();
         }
@@ -466,20 +337,20 @@ export class CInput {
                 readonly={this.readonly}
                 required={this.required}
                 placeholder={this.placeholder || undefined}
-                minLength={this.minlength}
-                maxLength={this.maxlength}
-                min={this.min as number}
-                max={this.max as number}
-                step={this.step as number}
+                minLength={this.minlength >= 0 ? this.minlength : undefined}
+                maxLength={this.maxlength >= 0 ? this.maxlength : undefined}
+                min={this.min || undefined}
+                max={this.max || undefined}
+                step={this.step || undefined}
                 value={this.value}
-                autocapitalize={this.autocapitalize}
-                autoComplete={this.autocomplete}
-                autocorrect={this.autocorrect}
-                autoFocus={this.autofocus}
+                autoCapitalize={this.inputAutocapitalize || undefined}
+                autoComplete={this.inputAutocomplete || undefined}
+                autocorrect={this.inputAutocorrect || undefined}
+                autoFocus={this.inputAutofocus}
+                enterKeyHint={this.inputEnterkeyhint || undefined}
+                inputMode={this.inputInputmode || undefined}
                 spellcheck={this.spellcheck}
                 pattern={this.pattern || undefined}
-                enterKeyHint={this.enterkeyhint}
-                inputMode={this.inputmode}
                 aria-describedby="help-text"
                 onChange={this.handleChange}
                 onInput={this.handleInput}
@@ -503,7 +374,6 @@ export class CInput {
                   tabIndex={isClearIconVisible ? -1 : undefined}
                 >
                   <slot name="clear-icon">
-                    {/* Replace with your icon component if available */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="1em"
@@ -531,7 +401,6 @@ export class CInput {
                 >
                   {this.passwordVisible ? (
                     <slot name="show-password-icon">
-                      {/* eye-slash icon */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="1em"
@@ -546,7 +415,6 @@ export class CInput {
                     </slot>
                   ) : (
                     <slot name="hide-password-icon">
-                      {/* eye icon */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="1em"
