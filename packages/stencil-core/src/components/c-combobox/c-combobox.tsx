@@ -15,7 +15,7 @@ interface CComboboxItemElement extends HTMLElement {
   label: string;
   selected: boolean;
   highlighted: boolean;
-  hidden: boolean;
+  itemHidden: boolean;
 }
 
 @Component({
@@ -32,7 +32,7 @@ export class CCombobox implements ComponentInterface {
   @Prop() disabled: boolean = false;
   @Prop() showClear: boolean = false;
   @Prop() autoHighlight: boolean = false;
-  @Prop() ariaInvalid: boolean = false;
+  @Prop() invalid: boolean = false;
 
   @Event({ bubbles: true, composed: true }) valueChange!: EventEmitter<
     string | string[]
@@ -315,7 +315,7 @@ export class CCombobox implements ComponentInterface {
               value={this.filterText}
               placeholder={hasValue ? "" : this.placeholder}
               disabled={this.disabled}
-              aria-invalid={this.ariaInvalid.toString()}
+              aria-invalid={this.invalid.toString()}
               onInput={(e) => this.handleInput(e as InputEvent)}
               onFocus={() => this.handleFocus()}
               onKeyDown={(e) => this.handleKeyDown(e)}
@@ -383,7 +383,7 @@ export class CCombobox implements ComponentInterface {
               value={displayValue}
               placeholder={this.placeholder}
               disabled={this.disabled}
-              aria-invalid={this.ariaInvalid.toString()}
+              aria-invalid={this.invalid.toString()}
               onInput={(e) => this.handleInput(e as InputEvent)}
               onFocus={() => this.handleFocus()}
               onKeyDown={(e) => this.handleKeyDown(e)}

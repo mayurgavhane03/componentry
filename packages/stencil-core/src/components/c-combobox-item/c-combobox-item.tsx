@@ -10,7 +10,7 @@ export class CComboboxItem {
   @Prop() label: string = "";
   @Prop() selected: boolean = false;
   @Prop() highlighted: boolean = false;
-  @Prop() hidden: boolean = false;
+  @Prop() itemHidden: boolean = false;
 
   @Event({ bubbles: true, composed: true }) itemSelect!: EventEmitter<string>;
 
@@ -36,12 +36,12 @@ export class CComboboxItem {
           item: true,
           "item--selected": this.selected,
           "item--highlighted": this.highlighted,
-          "item--hidden": this.hidden,
+          "item--hidden": this.itemHidden,
         }}
         onClick={() => this.handleClick()}
         role="option"
         aria-selected={this.selected.toString()}
-        aria-hidden={this.hidden.toString()}
+        aria-hidden={this.itemHidden.toString()}
       >
         <slot />
         {this.selected && (

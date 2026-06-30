@@ -22,6 +22,7 @@ import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/sten
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCCombobox } from '@componentry-ui/stencil/dist/components/c-combobox.js';
 import { defineCustomElement as defineCComboboxItem } from '@componentry-ui/stencil/dist/components/c-combobox-item.js';
+import { defineCustomElement as defineCDrawer } from '@componentry-ui/stencil/dist/components/c-drawer.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
@@ -401,14 +402,14 @@ export declare interface CCheckbox extends Components.CCheckbox {
 
 @ProxyCmp({
   defineCustomElementFn: defineCCombobox,
-  inputs: ['ariaInvalid', 'autoHighlight', 'disabled', 'multiple', 'placeholder', 'showClear', 'value']
+  inputs: ['autoHighlight', 'disabled', 'invalid', 'multiple', 'placeholder', 'showClear', 'value']
 })
 @Component({
   selector: 'c-combobox',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['ariaInvalid', 'autoHighlight', 'disabled', 'multiple', 'placeholder', 'showClear', 'value'],
+  inputs: ['autoHighlight', 'disabled', 'invalid', 'multiple', 'placeholder', 'showClear', 'value'],
   outputs: ['valueChange', 'openChange'],
 })
 export class CCombobox {
@@ -434,14 +435,14 @@ export declare interface CCombobox extends Components.CCombobox {
 
 @ProxyCmp({
   defineCustomElementFn: defineCComboboxItem,
-  inputs: ['hidden', 'highlighted', 'label', 'selected', 'value']
+  inputs: ['highlighted', 'itemHidden', 'label', 'selected', 'value']
 })
 @Component({
   selector: 'c-combobox-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['hidden', 'highlighted', 'label', 'selected', 'value'],
+  inputs: ['highlighted', 'itemHidden', 'label', 'selected', 'value'],
   outputs: ['itemSelect'],
 })
 export class CComboboxItem {
@@ -463,8 +464,54 @@ export declare interface CComboboxItem extends Components.CComboboxItem {
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineCDrawer,
+  inputs: ['contained', 'label', 'noHeader', 'open', 'placement'],
+  methods: ['show', 'hide']
+})
+@Component({
+  selector: 'c-drawer',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['contained', 'label', 'noHeader', 'open', 'placement'],
+  outputs: ['cShow', 'cAfterShow', 'cHide', 'cAfterHide', 'cInitialFocus', 'cRequestClose'],
+})
+export class CDrawer {
+  protected el: HTMLCDrawerElement;
+  @Output() cShow = new EventEmitter<CDrawerCustomEvent<void>>();
+  @Output() cAfterShow = new EventEmitter<CDrawerCustomEvent<void>>();
+  @Output() cHide = new EventEmitter<CDrawerCustomEvent<void>>();
+  @Output() cAfterHide = new EventEmitter<CDrawerCustomEvent<void>>();
+  @Output() cInitialFocus = new EventEmitter<CDrawerCustomEvent<void>>();
+  @Output() cRequestClose = new EventEmitter<CDrawerCustomEvent<{ source: 'close-button' | 'keyboard' | 'overlay' }>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CDrawerCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CDrawer extends Components.CDrawer {
+
+  cShow: EventEmitter<CDrawerCustomEvent<void>>;
+
+  cAfterShow: EventEmitter<CDrawerCustomEvent<void>>;
+
+  cHide: EventEmitter<CDrawerCustomEvent<void>>;
+
+  cAfterHide: EventEmitter<CDrawerCustomEvent<void>>;
+
+  cInitialFocus: EventEmitter<CDrawerCustomEvent<void>>;
+
+  cRequestClose: EventEmitter<CDrawerCustomEvent<{ source: 'close-button' | 'keyboard' | 'overlay' }>>;
+}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineCInput,
-  inputs: ['autocapitalize', 'autocomplete', 'autocorrect', 'autofocus', 'clearable', 'disabled', 'enterkeyhint', 'filled', 'helpText', 'inputTitle', 'inputmode', 'label', 'max', 'maxlength', 'min', 'minlength', 'name', 'noSpinButtons', 'passwordToggle', 'pattern', 'pill', 'placeholder', 'readonly', 'required', 'size', 'spellcheck', 'step', 'type', 'value'],
+  inputs: ['clearable', 'disabled', 'filled', 'helpText', 'inputAutocapitalize', 'inputAutocomplete', 'inputAutocorrect', 'inputAutofocus', 'inputEnterkeyhint', 'inputInputmode', 'inputTitle', 'label', 'max', 'maxlength', 'min', 'minlength', 'name', 'noSpinButtons', 'passwordToggle', 'pattern', 'pill', 'placeholder', 'readonly', 'required', 'size', 'spellcheck', 'step', 'type', 'value'],
   methods: ['setFocus', 'removeFocus', 'select', 'setSelectionRange', 'setRangeText', 'showPicker', 'stepUp', 'stepDown', 'checkValidity', 'reportValidity', 'setCustomValidity']
 })
 @Component({
@@ -472,7 +519,7 @@ export declare interface CComboboxItem extends Components.CComboboxItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [{ name: 'autocapitalize', required: true }, { name: 'autocomplete', required: true }, { name: 'autocorrect', required: true }, { name: 'autofocus', required: true }, 'clearable', 'disabled', { name: 'enterkeyhint', required: true }, 'filled', 'helpText', 'inputTitle', { name: 'inputmode', required: true }, 'label', { name: 'max', required: true }, { name: 'maxlength', required: true }, { name: 'min', required: true }, { name: 'minlength', required: true }, 'name', 'noSpinButtons', 'passwordToggle', { name: 'pattern', required: true }, 'pill', 'placeholder', 'readonly', 'required', 'size', 'spellcheck', { name: 'step', required: true }, 'type', 'value'],
+  inputs: ['clearable', 'disabled', 'filled', 'helpText', 'inputAutocapitalize', 'inputAutocomplete', 'inputAutocorrect', 'inputAutofocus', 'inputEnterkeyhint', 'inputInputmode', 'inputTitle', 'label', 'max', 'maxlength', 'min', 'minlength', 'name', 'noSpinButtons', 'passwordToggle', 'pattern', 'pill', 'placeholder', 'readonly', 'required', 'size', 'spellcheck', 'step', 'type', 'value'],
   outputs: ['cBlur', 'cChange', 'cClear', 'cFocus', 'cInput', 'cInvalid'],
 })
 export class CInput {
