@@ -44,7 +44,6 @@ export class CMenuItem {
   private defaultSlotEl!: HTMLSlotElement;
 
   @Event({
-    eventName: "slotchange",
     bubbles: true,
     composed: false,
     cancelable: false,

@@ -1090,7 +1090,7 @@ declare global {
         new (): HTMLCMenuElement;
     };
     interface HTMLCMenuItemElementEventMap {
-        "slotchange": void;
+        "cSlotChange": void;
     }
     /**
      * @cssprop [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
@@ -1139,8 +1139,8 @@ declare global {
         new (): HTMLCRadioElement;
     };
     interface HTMLCRadioGroupElementEventMap {
-        "change": void;
-        "input": void;
+        "cChange": void;
+        "cInput": void;
     }
     /**
      * @summary Radio groups wrap a set of radios so they function as a single form control with one shared value.
@@ -1779,7 +1779,7 @@ declare namespace LocalJSX {
           * @default false
          */
         "loading"?: boolean;
-        "onSlotchange"?: (event: CMenuItemCustomEvent<void>) => void;
+        "onCSlotChange"?: (event: CMenuItemCustomEvent<void>) => void;
         /**
           * @default "normal"
          */
@@ -1881,8 +1881,8 @@ declare namespace LocalJSX {
           * @default null
          */
         "name"?: string | null;
-        "onChange"?: (event: CRadioGroupCustomEvent<void>) => void;
-        "onInput"?: (event: CRadioGroupCustomEvent<void>) => void;
+        "onCChange"?: (event: CRadioGroupCustomEvent<void>) => void;
+        "onCInput"?: (event: CRadioGroupCustomEvent<void>) => void;
         /**
           * The orientation in which to show radio items.
           * @default "vertical"

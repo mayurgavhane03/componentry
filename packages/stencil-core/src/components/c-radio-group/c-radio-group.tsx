@@ -89,8 +89,11 @@ export class CRadioGroup {
   /** Ensures a child radio is checked before the containing form can submit. */
   @Prop({ reflect: true }) required = false;
 
-  @Event({ bubbles: true, composed: true }) change!: EventEmitter<void>;
-  @Event({ bubbles: true, composed: true }) input!: EventEmitter<void>;
+  @Event({ eventName: "cChange", bubbles: true, composed: true })
+  change!: EventEmitter<void>;
+
+  @Event({ eventName: "cInput", bubbles: true, composed: true })
+  input!: EventEmitter<void>;
 
   @Watch("disabled")
   @Watch("size")

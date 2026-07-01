@@ -15,13 +15,13 @@ import { type CMenuItemCustomEvent } from "@componentry-ui/stencil";
 import type { Components } from "@componentry-ui/stencil/dist/components";
 import { CMenuItem as CMenuItemElement, defineCustomElement as defineCMenuItem } from "@componentry-ui/stencil/dist/components/c-menu-item.js";
 
-export type CMenuItemEvents = { onSlotchange: EventName<CMenuItemCustomEvent<void>> };
+export type CMenuItemEvents = { onCSlotChange: EventName<CMenuItemCustomEvent<void>> };
 
 export const CMenuItem: StencilReactComponent<CMenuItemElement, CMenuItemEvents, Components.CMenuItem> = /*@__PURE__*/ createComponent<CMenuItemElement, CMenuItemEvents, Components.CMenuItem>({
     tagName: 'c-menu-item',
     elementClass: CMenuItemElement,
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
-    events: { onSlotchange: 'slotchange' } as CMenuItemEvents,
+    events: { onCSlotChange: 'cSlotChange' } as CMenuItemEvents,
     defineCustomElement: defineCMenuItem
 });

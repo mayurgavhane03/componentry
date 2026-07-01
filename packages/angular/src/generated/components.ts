@@ -597,11 +597,11 @@ export declare interface CMenu extends Components.CMenu {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['checked', 'disabled', 'loading', 'type', 'value'],
-  outputs: ['slotchange'],
+  outputs: ['cSlotChange'],
 })
 export class CMenuItem {
   protected el: HTMLCMenuItemElement;
-  @Output() slotchange = new EventEmitter<CMenuItemCustomEvent<void>>();
+  @Output() cSlotChange = new EventEmitter<CMenuItemCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -613,7 +613,7 @@ import type { CMenuItemCustomEvent } from '@componentry-ui/stencil/dist/componen
 
 export declare interface CMenuItem extends Components.CMenuItem {
 
-  slotchange: EventEmitter<CMenuItemCustomEvent<void>>;
+  cSlotChange: EventEmitter<CMenuItemCustomEvent<void>>;
 }
 
 
@@ -666,12 +666,12 @@ export declare interface CRadio extends Components.CRadio {
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['defaultValue', 'disabled', 'hint', 'label', 'name', 'orientation', 'required', { name: 'size', required: true }, 'value'],
-  outputs: ['change', 'input'],
+  outputs: ['cChange', 'cInput'],
 })
 export class CRadioGroup {
   protected el: HTMLCRadioGroupElement;
-  @Output() change = new EventEmitter<CRadioGroupCustomEvent<void>>();
-  @Output() input = new EventEmitter<CRadioGroupCustomEvent<void>>();
+  @Output() cChange = new EventEmitter<CRadioGroupCustomEvent<void>>();
+  @Output() cInput = new EventEmitter<CRadioGroupCustomEvent<void>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -683,9 +683,9 @@ import type { CRadioGroupCustomEvent } from '@componentry-ui/stencil/dist/compon
 
 export declare interface CRadioGroup extends Components.CRadioGroup {
 
-  change: EventEmitter<CRadioGroupCustomEvent<void>>;
+  cChange: EventEmitter<CRadioGroupCustomEvent<void>>;
 
-  input: EventEmitter<CRadioGroupCustomEvent<void>>;
+  cInput: EventEmitter<CRadioGroupCustomEvent<void>>;
 }
 
 

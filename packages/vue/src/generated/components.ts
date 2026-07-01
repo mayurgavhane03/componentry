@@ -260,9 +260,9 @@ export const CMenuItem: StencilVueComponent<JSX.CMenuItem> = /*@__PURE__*/ defin
   'value',
   'loading',
   'disabled',
-  'slotchange'
+  'cSlotChange'
 ], [
-  'slotchange'
+  'cSlotChange'
 ]);
 
 
@@ -291,11 +291,11 @@ export const CRadioGroup: StencilVueComponent<JSX.CRadioGroup> = /*@__PURE__*/ d
   'defaultValue',
   'size',
   'required',
-  'change',
-  'input'
+  'cChange',
+  'cInput'
 ], [
-  'change',
-  'input'
+  'cChange',
+  'cInput'
 ]);
 
 

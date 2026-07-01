@@ -16,8 +16,8 @@ import type { Components } from "@componentry-ui/stencil/dist/components";
 import { CRadioGroup as CRadioGroupElement, defineCustomElement as defineCRadioGroup } from "@componentry-ui/stencil/dist/components/c-radio-group.js";
 
 export type CRadioGroupEvents = {
-    onChange: EventName<CRadioGroupCustomEvent<void>>,
-    onInput: EventName<CRadioGroupCustomEvent<void>>
+    onCChange: EventName<CRadioGroupCustomEvent<void>>,
+    onCInput: EventName<CRadioGroupCustomEvent<void>>
 };
 
 export const CRadioGroup: StencilReactComponent<CRadioGroupElement, CRadioGroupEvents, Components.CRadioGroup> = /*@__PURE__*/ createComponent<CRadioGroupElement, CRadioGroupEvents, Components.CRadioGroup>({
@@ -26,8 +26,8 @@ export const CRadioGroup: StencilReactComponent<CRadioGroupElement, CRadioGroupE
     // @ts-ignore - ignore potential React type mismatches between the Stencil Output Target and your project.
     react: React,
     events: {
-        onChange: 'change',
-        onInput: 'input'
+        onCChange: 'cChange',
+        onCInput: 'cInput'
     } as CRadioGroupEvents,
     defineCustomElement: defineCRadioGroup
 });
