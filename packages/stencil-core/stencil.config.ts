@@ -19,9 +19,7 @@ export const config: Config = {
       externalRuntime: false,
       customElementsExportBehavior: "single-export-module",
     },
-    {
-      type: "docs-readme",
-    },
+ 
     reactOutputTarget({
       outDir: "../react/src",
       esModules: true,

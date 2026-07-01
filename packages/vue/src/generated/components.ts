@@ -184,6 +184,7 @@ export const CDrawer: StencilVueComponent<JSX.CDrawer> = /*@__PURE__*/ defineCon
   'placement',
   'contained',
   'noHeader',
+  'noMaskClosable',
   'cShow',
   'cAfterShow',
   'cHide',

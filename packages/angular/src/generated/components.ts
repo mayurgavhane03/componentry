@@ -465,7 +465,7 @@ export declare interface CComboboxItem extends Components.CComboboxItem {
 
 @ProxyCmp({
   defineCustomElementFn: defineCDrawer,
-  inputs: ['contained', 'label', 'noHeader', 'open', 'placement'],
+  inputs: ['contained', 'label', 'noHeader', 'noMaskClosable', 'open', 'placement'],
   methods: ['show', 'hide']
 })
 @Component({
@@ -473,7 +473,7 @@ export declare interface CComboboxItem extends Components.CComboboxItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['contained', 'label', 'noHeader', 'open', 'placement'],
+  inputs: ['contained', 'label', 'noHeader', 'noMaskClosable', 'open', 'placement'],
   outputs: ['cShow', 'cAfterShow', 'cHide', 'cAfterHide', 'cInitialFocus', 'cRequestClose'],
 })
 export class CDrawer {
@@ -483,7 +483,7 @@ export class CDrawer {
   @Output() cHide = new EventEmitter<CDrawerCustomEvent<void>>();
   @Output() cAfterHide = new EventEmitter<CDrawerCustomEvent<void>>();
   @Output() cInitialFocus = new EventEmitter<CDrawerCustomEvent<void>>();
-  @Output() cRequestClose = new EventEmitter<CDrawerCustomEvent<{ source: 'close-button' | 'keyboard' | 'overlay' }>>();
+  @Output() cRequestClose = new EventEmitter<CDrawerCustomEvent<{ source: "close-button" | "keyboard" | "overlay"; }>>();
   constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
@@ -505,7 +505,7 @@ export declare interface CDrawer extends Components.CDrawer {
 
   cInitialFocus: EventEmitter<CDrawerCustomEvent<void>>;
 
-  cRequestClose: EventEmitter<CDrawerCustomEvent<{ source: 'close-button' | 'keyboard' | 'overlay' }>>;
+  cRequestClose: EventEmitter<CDrawerCustomEvent<{ source: "close-button" | "keyboard" | "overlay"; }>>;
 }
 
 

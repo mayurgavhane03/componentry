@@ -664,74 +664,150 @@
 </head>
 
 <body>
-  <!-- Single Select -->
-  <c-combobox placeholder="Select framework" show-clear>
-    <c-combobox-item value="next">Next.js</c-combobox-item>
-    <c-combobox-item value="sveltekit">SvelteKit</c-combobox-item>
-    <c-combobox-item value="nuxt">Nuxt.js</c-combobox-item>
-    <c-combobox-item value="remix">Remix</c-combobox-item>
-  </c-combobox>
-
-  <!-- Multi Select with Chips -->
-  <c-combobox multiple placeholder="Add frameworks" show-clear>
-    <c-combobox-item value="react">React</c-combobox-item>
-    <c-combobox-item value="vue">Vue</c-combobox-item>
-    <c-combobox-item value="angular">Angular</c-combobox-item>
-    <c-combobox-item value="svelte">Svelte</c-combobox-item>
-  </c-combobox>
-
-  <!-- Controlled Selection (pre-selected value) -->
-  <c-combobox value="next" placeholder="Select framework">
-    <c-combobox-item value="next">Next.js</c-combobox-item>
-    <c-combobox-item value="sveltekit">SvelteKit</c-combobox-item>
-  </c-combobox>
-
-  <!-- With Auto-Highlight (first match highlighted when filtering) -->
-  <c-combobox placeholder="Search..." auto-highlight>
-    <c-combobox-item value="apple">Apple</c-combobox-item>
-    <c-combobox-item value="banana">Banana</c-combobox-item>
-    <c-combobox-item value="cherry">Cherry</c-combobox-item>
-  </c-combobox>
-
-  <!-- Disabled State -->
-  <c-combobox placeholder="Cannot interact" disabled>
-    <c-combobox-item value="1">Option 1</c-combobox-item>
-    <c-combobox-item value="2">Option 2</c-combobox-item>
-  </c-combobox>
-
-  <!-- With Validation Error -->
-  <c-combobox placeholder="Select..." aria-invalid>
-    <c-combobox-item value="valid">Valid Option</c-combobox-item>
-    <c-combobox-item value="invalid">Invalid Option</c-combobox-item>
-  </c-combobox>
-
-  <!-- Custom Empty State -->
-  <c-combobox placeholder="Search fruits...">
-    <c-combobox-item value="apple">Apple</c-combobox-item>
-    <c-combobox-item value="banana">Banana</c-combobox-item>
-    <span slot="empty">No fruits match your search</span>
-  </c-combobox>
-
-  <!-- Listening to Events (JavaScript) -->
-  <c-combobox id="my-combobox" placeholder="Select...">
-    <c-combobox-item value="a">Option A</c-combobox-item>
-    <c-combobox-item value="b">Option B</c-combobox-item>
-  </c-combobox>
-
+ <h1 style="margin:0 0 1rem;font-size:1.1rem;">c-drawer test buttons</h1>
+ 
+  <!-- 1. Basic drawer, opened via .show() -->
+  <button id="open-basic">Open Basic Drawer</button>
+  <c-drawer id="basic-drawer" no-mask-closable label="Basic Drawer">
+    <p>This is a basic drawer, shown via the show() method.</p>
+  </c-drawer>
+ 
+  <!-- 2. Placement variants -->
+  <button id="open-start">Open Start Drawer</button>
+  <c-drawer id="start-drawer" placement="start" label="Start Drawer">
+    <p>Opens from the left.</p>
+  </c-drawer>
+ 
+  <button id="open-top">Open Top Drawer</button>
+  <c-drawer id="top-drawer" placement="top" label="Top Drawer">
+    <p>Opens from the top.</p>
+  </c-drawer>
+ 
+  <!-- 3. Open via the `open` attribute directly (no JS) -->
+  <button id="toggle-attr">Toggle "open" Attribute Drawer</button>
+  <c-drawer id="attr-drawer" label="Open via attribute">
+    <p>This drawer is toggled by setting/removing the open attribute.</p>
+  </c-drawer>
+ 
+  <!-- 4. No header -->
+  <button id="open-noheader">Open No-Header Drawer</button>
+  <c-drawer id="noheader-drawer" no-header label="Hidden Header">
+    <p>This drawer has no visible header — make sure there's another way to close it.</p>
+    <button id="close-noheader">Close this drawer</button>
+  </c-drawer>
+ 
+  <!-- 5. Custom label slot -->
+  <button id="open-customlabel">Open Custom Label Drawer</button>
+  <c-drawer id="customlabel-drawer">
+    <span slot="label"><strong>⭐ Custom Header</strong></span>
+    <p>Using the label slot instead of the label attribute.</p>
+  </c-drawer>
+ 
+  <!-- 6. Header actions slot -->
+  <button id="open-headeractions">Open Header Actions Drawer</button>
+  <c-drawer id="headeractions-drawer" label="Header Actions">
+    <button slot="header-actions">Save</button>
+    <p>Header action example.</p>
+  </c-drawer>
+ 
+  <!-- 7. Footer slot -->
+  <button id="open-footer">Open Footer Drawer</button>
+  <c-drawer id="footer-drawer" label="Footer Example">
+    <p>Drawer with footer buttons.</p>
+    <div slot="footer">
+      <button id="footer-cancel">Cancel</button>
+      <button id="footer-save">Save</button>
+    </div>
+  </c-drawer>
+ 
+  <!-- 8. Autofocus -->
+  <button id="open-autofocus">Open Autofocus Drawer</button>
+  <c-drawer id="autofocus-drawer" label="Autofocus">
+    <input autofocus placeholder="Focused automatically" />
+  </c-drawer>
+ 
+  <!-- 9. Listening to events -->
+  <button id="open-events">Open Drawer (watch console)</button>
+  <c-drawer id="events-drawer" label="Event Logging">
+    <p>Open devtools console and watch events fire as you open/close this drawer.</p>
+  </c-drawer>
+ 
+  <!-- 10. Contained drawer (slides inside its parent, not the viewport) -->
+  <div style="position:relative;height:250px;border:1px solid #ddd;padding:12px;overflow:hidden;">
+    <button id="open-contained">Open Contained Drawer</button>
+    <c-drawer id="contained-drawer" contained label="Contained Drawer">
+      <p>This drawer stays inside its relatively-positioned parent.</p>
+    </c-drawer>
+  </div>
+ 
   <script>
-    const combobox = document.getElementById('my-combobox');
-
-    // Listen for value changes
-    combobox.addEventListener('valueChange', (e) => {
-      console.log('Selected:', e.detail); // string for single, string[] for multi
+    // 1. Basic — open via show(), close via the drawer's own close button / overlay / Escape
+    document.getElementById('open-basic').addEventListener('click', () => {
+      document.getElementById('basic-drawer').show();
     });
-
-    // Listen for open/close
-    combobox.addEventListener('openChange', (e) => {
-      console.log('Dropdown open:', e.detail); // boolean
+ 
+    // 2. Placement variants
+    document.getElementById('open-start').addEventListener('click', () => {
+      document.getElementById('start-drawer').show();
+    });
+    document.getElementById('open-top').addEventListener('click', () => {
+      document.getElementById('top-drawer').show();
+    });
+ 
+    // 3. Toggle via the open attribute/property directly
+    document.getElementById('toggle-attr').addEventListener('click', () => {
+      const drawer = document.getElementById('attr-drawer');
+      drawer.open = !drawer.open;
+    });
+ 
+    // 4. No-header drawer — needs a manual close trigger
+    document.getElementById('open-noheader').addEventListener('click', () => {
+      document.getElementById('noheader-drawer').show();
+    });
+    document.getElementById('close-noheader').addEventListener('click', () => {
+      document.getElementById('noheader-drawer').hide();
+    });
+ 
+    // 5. Custom label slot
+    document.getElementById('open-customlabel').addEventListener('click', () => {
+      document.getElementById('customlabel-drawer').show();
+    });
+ 
+    // 6. Header actions slot
+    document.getElementById('open-headeractions').addEventListener('click', () => {
+      document.getElementById('headeractions-drawer').show();
+    });
+ 
+    // 7. Footer slot — Cancel/Save both close the drawer
+    document.getElementById('open-footer').addEventListener('click', () => {
+      document.getElementById('footer-drawer').show();
+    });
+    document.getElementById('footer-cancel').addEventListener('click', () => {
+      document.getElementById('footer-drawer').hide();
+    });
+    document.getElementById('footer-save').addEventListener('click', () => {
+      document.getElementById('footer-drawer').hide();
+    });
+ 
+    // 8. Autofocus
+    document.getElementById('open-autofocus').addEventListener('click', () => {
+      document.getElementById('autofocus-drawer').show();
+    });
+ 
+    // 9. Event logging — confirm the renamed c* events fire correctly
+    const eventsDrawer = document.getElementById('events-drawer');
+    ['cShow', 'cAfterShow', 'cHide', 'cAfterHide', 'cInitialFocus', 'cRequestClose'].forEach(eventName => {
+      eventsDrawer.addEventListener(eventName, e => console.log(eventName, e.detail));
+    });
+    document.getElementById('open-events').addEventListener('click', () => {
+      eventsDrawer.show();
+    });
+ 
+    // 10. Contained drawer
+    document.getElementById('open-contained').addEventListener('click', () => {
+      document.getElementById('contained-drawer').show();
     });
   </script>
-
 
 
 </body>

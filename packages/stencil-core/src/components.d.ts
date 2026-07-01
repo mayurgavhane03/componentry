@@ -363,15 +363,15 @@ export namespace Components {
         /**
           * @default false
          */
-        "ariaInvalid": boolean;
-        /**
-          * @default false
-         */
         "autoHighlight": boolean;
         /**
           * @default false
          */
         "disabled": boolean;
+        /**
+          * @default false
+         */
+        "invalid": boolean;
         /**
           * @default false
          */
@@ -393,11 +393,11 @@ export namespace Components {
         /**
           * @default false
          */
-        "hidden": boolean;
+        "highlighted": boolean;
         /**
           * @default false
          */
-        "highlighted": boolean;
+        "itemHidden": boolean;
         /**
           * @default ""
          */
@@ -412,179 +412,177 @@ export namespace Components {
         "value": string;
     }
     /**
-     * @summary Inputs collect data from the user.
-     * @event c-blur    - Emitted when the control loses focus.
-     * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
-     * @event c-clear   - Emitted when the clear button is activated.
-     * @event c-focus   - Emitted when the control gains focus.
-     * @event c-input   - Emitted when the control receives input.
-     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
-     * @csspart form-control           - The form control that wraps the label, input, and help text.
-     * @csspart form-control-label     - The label's wrapper.
-     * @csspart form-control-input     - The input's wrapper.
-     * @csspart form-control-help-text - The help text's wrapper.
-     * @csspart base                   - The component's base wrapper.
-     * @csspart input                  - The internal <input> control.
-     * @csspart prefix                 - The container that wraps the prefix.
-     * @csspart clear-button           - The clear button.
-     * @csspart password-toggle-button - The password toggle button.
-     * @csspart suffix                 - The container that wraps the suffix.
+     * @event cShow - Emitted when the drawer opens.
+     * @event cAfterShow - Emitted after the drawer opens and all animations are complete.
+     * @event cHide - Emitted when the drawer closes.
+     * @event cAfterHide - Emitted after the drawer closes and all animations are complete.
+     * @event cInitialFocus - Emitted when the drawer opens and is ready to receive focus.
+     * Calling `event.preventDefault()` prevents focusing and lets you set it elsewhere.
+     * @event cRequestClose - Emitted when the user attempts to close the drawer by clicking the
+     * close button, clicking the overlay, or pressing escape. `event.detail.source` is one of
+     * 'close-button' | 'keyboard' | 'overlay'. Calling `event.preventDefault()` keeps it open.
      */
-    interface CInput {
-        "autocapitalize": | "off"
-    | "none"
-    | "on"
-    | "sentences"
-    | "words"
-    | "characters";
-        "autocomplete": string;
-        "autocorrect": "off" | "on";
-        "autofocus": boolean;
+    interface CDrawer {
         /**
-          * Checks for validity but does not show a validation message.
+          * By default the drawer slides out of its containing block (usually the viewport). Set this to make it slide out of its parent element instead — add `position: relative` to the parent.
+          * @default false
          */
+        "contained": boolean;
+        /**
+          * Hides the drawer.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * The drawer's label as displayed in the header. Always provide one even with `noHeader`, for accessibility. For HTML content use the `label` slot instead.
+          * @default ""
+         */
+        "label": string;
+        /**
+          * Removes the header. This also removes the default close button, so ensure you provide an easy, accessible way for users to dismiss the drawer.
+          * @default false
+         */
+        "noHeader": boolean;
+        /**
+          * When true, clicking the overlay (mask) will not close the drawer.
+          * @default false
+         */
+        "noMaskClosable": boolean;
+        /**
+          * Indicates whether or not the drawer is open. Toggle this to show/hide, or use show()/hide().
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * The direction from which the drawer will open.
+          * @default "end"
+         */
+        "placement": "top" | "end" | "bottom" | "start";
+        /**
+          * Shows the drawer.
+         */
+        "show": () => Promise<void>;
+    }
+    interface CInput {
         "checkValidity": () => Promise<boolean>;
         /**
-          * Adds a clear button when the input is not empty.
           * @default false
          */
         "clearable": boolean;
         /**
-          * Disables the input.
           * @default false
          */
         "disabled": boolean;
-        "enterkeyhint": | "enter"
-    | "done"
-    | "go"
-    | "next"
-    | "previous"
-    | "search"
-    | "send";
         /**
-          * Draws a filled input.
           * @default false
          */
         "filled": boolean;
         /**
-          * The input's help text. If you need to display HTML, use the `help-text` slot instead.
           * @default ""
          */
         "helpText": string;
         /**
-          * Title attribute passed through to the native input.
+          * @default ""
+         */
+        "inputAutocapitalize": string;
+        /**
+          * @default ""
+         */
+        "inputAutocomplete": string;
+        /**
+          * @default ""
+         */
+        "inputAutocorrect": string;
+        /**
+          * @default false
+         */
+        "inputAutofocus": boolean;
+        /**
+          * @default ""
+         */
+        "inputEnterkeyhint": string;
+        /**
+          * @default ""
+         */
+        "inputInputmode": string;
+        /**
           * @default ""
          */
         "inputTitle": string;
-        "inputmode": | "none"
-    | "text"
-    | "decimal"
-    | "numeric"
-    | "tel"
-    | "search"
-    | "email"
-    | "url";
         /**
-          * The input's label. If you need to display HTML, use the `label` slot instead.
           * @default ""
          */
         "label": string;
-        "max": number | string;
+        /**
+          * @default ""
+         */
+        "max": string;
+        /**
+          * @default -1
+         */
         "maxlength": number;
-        "min": number | string;
+        /**
+          * @default ""
+         */
+        "min": string;
+        /**
+          * @default -1
+         */
         "minlength": number;
         /**
-          * The name of the input, submitted as a name/value pair with form data.
           * @default ""
          */
         "name": string;
         /**
-          * Hides the browser's built-in increment/decrement spin buttons for number inputs.
           * @default false
          */
         "noSpinButtons": boolean;
         /**
-          * Adds a button to toggle the password's visibility. Only applies to password types.
           * @default false
          */
         "passwordToggle": boolean;
         /**
-          * A regular expression pattern to validate input against.
+          * @default ""
          */
         "pattern": string;
         /**
-          * Draws a pill-style input with rounded edges.
           * @default false
          */
         "pill": boolean;
         /**
-          * Placeholder text to show as a hint when the input is empty.
           * @default ""
          */
         "placeholder": string;
         /**
-          * Makes the input readonly.
           * @default false
          */
         "readonly": boolean;
-        /**
-          * Removes focus from the input.
-         */
         "removeFocus": () => Promise<void>;
-        /**
-          * Checks for validity and shows the browser's validation message if invalid.
-         */
         "reportValidity": () => Promise<boolean>;
         /**
-          * Makes the input a required field.
           * @default false
          */
         "required": boolean;
-        /**
-          * Selects all the text in the input.
-         */
         "select": () => Promise<void>;
-        /**
-          * Sets a custom validation message. Pass an empty string to restore validity.
-         */
         "setCustomValidity": (message: string) => Promise<void>;
-        /**
-          * Sets focus on the input.
-         */
         "setFocus": (options?: FocusOptions) => Promise<void>;
-        /**
-          * Replaces a range of text with a new string.
-         */
         "setRangeText": (replacement: string, start?: number, end?: number, selectMode?: "select" | "start" | "end" | "preserve") => Promise<void>;
-        /**
-          * Sets the start and end positions of the text selection (0-based).
-         */
         "setSelectionRange": (selectionStart: number, selectionEnd: number, selectionDirection?: "forward" | "backward" | "none") => Promise<void>;
-        /**
-          * Displays the browser picker for an input element (only works if the browser supports it).
-         */
         "showPicker": () => Promise<void>;
         /**
-          * The input's size.
           * @default "medium"
          */
         "size": "small" | "medium" | "large";
         /**
-          * Enables spell checking on the input.
           * @default true
          */
         "spellcheck": boolean;
-        "step": number | "any";
         /**
-          * Decrements the value of a numeric input type by the value of the step attribute.
+          * @default ""
          */
+        "step": string;
         "stepDown": () => Promise<void>;
-        /**
-          * Increments the value of a numeric input type by the value of the step attribute.
-         */
         "stepUp": () => Promise<void>;
         /**
-          * The type of input. Works the same as a native <input> element, but only a subset of types are supported. Defaults to `text`.
           * @default "text"
          */
         "type": | "date"
@@ -598,7 +596,6 @@ export namespace Components {
     | "time"
     | "url";
         /**
-          * The current value of the input.
           * @default ""
          */
         "value": string;
@@ -778,6 +775,10 @@ export interface CComboboxCustomEvent<T> extends CustomEvent<T> {
 export interface CComboboxItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCComboboxItemElement;
+}
+export interface CDrawerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCDrawerElement;
 }
 export interface CInputCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1011,6 +1012,41 @@ declare global {
         prototype: HTMLCComboboxItemElement;
         new (): HTMLCComboboxItemElement;
     };
+    interface HTMLCDrawerElementEventMap {
+        "cShow": void;
+        "cAfterShow": void;
+        "cHide": void;
+        "cAfterHide": void;
+        "cInitialFocus": void;
+        "cRequestClose": {
+    source: "close-button" | "keyboard" | "overlay";
+  };
+    }
+    /**
+     * @event cShow - Emitted when the drawer opens.
+     * @event cAfterShow - Emitted after the drawer opens and all animations are complete.
+     * @event cHide - Emitted when the drawer closes.
+     * @event cAfterHide - Emitted after the drawer closes and all animations are complete.
+     * @event cInitialFocus - Emitted when the drawer opens and is ready to receive focus.
+     * Calling `event.preventDefault()` prevents focusing and lets you set it elsewhere.
+     * @event cRequestClose - Emitted when the user attempts to close the drawer by clicking the
+     * close button, clicking the overlay, or pressing escape. `event.detail.source` is one of
+     * 'close-button' | 'keyboard' | 'overlay'. Calling `event.preventDefault()` keeps it open.
+     */
+    interface HTMLCDrawerElement extends Components.CDrawer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCDrawerElementEventMap>(type: K, listener: (this: HTMLCDrawerElement, ev: CDrawerCustomEvent<HTMLCDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCDrawerElementEventMap>(type: K, listener: (this: HTMLCDrawerElement, ev: CDrawerCustomEvent<HTMLCDrawerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCDrawerElement: {
+        prototype: HTMLCDrawerElement;
+        new (): HTMLCDrawerElement;
+    };
     interface HTMLCInputElementEventMap {
         "cBlur": void;
         "cChange": void;
@@ -1019,25 +1055,6 @@ declare global {
         "cInput": void;
         "cInvalid": void;
     }
-    /**
-     * @summary Inputs collect data from the user.
-     * @event c-blur    - Emitted when the control loses focus.
-     * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
-     * @event c-clear   - Emitted when the clear button is activated.
-     * @event c-focus   - Emitted when the control gains focus.
-     * @event c-input   - Emitted when the control receives input.
-     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
-     * @csspart form-control           - The form control that wraps the label, input, and help text.
-     * @csspart form-control-label     - The label's wrapper.
-     * @csspart form-control-input     - The input's wrapper.
-     * @csspart form-control-help-text - The help text's wrapper.
-     * @csspart base                   - The component's base wrapper.
-     * @csspart input                  - The internal <input> control.
-     * @csspart prefix                 - The container that wraps the prefix.
-     * @csspart clear-button           - The clear button.
-     * @csspart password-toggle-button - The password toggle button.
-     * @csspart suffix                 - The container that wraps the suffix.
-     */
     interface HTMLCInputElement extends Components.CInput, HTMLStencilElement {
         addEventListener<K extends keyof HTMLCInputElementEventMap>(type: K, listener: (this: HTMLCInputElement, ev: CInputCustomEvent<HTMLCInputElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1167,6 +1184,7 @@ declare global {
         "c-checkbox": HTMLCCheckboxElement;
         "c-combobox": HTMLCComboboxElement;
         "c-combobox-item": HTMLCComboboxItemElement;
+        "c-drawer": HTMLCDrawerElement;
         "c-input": HTMLCInputElement;
         "c-menu": HTMLCMenuElement;
         "c-menu-item": HTMLCMenuItemElement;
@@ -1504,15 +1522,15 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
-        "ariaInvalid"?: boolean;
-        /**
-          * @default false
-         */
         "autoHighlight"?: boolean;
         /**
           * @default false
          */
         "disabled"?: boolean;
+        /**
+          * @default false
+         */
+        "invalid"?: boolean;
         /**
           * @default false
          */
@@ -1536,11 +1554,11 @@ declare namespace LocalJSX {
         /**
           * @default false
          */
-        "hidden"?: boolean;
+        "highlighted"?: boolean;
         /**
           * @default false
          */
-        "highlighted"?: boolean;
+        "itemHidden"?: boolean;
         /**
           * @default ""
          */
@@ -1556,90 +1574,126 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     /**
-     * @summary Inputs collect data from the user.
-     * @event c-blur    - Emitted when the control loses focus.
-     * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
-     * @event c-clear   - Emitted when the clear button is activated.
-     * @event c-focus   - Emitted when the control gains focus.
-     * @event c-input   - Emitted when the control receives input.
-     * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
-     * @csspart form-control           - The form control that wraps the label, input, and help text.
-     * @csspart form-control-label     - The label's wrapper.
-     * @csspart form-control-input     - The input's wrapper.
-     * @csspart form-control-help-text - The help text's wrapper.
-     * @csspart base                   - The component's base wrapper.
-     * @csspart input                  - The internal <input> control.
-     * @csspart prefix                 - The container that wraps the prefix.
-     * @csspart clear-button           - The clear button.
-     * @csspart password-toggle-button - The password toggle button.
-     * @csspart suffix                 - The container that wraps the suffix.
+     * @event cShow - Emitted when the drawer opens.
+     * @event cAfterShow - Emitted after the drawer opens and all animations are complete.
+     * @event cHide - Emitted when the drawer closes.
+     * @event cAfterHide - Emitted after the drawer closes and all animations are complete.
+     * @event cInitialFocus - Emitted when the drawer opens and is ready to receive focus.
+     * Calling `event.preventDefault()` prevents focusing and lets you set it elsewhere.
+     * @event cRequestClose - Emitted when the user attempts to close the drawer by clicking the
+     * close button, clicking the overlay, or pressing escape. `event.detail.source` is one of
+     * 'close-button' | 'keyboard' | 'overlay'. Calling `event.preventDefault()` keeps it open.
      */
-    interface CInput {
-        "autocapitalize": | "off"
-    | "none"
-    | "on"
-    | "sentences"
-    | "words"
-    | "characters";
-        "autocomplete": string;
-        "autocorrect": "off" | "on";
-        "autofocus": boolean;
+    interface CDrawer {
         /**
-          * Adds a clear button when the input is not empty.
+          * By default the drawer slides out of its containing block (usually the viewport). Set this to make it slide out of its parent element instead — add `position: relative` to the parent.
+          * @default false
+         */
+        "contained"?: boolean;
+        /**
+          * The drawer's label as displayed in the header. Always provide one even with `noHeader`, for accessibility. For HTML content use the `label` slot instead.
+          * @default ""
+         */
+        "label"?: string;
+        /**
+          * Removes the header. This also removes the default close button, so ensure you provide an easy, accessible way for users to dismiss the drawer.
+          * @default false
+         */
+        "noHeader"?: boolean;
+        /**
+          * When true, clicking the overlay (mask) will not close the drawer.
+          * @default false
+         */
+        "noMaskClosable"?: boolean;
+        "onCAfterHide"?: (event: CDrawerCustomEvent<void>) => void;
+        "onCAfterShow"?: (event: CDrawerCustomEvent<void>) => void;
+        "onCHide"?: (event: CDrawerCustomEvent<void>) => void;
+        "onCInitialFocus"?: (event: CDrawerCustomEvent<void>) => void;
+        "onCRequestClose"?: (event: CDrawerCustomEvent<{
+    source: "close-button" | "keyboard" | "overlay";
+  }>) => void;
+        "onCShow"?: (event: CDrawerCustomEvent<void>) => void;
+        /**
+          * Indicates whether or not the drawer is open. Toggle this to show/hide, or use show()/hide().
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * The direction from which the drawer will open.
+          * @default "end"
+         */
+        "placement"?: "top" | "end" | "bottom" | "start";
+    }
+    interface CInput {
+        /**
           * @default false
          */
         "clearable"?: boolean;
         /**
-          * Disables the input.
           * @default false
          */
         "disabled"?: boolean;
-        "enterkeyhint": | "enter"
-    | "done"
-    | "go"
-    | "next"
-    | "previous"
-    | "search"
-    | "send";
         /**
-          * Draws a filled input.
           * @default false
          */
         "filled"?: boolean;
         /**
-          * The input's help text. If you need to display HTML, use the `help-text` slot instead.
           * @default ""
          */
         "helpText"?: string;
         /**
-          * Title attribute passed through to the native input.
+          * @default ""
+         */
+        "inputAutocapitalize"?: string;
+        /**
+          * @default ""
+         */
+        "inputAutocomplete"?: string;
+        /**
+          * @default ""
+         */
+        "inputAutocorrect"?: string;
+        /**
+          * @default false
+         */
+        "inputAutofocus"?: boolean;
+        /**
+          * @default ""
+         */
+        "inputEnterkeyhint"?: string;
+        /**
+          * @default ""
+         */
+        "inputInputmode"?: string;
+        /**
           * @default ""
          */
         "inputTitle"?: string;
-        "inputmode": | "none"
-    | "text"
-    | "decimal"
-    | "numeric"
-    | "tel"
-    | "search"
-    | "email"
-    | "url";
         /**
-          * The input's label. If you need to display HTML, use the `label` slot instead.
           * @default ""
          */
         "label"?: string;
-        "max": number | string;
-        "maxlength": number;
-        "min": number | string;
-        "minlength": number;
         /**
-          * The name of the input, submitted as a name/value pair with form data.
+          * @default ""
+         */
+        "max"?: string;
+        /**
+          * @default -1
+         */
+        "maxlength"?: number;
+        /**
+          * @default ""
+         */
+        "min"?: string;
+        /**
+          * @default -1
+         */
+        "minlength"?: number;
+        /**
           * @default ""
          */
         "name"?: string;
         /**
-          * Hides the browser's built-in increment/decrement spin buttons for number inputs.
           * @default false
          */
         "noSpinButtons"?: boolean;
@@ -1650,47 +1704,42 @@ declare namespace LocalJSX {
         "onCInput"?: (event: CInputCustomEvent<void>) => void;
         "onCInvalid"?: (event: CInputCustomEvent<void>) => void;
         /**
-          * Adds a button to toggle the password's visibility. Only applies to password types.
           * @default false
          */
         "passwordToggle"?: boolean;
         /**
-          * A regular expression pattern to validate input against.
+          * @default ""
          */
-        "pattern": string;
+        "pattern"?: string;
         /**
-          * Draws a pill-style input with rounded edges.
           * @default false
          */
         "pill"?: boolean;
         /**
-          * Placeholder text to show as a hint when the input is empty.
           * @default ""
          */
         "placeholder"?: string;
         /**
-          * Makes the input readonly.
           * @default false
          */
         "readonly"?: boolean;
         /**
-          * Makes the input a required field.
           * @default false
          */
         "required"?: boolean;
         /**
-          * The input's size.
           * @default "medium"
          */
         "size"?: "small" | "medium" | "large";
         /**
-          * Enables spell checking on the input.
           * @default true
          */
         "spellcheck"?: boolean;
-        "step": number | "any";
         /**
-          * The type of input. Works the same as a native <input> element, but only a subset of types are supported. Defaults to `text`.
+          * @default ""
+         */
+        "step"?: string;
+        /**
           * @default "text"
          */
         "type"?: | "date"
@@ -1704,7 +1753,6 @@ declare namespace LocalJSX {
     | "time"
     | "url";
         /**
-          * The current value of the input.
           * @default ""
          */
         "value"?: string;
@@ -1941,14 +1989,22 @@ declare namespace LocalJSX {
         "disabled": boolean;
         "showClear": boolean;
         "autoHighlight": boolean;
-        "ariaInvalid": boolean;
+        "invalid": boolean;
     }
     interface CComboboxItemAttributes {
         "value": string;
         "label": string;
         "selected": boolean;
         "highlighted": boolean;
-        "hidden": boolean;
+        "itemHidden": boolean;
+    }
+    interface CDrawerAttributes {
+        "open": boolean;
+        "label": string;
+        "placement": "top" | "end" | "bottom" | "start";
+        "contained": boolean;
+        "noHeader": boolean;
+        "noMaskClosable": boolean;
     }
     interface CInputAttributes {
         "type": | "date"
@@ -1981,30 +2037,12 @@ declare namespace LocalJSX {
         "min": string;
         "max": string;
         "step": string;
-        "autocapitalize": | "off"
-    | "none"
-    | "on"
-    | "sentences"
-    | "words"
-    | "characters";
-        "autocorrect": "off" | "on";
-        "autocomplete": string;
-        "autofocus": boolean;
-        "enterkeyhint": | "enter"
-    | "done"
-    | "go"
-    | "next"
-    | "previous"
-    | "search"
-    | "send";
-        "inputmode": | "none"
-    | "text"
-    | "decimal"
-    | "numeric"
-    | "tel"
-    | "search"
-    | "email"
-    | "url";
+        "inputAutocapitalize": string;
+        "inputAutocorrect": string;
+        "inputAutocomplete": string;
+        "inputAutofocus": boolean;
+        "inputEnterkeyhint": string;
+        "inputInputmode": string;
         "spellcheck": boolean;
         "inputTitle": string;
     }
@@ -2066,7 +2104,8 @@ declare namespace LocalJSX {
         "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
         "c-combobox": Omit<CCombobox, keyof CComboboxAttributes> & { [K in keyof CCombobox & keyof CComboboxAttributes]?: CCombobox[K] } & { [K in keyof CCombobox & keyof CComboboxAttributes as `attr:${K}`]?: CComboboxAttributes[K] } & { [K in keyof CCombobox & keyof CComboboxAttributes as `prop:${K}`]?: CCombobox[K] };
         "c-combobox-item": Omit<CComboboxItem, keyof CComboboxItemAttributes> & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes]?: CComboboxItem[K] } & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes as `attr:${K}`]?: CComboboxItemAttributes[K] } & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes as `prop:${K}`]?: CComboboxItem[K] };
-        "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] } & OneOf<"pattern", CInput["pattern"], CInputAttributes["pattern"]> & OneOf<"minlength", CInput["minlength"], CInputAttributes["minlength"]> & OneOf<"maxlength", CInput["maxlength"], CInputAttributes["maxlength"]> & OneOf<"min", CInput["min"], CInputAttributes["min"]> & OneOf<"max", CInput["max"], CInputAttributes["max"]> & OneOf<"step", CInput["step"], CInputAttributes["step"]> & OneOf<"autocapitalize", CInput["autocapitalize"], CInputAttributes["autocapitalize"]> & OneOf<"autocorrect", CInput["autocorrect"], CInputAttributes["autocorrect"]> & OneOf<"autocomplete", CInput["autocomplete"], CInputAttributes["autocomplete"]> & OneOf<"autofocus", CInput["autofocus"], CInputAttributes["autofocus"]> & OneOf<"enterkeyhint", CInput["enterkeyhint"], CInputAttributes["enterkeyhint"]> & OneOf<"inputmode", CInput["inputmode"], CInputAttributes["inputmode"]>;
+        "c-drawer": Omit<CDrawer, keyof CDrawerAttributes> & { [K in keyof CDrawer & keyof CDrawerAttributes]?: CDrawer[K] } & { [K in keyof CDrawer & keyof CDrawerAttributes as `attr:${K}`]?: CDrawerAttributes[K] } & { [K in keyof CDrawer & keyof CDrawerAttributes as `prop:${K}`]?: CDrawer[K] };
+        "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] };
         "c-menu": CMenu;
         "c-menu-item": Omit<CMenuItem, keyof CMenuItemAttributes> & { [K in keyof CMenuItem & keyof CMenuItemAttributes]?: CMenuItem[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `attr:${K}`]?: CMenuItemAttributes[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `prop:${K}`]?: CMenuItem[K] };
         "c-radio": Omit<CRadio, keyof CRadioAttributes> & { [K in keyof CRadio & keyof CRadioAttributes]?: CRadio[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `attr:${K}`]?: CRadioAttributes[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `prop:${K}`]?: CRadio[K] } & OneOf<"value", CRadio["value"], CRadioAttributes["value"]> & OneOf<"size", CRadio["size"], CRadioAttributes["size"]>;
@@ -2133,24 +2172,17 @@ declare module "@stencil/core" {
             "c-combobox": LocalJSX.IntrinsicElements["c-combobox"] & JSXBase.HTMLAttributes<HTMLCComboboxElement>;
             "c-combobox-item": LocalJSX.IntrinsicElements["c-combobox-item"] & JSXBase.HTMLAttributes<HTMLCComboboxItemElement>;
             /**
-             * @summary Inputs collect data from the user.
-             * @event c-blur    - Emitted when the control loses focus.
-             * @event c-change  - Emitted when an alteration to the control's value is committed by the user.
-             * @event c-clear   - Emitted when the clear button is activated.
-             * @event c-focus   - Emitted when the control gains focus.
-             * @event c-input   - Emitted when the control receives input.
-             * @event c-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
-             * @csspart form-control           - The form control that wraps the label, input, and help text.
-             * @csspart form-control-label     - The label's wrapper.
-             * @csspart form-control-input     - The input's wrapper.
-             * @csspart form-control-help-text - The help text's wrapper.
-             * @csspart base                   - The component's base wrapper.
-             * @csspart input                  - The internal <input> control.
-             * @csspart prefix                 - The container that wraps the prefix.
-             * @csspart clear-button           - The clear button.
-             * @csspart password-toggle-button - The password toggle button.
-             * @csspart suffix                 - The container that wraps the suffix.
+             * @event cShow - Emitted when the drawer opens.
+             * @event cAfterShow - Emitted after the drawer opens and all animations are complete.
+             * @event cHide - Emitted when the drawer closes.
+             * @event cAfterHide - Emitted after the drawer closes and all animations are complete.
+             * @event cInitialFocus - Emitted when the drawer opens and is ready to receive focus.
+             * Calling `event.preventDefault()` prevents focusing and lets you set it elsewhere.
+             * @event cRequestClose - Emitted when the user attempts to close the drawer by clicking the
+             * close button, clicking the overlay, or pressing escape. `event.detail.source` is one of
+             * 'close-button' | 'keyboard' | 'overlay'. Calling `event.preventDefault()` keeps it open.
              */
+            "c-drawer": LocalJSX.IntrinsicElements["c-drawer"] & JSXBase.HTMLAttributes<HTMLCDrawerElement>;
             "c-input": LocalJSX.IntrinsicElements["c-input"] & JSXBase.HTMLAttributes<HTMLCInputElement>;
             /**
              * @event cSelect - Emitted when a menu item is selected.
