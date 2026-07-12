@@ -26,8 +26,10 @@ import { defineCustomElement as defineCDrawer } from '@componentry-ui/stencil/di
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
+import { defineCustomElement as defineCPopup } from '@componentry-ui/stencil/dist/components/c-popup.js';
 import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
+import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
 
 
 
@@ -287,6 +289,36 @@ export const CMenuItem: StencilVueComponent<JSX.CMenuItem> = /*@__PURE__*/ defin
 ]);
 
 
+export const CPopup: StencilVueComponent<JSX.CPopup> = /*@__PURE__*/ defineContainer<JSX.CPopup>('c-popup', defineCPopup, [
+  'anchor',
+  'active',
+  'placement',
+  'strategy',
+  'distance',
+  'skidding',
+  'arrow',
+  'arrowPlacement',
+  'arrowPadding',
+  'flip',
+  'flipFallbackPlacements',
+  'flipFallbackStrategy',
+  'flipBoundary',
+  'flipPadding',
+  'shift',
+  'shiftBoundary',
+  'shiftPadding',
+  'autoSize',
+  'sync',
+  'autoSizeBoundary',
+  'autoSizePadding',
+  'hoverBridge',
+  'textDirection',
+  'cReposition'
+], [
+  'cReposition'
+]);
+
+
 export const CRadio: StencilVueComponent<JSX.CRadio> = /*@__PURE__*/ defineContainer<JSX.CRadio>('c-radio', defineCRadio, [
   'value',
   'appearance',
@@ -317,6 +349,27 @@ export const CRadioGroup: StencilVueComponent<JSX.CRadioGroup> = /*@__PURE__*/ d
 ], [
   'cChange',
   'cInput'
+]);
+
+
+export const CTooltip: StencilVueComponent<JSX.CTooltip> = /*@__PURE__*/ defineContainer<JSX.CTooltip>('c-tooltip', defineCTooltip, [
+  'content',
+  'placement',
+  'disabled',
+  'distance',
+  'open',
+  'skidding',
+  'trigger',
+  'hoist',
+  'cShow',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide'
+], [
+  'cShow',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide'
 ]);
 
 

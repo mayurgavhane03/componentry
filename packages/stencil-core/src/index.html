@@ -660,70 +660,34 @@
       padding: 32px;
       background: #f5f7fa;
     }
+
+    
   </style>
 </head>
 
 <body>
-  <c-button id="open-info">Open info</c-button>
-<c-button id="open-confirm">Delete item</c-button>
-<c-button id="open-form">Edit profile</c-button>
-
-<!-- Simple info dialog -->
-<c-dialog id="info-dialog" label="About this feature">
-  This panel shows read-only details. Nothing to confirm here.
-</c-dialog>
-
-<!-- Confirmation dialog with footer actions -->
-<c-dialog id="confirm-dialog" label="Delete item">
-  Are you sure you want to delete this item? This can't be undone.
-  <div slot="footer">
-    <c-button variant="default" id="cancel-delete">Cancel</c-button>
-    <c-button variant="danger" id="confirm-delete">Delete</c-button>
+  <c-tooltip content="This is a helpful tip" placement="top">
+  <c-button>Hover me</c-button>
+</c-tooltip>
+<c-button id="menu-trigger">Open menu</c-button>
+<c-tooltip content="This tooltip is always visible" trigger="manual" open placement="top">
+  <c-button>Hover has no effect here</c-button>
+</c-tooltip>
+<c-popup id="my-popup" anchor="menu-trigger" placement="bottom-start" distance="8" flip shift>
+  <div slot="anchor"></div>
+  <div style="background:#fff; border-radius:8px; padding:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+    Menu content goes here
   </div>
-</c-dialog>
-
-<!-- Form dialog with unsaved-changes guard -->
-<c-dialog id="form-dialog" label="Edit profile">
-  <input type="text" placeholder="Name" id="name-input" />
-  <div slot="footer">
-    <c-button variant="default" id="cancel-form">Cancel</c-button>
-    <c-button variant="primary" id="save-form">Save</c-button>
-  </div>
-</c-dialog>
+</c-popup>
 
 <script>
-  const infoDialog = document.getElementById('info-dialog');
-  const confirmDialog = document.getElementById('confirm-dialog');
-  const formDialog = document.getElementById('form-dialog');
+  const trigger = document.getElementById('menu-trigger');
+  const popup = document.getElementById('my-popup');
 
-  document.getElementById('open-info').addEventListener('click', () => infoDialog.show());
-  document.getElementById('open-confirm').addEventListener('click', () => confirmDialog.show());
-  document.getElementById('open-form').addEventListener('click', () => formDialog.show());
-
-  document.getElementById('cancel-delete').addEventListener('click', () => confirmDialog.hide());
-  document.getElementById('confirm-delete').addEventListener('click', () => {
-    // perform delete...
-    confirmDialog.hide();
-  });
-
-  document.getElementById('cancel-form').addEventListener('click', () => formDialog.hide());
-  document.getElementById('save-form').addEventListener('click', () => {
-    // save changes...
-    formDialog.hide();
-  });
-
-  // Guard the form dialog against accidental overlay/escape close
-  let formDirty = false;
-  document.getElementById('name-input').addEventListener('input', () => (formDirty = true));
-
-  formDialog.addEventListener('c-request-close', (event) => {
-    if (formDirty && event.detail.source !== 'close-button') {
-      event.preventDefault();
-    }
+  trigger.addEventListener('click', () => {
+    popup.active = !popup.active;
   });
 </script>
-
-
 </body>
 
 </html>

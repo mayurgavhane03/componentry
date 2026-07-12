@@ -53,12 +53,14 @@
     "@stencil/vue-output-target": "^0.13.2",
     "@types/node": "^22.13.5",
     "@vitest/browser-playwright": "^4.0.0",
+    "composed-offset-position": "^0.0.6",
     "playwright": "^1.52.0",
     "typescript": "^5.4.0",
     "vitest": "^4.0.0"
   },
   "dependencies": {
-    "@componentry-ui/theme": "workspace:*"
+    "@componentry-ui/theme": "workspace:*",
+    "@floating-ui/dom": "^1.8.0"
   },
   "publishConfig": {
     "access": "public"

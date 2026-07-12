@@ -7,8 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MenuSelectEventDetail } from "./components/c-menu/c-menu";
 import { Element } from "@stencil/core";
+import { VirtualElement } from "./components/c-popup/c-popup";
 export { MenuSelectEventDetail } from "./components/c-menu/c-menu";
 export { Element } from "@stencil/core";
+export { VirtualElement } from "./components/c-popup/c-popup";
 export namespace Components {
     /**
      * @summary Avatars are used to represent a person or object.
@@ -657,6 +659,95 @@ export namespace Components {
          */
         "value": string;
     }
+    interface CPopup {
+        /**
+          * @default false
+         */
+        "active": boolean;
+        "anchor": Element | string | VirtualElement;
+        /**
+          * @default false
+         */
+        "arrow": boolean;
+        /**
+          * @default 10
+         */
+        "arrowPadding": number;
+        /**
+          * @default "anchor"
+         */
+        "arrowPlacement": "start" | "end" | "center" | "anchor";
+        "autoSize": "horizontal" | "vertical" | "both";
+        "autoSizeBoundary": Element | Element[];
+        /**
+          * @default 0
+         */
+        "autoSizePadding": number;
+        /**
+          * @default 0
+         */
+        "distance": number;
+        /**
+          * @default false
+         */
+        "flip": boolean;
+        "flipBoundary": Element | Element[];
+        /**
+          * @default ""
+         */
+        "flipFallbackPlacements": string;
+        /**
+          * @default "best-fit"
+         */
+        "flipFallbackStrategy": "best-fit" | "initial";
+        /**
+          * @default 0
+         */
+        "flipPadding": number;
+        "getPopupElement": () => Promise<HTMLElement>;
+        /**
+          * @default false
+         */
+        "hoverBridge": boolean;
+        /**
+          * @default "top"
+         */
+        "placement": | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "right"
+    | "right-start"
+    | "right-end"
+    | "left"
+    | "left-start"
+    | "left-end";
+        "reposition": () => Promise<void>;
+        /**
+          * @default false
+         */
+        "shift": boolean;
+        "shiftBoundary": Element | Element[];
+        /**
+          * @default 0
+         */
+        "shiftPadding": number;
+        /**
+          * @default 0
+         */
+        "skidding": number;
+        /**
+          * @default "absolute"
+         */
+        "strategy": "absolute" | "fixed";
+        "sync": "width" | "height" | "both";
+        /**
+          * @default "ltr"
+         */
+        "textDirection": "ltr" | "rtl";
+    }
     /**
      * @summary Radios represent a single option within a mutually exclusive set.
      * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
@@ -773,6 +864,53 @@ export namespace Components {
          */
         "value": string | null;
     }
+    interface CTooltip {
+        /**
+          * @default ""
+         */
+        "content": string;
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default 8
+         */
+        "distance": number;
+        "hide": () => Promise<void>;
+        /**
+          * @default false
+         */
+        "hoist": boolean;
+        /**
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * @default "top"
+         */
+        "placement": | "top"
+    | "top-start"
+    | "top-end"
+    | "right"
+    | "right-start"
+    | "right-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "left-start"
+    | "left-end";
+        "show": () => Promise<void>;
+        /**
+          * @default 0
+         */
+        "skidding": number;
+        /**
+          * @default "hover focus"
+         */
+        "trigger": string;
+    }
 }
 export interface CAvatarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -818,6 +956,10 @@ export interface CMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCMenuItemElement;
 }
+export interface CPopupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCPopupElement;
+}
 export interface CRadioCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCRadioElement;
@@ -825,6 +967,10 @@ export interface CRadioCustomEvent<T> extends CustomEvent<T> {
 export interface CRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCRadioGroupElement;
+}
+export interface CTooltipCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCTooltipElement;
 }
 declare global {
     interface HTMLCAvatarElementEventMap {
@@ -1159,6 +1305,23 @@ declare global {
         prototype: HTMLCMenuItemElement;
         new (): HTMLCMenuItemElement;
     };
+    interface HTMLCPopupElementEventMap {
+        "cReposition": void;
+    }
+    interface HTMLCPopupElement extends Components.CPopup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCPopupElementEventMap>(type: K, listener: (this: HTMLCPopupElement, ev: CPopupCustomEvent<HTMLCPopupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCPopupElementEventMap>(type: K, listener: (this: HTMLCPopupElement, ev: CPopupCustomEvent<HTMLCPopupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCPopupElement: {
+        prototype: HTMLCPopupElement;
+        new (): HTMLCPopupElement;
+    };
     interface HTMLCRadioElementEventMap {
         "radioFocus": void;
         "radioBlur": void;
@@ -1217,6 +1380,26 @@ declare global {
         prototype: HTMLCRadioGroupElement;
         new (): HTMLCRadioGroupElement;
     };
+    interface HTMLCTooltipElementEventMap {
+        "cShow": void;
+        "cAfterShow": void;
+        "cHide": void;
+        "cAfterHide": void;
+    }
+    interface HTMLCTooltipElement extends Components.CTooltip, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCTooltipElementEventMap>(type: K, listener: (this: HTMLCTooltipElement, ev: CTooltipCustomEvent<HTMLCTooltipElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCTooltipElementEventMap>(type: K, listener: (this: HTMLCTooltipElement, ev: CTooltipCustomEvent<HTMLCTooltipElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCTooltipElement: {
+        prototype: HTMLCTooltipElement;
+        new (): HTMLCTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
@@ -1239,8 +1422,10 @@ declare global {
         "c-input": HTMLCInputElement;
         "c-menu": HTMLCMenuElement;
         "c-menu-item": HTMLCMenuItemElement;
+        "c-popup": HTMLCPopupElement;
         "c-radio": HTMLCRadioElement;
         "c-radio-group": HTMLCRadioGroupElement;
+        "c-tooltip": HTMLCTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -1862,6 +2047,94 @@ declare namespace LocalJSX {
          */
         "value"?: string;
     }
+    interface CPopup {
+        /**
+          * @default false
+         */
+        "active"?: boolean;
+        "anchor": Element | string | VirtualElement;
+        /**
+          * @default false
+         */
+        "arrow"?: boolean;
+        /**
+          * @default 10
+         */
+        "arrowPadding"?: number;
+        /**
+          * @default "anchor"
+         */
+        "arrowPlacement"?: "start" | "end" | "center" | "anchor";
+        "autoSize": "horizontal" | "vertical" | "both";
+        "autoSizeBoundary": Element | Element[];
+        /**
+          * @default 0
+         */
+        "autoSizePadding"?: number;
+        /**
+          * @default 0
+         */
+        "distance"?: number;
+        /**
+          * @default false
+         */
+        "flip"?: boolean;
+        "flipBoundary": Element | Element[];
+        /**
+          * @default ""
+         */
+        "flipFallbackPlacements"?: string;
+        /**
+          * @default "best-fit"
+         */
+        "flipFallbackStrategy"?: "best-fit" | "initial";
+        /**
+          * @default 0
+         */
+        "flipPadding"?: number;
+        /**
+          * @default false
+         */
+        "hoverBridge"?: boolean;
+        "onCReposition"?: (event: CPopupCustomEvent<void>) => void;
+        /**
+          * @default "top"
+         */
+        "placement"?: | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "right"
+    | "right-start"
+    | "right-end"
+    | "left"
+    | "left-start"
+    | "left-end";
+        /**
+          * @default false
+         */
+        "shift"?: boolean;
+        "shiftBoundary": Element | Element[];
+        /**
+          * @default 0
+         */
+        "shiftPadding"?: number;
+        /**
+          * @default 0
+         */
+        "skidding"?: number;
+        /**
+          * @default "absolute"
+         */
+        "strategy"?: "absolute" | "fixed";
+        "sync": "width" | "height" | "both";
+        /**
+          * @default "ltr"
+         */
+        "textDirection"?: "ltr" | "rtl";
+    }
     /**
      * @summary Radios represent a single option within a mutually exclusive set.
      * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
@@ -1982,6 +2255,55 @@ declare namespace LocalJSX {
           * @default null
          */
         "value"?: string | null;
+    }
+    interface CTooltip {
+        /**
+          * @default ""
+         */
+        "content"?: string;
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default 8
+         */
+        "distance"?: number;
+        /**
+          * @default false
+         */
+        "hoist"?: boolean;
+        "onCAfterHide"?: (event: CTooltipCustomEvent<void>) => void;
+        "onCAfterShow"?: (event: CTooltipCustomEvent<void>) => void;
+        "onCHide"?: (event: CTooltipCustomEvent<void>) => void;
+        "onCShow"?: (event: CTooltipCustomEvent<void>) => void;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * @default "top"
+         */
+        "placement"?: | "top"
+    | "top-start"
+    | "top-end"
+    | "right"
+    | "right-start"
+    | "right-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "left-start"
+    | "left-end";
+        /**
+          * @default 0
+         */
+        "skidding"?: number;
+        /**
+          * @default "hover focus"
+         */
+        "trigger"?: string;
     }
 
     interface CAvatarAttributes {
@@ -2131,6 +2453,39 @@ declare namespace LocalJSX {
         "loading": boolean;
         "disabled": boolean;
     }
+    interface CPopupAttributes {
+        "anchor": Element | string | VirtualElement;
+        "active": boolean;
+        "placement": | "top"
+    | "top-start"
+    | "top-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "right"
+    | "right-start"
+    | "right-end"
+    | "left"
+    | "left-start"
+    | "left-end";
+        "strategy": "absolute" | "fixed";
+        "distance": number;
+        "skidding": number;
+        "arrow": boolean;
+        "arrowPlacement": "start" | "end" | "center" | "anchor";
+        "arrowPadding": number;
+        "flip": boolean;
+        "flipFallbackPlacements": string;
+        "flipFallbackStrategy": "best-fit" | "initial";
+        "flipPadding": number;
+        "shift": boolean;
+        "shiftPadding": number;
+        "autoSize": "horizontal" | "vertical" | "both";
+        "sync": "width" | "height" | "both";
+        "autoSizePadding": number;
+        "hoverBridge": boolean;
+        "textDirection": "ltr" | "rtl";
+    }
     interface CRadioAttributes {
         "value": string;
         "appearance": "default" | "button" | "card";
@@ -2164,6 +2519,27 @@ declare namespace LocalJSX {
     | "large";
         "required": boolean;
     }
+    interface CTooltipAttributes {
+        "content": string;
+        "placement": | "top"
+    | "top-start"
+    | "top-end"
+    | "right"
+    | "right-start"
+    | "right-end"
+    | "bottom"
+    | "bottom-start"
+    | "bottom-end"
+    | "left"
+    | "left-start"
+    | "left-end";
+        "disabled": boolean;
+        "distance": number;
+        "open": boolean;
+        "skidding": number;
+        "trigger": string;
+        "hoist": boolean;
+    }
 
     interface IntrinsicElements {
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
@@ -2187,8 +2563,10 @@ declare namespace LocalJSX {
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] };
         "c-menu": CMenu;
         "c-menu-item": Omit<CMenuItem, keyof CMenuItemAttributes> & { [K in keyof CMenuItem & keyof CMenuItemAttributes]?: CMenuItem[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `attr:${K}`]?: CMenuItemAttributes[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `prop:${K}`]?: CMenuItem[K] };
+        "c-popup": Omit<CPopup, keyof CPopupAttributes> & { [K in keyof CPopup & keyof CPopupAttributes]?: CPopup[K] } & { [K in keyof CPopup & keyof CPopupAttributes as `attr:${K}`]?: CPopupAttributes[K] } & { [K in keyof CPopup & keyof CPopupAttributes as `prop:${K}`]?: CPopup[K] } & OneOf<"anchor", CPopup["anchor"], CPopupAttributes["anchor"]> & OneOf<"autoSize", CPopup["autoSize"], CPopupAttributes["autoSize"]> & OneOf<"sync", CPopup["sync"], CPopupAttributes["sync"]>;
         "c-radio": Omit<CRadio, keyof CRadioAttributes> & { [K in keyof CRadio & keyof CRadioAttributes]?: CRadio[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `attr:${K}`]?: CRadioAttributes[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `prop:${K}`]?: CRadio[K] } & OneOf<"value", CRadio["value"], CRadioAttributes["value"]> & OneOf<"size", CRadio["size"], CRadioAttributes["size"]>;
         "c-radio-group": Omit<CRadioGroup, keyof CRadioGroupAttributes> & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes]?: CRadioGroup[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `attr:${K}`]?: CRadioGroupAttributes[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `prop:${K}`]?: CRadioGroup[K] } & OneOf<"size", CRadioGroup["size"], CRadioGroupAttributes["size"]>;
+        "c-tooltip": Omit<CTooltip, keyof CTooltipAttributes> & { [K in keyof CTooltip & keyof CTooltipAttributes]?: CTooltip[K] } & { [K in keyof CTooltip & keyof CTooltipAttributes as `attr:${K}`]?: CTooltipAttributes[K] } & { [K in keyof CTooltip & keyof CTooltipAttributes as `prop:${K}`]?: CTooltip[K] };
     }
 }
 export { LocalJSX as JSX };
@@ -2272,6 +2650,7 @@ declare module "@stencil/core" {
              * @cssprop [--submenu-offset=-2px] - The distance submenus shift to overlap the parent menu.
              */
             "c-menu-item": LocalJSX.IntrinsicElements["c-menu-item"] & JSXBase.HTMLAttributes<HTMLCMenuItemElement>;
+            "c-popup": LocalJSX.IntrinsicElements["c-popup"] & JSXBase.HTMLAttributes<HTMLCPopupElement>;
             /**
              * @summary Radios represent a single option within a mutually exclusive set.
              * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
@@ -2296,6 +2675,7 @@ declare module "@stencil/core" {
              * @csspart hint               - The hint's wrapper.
              */
             "c-radio-group": LocalJSX.IntrinsicElements["c-radio-group"] & JSXBase.HTMLAttributes<HTMLCRadioGroupElement>;
+            "c-tooltip": LocalJSX.IntrinsicElements["c-tooltip"] & JSXBase.HTMLAttributes<HTMLCTooltipElement>;
         }
     }
 }

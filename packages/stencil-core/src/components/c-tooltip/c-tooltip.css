@@ -1,0 +1,43 @@
+:host {
+  --max-width: 20rem;
+  --hide-delay: 0ms;
+  --show-delay: 150ms;
+  display: contents;
+}
+.tooltip {
+  --arrow-size: var(--c-tooltip-arrow-size);
+  --arrow-color: var(--c-tooltip-background-color);
+}
+.tooltip::part(base__popup) {
+  z-index: var(--c-z-index-tooltip);
+}
+.tooltip[placement^="top"]::part(base__popup) {
+  transform-origin: bottom;
+}
+.tooltip[placement^="bottom"]::part(base__popup) {
+  transform-origin: top;
+}
+.tooltip[placement^="left"]::part(base__popup) {
+  transform-origin: right;
+}
+.tooltip[placement^="right"]::part(base__popup) {
+  transform-origin: left;
+}
+.tooltip__body {
+  display: block;
+  width: max-content;
+  max-width: var(--max-width);
+  border-radius: var(--c-tooltip-border-radius);
+  background-color: var(--c-tooltip-background-color);
+  font-family: var(--c-tooltip-font-family);
+  font-size: var(--c-tooltip-font-size);
+  font-weight: var(--c-tooltip-font-weight);
+  line-height: var(--c-tooltip-line-height);
+  text-align: start;
+  white-space: normal;
+  color: var(--c-tooltip-color);
+  padding: var(--c-tooltip-padding);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}

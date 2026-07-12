@@ -23,6 +23,8 @@ export const DIRECTIVES = [
   d.CInput,
   d.CMenu,
   d.CMenuItem,
+  d.CPopup,
   d.CRadio,
-  d.CRadioGroup
+  d.CRadioGroup,
+  d.CTooltip
 ];

@@ -25,5 +25,7 @@ export { CDrawer } from "./c-drawer.js";
 export { CInput } from "./c-input.js";
 export { CMenuItem } from "./c-menu-item.js";
 export { CMenu } from "./c-menu.js";
+export { CPopup } from "./c-popup.js";
 export { CRadioGroup } from "./c-radio-group.js";
 export { CRadio } from "./c-radio.js";
+export { CTooltip } from "./c-tooltip.js";
