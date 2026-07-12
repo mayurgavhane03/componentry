@@ -27,8 +27,10 @@ import { defineCustomElement as defineCDrawer } from '@componentry-ui/stencil/di
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
+import { defineCustomElement as defineCPopup } from '@componentry-ui/stencil/dist/components/c-popup.js';
 import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
+import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
 @ProxyCmp({
   defineCustomElementFn: defineCAvatar,
   inputs: ['image', 'initials', 'label', 'loading', 'shape']
@@ -665,6 +667,37 @@ export declare interface CMenuItem extends Components.CMenuItem {
 
 
 @ProxyCmp({
+  defineCustomElementFn: defineCPopup,
+  inputs: ['active', 'anchor', 'arrow', 'arrowPadding', 'arrowPlacement', 'autoSize', 'autoSizeBoundary', 'autoSizePadding', 'distance', 'flip', 'flipBoundary', 'flipFallbackPlacements', 'flipFallbackStrategy', 'flipPadding', 'hoverBridge', 'placement', 'shift', 'shiftBoundary', 'shiftPadding', 'skidding', 'strategy', 'sync', 'textDirection'],
+  methods: ['getPopupElement', 'reposition']
+})
+@Component({
+  selector: 'c-popup',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['active', { name: 'anchor', required: true }, 'arrow', 'arrowPadding', 'arrowPlacement', { name: 'autoSize', required: true }, { name: 'autoSizeBoundary', required: true }, 'autoSizePadding', 'distance', 'flip', { name: 'flipBoundary', required: true }, 'flipFallbackPlacements', 'flipFallbackStrategy', 'flipPadding', 'hoverBridge', 'placement', 'shift', { name: 'shiftBoundary', required: true }, 'shiftPadding', 'skidding', 'strategy', { name: 'sync', required: true }, 'textDirection'],
+  outputs: ['cReposition'],
+})
+export class CPopup {
+  protected el: HTMLCPopupElement;
+  @Output() cReposition = new EventEmitter<CPopupCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CPopupCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CPopup extends Components.CPopup {
+
+  cReposition: EventEmitter<CPopupCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
   defineCustomElementFn: defineCRadio,
   inputs: ['appearance', 'checked', 'disabled', 'size', 'value'],
   methods: ['setFocus']
@@ -733,6 +766,46 @@ export declare interface CRadioGroup extends Components.CRadioGroup {
   cChange: EventEmitter<CRadioGroupCustomEvent<void>>;
 
   cInput: EventEmitter<CRadioGroupCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCTooltip,
+  inputs: ['content', 'disabled', 'distance', 'hoist', 'open', 'placement', 'skidding', 'trigger'],
+  methods: ['show', 'hide']
+})
+@Component({
+  selector: 'c-tooltip',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['content', 'disabled', 'distance', 'hoist', 'open', 'placement', 'skidding', 'trigger'],
+  outputs: ['cShow', 'cAfterShow', 'cHide', 'cAfterHide'],
+})
+export class CTooltip {
+  protected el: HTMLCTooltipElement;
+  @Output() cShow = new EventEmitter<CTooltipCustomEvent<void>>();
+  @Output() cAfterShow = new EventEmitter<CTooltipCustomEvent<void>>();
+  @Output() cHide = new EventEmitter<CTooltipCustomEvent<void>>();
+  @Output() cAfterHide = new EventEmitter<CTooltipCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CTooltipCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CTooltip extends Components.CTooltip {
+
+  cShow: EventEmitter<CTooltipCustomEvent<void>>;
+
+  cAfterShow: EventEmitter<CTooltipCustomEvent<void>>;
+
+  cHide: EventEmitter<CTooltipCustomEvent<void>>;
+
+  cAfterHide: EventEmitter<CTooltipCustomEvent<void>>;
 }
 
 
