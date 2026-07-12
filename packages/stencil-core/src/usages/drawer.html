@@ -664,64 +664,150 @@
 </head>
 
 <body>
-  <c-button id="open-info">Open info</c-button>
-<c-button id="open-confirm">Delete item</c-button>
-<c-button id="open-form">Edit profile</c-button>
-
-<!-- Simple info dialog -->
-<c-dialog id="info-dialog" label="About this feature">
-  This panel shows read-only details. Nothing to confirm here.
-</c-dialog>
-
-<!-- Confirmation dialog with footer actions -->
-<c-dialog id="confirm-dialog" label="Delete item">
-  Are you sure you want to delete this item? This can't be undone.
-  <div slot="footer">
-    <c-button variant="default" id="cancel-delete">Cancel</c-button>
-    <c-button variant="danger" id="confirm-delete">Delete</c-button>
+ <h1 style="margin:0 0 1rem;font-size:1.1rem;">c-drawer test buttons</h1>
+ 
+  <!-- 1. Basic drawer, opened via .show() -->
+  <button id="open-basic">Open Basic Drawer</button>
+  <c-drawer id="basic-drawer" no-mask-closable label="Basic Drawer">
+    <p>This is a basic drawer, shown via the show() method.</p>
+  </c-drawer>
+ 
+  <!-- 2. Placement variants -->
+  <button id="open-start">Open Start Drawer</button>
+  <c-drawer id="start-drawer" placement="start" label="Start Drawer">
+    <p>Opens from the left.</p>
+  </c-drawer>
+ 
+  <button id="open-top">Open Top Drawer</button>
+  <c-drawer id="top-drawer" placement="top" label="Top Drawer">
+    <p>Opens from the top.</p>
+  </c-drawer>
+ 
+  <!-- 3. Open via the `open` attribute directly (no JS) -->
+  <button id="toggle-attr">Toggle "open" Attribute Drawer</button>
+  <c-drawer id="attr-drawer" label="Open via attribute">
+    <p>This drawer is toggled by setting/removing the open attribute.</p>
+  </c-drawer>
+ 
+  <!-- 4. No header -->
+  <button id="open-noheader">Open No-Header Drawer</button>
+  <c-drawer id="noheader-drawer" no-header label="Hidden Header">
+    <p>This drawer has no visible header — make sure there's another way to close it.</p>
+    <button id="close-noheader">Close this drawer</button>
+  </c-drawer>
+ 
+  <!-- 5. Custom label slot -->
+  <button id="open-customlabel">Open Custom Label Drawer</button>
+  <c-drawer id="customlabel-drawer">
+    <span slot="label"><strong>⭐ Custom Header</strong></span>
+    <p>Using the label slot instead of the label attribute.</p>
+  </c-drawer>
+ 
+  <!-- 6. Header actions slot -->
+  <button id="open-headeractions">Open Header Actions Drawer</button>
+  <c-drawer id="headeractions-drawer" label="Header Actions">
+    <button slot="header-actions">Save</button>
+    <p>Header action example.</p>
+  </c-drawer>
+ 
+  <!-- 7. Footer slot -->
+  <button id="open-footer">Open Footer Drawer</button>
+  <c-drawer id="footer-drawer" label="Footer Example">
+    <p>Drawer with footer buttons.</p>
+    <div slot="footer">
+      <button id="footer-cancel">Cancel</button>
+      <button id="footer-save">Save</button>
+    </div>
+  </c-drawer>
+ 
+  <!-- 8. Autofocus -->
+  <button id="open-autofocus">Open Autofocus Drawer</button>
+  <c-drawer id="autofocus-drawer" label="Autofocus">
+    <input autofocus placeholder="Focused automatically" />
+  </c-drawer>
+ 
+  <!-- 9. Listening to events -->
+  <button id="open-events">Open Drawer (watch console)</button>
+  <c-drawer id="events-drawer" label="Event Logging">
+    <p>Open devtools console and watch events fire as you open/close this drawer.</p>
+  </c-drawer>
+ 
+  <!-- 10. Contained drawer (slides inside its parent, not the viewport) -->
+  <div style="position:relative;height:250px;border:1px solid #ddd;padding:12px;overflow:hidden;">
+    <button id="open-contained">Open Contained Drawer</button>
+    <c-drawer id="contained-drawer" contained label="Contained Drawer">
+      <p>This drawer stays inside its relatively-positioned parent.</p>
+    </c-drawer>
   </div>
-</c-dialog>
-
-<!-- Form dialog with unsaved-changes guard -->
-<c-dialog id="form-dialog" label="Edit profile">
-  <input type="text" placeholder="Name" id="name-input" />
-  <div slot="footer">
-    <c-button variant="default" id="cancel-form">Cancel</c-button>
-    <c-button variant="primary" id="save-form">Save</c-button>
-  </div>
-</c-dialog>
-
-<script>
-  const infoDialog = document.getElementById('info-dialog');
-  const confirmDialog = document.getElementById('confirm-dialog');
-  const formDialog = document.getElementById('form-dialog');
-
-  document.getElementById('open-info').addEventListener('click', () => infoDialog.show());
-  document.getElementById('open-confirm').addEventListener('click', () => confirmDialog.show());
-  document.getElementById('open-form').addEventListener('click', () => formDialog.show());
-
-  document.getElementById('cancel-delete').addEventListener('click', () => confirmDialog.hide());
-  document.getElementById('confirm-delete').addEventListener('click', () => {
-    // perform delete...
-    confirmDialog.hide();
-  });
-
-  document.getElementById('cancel-form').addEventListener('click', () => formDialog.hide());
-  document.getElementById('save-form').addEventListener('click', () => {
-    // save changes...
-    formDialog.hide();
-  });
-
-  // Guard the form dialog against accidental overlay/escape close
-  let formDirty = false;
-  document.getElementById('name-input').addEventListener('input', () => (formDirty = true));
-
-  formDialog.addEventListener('c-request-close', (event) => {
-    if (formDirty && event.detail.source !== 'close-button') {
-      event.preventDefault();
-    }
-  });
-</script>
+ 
+  <script>
+    // 1. Basic — open via show(), close via the drawer's own close button / overlay / Escape
+    document.getElementById('open-basic').addEventListener('click', () => {
+      document.getElementById('basic-drawer').show();
+    });
+ 
+    // 2. Placement variants
+    document.getElementById('open-start').addEventListener('click', () => {
+      document.getElementById('start-drawer').show();
+    });
+    document.getElementById('open-top').addEventListener('click', () => {
+      document.getElementById('top-drawer').show();
+    });
+ 
+    // 3. Toggle via the open attribute/property directly
+    document.getElementById('toggle-attr').addEventListener('click', () => {
+      const drawer = document.getElementById('attr-drawer');
+      drawer.open = !drawer.open;
+    });
+ 
+    // 4. No-header drawer — needs a manual close trigger
+    document.getElementById('open-noheader').addEventListener('click', () => {
+      document.getElementById('noheader-drawer').show();
+    });
+    document.getElementById('close-noheader').addEventListener('click', () => {
+      document.getElementById('noheader-drawer').hide();
+    });
+ 
+    // 5. Custom label slot
+    document.getElementById('open-customlabel').addEventListener('click', () => {
+      document.getElementById('customlabel-drawer').show();
+    });
+ 
+    // 6. Header actions slot
+    document.getElementById('open-headeractions').addEventListener('click', () => {
+      document.getElementById('headeractions-drawer').show();
+    });
+ 
+    // 7. Footer slot — Cancel/Save both close the drawer
+    document.getElementById('open-footer').addEventListener('click', () => {
+      document.getElementById('footer-drawer').show();
+    });
+    document.getElementById('footer-cancel').addEventListener('click', () => {
+      document.getElementById('footer-drawer').hide();
+    });
+    document.getElementById('footer-save').addEventListener('click', () => {
+      document.getElementById('footer-drawer').hide();
+    });
+ 
+    // 8. Autofocus
+    document.getElementById('open-autofocus').addEventListener('click', () => {
+      document.getElementById('autofocus-drawer').show();
+    });
+ 
+    // 9. Event logging — confirm the renamed c* events fire correctly
+    const eventsDrawer = document.getElementById('events-drawer');
+    ['cShow', 'cAfterShow', 'cHide', 'cAfterHide', 'cInitialFocus', 'cRequestClose'].forEach(eventName => {
+      eventsDrawer.addEventListener(eventName, e => console.log(eventName, e.detail));
+    });
+    document.getElementById('open-events').addEventListener('click', () => {
+      eventsDrawer.show();
+    });
+ 
+    // 10. Contained drawer
+    document.getElementById('open-contained').addEventListener('click', () => {
+      document.getElementById('contained-drawer').show();
+    });
+  </script>
 
 
 </body>

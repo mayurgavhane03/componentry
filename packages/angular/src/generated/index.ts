@@ -18,6 +18,7 @@ export const DIRECTIVES = [
   d.CCheckbox,
   d.CCombobox,
   d.CComboboxItem,
+  d.CDialog,
   d.CDrawer,
   d.CInput,
   d.CMenu,

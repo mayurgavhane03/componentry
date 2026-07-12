@@ -20,6 +20,7 @@ export { CCarousel } from "./c-carousel.js";
 export { CCheckbox } from "./c-checkbox.js";
 export { CComboboxItem } from "./c-combobox-item.js";
 export { CCombobox } from "./c-combobox.js";
+export { CDialog } from "./c-dialog.js";
 export { CDrawer } from "./c-drawer.js";
 export { CInput } from "./c-input.js";
 export { CMenuItem } from "./c-menu-item.js";

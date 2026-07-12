@@ -21,6 +21,7 @@ import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/sten
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCCombobox } from '@componentry-ui/stencil/dist/components/c-combobox.js';
 import { defineCustomElement as defineCComboboxItem } from '@componentry-ui/stencil/dist/components/c-combobox-item.js';
+import { defineCustomElement as defineCDialog } from '@componentry-ui/stencil/dist/components/c-dialog.js';
 import { defineCustomElement as defineCDrawer } from '@componentry-ui/stencil/dist/components/c-drawer.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
@@ -175,6 +176,26 @@ export const CComboboxItem: StencilVueComponent<JSX.CComboboxItem> = /*@__PURE__
   'itemSelect'
 ], [
   'itemSelect'
+]);
+
+
+export const CDialog: StencilVueComponent<JSX.CDialog> = /*@__PURE__*/ defineContainer<JSX.CDialog>('c-dialog', defineCDialog, [
+  'open',
+  'label',
+  'noHeader',
+  'c-show',
+  'c-after-show',
+  'c-hide',
+  'c-after-hide',
+  'c-initial-focus',
+  'c-request-close'
+], [
+  'c-show',
+  'c-after-show',
+  'c-hide',
+  'c-after-hide',
+  'c-initial-focus',
+  'c-request-close'
 ]);
 
 

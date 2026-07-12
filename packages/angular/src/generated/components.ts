@@ -22,6 +22,7 @@ import { defineCustomElement as defineCCarouselItem } from '@componentry-ui/sten
 import { defineCustomElement as defineCCheckbox } from '@componentry-ui/stencil/dist/components/c-checkbox.js';
 import { defineCustomElement as defineCCombobox } from '@componentry-ui/stencil/dist/components/c-combobox.js';
 import { defineCustomElement as defineCComboboxItem } from '@componentry-ui/stencil/dist/components/c-combobox-item.js';
+import { defineCustomElement as defineCDialog } from '@componentry-ui/stencil/dist/components/c-dialog.js';
 import { defineCustomElement as defineCDrawer } from '@componentry-ui/stencil/dist/components/c-drawer.js';
 import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dist/components/c-input.js';
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
@@ -460,6 +461,52 @@ import type { CComboboxItemCustomEvent } from '@componentry-ui/stencil/dist/comp
 export declare interface CComboboxItem extends Components.CComboboxItem {
 
   itemSelect: EventEmitter<CComboboxItemCustomEvent<string>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCDialog,
+  inputs: ['label', 'noHeader', 'open'],
+  methods: ['show', 'hide']
+})
+@Component({
+  selector: 'c-dialog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label', 'noHeader', 'open'],
+  outputs: ['c-show', 'c-after-show', 'c-hide', 'c-after-hide', 'c-initial-focus', 'c-request-close'],
+})
+export class CDialog {
+  protected el: HTMLCDialogElement;
+  @Output() cShow = new EventEmitter<CDialogCustomEvent<void>>();
+  @Output() cAfterShow = new EventEmitter<CDialogCustomEvent<void>>();
+  @Output() cHide = new EventEmitter<CDialogCustomEvent<void>>();
+  @Output() cAfterHide = new EventEmitter<CDialogCustomEvent<void>>();
+  @Output() cInitialFocus = new EventEmitter<CDialogCustomEvent<void>>();
+  @Output() cRequestClose = new EventEmitter<CDialogCustomEvent<{ source: "close-button" | "keyboard" | "overlay"; }>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CDialogCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CDialog extends Components.CDialog {
+
+  'c-show': EventEmitter<CDialogCustomEvent<void>>;
+
+  'c-after-show': EventEmitter<CDialogCustomEvent<void>>;
+
+  'c-hide': EventEmitter<CDialogCustomEvent<void>>;
+
+  'c-after-hide': EventEmitter<CDialogCustomEvent<void>>;
+
+  'c-initial-focus': EventEmitter<CDialogCustomEvent<void>>;
+
+  'c-request-close': EventEmitter<CDialogCustomEvent<{ source: "close-button" | "keyboard" | "overlay"; }>>;
 }
 
 

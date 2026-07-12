@@ -411,6 +411,28 @@ export namespace Components {
          */
         "value": string;
     }
+    interface CDialog {
+        /**
+          * Hides the dialog.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * @default ""
+         */
+        "label": string;
+        /**
+          * @default false
+         */
+        "noHeader": boolean;
+        /**
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * Shows the dialog.
+         */
+        "show": () => Promise<void>;
+    }
     /**
      * @event cShow - Emitted when the drawer opens.
      * @event cAfterShow - Emitted after the drawer opens and all animations are complete.
@@ -776,6 +798,10 @@ export interface CComboboxItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCComboboxItemElement;
 }
+export interface CDialogCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCDialogElement;
+}
 export interface CDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCDrawerElement;
@@ -1012,6 +1038,30 @@ declare global {
         prototype: HTMLCComboboxItemElement;
         new (): HTMLCComboboxItemElement;
     };
+    interface HTMLCDialogElementEventMap {
+        "c-show": void;
+        "c-after-show": void;
+        "c-hide": void;
+        "c-after-hide": void;
+        "c-initial-focus": void;
+        "c-request-close": {
+    source: "close-button" | "keyboard" | "overlay";
+  };
+    }
+    interface HTMLCDialogElement extends Components.CDialog, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCDialogElementEventMap>(type: K, listener: (this: HTMLCDialogElement, ev: CDialogCustomEvent<HTMLCDialogElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCDialogElementEventMap>(type: K, listener: (this: HTMLCDialogElement, ev: CDialogCustomEvent<HTMLCDialogElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCDialogElement: {
+        prototype: HTMLCDialogElement;
+        new (): HTMLCDialogElement;
+    };
     interface HTMLCDrawerElementEventMap {
         "cShow": void;
         "cAfterShow": void;
@@ -1184,6 +1234,7 @@ declare global {
         "c-checkbox": HTMLCCheckboxElement;
         "c-combobox": HTMLCComboboxElement;
         "c-combobox-item": HTMLCComboboxItemElement;
+        "c-dialog": HTMLCDialogElement;
         "c-drawer": HTMLCDrawerElement;
         "c-input": HTMLCInputElement;
         "c-menu": HTMLCMenuElement;
@@ -1572,6 +1623,28 @@ declare namespace LocalJSX {
           * @default ""
          */
         "value"?: string;
+    }
+    interface CDialog {
+        /**
+          * @default ""
+         */
+        "label"?: string;
+        /**
+          * @default false
+         */
+        "noHeader"?: boolean;
+        "onC-after-hide"?: (event: CDialogCustomEvent<void>) => void;
+        "onC-after-show"?: (event: CDialogCustomEvent<void>) => void;
+        "onC-hide"?: (event: CDialogCustomEvent<void>) => void;
+        "onC-initial-focus"?: (event: CDialogCustomEvent<void>) => void;
+        "onC-request-close"?: (event: CDialogCustomEvent<{
+    source: "close-button" | "keyboard" | "overlay";
+  }>) => void;
+        "onC-show"?: (event: CDialogCustomEvent<void>) => void;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
     }
     /**
      * @event cShow - Emitted when the drawer opens.
@@ -1998,6 +2071,11 @@ declare namespace LocalJSX {
         "highlighted": boolean;
         "itemHidden": boolean;
     }
+    interface CDialogAttributes {
+        "open": boolean;
+        "label": string;
+        "noHeader": boolean;
+    }
     interface CDrawerAttributes {
         "open": boolean;
         "label": string;
@@ -2104,6 +2182,7 @@ declare namespace LocalJSX {
         "c-checkbox": Omit<CCheckbox, keyof CCheckboxAttributes> & { [K in keyof CCheckbox & keyof CCheckboxAttributes]?: CCheckbox[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `attr:${K}`]?: CCheckboxAttributes[K] } & { [K in keyof CCheckbox & keyof CCheckboxAttributes as `prop:${K}`]?: CCheckbox[K] } & OneOf<"value", CCheckbox["value"], CCheckboxAttributes["value"]>;
         "c-combobox": Omit<CCombobox, keyof CComboboxAttributes> & { [K in keyof CCombobox & keyof CComboboxAttributes]?: CCombobox[K] } & { [K in keyof CCombobox & keyof CComboboxAttributes as `attr:${K}`]?: CComboboxAttributes[K] } & { [K in keyof CCombobox & keyof CComboboxAttributes as `prop:${K}`]?: CCombobox[K] };
         "c-combobox-item": Omit<CComboboxItem, keyof CComboboxItemAttributes> & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes]?: CComboboxItem[K] } & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes as `attr:${K}`]?: CComboboxItemAttributes[K] } & { [K in keyof CComboboxItem & keyof CComboboxItemAttributes as `prop:${K}`]?: CComboboxItem[K] };
+        "c-dialog": Omit<CDialog, keyof CDialogAttributes> & { [K in keyof CDialog & keyof CDialogAttributes]?: CDialog[K] } & { [K in keyof CDialog & keyof CDialogAttributes as `attr:${K}`]?: CDialogAttributes[K] } & { [K in keyof CDialog & keyof CDialogAttributes as `prop:${K}`]?: CDialog[K] };
         "c-drawer": Omit<CDrawer, keyof CDrawerAttributes> & { [K in keyof CDrawer & keyof CDrawerAttributes]?: CDrawer[K] } & { [K in keyof CDrawer & keyof CDrawerAttributes as `attr:${K}`]?: CDrawerAttributes[K] } & { [K in keyof CDrawer & keyof CDrawerAttributes as `prop:${K}`]?: CDrawer[K] };
         "c-input": Omit<CInput, keyof CInputAttributes> & { [K in keyof CInput & keyof CInputAttributes]?: CInput[K] } & { [K in keyof CInput & keyof CInputAttributes as `attr:${K}`]?: CInputAttributes[K] } & { [K in keyof CInput & keyof CInputAttributes as `prop:${K}`]?: CInput[K] };
         "c-menu": CMenu;
@@ -2171,6 +2250,7 @@ declare module "@stencil/core" {
             "c-checkbox": LocalJSX.IntrinsicElements["c-checkbox"] & JSXBase.HTMLAttributes<HTMLCCheckboxElement>;
             "c-combobox": LocalJSX.IntrinsicElements["c-combobox"] & JSXBase.HTMLAttributes<HTMLCComboboxElement>;
             "c-combobox-item": LocalJSX.IntrinsicElements["c-combobox-item"] & JSXBase.HTMLAttributes<HTMLCComboboxItemElement>;
+            "c-dialog": LocalJSX.IntrinsicElements["c-dialog"] & JSXBase.HTMLAttributes<HTMLCDialogElement>;
             /**
              * @event cShow - Emitted when the drawer opens.
              * @event cAfterShow - Emitted after the drawer opens and all animations are complete.
