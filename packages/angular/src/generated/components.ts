@@ -28,6 +28,7 @@ import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dis
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
 import { defineCustomElement as defineCPopup } from '@componentry-ui/stencil/dist/components/c-popup.js';
+import { defineCustomElement as defineCProgressBar } from '@componentry-ui/stencil/dist/components/c-progress-bar.js';
 import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
 import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
@@ -696,6 +697,29 @@ export declare interface CPopup extends Components.CPopup {
 
   cReposition: EventEmitter<CPopupCustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCProgressBar,
+  inputs: ['indeterminate', 'label', 'titleText', 'value']
+})
+@Component({
+  selector: 'c-progress-bar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['indeterminate', 'label', 'titleText', 'value'],
+})
+export class CProgressBar {
+  protected el: HTMLCProgressBarElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CProgressBar extends Components.CProgressBar {}
 
 
 @ProxyCmp({

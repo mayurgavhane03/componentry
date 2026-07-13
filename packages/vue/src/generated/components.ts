@@ -27,6 +27,7 @@ import { defineCustomElement as defineCInput } from '@componentry-ui/stencil/dis
 import { defineCustomElement as defineCMenu } from '@componentry-ui/stencil/dist/components/c-menu.js';
 import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/dist/components/c-menu-item.js';
 import { defineCustomElement as defineCPopup } from '@componentry-ui/stencil/dist/components/c-popup.js';
+import { defineCustomElement as defineCProgressBar } from '@componentry-ui/stencil/dist/components/c-progress-bar.js';
 import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
 import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
@@ -317,6 +318,14 @@ export const CPopup: StencilVueComponent<JSX.CPopup> = /*@__PURE__*/ defineConta
   'cReposition'
 ], [
   'cReposition'
+]);
+
+
+export const CProgressBar: StencilVueComponent<JSX.CProgressBar> = /*@__PURE__*/ defineContainer<JSX.CProgressBar>('c-progress-bar', defineCProgressBar, [
+  'value',
+  'indeterminate',
+  'label',
+  'titleText'
 ]);
 
 

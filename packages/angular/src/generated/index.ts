@@ -24,6 +24,7 @@ export const DIRECTIVES = [
   d.CMenu,
   d.CMenuItem,
   d.CPopup,
+  d.CProgressBar,
   d.CRadio,
   d.CRadioGroup,
   d.CSpinner,

@@ -749,6 +749,34 @@ export namespace Components {
         "textDirection": "ltr" | "rtl";
     }
     /**
+     * @summary Progress bars are used to show the status of an ongoing operation.
+     * @cssproperty --c-height - The progress bar's height.
+     * @cssproperty --c-track-color - The color of the track.
+     * @cssproperty --c-indicator-color - The color of the indicator.
+     * @cssproperty --c-label-color - The color of the label.
+     */
+    interface CProgressBar {
+        /**
+          * When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.
+          * @default false
+         */
+        "indeterminate": boolean;
+        /**
+          * A custom label for assistive devices.
+          * @default ''
+         */
+        "label": string;
+        /**
+          * Optional title attribute passed to the base wrapper.
+         */
+        "titleText"?: string;
+        /**
+          * The current progress as a percentage, 0 to 100.
+          * @default 0
+         */
+        "value": number;
+    }
+    /**
      * @summary Radios represent a single option within a mutually exclusive set.
      * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
      * @event radioBlur  - Emitted when the control loses focus.
@@ -1338,6 +1366,19 @@ declare global {
         prototype: HTMLCPopupElement;
         new (): HTMLCPopupElement;
     };
+    /**
+     * @summary Progress bars are used to show the status of an ongoing operation.
+     * @cssproperty --c-height - The progress bar's height.
+     * @cssproperty --c-track-color - The color of the track.
+     * @cssproperty --c-indicator-color - The color of the indicator.
+     * @cssproperty --c-label-color - The color of the label.
+     */
+    interface HTMLCProgressBarElement extends Components.CProgressBar, HTMLStencilElement {
+    }
+    var HTMLCProgressBarElement: {
+        prototype: HTMLCProgressBarElement;
+        new (): HTMLCProgressBarElement;
+    };
     interface HTMLCRadioElementEventMap {
         "radioFocus": void;
         "radioBlur": void;
@@ -1454,6 +1495,7 @@ declare global {
         "c-menu": HTMLCMenuElement;
         "c-menu-item": HTMLCMenuItemElement;
         "c-popup": HTMLCPopupElement;
+        "c-progress-bar": HTMLCProgressBarElement;
         "c-radio": HTMLCRadioElement;
         "c-radio-group": HTMLCRadioGroupElement;
         "c-spinner": HTMLCSpinnerElement;
@@ -2168,6 +2210,34 @@ declare namespace LocalJSX {
         "textDirection"?: "ltr" | "rtl";
     }
     /**
+     * @summary Progress bars are used to show the status of an ongoing operation.
+     * @cssproperty --c-height - The progress bar's height.
+     * @cssproperty --c-track-color - The color of the track.
+     * @cssproperty --c-indicator-color - The color of the indicator.
+     * @cssproperty --c-label-color - The color of the label.
+     */
+    interface CProgressBar {
+        /**
+          * When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.
+          * @default false
+         */
+        "indeterminate"?: boolean;
+        /**
+          * A custom label for assistive devices.
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * Optional title attribute passed to the base wrapper.
+         */
+        "titleText"?: string;
+        /**
+          * The current progress as a percentage, 0 to 100.
+          * @default 0
+         */
+        "value"?: number;
+    }
+    /**
      * @summary Radios represent a single option within a mutually exclusive set.
      * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.
      * @event radioBlur  - Emitted when the control loses focus.
@@ -2534,6 +2604,12 @@ declare namespace LocalJSX {
         "hoverBridge": boolean;
         "textDirection": "ltr" | "rtl";
     }
+    interface CProgressBarAttributes {
+        "value": number;
+        "indeterminate": boolean;
+        "label": string;
+        "titleText": string;
+    }
     interface CRadioAttributes {
         "value": string;
         "appearance": "default" | "button" | "card";
@@ -2615,6 +2691,7 @@ declare namespace LocalJSX {
         "c-menu": CMenu;
         "c-menu-item": Omit<CMenuItem, keyof CMenuItemAttributes> & { [K in keyof CMenuItem & keyof CMenuItemAttributes]?: CMenuItem[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `attr:${K}`]?: CMenuItemAttributes[K] } & { [K in keyof CMenuItem & keyof CMenuItemAttributes as `prop:${K}`]?: CMenuItem[K] };
         "c-popup": Omit<CPopup, keyof CPopupAttributes> & { [K in keyof CPopup & keyof CPopupAttributes]?: CPopup[K] } & { [K in keyof CPopup & keyof CPopupAttributes as `attr:${K}`]?: CPopupAttributes[K] } & { [K in keyof CPopup & keyof CPopupAttributes as `prop:${K}`]?: CPopup[K] } & OneOf<"anchor", CPopup["anchor"], CPopupAttributes["anchor"]> & OneOf<"autoSize", CPopup["autoSize"], CPopupAttributes["autoSize"]> & OneOf<"sync", CPopup["sync"], CPopupAttributes["sync"]>;
+        "c-progress-bar": Omit<CProgressBar, keyof CProgressBarAttributes> & { [K in keyof CProgressBar & keyof CProgressBarAttributes]?: CProgressBar[K] } & { [K in keyof CProgressBar & keyof CProgressBarAttributes as `attr:${K}`]?: CProgressBarAttributes[K] } & { [K in keyof CProgressBar & keyof CProgressBarAttributes as `prop:${K}`]?: CProgressBar[K] };
         "c-radio": Omit<CRadio, keyof CRadioAttributes> & { [K in keyof CRadio & keyof CRadioAttributes]?: CRadio[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `attr:${K}`]?: CRadioAttributes[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `prop:${K}`]?: CRadio[K] } & OneOf<"value", CRadio["value"], CRadioAttributes["value"]> & OneOf<"size", CRadio["size"], CRadioAttributes["size"]>;
         "c-radio-group": Omit<CRadioGroup, keyof CRadioGroupAttributes> & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes]?: CRadioGroup[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `attr:${K}`]?: CRadioGroupAttributes[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `prop:${K}`]?: CRadioGroup[K] } & OneOf<"size", CRadioGroup["size"], CRadioGroupAttributes["size"]>;
         "c-spinner": Omit<CSpinner, keyof CSpinnerAttributes> & { [K in keyof CSpinner & keyof CSpinnerAttributes]?: CSpinner[K] } & { [K in keyof CSpinner & keyof CSpinnerAttributes as `attr:${K}`]?: CSpinnerAttributes[K] } & { [K in keyof CSpinner & keyof CSpinnerAttributes as `prop:${K}`]?: CSpinner[K] };
@@ -2703,6 +2780,14 @@ declare module "@stencil/core" {
              */
             "c-menu-item": LocalJSX.IntrinsicElements["c-menu-item"] & JSXBase.HTMLAttributes<HTMLCMenuItemElement>;
             "c-popup": LocalJSX.IntrinsicElements["c-popup"] & JSXBase.HTMLAttributes<HTMLCPopupElement>;
+            /**
+             * @summary Progress bars are used to show the status of an ongoing operation.
+             * @cssproperty --c-height - The progress bar's height.
+             * @cssproperty --c-track-color - The color of the track.
+             * @cssproperty --c-indicator-color - The color of the indicator.
+             * @cssproperty --c-label-color - The color of the label.
+             */
+            "c-progress-bar": LocalJSX.IntrinsicElements["c-progress-bar"] & JSXBase.HTMLAttributes<HTMLCProgressBarElement>;
             /**
              * @summary Radios represent a single option within a mutually exclusive set.
              * Use them inside a `<c-radio-group>` when users must pick exactly one choice from a small list.

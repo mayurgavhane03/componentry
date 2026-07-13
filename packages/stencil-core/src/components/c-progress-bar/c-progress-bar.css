@@ -1,0 +1,79 @@
+:host {
+  --c-height: 1rem;
+  --c-track-color: var(--c-color-neutral-200, #e5e7eb);
+  --c-indicator-color: var(--c-color-primary-600, #2563eb);
+  --c-label-color: var(--c-color-neutral-0, #fff);
+  display: block;
+}
+
+.c-progress-bar {
+  position: relative;
+  background-color: var(--c-track-color);
+  height: var(--c-height);
+  border-radius: var(--c-border-radius-pill, 9999px);
+  box-shadow: inset var(--c-shadow-small, 0 1px 2px rgba(0, 0, 0, 0.1));
+  overflow: hidden;
+}
+
+.c-progress-bar__indicator {
+  height: 100%;
+  font-family: var(--c-font-sans, sans-serif);
+  font-size: 12px;
+  font-weight: var(--c-font-weight-normal, 400);
+  background-color: var(--c-indicator-color);
+  color: var(--c-label-color);
+  text-align: center;
+  line-height: var(--c-height);
+  white-space: nowrap;
+  overflow: hidden;
+  transition:
+    400ms width,
+    400ms background-color;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Indeterminate */
+.c-progress-bar--indeterminate .c-progress-bar__indicator {
+  position: absolute;
+  animation: c-indeterminate 2.5s infinite cubic-bezier(0.37, 0, 0.63, 1);
+}
+
+.c-progress-bar--indeterminate.c-progress-bar--rtl .c-progress-bar__indicator {
+  animation-name: c-indeterminate-rtl;
+}
+
+@media (forced-colors: active) {
+  .c-progress-bar {
+    outline: solid 1px SelectedItem;
+    background-color: var(--c-color-neutral-0, #fff);
+  }
+  .c-progress-bar__indicator {
+    outline: solid 1px SelectedItem;
+    background-color: SelectedItem;
+  }
+}
+
+@keyframes c-indeterminate {
+  0% {
+    left: -50%;
+    width: 50%;
+  }
+  75%,
+  100% {
+    left: 100%;
+    width: 50%;
+  }
+}
+
+@keyframes c-indeterminate-rtl {
+  0% {
+    right: -50%;
+    width: 50%;
+  }
+  75%,
+  100% {
+    right: 100%;
+    width: 50%;
+  }
+}
