@@ -28,4 +28,5 @@ export { CMenu } from "./c-menu.js";
 export { CPopup } from "./c-popup.js";
 export { CRadioGroup } from "./c-radio-group.js";
 export { CRadio } from "./c-radio.js";
+export { CSpinner } from "./c-spinner.js";
 export { CTooltip } from "./c-tooltip.js";

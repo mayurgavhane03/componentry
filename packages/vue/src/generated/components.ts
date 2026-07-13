@@ -29,6 +29,7 @@ import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/
 import { defineCustomElement as defineCPopup } from '@componentry-ui/stencil/dist/components/c-popup.js';
 import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
+import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
 import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
 
 
@@ -349,6 +350,11 @@ export const CRadioGroup: StencilVueComponent<JSX.CRadioGroup> = /*@__PURE__*/ d
 ], [
   'cChange',
   'cInput'
+]);
+
+
+export const CSpinner: StencilVueComponent<JSX.CSpinner> = /*@__PURE__*/ defineContainer<JSX.CSpinner>('c-spinner', defineCSpinner, [
+  'label'
 ]);
 
 

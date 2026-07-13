@@ -26,5 +26,6 @@ export const DIRECTIVES = [
   d.CPopup,
   d.CRadio,
   d.CRadioGroup,
+  d.CSpinner,
   d.CTooltip
 ];

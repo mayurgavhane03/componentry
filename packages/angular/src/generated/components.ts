@@ -30,6 +30,7 @@ import { defineCustomElement as defineCMenuItem } from '@componentry-ui/stencil/
 import { defineCustomElement as defineCPopup } from '@componentry-ui/stencil/dist/components/c-popup.js';
 import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
+import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
 import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
 @ProxyCmp({
   defineCustomElementFn: defineCAvatar,
@@ -767,6 +768,29 @@ export declare interface CRadioGroup extends Components.CRadioGroup {
 
   cInput: EventEmitter<CRadioGroupCustomEvent<void>>;
 }
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCSpinner,
+  inputs: ['label']
+})
+@Component({
+  selector: 'c-spinner',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label'],
+})
+export class CSpinner {
+  protected el: HTMLCSpinnerElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CSpinner extends Components.CSpinner {}
 
 
 @ProxyCmp({

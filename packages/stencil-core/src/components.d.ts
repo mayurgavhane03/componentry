@@ -864,6 +864,22 @@ export namespace Components {
          */
         "value": string | null;
     }
+    /**
+     * @summary Spinners are used to show the progress of an indeterminate operation.
+     * @status stable
+     * @csspart base - The component's base wrapper (the <svg> element).
+     * @cssproperty --track-width - The width of the track.
+     * @cssproperty --track-color - The color of the track.
+     * @cssproperty --indicator-color - The color of the spinner's indicator.
+     * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
+     */
+    interface CSpinner {
+        /**
+          * The accessible label for the spinner. Since spinners don't have visible text, this label is exposed to assistive devices via `aria-label`.
+          * @default 'Loading'
+         */
+        "label": string;
+    }
     interface CTooltip {
         /**
           * @default ""
@@ -1380,6 +1396,21 @@ declare global {
         prototype: HTMLCRadioGroupElement;
         new (): HTMLCRadioGroupElement;
     };
+    /**
+     * @summary Spinners are used to show the progress of an indeterminate operation.
+     * @status stable
+     * @csspart base - The component's base wrapper (the <svg> element).
+     * @cssproperty --track-width - The width of the track.
+     * @cssproperty --track-color - The color of the track.
+     * @cssproperty --indicator-color - The color of the spinner's indicator.
+     * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
+     */
+    interface HTMLCSpinnerElement extends Components.CSpinner, HTMLStencilElement {
+    }
+    var HTMLCSpinnerElement: {
+        prototype: HTMLCSpinnerElement;
+        new (): HTMLCSpinnerElement;
+    };
     interface HTMLCTooltipElementEventMap {
         "cShow": void;
         "cAfterShow": void;
@@ -1425,6 +1456,7 @@ declare global {
         "c-popup": HTMLCPopupElement;
         "c-radio": HTMLCRadioElement;
         "c-radio-group": HTMLCRadioGroupElement;
+        "c-spinner": HTMLCSpinnerElement;
         "c-tooltip": HTMLCTooltipElement;
     }
 }
@@ -2256,6 +2288,22 @@ declare namespace LocalJSX {
          */
         "value"?: string | null;
     }
+    /**
+     * @summary Spinners are used to show the progress of an indeterminate operation.
+     * @status stable
+     * @csspart base - The component's base wrapper (the <svg> element).
+     * @cssproperty --track-width - The width of the track.
+     * @cssproperty --track-color - The color of the track.
+     * @cssproperty --indicator-color - The color of the spinner's indicator.
+     * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
+     */
+    interface CSpinner {
+        /**
+          * The accessible label for the spinner. Since spinners don't have visible text, this label is exposed to assistive devices via `aria-label`.
+          * @default 'Loading'
+         */
+        "label"?: string;
+    }
     interface CTooltip {
         /**
           * @default ""
@@ -2519,6 +2567,9 @@ declare namespace LocalJSX {
     | "large";
         "required": boolean;
     }
+    interface CSpinnerAttributes {
+        "label": string;
+    }
     interface CTooltipAttributes {
         "content": string;
         "placement": | "top"
@@ -2566,6 +2617,7 @@ declare namespace LocalJSX {
         "c-popup": Omit<CPopup, keyof CPopupAttributes> & { [K in keyof CPopup & keyof CPopupAttributes]?: CPopup[K] } & { [K in keyof CPopup & keyof CPopupAttributes as `attr:${K}`]?: CPopupAttributes[K] } & { [K in keyof CPopup & keyof CPopupAttributes as `prop:${K}`]?: CPopup[K] } & OneOf<"anchor", CPopup["anchor"], CPopupAttributes["anchor"]> & OneOf<"autoSize", CPopup["autoSize"], CPopupAttributes["autoSize"]> & OneOf<"sync", CPopup["sync"], CPopupAttributes["sync"]>;
         "c-radio": Omit<CRadio, keyof CRadioAttributes> & { [K in keyof CRadio & keyof CRadioAttributes]?: CRadio[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `attr:${K}`]?: CRadioAttributes[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `prop:${K}`]?: CRadio[K] } & OneOf<"value", CRadio["value"], CRadioAttributes["value"]> & OneOf<"size", CRadio["size"], CRadioAttributes["size"]>;
         "c-radio-group": Omit<CRadioGroup, keyof CRadioGroupAttributes> & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes]?: CRadioGroup[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `attr:${K}`]?: CRadioGroupAttributes[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `prop:${K}`]?: CRadioGroup[K] } & OneOf<"size", CRadioGroup["size"], CRadioGroupAttributes["size"]>;
+        "c-spinner": Omit<CSpinner, keyof CSpinnerAttributes> & { [K in keyof CSpinner & keyof CSpinnerAttributes]?: CSpinner[K] } & { [K in keyof CSpinner & keyof CSpinnerAttributes as `attr:${K}`]?: CSpinnerAttributes[K] } & { [K in keyof CSpinner & keyof CSpinnerAttributes as `prop:${K}`]?: CSpinner[K] };
         "c-tooltip": Omit<CTooltip, keyof CTooltipAttributes> & { [K in keyof CTooltip & keyof CTooltipAttributes]?: CTooltip[K] } & { [K in keyof CTooltip & keyof CTooltipAttributes as `attr:${K}`]?: CTooltipAttributes[K] } & { [K in keyof CTooltip & keyof CTooltipAttributes as `prop:${K}`]?: CTooltip[K] };
     }
 }
@@ -2675,6 +2727,16 @@ declare module "@stencil/core" {
              * @csspart hint               - The hint's wrapper.
              */
             "c-radio-group": LocalJSX.IntrinsicElements["c-radio-group"] & JSXBase.HTMLAttributes<HTMLCRadioGroupElement>;
+            /**
+             * @summary Spinners are used to show the progress of an indeterminate operation.
+             * @status stable
+             * @csspart base - The component's base wrapper (the <svg> element).
+             * @cssproperty --track-width - The width of the track.
+             * @cssproperty --track-color - The color of the track.
+             * @cssproperty --indicator-color - The color of the spinner's indicator.
+             * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
+             */
+            "c-spinner": LocalJSX.IntrinsicElements["c-spinner"] & JSXBase.HTMLAttributes<HTMLCSpinnerElement>;
             "c-tooltip": LocalJSX.IntrinsicElements["c-tooltip"] & JSXBase.HTMLAttributes<HTMLCTooltipElement>;
         }
     }
