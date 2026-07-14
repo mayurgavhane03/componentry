@@ -4,6 +4,7 @@
  */
 
 /* eslint-disable */
+export { CAlert } from "./c-alert.js";
 export { CAvatar } from "./c-avatar.js";
 export { CBadge } from "./c-badge.js";
 export { CButtonGroup } from "./c-button-group.js";

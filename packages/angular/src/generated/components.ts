@@ -6,6 +6,7 @@ import { ProxyCmp } from './angular-component-lib/utils';
 
 import type { Components } from '@componentry-ui/stencil/dist/components';
 
+import { defineCustomElement as defineCAlert } from '@componentry-ui/stencil/dist/components/c-alert.js';
 import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/dist/components/c-button.js';
@@ -33,6 +34,46 @@ import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dis
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
 import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
 import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
+@ProxyCmp({
+  defineCustomElementFn: defineCAlert,
+  inputs: ['closable', 'countdown', 'duration', 'open', 'variant'],
+  methods: ['show', 'hide', 'toast']
+})
+@Component({
+  selector: 'c-alert',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['closable', 'countdown', 'duration', 'open', 'variant'],
+  outputs: ['cShow', 'cAfterShow', 'cHide', 'cAfterHide'],
+})
+export class CAlert {
+  protected el: HTMLCAlertElement;
+  @Output() cShow = new EventEmitter<CAlertCustomEvent<void>>();
+  @Output() cAfterShow = new EventEmitter<CAlertCustomEvent<void>>();
+  @Output() cHide = new EventEmitter<CAlertCustomEvent<void>>();
+  @Output() cAfterHide = new EventEmitter<CAlertCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CAlertCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CAlert extends Components.CAlert {
+
+  cShow: EventEmitter<CAlertCustomEvent<void>>;
+
+  cAfterShow: EventEmitter<CAlertCustomEvent<void>>;
+
+  cHide: EventEmitter<CAlertCustomEvent<void>>;
+
+  cAfterHide: EventEmitter<CAlertCustomEvent<void>>;
+}
+
+
 @ProxyCmp({
   defineCustomElementFn: defineCAvatar,
   inputs: ['image', 'initials', 'label', 'loading', 'shape']

@@ -664,6 +664,33 @@
 </head>
 
 <body>
+  <!-- Basic inline alert -->
+<c-alert open variant="success" closable>
+  <svg slot="icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  Your changes have been saved.
+</c-alert>
+
+<!-- Danger variant, no icon -->
+<c-alert open variant="danger" closable>
+  Something went wrong. Please try again.
+</c-alert>
+
+<!-- Neutral, non-closable, always visible -->
+<c-alert open variant="neutral">
+  This is an informational message.
+</c-alert>
+
+<!-- Auto-hide after 5s with countdown bar -->
+<c-alert open variant="warning" duration="5000" countdown="ltr" closable>
+  This alert will close automatically.
+</c-alert>
+
+<!-- RTL countdown -->
+<c-alert open variant="primary" duration="2000" countdown="rtl">
+  Syncing in progress...
+</c-alert>
   <div class="progress-demo" style="display: flex; flex-direction: column; gap: 1rem;">
     <!-- Basic progress bar -->
     <c-progress-bar value="0"></c-progress-bar>

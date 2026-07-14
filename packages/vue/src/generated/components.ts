@@ -5,6 +5,7 @@ import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-t
 
 import type { JSX } from '@componentry-ui/stencil/dist/components';
 
+import { defineCustomElement as defineCAlert } from '@componentry-ui/stencil/dist/components/c-alert.js';
 import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
 import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/dist/components/c-button.js';
@@ -33,6 +34,24 @@ import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stenci
 import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
 import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
 
+
+
+export const CAlert: StencilVueComponent<JSX.CAlert> = /*@__PURE__*/ defineContainer<JSX.CAlert>('c-alert', defineCAlert, [
+  'open',
+  'closable',
+  'variant',
+  'duration',
+  'countdown',
+  'cShow',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide'
+], [
+  'cShow',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide'
+]);
 
 
 export const CAvatar: StencilVueComponent<JSX.CAvatar> = /*@__PURE__*/ defineContainer<JSX.CAvatar>('c-avatar', defineCAvatar, [

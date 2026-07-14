@@ -12,6 +12,28 @@ export { MenuSelectEventDetail } from "./components/c-menu/c-menu";
 export { Element } from "@stencil/core";
 export { VirtualElement } from "./components/c-popup/c-popup";
 export namespace Components {
+    interface CAlert {
+        /**
+          * @default false
+         */
+        "closable": boolean;
+        "countdown"?: 'rtl' | 'ltr';
+        /**
+          * @default Infinity
+         */
+        "duration": number;
+        "hide": () => Promise<void>;
+        /**
+          * @default false
+         */
+        "open": boolean;
+        "show": () => Promise<void>;
+        "toast": () => Promise<void>;
+        /**
+          * @default 'primary'
+         */
+        "variant": 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
+    }
     /**
      * @summary Avatars are used to represent a person or object.
      * @event c-error - The image could not be loaded. This may because of an invalid URL,
@@ -956,6 +978,10 @@ export namespace Components {
         "trigger": string;
     }
 }
+export interface CAlertCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCAlertElement;
+}
 export interface CAvatarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCAvatarElement;
@@ -1017,6 +1043,26 @@ export interface CTooltipCustomEvent<T> extends CustomEvent<T> {
     target: HTMLCTooltipElement;
 }
 declare global {
+    interface HTMLCAlertElementEventMap {
+        "cShow": void;
+        "cAfterShow": void;
+        "cHide": void;
+        "cAfterHide": void;
+    }
+    interface HTMLCAlertElement extends Components.CAlert, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCAlertElementEventMap>(type: K, listener: (this: HTMLCAlertElement, ev: CAlertCustomEvent<HTMLCAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCAlertElementEventMap>(type: K, listener: (this: HTMLCAlertElement, ev: CAlertCustomEvent<HTMLCAlertElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCAlertElement: {
+        prototype: HTMLCAlertElement;
+        new (): HTMLCAlertElement;
+    };
     interface HTMLCAvatarElementEventMap {
         "cError": void;
     }
@@ -1473,6 +1519,7 @@ declare global {
         new (): HTMLCTooltipElement;
     };
     interface HTMLElementTagNameMap {
+        "c-alert": HTMLCAlertElement;
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
         "c-button": HTMLCButtonElement;
@@ -1505,6 +1552,29 @@ declare global {
 declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
+    interface CAlert {
+        /**
+          * @default false
+         */
+        "closable"?: boolean;
+        "countdown"?: 'rtl' | 'ltr';
+        /**
+          * @default Infinity
+         */
+        "duration"?: number;
+        "onCAfterHide"?: (event: CAlertCustomEvent<void>) => void;
+        "onCAfterShow"?: (event: CAlertCustomEvent<void>) => void;
+        "onCHide"?: (event: CAlertCustomEvent<void>) => void;
+        "onCShow"?: (event: CAlertCustomEvent<void>) => void;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+        /**
+          * @default 'primary'
+         */
+        "variant"?: 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
+    }
     /**
      * @summary Avatars are used to represent a person or object.
      * @event c-error - The image could not be loaded. This may because of an invalid URL,
@@ -2424,6 +2494,13 @@ declare namespace LocalJSX {
         "trigger"?: string;
     }
 
+    interface CAlertAttributes {
+        "open": boolean;
+        "closable": boolean;
+        "variant": 'primary' | 'success' | 'neutral' | 'warning' | 'danger';
+        "duration": number;
+        "countdown": 'rtl' | 'ltr';
+    }
     interface CAvatarAttributes {
         "image": string;
         "label": string;
@@ -2669,6 +2746,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
+        "c-alert": Omit<CAlert, keyof CAlertAttributes> & { [K in keyof CAlert & keyof CAlertAttributes]?: CAlert[K] } & { [K in keyof CAlert & keyof CAlertAttributes as `attr:${K}`]?: CAlertAttributes[K] } & { [K in keyof CAlert & keyof CAlertAttributes as `prop:${K}`]?: CAlert[K] };
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
         "c-badge": Omit<CBadge, keyof CBadgeAttributes> & { [K in keyof CBadge & keyof CBadgeAttributes]?: CBadge[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `attr:${K}`]?: CBadgeAttributes[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `prop:${K}`]?: CBadge[K] };
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
@@ -2702,6 +2780,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "c-alert": LocalJSX.IntrinsicElements["c-alert"] & JSXBase.HTMLAttributes<HTMLCAlertElement>;
             /**
              * @summary Avatars are used to represent a person or object.
              * @event c-error - The image could not be loaded. This may because of an invalid URL,
