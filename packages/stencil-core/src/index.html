@@ -664,6 +664,100 @@
 </head>
 
 <body>
+  <div style="display: flex; flex-direction: column; gap: 24px; padding: 24px;">
+
+  <!-- Basic -->
+  <c-accordion summary="Basic Accordion">
+    <p>This is a basic accordion with the summary provided using the summary prop.</p>
+  </c-accordion>
+
+  <!-- Initially Open -->
+  <c-accordion summary="Initially Open" open>
+    <p>This accordion is expanded by default.</p>
+  </c-accordion>
+
+  <!-- Disabled -->
+  <c-accordion summary="Disabled Accordion" disabled>
+    <p>This accordion is disabled and cannot be toggled.</p>
+  </c-accordion>
+
+  <!-- Summary Slot -->
+  <c-accordion>
+    <div slot="summary">
+      <strong>Custom Summary Slot</strong>
+    </div>
+
+    <p>This accordion uses the <code>summary</code> slot instead of the summary prop.</p>
+  </c-accordion>
+
+  <!-- Custom Summary Layout -->
+  <c-accordion>
+    <div
+      slot="summary"
+      style="display:flex;justify-content:space-between;align-items:center;width:100%;"
+    >
+      <span>Notifications</span>
+      <span>12 New</span>
+    </div>
+
+    <p>You have 12 unread notifications.</p>
+  </c-accordion>
+
+  <!-- Custom Icons -->
+  <c-accordion summary="Custom Icons">
+    <c-icon slot="expand-icon" library="system" name="plus"></c-icon>
+    <c-icon slot="collapse-icon" library="system" name="minus"></c-icon>
+
+    <p>This accordion uses custom expand and collapse icons.</p>
+  </c-accordion>
+
+  <!-- Rich Content -->
+  <c-accordion summary="Rich Content">
+    <h3>User Profile</h3>
+
+    <p><strong>Name:</strong> John Doe</p>
+    <p><strong>Email:</strong> john@example.com</p>
+
+    <ul>
+      <li>Frontend Developer</li>
+      <li>StencilJS</li>
+      <li>TypeScript</li>
+    </ul>
+
+    <button>View Profile</button>
+  </c-accordion>
+
+  <!-- Nested Accordion -->
+  <c-accordion summary="Parent Accordion">
+    <p>This is the parent accordion.</p>
+
+    <c-accordion summary="Child Accordion">
+      <p>This is a nested accordion.</p>
+    </c-accordion>
+  </c-accordion>
+
+  <!-- Table Content -->
+  <c-accordion summary="Order Details">
+    <table border="1" cellpadding="8" cellspacing="0">
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+      </tr>
+      <tr>
+        <td>Keyboard</td>
+        <td>1</td>
+        <td>$80</td>
+      </tr>
+      <tr>
+        <td>Mouse</td>
+        <td>2</td>
+        <td>$40</td>
+      </tr>
+    </table>
+  </c-accordion>
+
+</div>
   <!-- Basic inline alert -->
 <c-alert open variant="success" closable>
   <svg slot="icon" width="20" height="20" viewBox="0 0 20 20" fill="none">

@@ -6,6 +6,7 @@ import { ProxyCmp } from './angular-component-lib/utils';
 
 import type { Components } from '@componentry-ui/stencil/dist/components';
 
+import { defineCustomElement as defineCAccordion } from '@componentry-ui/stencil/dist/components/c-accordion.js';
 import { defineCustomElement as defineCAlert } from '@componentry-ui/stencil/dist/components/c-alert.js';
 import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
@@ -34,6 +35,46 @@ import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dis
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
 import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
 import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
+@ProxyCmp({
+  defineCustomElementFn: defineCAccordion,
+  inputs: ['disabled', 'open', 'summary'],
+  methods: ['show', 'hide']
+})
+@Component({
+  selector: 'c-accordion',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['disabled', 'open', { name: 'summary', required: true }],
+  outputs: ['c-show', 'cAfterShow', 'cHide', 'cAfterHide'],
+})
+export class CAccordion {
+  protected el: HTMLCAccordionElement;
+  @Output() cShow = new EventEmitter<CAccordionCustomEvent<void>>();
+  @Output() cAfterShow = new EventEmitter<CAccordionCustomEvent<void>>();
+  @Output() cHide = new EventEmitter<CAccordionCustomEvent<void>>();
+  @Output() cAfterHide = new EventEmitter<CAccordionCustomEvent<void>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CAccordionCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CAccordion extends Components.CAccordion {
+
+  'c-show': EventEmitter<CAccordionCustomEvent<void>>;
+
+  cAfterShow: EventEmitter<CAccordionCustomEvent<void>>;
+
+  cHide: EventEmitter<CAccordionCustomEvent<void>>;
+
+  cAfterHide: EventEmitter<CAccordionCustomEvent<void>>;
+}
+
+
 @ProxyCmp({
   defineCustomElementFn: defineCAlert,
   inputs: ['closable', 'countdown', 'duration', 'open', 'variant'],

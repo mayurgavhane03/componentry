@@ -2,6 +2,7 @@
 import * as d from './components';
 
 export const DIRECTIVES = [
+  d.CAccordion,
   d.CAlert,
   d.CAvatar,
   d.CBadge,

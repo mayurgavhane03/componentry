@@ -12,6 +12,25 @@ export { MenuSelectEventDetail } from "./components/c-menu/c-menu";
 export { Element } from "@stencil/core";
 export { VirtualElement } from "./components/c-popup/c-popup";
 export namespace Components {
+    interface CAccordion {
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Hides the accordion.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * @default false
+         */
+        "open": boolean;
+        /**
+          * Shows the accordion.
+         */
+        "show": () => Promise<void>;
+        "summary": string;
+    }
     interface CAlert {
         /**
           * @default false
@@ -978,6 +997,10 @@ export namespace Components {
         "trigger": string;
     }
 }
+export interface CAccordionCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCAccordionElement;
+}
 export interface CAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCAlertElement;
@@ -1043,6 +1066,26 @@ export interface CTooltipCustomEvent<T> extends CustomEvent<T> {
     target: HTMLCTooltipElement;
 }
 declare global {
+    interface HTMLCAccordionElementEventMap {
+        "c-show": void;
+        "cAfterShow": void;
+        "cHide": void;
+        "cAfterHide": void;
+    }
+    interface HTMLCAccordionElement extends Components.CAccordion, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCAccordionElementEventMap>(type: K, listener: (this: HTMLCAccordionElement, ev: CAccordionCustomEvent<HTMLCAccordionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCAccordionElementEventMap>(type: K, listener: (this: HTMLCAccordionElement, ev: CAccordionCustomEvent<HTMLCAccordionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCAccordionElement: {
+        prototype: HTMLCAccordionElement;
+        new (): HTMLCAccordionElement;
+    };
     interface HTMLCAlertElementEventMap {
         "cShow": void;
         "cAfterShow": void;
@@ -1519,6 +1562,7 @@ declare global {
         new (): HTMLCTooltipElement;
     };
     interface HTMLElementTagNameMap {
+        "c-accordion": HTMLCAccordionElement;
         "c-alert": HTMLCAlertElement;
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
@@ -1552,6 +1596,21 @@ declare global {
 declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
+    interface CAccordion {
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        "onC-show"?: (event: CAccordionCustomEvent<void>) => void;
+        "onCAfterHide"?: (event: CAccordionCustomEvent<void>) => void;
+        "onCAfterShow"?: (event: CAccordionCustomEvent<void>) => void;
+        "onCHide"?: (event: CAccordionCustomEvent<void>) => void;
+        /**
+          * @default false
+         */
+        "open"?: boolean;
+        "summary": string;
+    }
     interface CAlert {
         /**
           * @default false
@@ -2494,6 +2553,11 @@ declare namespace LocalJSX {
         "trigger"?: string;
     }
 
+    interface CAccordionAttributes {
+        "open": boolean;
+        "summary": string;
+        "disabled": boolean;
+    }
     interface CAlertAttributes {
         "open": boolean;
         "closable": boolean;
@@ -2746,6 +2810,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
+        "c-accordion": Omit<CAccordion, keyof CAccordionAttributes> & { [K in keyof CAccordion & keyof CAccordionAttributes]?: CAccordion[K] } & { [K in keyof CAccordion & keyof CAccordionAttributes as `attr:${K}`]?: CAccordionAttributes[K] } & { [K in keyof CAccordion & keyof CAccordionAttributes as `prop:${K}`]?: CAccordion[K] } & OneOf<"summary", CAccordion["summary"], CAccordionAttributes["summary"]>;
         "c-alert": Omit<CAlert, keyof CAlertAttributes> & { [K in keyof CAlert & keyof CAlertAttributes]?: CAlert[K] } & { [K in keyof CAlert & keyof CAlertAttributes as `attr:${K}`]?: CAlertAttributes[K] } & { [K in keyof CAlert & keyof CAlertAttributes as `prop:${K}`]?: CAlert[K] };
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
         "c-badge": Omit<CBadge, keyof CBadgeAttributes> & { [K in keyof CBadge & keyof CBadgeAttributes]?: CBadge[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `attr:${K}`]?: CBadgeAttributes[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `prop:${K}`]?: CBadge[K] };
@@ -2780,6 +2845,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "c-accordion": LocalJSX.IntrinsicElements["c-accordion"] & JSXBase.HTMLAttributes<HTMLCAccordionElement>;
             "c-alert": LocalJSX.IntrinsicElements["c-alert"] & JSXBase.HTMLAttributes<HTMLCAlertElement>;
             /**
              * @summary Avatars are used to represent a person or object.

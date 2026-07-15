@@ -5,6 +5,7 @@ import { defineContainer, type StencilVueComponent } from '@stencil/vue-output-t
 
 import type { JSX } from '@componentry-ui/stencil/dist/components';
 
+import { defineCustomElement as defineCAccordion } from '@componentry-ui/stencil/dist/components/c-accordion.js';
 import { defineCustomElement as defineCAlert } from '@componentry-ui/stencil/dist/components/c-alert.js';
 import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
@@ -34,6 +35,22 @@ import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stenci
 import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
 import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
 
+
+
+export const CAccordion: StencilVueComponent<JSX.CAccordion> = /*@__PURE__*/ defineContainer<JSX.CAccordion>('c-accordion', defineCAccordion, [
+  'open',
+  'summary',
+  'disabled',
+  'c-show',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide'
+], [
+  'c-show',
+  'cAfterShow',
+  'cHide',
+  'cAfterHide'
+]);
 
 
 export const CAlert: StencilVueComponent<JSX.CAlert> = /*@__PURE__*/ defineContainer<JSX.CAlert>('c-alert', defineCAlert, [
