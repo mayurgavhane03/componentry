@@ -664,8 +664,66 @@
 </head>
 
 <body>
-  <div style="display: flex; flex-direction: column; gap: 24px; padding: 24px;">
+  <!-- Basic usage -->
+<c-rating label="Rate this product"></c-rating>
 
+<!-- Pre-filled value -->
+<c-rating label="Your rating" value="3"></c-rating>
+
+<!-- Custom max (10 symbols instead of 5) -->
+<c-rating label="Rate out of 10" max="10" value="7"></c-rating>
+
+<!-- Half-star precision -->
+<c-rating label="Rate this" value="3.5" precision="0.5"></c-rating>
+
+<!-- Readonly (e.g. showing an average rating, not editable) -->
+<c-rating label="Average rating" value="4.5" precision="0.5" readonly></c-rating>
+
+<!-- Disabled -->
+<c-rating label="Rating unavailable" value="2" disabled></c-rating>
+
+<!-- RTL layout -->
+<c-rating label="التقييم" value="3" dir="rtl"></c-rating>
+
+<!-- Custom symbol (e.g. hearts instead of stars) -->
+<c-rating id="heart-rating" label="Rate with hearts"></c-rating>
+
+<script>
+  const heartRating = document.getElementById('heart-rating');
+  heartRating.getSymbol = (value) => `
+    <svg viewBox="0 0 16 16" width="1em" height="1em">
+      <path d="M8 14s-6-4.35-6-8.5C2 3 3.79 1.5 6 1.5c1.54 0 2.53.99 3 1.5.47-.51 1.46-1.5 3-1.5 2.21 0 4 1.5 4 4C16 9.65 8 14 8 14z" fill="currentColor"/>
+    </svg>
+  `;
+</script>
+
+<!-- Listening to events -->
+<c-rating id="feedback-rating" label="How was your experience?"></c-rating>
+
+<script>
+  const feedbackRating = document.getElementById('feedback-rating');
+
+  feedbackRating.addEventListener('cRatingChange', (event) => {
+    console.log('New value:', feedbackRating.value);
+  });
+
+  feedbackRating.addEventListener('cRatingHover', (event) => {
+    console.log('Hover phase:', event.detail.phase, 'value:', event.detail.value);
+  });
+</script>
+
+<!-- Calling exposed methods -->
+<c-rating id="focus-target" label="Focus me programmatically"></c-rating>
+<button id="focus-btn">Focus Rating</button>
+
+<script>
+  document.getElementById('focus-btn').addEventListener('click', async () => {
+    const rating = document.getElementById('focus-target');
+    await rating.setFocus();
+  });
+</script>
+
+\
   <!-- Basic -->
   <c-accordion summary="Basic Accordion">
     <p>This is a basic accordion with the summary provided using the summary prop.</p>

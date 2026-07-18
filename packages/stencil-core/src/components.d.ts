@@ -933,6 +933,42 @@ export namespace Components {
          */
         "value": string | null;
     }
+    interface CRating {
+        /**
+          * @default 'ltr'
+         */
+        "dir": 'ltr' | 'rtl';
+        /**
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * @default () =>     '<svg viewBox="0 0 16 16" width="1em" height="1em"><path d="M8 .5l2.245 4.55 5.02.73-3.633 3.542.858 5.003L8 12.02l-4.49 2.305.858-5.003L.735 5.78l5.02-.73L8 .5z" fill="currentColor"/></svg>'
+         */
+        "getSymbol": (value: number) => string;
+        /**
+          * @default ''
+         */
+        "label": string;
+        /**
+          * @default 5
+         */
+        "max": number;
+        /**
+          * @default 1
+         */
+        "precision": number;
+        /**
+          * @default false
+         */
+        "readonly": boolean;
+        "removeFocus": () => Promise<void>;
+        "setFocus": (options?: FocusOptions) => Promise<void>;
+        /**
+          * @default 0
+         */
+        "value": number;
+    }
     /**
      * @summary Spinners are used to show the progress of an indeterminate operation.
      * @status stable
@@ -1060,6 +1096,10 @@ export interface CRadioCustomEvent<T> extends CustomEvent<T> {
 export interface CRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLCRadioGroupElement;
+}
+export interface CRatingCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCRatingElement;
 }
 export interface CTooltipCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1526,6 +1566,27 @@ declare global {
         prototype: HTMLCRadioGroupElement;
         new (): HTMLCRadioGroupElement;
     };
+    interface HTMLCRatingElementEventMap {
+        "cRatingChange": void;
+        "cRatingHover": {
+    phase: 'start' | 'move' | 'end';
+    value: number;
+  };
+    }
+    interface HTMLCRatingElement extends Components.CRating, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCRatingElementEventMap>(type: K, listener: (this: HTMLCRatingElement, ev: CRatingCustomEvent<HTMLCRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCRatingElementEventMap>(type: K, listener: (this: HTMLCRatingElement, ev: CRatingCustomEvent<HTMLCRatingElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCRatingElement: {
+        prototype: HTMLCRatingElement;
+        new (): HTMLCRatingElement;
+    };
     /**
      * @summary Spinners are used to show the progress of an indeterminate operation.
      * @status stable
@@ -1589,6 +1650,7 @@ declare global {
         "c-progress-bar": HTMLCProgressBarElement;
         "c-radio": HTMLCRadioElement;
         "c-radio-group": HTMLCRadioGroupElement;
+        "c-rating": HTMLCRatingElement;
         "c-spinner": HTMLCSpinnerElement;
         "c-tooltip": HTMLCTooltipElement;
     }
@@ -2487,6 +2549,45 @@ declare namespace LocalJSX {
          */
         "value"?: string | null;
     }
+    interface CRating {
+        /**
+          * @default 'ltr'
+         */
+        "dir"?: 'ltr' | 'rtl';
+        /**
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * @default () =>     '<svg viewBox="0 0 16 16" width="1em" height="1em"><path d="M8 .5l2.245 4.55 5.02.73-3.633 3.542.858 5.003L8 12.02l-4.49 2.305.858-5.003L.735 5.78l5.02-.73L8 .5z" fill="currentColor"/></svg>'
+         */
+        "getSymbol"?: (value: number) => string;
+        /**
+          * @default ''
+         */
+        "label"?: string;
+        /**
+          * @default 5
+         */
+        "max"?: number;
+        "onCRatingChange"?: (event: CRatingCustomEvent<void>) => void;
+        "onCRatingHover"?: (event: CRatingCustomEvent<{
+    phase: 'start' | 'move' | 'end';
+    value: number;
+  }>) => void;
+        /**
+          * @default 1
+         */
+        "precision"?: number;
+        /**
+          * @default false
+         */
+        "readonly"?: boolean;
+        /**
+          * @default 0
+         */
+        "value"?: number;
+    }
     /**
      * @summary Spinners are used to show the progress of an indeterminate operation.
      * @status stable
@@ -2784,6 +2885,15 @@ declare namespace LocalJSX {
     | "large";
         "required": boolean;
     }
+    interface CRatingAttributes {
+        "label": string;
+        "value": number;
+        "max": number;
+        "precision": number;
+        "readonly": boolean;
+        "disabled": boolean;
+        "dir": 'ltr' | 'rtl';
+    }
     interface CSpinnerAttributes {
         "label": string;
     }
@@ -2837,6 +2947,7 @@ declare namespace LocalJSX {
         "c-progress-bar": Omit<CProgressBar, keyof CProgressBarAttributes> & { [K in keyof CProgressBar & keyof CProgressBarAttributes]?: CProgressBar[K] } & { [K in keyof CProgressBar & keyof CProgressBarAttributes as `attr:${K}`]?: CProgressBarAttributes[K] } & { [K in keyof CProgressBar & keyof CProgressBarAttributes as `prop:${K}`]?: CProgressBar[K] };
         "c-radio": Omit<CRadio, keyof CRadioAttributes> & { [K in keyof CRadio & keyof CRadioAttributes]?: CRadio[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `attr:${K}`]?: CRadioAttributes[K] } & { [K in keyof CRadio & keyof CRadioAttributes as `prop:${K}`]?: CRadio[K] } & OneOf<"value", CRadio["value"], CRadioAttributes["value"]> & OneOf<"size", CRadio["size"], CRadioAttributes["size"]>;
         "c-radio-group": Omit<CRadioGroup, keyof CRadioGroupAttributes> & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes]?: CRadioGroup[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `attr:${K}`]?: CRadioGroupAttributes[K] } & { [K in keyof CRadioGroup & keyof CRadioGroupAttributes as `prop:${K}`]?: CRadioGroup[K] } & OneOf<"size", CRadioGroup["size"], CRadioGroupAttributes["size"]>;
+        "c-rating": Omit<CRating, keyof CRatingAttributes> & { [K in keyof CRating & keyof CRatingAttributes]?: CRating[K] } & { [K in keyof CRating & keyof CRatingAttributes as `attr:${K}`]?: CRatingAttributes[K] } & { [K in keyof CRating & keyof CRatingAttributes as `prop:${K}`]?: CRating[K] };
         "c-spinner": Omit<CSpinner, keyof CSpinnerAttributes> & { [K in keyof CSpinner & keyof CSpinnerAttributes]?: CSpinner[K] } & { [K in keyof CSpinner & keyof CSpinnerAttributes as `attr:${K}`]?: CSpinnerAttributes[K] } & { [K in keyof CSpinner & keyof CSpinnerAttributes as `prop:${K}`]?: CSpinner[K] };
         "c-tooltip": Omit<CTooltip, keyof CTooltipAttributes> & { [K in keyof CTooltip & keyof CTooltipAttributes]?: CTooltip[K] } & { [K in keyof CTooltip & keyof CTooltipAttributes as `attr:${K}`]?: CTooltipAttributes[K] } & { [K in keyof CTooltip & keyof CTooltipAttributes as `prop:${K}`]?: CTooltip[K] };
     }
@@ -2957,6 +3068,7 @@ declare module "@stencil/core" {
              * @csspart hint               - The hint's wrapper.
              */
             "c-radio-group": LocalJSX.IntrinsicElements["c-radio-group"] & JSXBase.HTMLAttributes<HTMLCRadioGroupElement>;
+            "c-rating": LocalJSX.IntrinsicElements["c-rating"] & JSXBase.HTMLAttributes<HTMLCRatingElement>;
             /**
              * @summary Spinners are used to show the progress of an indeterminate operation.
              * @status stable

@@ -1,0 +1,71 @@
+/* c-rating.css */
+:host {
+  --symbol-color: var(--c-color-neutral-300, #d4d4d8);
+  --symbol-color-active: var(--c-color-amber-500, #f59e0b);
+  --symbol-size: 1.2rem;
+  --symbol-spacing: var(--c-spacing-3x-small, 0.125rem);
+  display: inline-flex;
+}
+.rating {
+  position: relative;
+  display: inline-flex;
+  border-radius: var(--c-border-radius-medium, 0.25rem);
+  vertical-align: middle;
+}
+.rating:focus {
+  outline: none;
+}
+.rating:focus-visible {
+  outline: var(--c-focus-ring, 2px solid #2563eb);
+  outline-offset: var(--c-focus-ring-offset, 2px);
+}
+.rating__symbols {
+  display: inline-flex;
+  position: relative;
+  font-size: var(--symbol-size);
+  line-height: 0;
+  color: var(--symbol-color);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.rating__symbols > * {
+  padding: var(--symbol-spacing);
+}
+.rating__symbol--active,
+.rating__partial--filled {
+  color: var(--symbol-color-active);
+}
+.rating__partial-symbol-container {
+  position: relative;
+}
+.rating__partial--filled {
+  position: absolute;
+  top: var(--symbol-spacing);
+  left: var(--symbol-spacing);
+}
+.rating__symbol {
+  transition: scale 0.15s ease;
+  pointer-events: none;
+}
+.rating__symbol--hover {
+  scale: 1.2;
+}
+.rating--disabled .rating__symbols,
+.rating--readonly .rating__symbols {
+  cursor: default;
+}
+.rating--disabled .rating__symbol--hover,
+.rating--readonly .rating__symbol--hover {
+  scale: none;
+}
+.rating--disabled {
+  opacity: 0.5;
+}
+.rating--disabled .rating__symbols {
+  cursor: not-allowed;
+}
+@media (forced-colors: active) {
+  .rating__symbol--active {
+    color: SelectedItem;
+  }
+}
