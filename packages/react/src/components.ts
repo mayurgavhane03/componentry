@@ -31,5 +31,6 @@ export { CPopup } from "./c-popup.js";
 export { CProgressBar } from "./c-progress-bar.js";
 export { CRadioGroup } from "./c-radio-group.js";
 export { CRadio } from "./c-radio.js";
+export { CRating } from "./c-rating.js";
 export { CSpinner } from "./c-spinner.js";
 export { CTooltip } from "./c-tooltip.js";

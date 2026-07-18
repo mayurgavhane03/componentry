@@ -29,6 +29,7 @@ export const DIRECTIVES = [
   d.CProgressBar,
   d.CRadio,
   d.CRadioGroup,
+  d.CRating,
   d.CSpinner,
   d.CTooltip
 ];

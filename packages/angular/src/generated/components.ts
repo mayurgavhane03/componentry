@@ -33,6 +33,7 @@ import { defineCustomElement as defineCPopup } from '@componentry-ui/stencil/dis
 import { defineCustomElement as defineCProgressBar } from '@componentry-ui/stencil/dist/components/c-progress-bar.js';
 import { defineCustomElement as defineCRadio } from '@componentry-ui/stencil/dist/components/c-radio.js';
 import { defineCustomElement as defineCRadioGroup } from '@componentry-ui/stencil/dist/components/c-radio-group.js';
+import { defineCustomElement as defineCRating } from '@componentry-ui/stencil/dist/components/c-rating.js';
 import { defineCustomElement as defineCSpinner } from '@componentry-ui/stencil/dist/components/c-spinner.js';
 import { defineCustomElement as defineCTooltip } from '@componentry-ui/stencil/dist/components/c-tooltip.js';
 @ProxyCmp({
@@ -873,6 +874,40 @@ export declare interface CRadioGroup extends Components.CRadioGroup {
   cChange: EventEmitter<CRadioGroupCustomEvent<void>>;
 
   cInput: EventEmitter<CRadioGroupCustomEvent<void>>;
+}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCRating,
+  inputs: ['dir', 'disabled', 'getSymbol', 'label', 'max', 'precision', 'readonly', 'value'],
+  methods: ['setFocus', 'removeFocus']
+})
+@Component({
+  selector: 'c-rating',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['dir', 'disabled', 'getSymbol', 'label', 'max', 'precision', 'readonly', 'value'],
+  outputs: ['cRatingChange', 'cRatingHover'],
+})
+export class CRating {
+  protected el: HTMLCRatingElement;
+  @Output() cRatingChange = new EventEmitter<CRatingCustomEvent<void>>();
+  @Output() cRatingHover = new EventEmitter<CRatingCustomEvent<{ phase: 'start' | 'move' | 'end'; value: number; }>>();
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+import type { CRatingCustomEvent } from '@componentry-ui/stencil/dist/components';
+
+export declare interface CRating extends Components.CRating {
+
+  cRatingChange: EventEmitter<CRatingCustomEvent<void>>;
+
+  cRatingHover: EventEmitter<CRatingCustomEvent<{ phase: 'start' | 'move' | 'end'; value: number; }>>;
 }
 
 
