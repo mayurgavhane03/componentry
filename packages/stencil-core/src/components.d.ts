@@ -937,7 +937,7 @@ export namespace Components {
         /**
           * @default 'ltr'
          */
-        "dir": 'ltr' | 'rtl';
+        "direction": 'ltr' | 'rtl';
         /**
           * @default false
          */
@@ -2553,7 +2553,7 @@ declare namespace LocalJSX {
         /**
           * @default 'ltr'
          */
-        "dir"?: 'ltr' | 'rtl';
+        "direction"?: 'ltr' | 'rtl';
         /**
           * @default false
          */
@@ -2892,7 +2892,7 @@ declare namespace LocalJSX {
         "precision": number;
         "readonly": boolean;
         "disabled": boolean;
-        "dir": 'ltr' | 'rtl';
+        "direction": 'ltr' | 'rtl';
     }
     interface CSpinnerAttributes {
         "label": string;

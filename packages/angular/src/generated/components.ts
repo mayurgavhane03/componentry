@@ -879,7 +879,7 @@ export declare interface CRadioGroup extends Components.CRadioGroup {
 
 @ProxyCmp({
   defineCustomElementFn: defineCRating,
-  inputs: ['dir', 'disabled', 'getSymbol', 'label', 'max', 'precision', 'readonly', 'value'],
+  inputs: ['direction', 'disabled', 'getSymbol', 'label', 'max', 'precision', 'readonly', 'value'],
   methods: ['setFocus', 'removeFocus']
 })
 @Component({
@@ -887,7 +887,7 @@ export declare interface CRadioGroup extends Components.CRadioGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['dir', 'disabled', 'getSymbol', 'label', 'max', 'precision', 'readonly', 'value'],
+  inputs: ['direction', 'disabled', 'getSymbol', 'label', 'max', 'precision', 'readonly', 'value'],
   outputs: ['cRatingChange', 'cRatingHover'],
 })
 export class CRating {

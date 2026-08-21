@@ -406,7 +406,7 @@ export const CRating: StencilVueComponent<JSX.CRating> = /*@__PURE__*/ defineCon
   'precision',
   'readonly',
   'disabled',
-  'dir',
+  'direction',
   'getSymbol',
   'cRatingChange',
   'cRatingHover'

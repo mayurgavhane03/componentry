@@ -34,7 +34,7 @@ export class CRating {
   @Prop() precision = 1;
   @Prop({ reflect: true }) readonly = false;
   @Prop({ reflect: true }) disabled = false;
-  @Prop() dir: 'ltr' | 'rtl' = 'ltr';
+  @Prop() direction: 'ltr' | 'rtl' = 'ltr';
 
   @Prop() getSymbol: (value: number) => string = () =>
     '<svg viewBox="0 0 16 16" width="1em" height="1em"><path d="M8 .5l2.245 4.55 5.02.73-3.633 3.542.858 5.003L8 12.02l-4.49 2.305.858-5.003L.735 5.78l5.02-.73L8 .5z" fill="currentColor"/></svg>';
@@ -46,7 +46,7 @@ export class CRating {
   }>;
 
   private isRtl() {
-    return this.dir === 'rtl';
+    return this.direction === 'rtl';
   }
 
   private getValueFromMousePosition(event: MouseEvent) {

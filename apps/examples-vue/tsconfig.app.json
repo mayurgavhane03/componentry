@@ -8,8 +8,7 @@
 
     // Path mapping for cleaner imports.
     "paths": {
-      "@/*": ["./src/*"],
-        "@componentry-ui/vue": ["../../packages/vue/dist"]
+      "@/*": ["./src/*"]
     },
     
 
