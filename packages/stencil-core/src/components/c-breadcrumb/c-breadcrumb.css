@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.breadcrumb {
+  display: block;
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--c-font-sans);
+  font-size: var(--c-font-size-small);
+  line-height: var(--c-line-height-normal);
+  color: var(--c-color-muted-foreground);
+  gap: var(--c-spacing-2x-small);
+}

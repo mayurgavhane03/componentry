@@ -664,241 +664,32 @@
 </head>
 
 <body>
-  <!-- Basic usage -->
-<c-rating label="Rate this product"></c-rating>
+ <c-breadcrumb label="Breadcrumb">
+  <c-breadcrumb-item href="/">Home</c-breadcrumb-item>
+  <c-breadcrumb-item href="/settings">Settings</c-breadcrumb-item>
+  <c-breadcrumb-item>Profile</c-breadcrumb-item>
+</c-breadcrumb>
 
-<!-- Pre-filled value -->
-<c-rating label="Your rating" value="3"></c-rating>
+<c-breadcrumb label="You are here">
+  <c-breadcrumb-item href="/">Dashboard</c-breadcrumb-item>
+  <c-breadcrumb-item>Reports</c-breadcrumb-item>
+</c-breadcrumb>
 
-<!-- Custom max (10 symbols instead of 5) -->
-<c-rating label="Rate out of 10" max="10" value="7"></c-rating>
+<c-breadcrumb>
+  <span slot="separator">/</span>
+  <c-breadcrumb-item href="/">Home</c-breadcrumb-item>
+  <c-breadcrumb-item href="/docs">Docs</c-breadcrumb-item>
+  <c-breadcrumb-item>Getting Started</c-breadcrumb-item>
+</c-breadcrumb>
 
-<!-- Half-star precision -->
-<c-rating label="Rate this" value="3.5" precision="0.5"></c-rating>
-
-<!-- Readonly (e.g. showing an average rating, not editable) -->
-<c-rating label="Average rating" value="4.5" precision="0.5" readonly></c-rating>
-
-<!-- Disabled -->
-<c-rating label="Rating unavailable" value="2" disabled></c-rating>
-
-<!-- RTL layout -->
-<c-rating label="التقييم" value="3" dir="rtl"></c-rating>
-
-<!-- Custom symbol (e.g. hearts instead of stars) -->
-<c-rating id="heart-rating" label="Rate with hearts"></c-rating>
-
-<script>
-  const heartRating = document.getElementById('heart-rating');
-  heartRating.getSymbol = (value) => `
-    <svg viewBox="0 0 16 16" width="1em" height="1em">
-      <path d="M8 14s-6-4.35-6-8.5C2 3 3.79 1.5 6 1.5c1.54 0 2.53.99 3 1.5.47-.51 1.46-1.5 3-1.5 2.21 0 4 1.5 4 4C16 9.65 8 14 8 14z" fill="currentColor"/>
-    </svg>
-  `;
-</script>
-
-<!-- Listening to events -->
-<c-rating id="feedback-rating" label="How was your experience?"></c-rating>
-
-<script>
-  const feedbackRating = document.getElementById('feedback-rating');
-
-  feedbackRating.addEventListener('cRatingChange', (event) => {
-    console.log('New value:', feedbackRating.value);
-  });
-
-  feedbackRating.addEventListener('cRatingHover', (event) => {
-    console.log('Hover phase:', event.detail.phase, 'value:', event.detail.value);
-  });
-</script>
-
-<!-- Calling exposed methods -->
-<c-rating id="focus-target" label="Focus me programmatically"></c-rating>
-<button id="focus-btn">Focus Rating</button>
-
-<script>
-  document.getElementById('focus-btn').addEventListener('click', async () => {
-    const rating = document.getElementById('focus-target');
-    await rating.setFocus();
-  });
-</script>
-
-\
-  <!-- Basic -->
-  <c-accordion summary="Basic Accordion">
-    <p>This is a basic accordion with the summary provided using the summary prop.</p>
-  </c-accordion>
-
-  <!-- Initially Open -->
-  <c-accordion summary="Initially Open" open>
-    <p>This accordion is expanded by default.</p>
-  </c-accordion>
-
-  <!-- Disabled -->
-  <c-accordion summary="Disabled Accordion" disabled>
-    <p>This accordion is disabled and cannot be toggled.</p>
-  </c-accordion>
-
-  <!-- Summary Slot -->
-  <c-accordion>
-    <div slot="summary">
-      <strong>Custom Summary Slot</strong>
-    </div>
-
-    <p>This accordion uses the <code>summary</code> slot instead of the summary prop.</p>
-  </c-accordion>
-
-  <!-- Custom Summary Layout -->
-  <c-accordion>
-    <div
-      slot="summary"
-      style="display:flex;justify-content:space-between;align-items:center;width:100%;"
-    >
-      <span>Notifications</span>
-      <span>12 New</span>
-    </div>
-
-    <p>You have 12 unread notifications.</p>
-  </c-accordion>
-
-  <!-- Custom Icons -->
-  <c-accordion summary="Custom Icons">
-    <c-icon slot="expand-icon" library="system" name="plus"></c-icon>
-    <c-icon slot="collapse-icon" library="system" name="minus"></c-icon>
-
-    <p>This accordion uses custom expand and collapse icons.</p>
-  </c-accordion>
-
-  <!-- Rich Content -->
-  <c-accordion summary="Rich Content">
-    <h3>User Profile</h3>
-
-    <p><strong>Name:</strong> John Doe</p>
-    <p><strong>Email:</strong> john@example.com</p>
-
-    <ul>
-      <li>Frontend Developer</li>
-      <li>StencilJS</li>
-      <li>TypeScript</li>
-    </ul>
-
-    <button>View Profile</button>
-  </c-accordion>
-
-  <!-- Nested Accordion -->
-  <c-accordion summary="Parent Accordion">
-    <p>This is the parent accordion.</p>
-
-    <c-accordion summary="Child Accordion">
-      <p>This is a nested accordion.</p>
-    </c-accordion>
-  </c-accordion>
-
-  <!-- Table Content -->
-  <c-accordion summary="Order Details">
-    <table border="1" cellpadding="8" cellspacing="0">
-      <tr>
-        <th>Product</th>
-        <th>Qty</th>
-        <th>Price</th>
-      </tr>
-      <tr>
-        <td>Keyboard</td>
-        <td>1</td>
-        <td>$80</td>
-      </tr>
-      <tr>
-        <td>Mouse</td>
-        <td>2</td>
-        <td>$40</td>
-      </tr>
-    </table>
-  </c-accordion>
-
-</div>
-  <!-- Basic inline alert -->
-<c-alert open variant="success" closable>
-  <svg slot="icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-    <path d="M4 10l4 4 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </svg>
-  Your changes have been saved.
-</c-alert>
-
-<!-- Danger variant, no icon -->
-<c-alert open variant="danger" closable>
-  Something went wrong. Please try again.
-</c-alert>
-
-<!-- Neutral, non-closable, always visible -->
-<c-alert open variant="neutral">
-  This is an informational message.
-</c-alert>
-
-<!-- Auto-hide after 5s with countdown bar -->
-<c-alert open variant="warning" duration="5000" countdown="ltr" closable>
-  This alert will close automatically.
-</c-alert>
-
-<!-- RTL countdown -->
-<c-alert open variant="primary" duration="2000" countdown="rtl">
-  Syncing in progress...
-</c-alert>
-  <div class="progress-demo" style="display: flex; flex-direction: column; gap: 1rem;">
-    <!-- Basic progress bar -->
-    <c-progress-bar value="0"></c-progress-bar>
-
-    <!-- With a percentage value -->
-    <c-progress-bar value="50"></c-progress-bar>
-
-    <!-- Near complete -->
-    <c-progress-bar value="80"></c-progress-bar>
-
-    <!-- Complete -->
-    <c-progress-bar value="100"></c-progress-bar>
-
-    <!-- With visible label text inside the indicator -->
-    <c-progress-bar value="50">50%</c-progress-bar>
-
-    <!-- Indeterminate state (e.g. unknown duration loading) -->
-    <c-progress-bar indeterminate></c-progress-bar>
-
-    <!-- Custom accessible label (for screen readers, no visible slot content) -->
-    <c-progress-bar value="30" label="Upload progress"></c-progress-bar>
-
-    <!-- Custom styling via CSS custom properties -->
-    <c-progress-bar value="65" style="
-      --c-height: 1.5rem;
-      --c-track-color: #eee;
-      --c-indicator-color: #16a34a;
-      --c-label-color: #fff;
-    ">
-      65%
-    </c-progress-bar>
-  </div>
-  <c-spinner></c-spinner>
-  <c-spinner label="Loading results"></c-spinner>
-  <c-tooltip content="This is a helpful tip" placement="top">
-    <c-button>Hover me</c-button>
-  </c-tooltip>
-  <c-button id="menu-trigger">Open menu</c-button>
-  <c-tooltip content="This tooltip is always visible" trigger="manual" open placement="top">
-    <c-button>Hover has no effect here</c-button>
-  </c-tooltip>
-  <c-popup id="my-popup" anchor="menu-trigger" placement="bottom-start" distance="8" flip shift>
-    <div slot="anchor"></div>
-    <div style="background:#fff; border-radius:8px; padding:12px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-      Menu content goes here
-    </div>
-  </c-popup>
-
-  <script>
-    const trigger = document.getElementById('menu-trigger');
-    const popup = document.getElementById('my-popup');
-
-    trigger.addEventListener('click', () => {
-      popup.active = !popup.active;
-    });
-  </script>
+<c-breadcrumb>
+  <c-breadcrumb-item href="/">Home</c-breadcrumb-item>
+  <c-breadcrumb-item href="/section">
+    Section
+    <span slot="separator">→</span>
+  </c-breadcrumb-item>
+  <c-breadcrumb-item>Page</c-breadcrumb-item>
+</c-breadcrumb>
 </body>
 
 </html>

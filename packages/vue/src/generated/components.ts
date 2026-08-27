@@ -9,6 +9,8 @@ import { defineCustomElement as defineCAccordion } from '@componentry-ui/stencil
 import { defineCustomElement as defineCAlert } from '@componentry-ui/stencil/dist/components/c-alert.js';
 import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
+import { defineCustomElement as defineCBreadcrumb } from '@componentry-ui/stencil/dist/components/c-breadcrumb.js';
+import { defineCustomElement as defineCBreadcrumbItem } from '@componentry-ui/stencil/dist/components/c-breadcrumb-item.js';
 import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/dist/components/c-button.js';
 import { defineCustomElement as defineCButtonGroup } from '@componentry-ui/stencil/dist/components/c-button-group.js';
 import { defineCustomElement as defineCCard } from '@componentry-ui/stencil/dist/components/c-card.js';
@@ -88,6 +90,20 @@ export const CBadge: StencilVueComponent<JSX.CBadge> = /*@__PURE__*/ defineConta
   'variant',
   'pill',
   'pulse'
+]);
+
+
+export const CBreadcrumb: StencilVueComponent<JSX.CBreadcrumb> = /*@__PURE__*/ defineContainer<JSX.CBreadcrumb>('c-breadcrumb', defineCBreadcrumb, [
+  'label'
+]);
+
+
+export const CBreadcrumbItem: StencilVueComponent<JSX.CBreadcrumbItem> = /*@__PURE__*/ defineContainer<JSX.CBreadcrumbItem>('c-breadcrumb-item', defineCBreadcrumbItem, [
+  'href',
+  'target',
+  'rel',
+  'current',
+  'separator'
 ]);
 
 

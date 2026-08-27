@@ -8,6 +8,8 @@ export { CAccordion } from "./c-accordion.js";
 export { CAlert } from "./c-alert.js";
 export { CAvatar } from "./c-avatar.js";
 export { CBadge } from "./c-badge.js";
+export { CBreadcrumbItem } from "./c-breadcrumb-item.js";
+export { CBreadcrumb } from "./c-breadcrumb.js";
 export { CButtonGroup } from "./c-button-group.js";
 export { CButton } from "./c-button.js";
 export { CCardAction } from "./c-card-action.js";

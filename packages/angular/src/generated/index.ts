@@ -6,6 +6,8 @@ export const DIRECTIVES = [
   d.CAlert,
   d.CAvatar,
   d.CBadge,
+  d.CBreadcrumb,
+  d.CBreadcrumbItem,
   d.CButton,
   d.CButtonGroup,
   d.CCard,

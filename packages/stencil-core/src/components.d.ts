@@ -116,6 +116,54 @@ export namespace Components {
     | "danger";
     }
     /**
+     * @summary Breadcrumbs help users understand where they are within a site
+     * or app by showing the path taken to reach the current page.
+     * @csspart base - The component's base wrapper, a `<nav>` element.
+     * @csspart list - The list that wraps the slotted items, an `<ol>` element.
+     */
+    interface CBreadcrumb {
+        /**
+          * An accessible label for the breadcrumb navigation region. Required for a11y since a page can have more than one `<nav>` landmark.
+          * @default 'Breadcrumb'
+         */
+        "label": string;
+    }
+    /**
+     * @summary A single entry within a `c-breadcrumb`. Renders as a link unless
+     * it's the current/last item, in which case it renders as plain text with
+     * `aria-current="page"`.
+     * @csspart base - The item's base wrapper, an `<li>` element.
+     * @csspart link - The link or span that wraps the label, start, and end slots.
+     * @csspart label - The container that wraps the default slot.
+     * @csspart start - The container that wraps the `start` slot.
+     * @csspart end - The container that wraps the `end` slot.
+     * @csspart separator - The container that wraps the separator icon/slot.
+     */
+    interface CBreadcrumbItem {
+        /**
+          * Marks this as the current page. Set automatically by the parent `c-breadcrumb` for the last item — you normally don't need to set this by hand. When `true`, the item renders as non-interactive text.
+          * @default false
+         */
+        "current": boolean;
+        /**
+          * Turns the item into a link pointing at this URL. Omit for a non-link step (e.g. an ellipsis or a disabled crumb).
+         */
+        "href"?: string;
+        /**
+          * `rel` attribute for the link. Defaults to a safe value when `target` is `_blank` to avoid `window.opener` reverse-tabnabbing.
+         */
+        "rel"?: string;
+        /**
+          * Whether to render the separator after this item. Set automatically by the parent so the last item doesn't get a trailing separator.
+          * @default true
+         */
+        "separator": boolean;
+        /**
+          * Where to open the link. Only relevant when `href` is set.
+         */
+        "target"?: '_blank' | '_parent' | '_self' | '_top';
+    }
+    /**
      * @summary Buttons represent actions that are available to the user.
      * @csspart base - The component's base wrapper.
      * @csspart prefix - The container that wraps the prefix.
@@ -1183,6 +1231,35 @@ declare global {
         prototype: HTMLCBadgeElement;
         new (): HTMLCBadgeElement;
     };
+    /**
+     * @summary Breadcrumbs help users understand where they are within a site
+     * or app by showing the path taken to reach the current page.
+     * @csspart base - The component's base wrapper, a `<nav>` element.
+     * @csspart list - The list that wraps the slotted items, an `<ol>` element.
+     */
+    interface HTMLCBreadcrumbElement extends Components.CBreadcrumb, HTMLStencilElement {
+    }
+    var HTMLCBreadcrumbElement: {
+        prototype: HTMLCBreadcrumbElement;
+        new (): HTMLCBreadcrumbElement;
+    };
+    /**
+     * @summary A single entry within a `c-breadcrumb`. Renders as a link unless
+     * it's the current/last item, in which case it renders as plain text with
+     * `aria-current="page"`.
+     * @csspart base - The item's base wrapper, an `<li>` element.
+     * @csspart link - The link or span that wraps the label, start, and end slots.
+     * @csspart label - The container that wraps the default slot.
+     * @csspart start - The container that wraps the `start` slot.
+     * @csspart end - The container that wraps the `end` slot.
+     * @csspart separator - The container that wraps the separator icon/slot.
+     */
+    interface HTMLCBreadcrumbItemElement extends Components.CBreadcrumbItem, HTMLStencilElement {
+    }
+    var HTMLCBreadcrumbItemElement: {
+        prototype: HTMLCBreadcrumbItemElement;
+        new (): HTMLCBreadcrumbItemElement;
+    };
     interface HTMLCButtonElementEventMap {
         "cBlur": void;
         "cFocus": void;
@@ -1627,6 +1704,8 @@ declare global {
         "c-alert": HTMLCAlertElement;
         "c-avatar": HTMLCAvatarElement;
         "c-badge": HTMLCBadgeElement;
+        "c-breadcrumb": HTMLCBreadcrumbElement;
+        "c-breadcrumb-item": HTMLCBreadcrumbItemElement;
         "c-button": HTMLCButtonElement;
         "c-button-group": HTMLCButtonGroupElement;
         "c-card": HTMLCCardElement;
@@ -1761,6 +1840,54 @@ declare namespace LocalJSX {
     | "neutral"
     | "warning"
     | "danger";
+    }
+    /**
+     * @summary Breadcrumbs help users understand where they are within a site
+     * or app by showing the path taken to reach the current page.
+     * @csspart base - The component's base wrapper, a `<nav>` element.
+     * @csspart list - The list that wraps the slotted items, an `<ol>` element.
+     */
+    interface CBreadcrumb {
+        /**
+          * An accessible label for the breadcrumb navigation region. Required for a11y since a page can have more than one `<nav>` landmark.
+          * @default 'Breadcrumb'
+         */
+        "label"?: string;
+    }
+    /**
+     * @summary A single entry within a `c-breadcrumb`. Renders as a link unless
+     * it's the current/last item, in which case it renders as plain text with
+     * `aria-current="page"`.
+     * @csspart base - The item's base wrapper, an `<li>` element.
+     * @csspart link - The link or span that wraps the label, start, and end slots.
+     * @csspart label - The container that wraps the default slot.
+     * @csspart start - The container that wraps the `start` slot.
+     * @csspart end - The container that wraps the `end` slot.
+     * @csspart separator - The container that wraps the separator icon/slot.
+     */
+    interface CBreadcrumbItem {
+        /**
+          * Marks this as the current page. Set automatically by the parent `c-breadcrumb` for the last item — you normally don't need to set this by hand. When `true`, the item renders as non-interactive text.
+          * @default false
+         */
+        "current"?: boolean;
+        /**
+          * Turns the item into a link pointing at this URL. Omit for a non-link step (e.g. an ellipsis or a disabled crumb).
+         */
+        "href"?: string;
+        /**
+          * `rel` attribute for the link. Defaults to a safe value when `target` is `_blank` to avoid `window.opener` reverse-tabnabbing.
+         */
+        "rel"?: string;
+        /**
+          * Whether to render the separator after this item. Set automatically by the parent so the last item doesn't get a trailing separator.
+          * @default true
+         */
+        "separator"?: boolean;
+        /**
+          * Where to open the link. Only relevant when `href` is set.
+         */
+        "target"?: '_blank' | '_parent' | '_self' | '_top';
     }
     /**
      * @summary Buttons represent actions that are available to the user.
@@ -2682,6 +2809,16 @@ declare namespace LocalJSX {
         "pill": boolean;
         "pulse": boolean;
     }
+    interface CBreadcrumbAttributes {
+        "label": string;
+    }
+    interface CBreadcrumbItemAttributes {
+        "href": string;
+        "target": '_blank' | '_parent' | '_self' | '_top';
+        "rel": string;
+        "current": boolean;
+        "separator": boolean;
+    }
     interface CButtonAttributes {
         "variant": | "default"
     | "primary"
@@ -2924,6 +3061,8 @@ declare namespace LocalJSX {
         "c-alert": Omit<CAlert, keyof CAlertAttributes> & { [K in keyof CAlert & keyof CAlertAttributes]?: CAlert[K] } & { [K in keyof CAlert & keyof CAlertAttributes as `attr:${K}`]?: CAlertAttributes[K] } & { [K in keyof CAlert & keyof CAlertAttributes as `prop:${K}`]?: CAlert[K] };
         "c-avatar": Omit<CAvatar, keyof CAvatarAttributes> & { [K in keyof CAvatar & keyof CAvatarAttributes]?: CAvatar[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `attr:${K}`]?: CAvatarAttributes[K] } & { [K in keyof CAvatar & keyof CAvatarAttributes as `prop:${K}`]?: CAvatar[K] };
         "c-badge": Omit<CBadge, keyof CBadgeAttributes> & { [K in keyof CBadge & keyof CBadgeAttributes]?: CBadge[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `attr:${K}`]?: CBadgeAttributes[K] } & { [K in keyof CBadge & keyof CBadgeAttributes as `prop:${K}`]?: CBadge[K] };
+        "c-breadcrumb": Omit<CBreadcrumb, keyof CBreadcrumbAttributes> & { [K in keyof CBreadcrumb & keyof CBreadcrumbAttributes]?: CBreadcrumb[K] } & { [K in keyof CBreadcrumb & keyof CBreadcrumbAttributes as `attr:${K}`]?: CBreadcrumbAttributes[K] } & { [K in keyof CBreadcrumb & keyof CBreadcrumbAttributes as `prop:${K}`]?: CBreadcrumb[K] };
+        "c-breadcrumb-item": Omit<CBreadcrumbItem, keyof CBreadcrumbItemAttributes> & { [K in keyof CBreadcrumbItem & keyof CBreadcrumbItemAttributes]?: CBreadcrumbItem[K] } & { [K in keyof CBreadcrumbItem & keyof CBreadcrumbItemAttributes as `attr:${K}`]?: CBreadcrumbItemAttributes[K] } & { [K in keyof CBreadcrumbItem & keyof CBreadcrumbItemAttributes as `prop:${K}`]?: CBreadcrumbItem[K] };
         "c-button": Omit<CButton, keyof CButtonAttributes> & { [K in keyof CButton & keyof CButtonAttributes]?: CButton[K] } & { [K in keyof CButton & keyof CButtonAttributes as `attr:${K}`]?: CButtonAttributes[K] } & { [K in keyof CButton & keyof CButtonAttributes as `prop:${K}`]?: CButton[K] };
         "c-button-group": Omit<CButtonGroup, keyof CButtonGroupAttributes> & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes]?: CButtonGroup[K] } & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes as `attr:${K}`]?: CButtonGroupAttributes[K] } & { [K in keyof CButtonGroup & keyof CButtonGroupAttributes as `prop:${K}`]?: CButtonGroup[K] };
         "c-card": Omit<CCard, keyof CCardAttributes> & { [K in keyof CCard & keyof CCardAttributes]?: CCard[K] } & { [K in keyof CCard & keyof CCardAttributes as `attr:${K}`]?: CCardAttributes[K] } & { [K in keyof CCard & keyof CCardAttributes as `prop:${K}`]?: CCard[K] };
@@ -2974,6 +3113,25 @@ declare module "@stencil/core" {
              * @csspart base - The component's base wrapper.
              */
             "c-badge": LocalJSX.IntrinsicElements["c-badge"] & JSXBase.HTMLAttributes<HTMLCBadgeElement>;
+            /**
+             * @summary Breadcrumbs help users understand where they are within a site
+             * or app by showing the path taken to reach the current page.
+             * @csspart base - The component's base wrapper, a `<nav>` element.
+             * @csspart list - The list that wraps the slotted items, an `<ol>` element.
+             */
+            "c-breadcrumb": LocalJSX.IntrinsicElements["c-breadcrumb"] & JSXBase.HTMLAttributes<HTMLCBreadcrumbElement>;
+            /**
+             * @summary A single entry within a `c-breadcrumb`. Renders as a link unless
+             * it's the current/last item, in which case it renders as plain text with
+             * `aria-current="page"`.
+             * @csspart base - The item's base wrapper, an `<li>` element.
+             * @csspart link - The link or span that wraps the label, start, and end slots.
+             * @csspart label - The container that wraps the default slot.
+             * @csspart start - The container that wraps the `start` slot.
+             * @csspart end - The container that wraps the `end` slot.
+             * @csspart separator - The container that wraps the separator icon/slot.
+             */
+            "c-breadcrumb-item": LocalJSX.IntrinsicElements["c-breadcrumb-item"] & JSXBase.HTMLAttributes<HTMLCBreadcrumbItemElement>;
             /**
              * @summary Buttons represent actions that are available to the user.
              * @csspart base - The component's base wrapper.

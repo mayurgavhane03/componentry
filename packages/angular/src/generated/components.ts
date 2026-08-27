@@ -10,6 +10,8 @@ import { defineCustomElement as defineCAccordion } from '@componentry-ui/stencil
 import { defineCustomElement as defineCAlert } from '@componentry-ui/stencil/dist/components/c-alert.js';
 import { defineCustomElement as defineCAvatar } from '@componentry-ui/stencil/dist/components/c-avatar.js';
 import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
+import { defineCustomElement as defineCBreadcrumb } from '@componentry-ui/stencil/dist/components/c-breadcrumb.js';
+import { defineCustomElement as defineCBreadcrumbItem } from '@componentry-ui/stencil/dist/components/c-breadcrumb-item.js';
 import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/dist/components/c-button.js';
 import { defineCustomElement as defineCButtonGroup } from '@componentry-ui/stencil/dist/components/c-button-group.js';
 import { defineCustomElement as defineCCard } from '@componentry-ui/stencil/dist/components/c-card.js';
@@ -169,6 +171,52 @@ export class CBadge {
 
 
 export declare interface CBadge extends Components.CBadge {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCBreadcrumb,
+  inputs: ['label']
+})
+@Component({
+  selector: 'c-breadcrumb',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['label'],
+})
+export class CBreadcrumb {
+  protected el: HTMLCBreadcrumbElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CBreadcrumb extends Components.CBreadcrumb {}
+
+
+@ProxyCmp({
+  defineCustomElementFn: defineCBreadcrumbItem,
+  inputs: ['current', 'href', 'rel', 'separator', 'target']
+})
+@Component({
+  selector: 'c-breadcrumb-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: '<ng-content></ng-content>',
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: ['current', 'href', 'rel', 'separator', 'target'],
+})
+export class CBreadcrumbItem {
+  protected el: HTMLCBreadcrumbItemElement;
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
+    c.detach();
+    this.el = r.nativeElement;
+  }
+}
+
+
+export declare interface CBreadcrumbItem extends Components.CBreadcrumbItem {}
 
 
 @ProxyCmp({
