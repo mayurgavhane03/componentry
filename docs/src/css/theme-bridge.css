@@ -1,0 +1,43 @@
+/* Componentry owns the palette. These aliases adapt Docusaurus to its tokens. */
+:root, :root[data-theme='light'], :root[data-theme='dark'] {
+  --ifm-color-primary: var(--c-color-primary-600);
+  --ifm-color-primary-dark: var(--c-color-primary-700);
+  --ifm-color-primary-darker: var(--c-color-primary-800);
+  --ifm-color-primary-darkest: var(--c-color-primary-900);
+  --ifm-color-primary-light: var(--c-color-primary-500);
+  --ifm-color-primary-lighter: var(--c-color-primary-400);
+  --ifm-color-primary-lightest: var(--c-color-primary-300);
+  --ifm-font-family-base: var(--c-font-sans);
+  --ifm-font-family-monospace: var(--c-font-mono);
+  --ifm-heading-font-family: var(--c-font-sans);
+  --ifm-font-size-base: 15px;
+  --ifm-line-height-base: 1.75;
+  --ifm-font-color-base: var(--c-color-neutral-800);
+  --ifm-heading-color: var(--c-color-neutral-950);
+  --ifm-background-color: var(--c-color-neutral-0);
+  --ifm-background-surface-color: var(--c-color-neutral-50);
+  --ifm-navbar-background-color: var(--c-color-neutral-0);
+  --ifm-navbar-height: 72px;
+  --ifm-navbar-shadow: none;
+  --ifm-code-font-size: 86%;
+  --ifm-code-border-radius: var(--c-border-radius-medium);
+  --ifm-table-border-color: var(--c-color-neutral-200);
+  --ifm-toc-border-color: var(--c-color-neutral-200);
+  --ifm-menu-color: var(--c-color-neutral-700);
+  --ifm-menu-color-active: var(--c-color-primary-700);
+  --ifm-menu-color-background-active: var(--c-color-primary-50);
+  --ifm-menu-color-background-hover: var(--c-color-neutral-100);
+  --ifm-footer-background-color: var(--c-color-neutral-50);
+  --ifm-footer-color: var(--c-color-neutral-600);
+  --ifm-hr-background-color: var(--c-color-neutral-200);
+  --ifm-color-emphasis-100: var(--c-color-neutral-100);
+  --ifm-color-emphasis-200: var(--c-color-neutral-200);
+  --ifm-color-emphasis-300: var(--c-color-neutral-300);
+  --ifm-color-emphasis-600: var(--c-color-neutral-600);
+  --ifm-color-emphasis-700: var(--c-color-neutral-700);
+  --docs-border: var(--c-color-neutral-200);
+  --docs-muted: var(--c-color-neutral-600);
+  --docs-soft: var(--c-color-neutral-50);
+  --docs-accent-soft: var(--c-color-primary-50);
+  --docusaurus-highlighted-code-line-bg: var(--c-color-primary-100);
+}

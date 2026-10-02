@@ -1,47 +1,48 @@
 ---
-sidebar_position: 1
+title: Introduction
+description: Get to know Componentry, a design system built with web components.
 ---
 
-# Tutorial Intro
+<div className="eyebrow">GETTING STARTED</div>
 
-Let's discover **Docusaurus in less than 5 minutes**.
+# Build with Componentry
 
-## Getting Started
+<p className="doc-lead">A shared design language for the interfaces you make. Built with web components, ready for React, Vue, and Angular.</p>
 
-Get started by **creating a new site**.
+Componentry keeps component behavior in a single Stencil implementation and generates framework wrappers around it. Shared theme tokens keep the look consistent across applications.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Explore the components
 
-### What you'll need
+Start with the [Button documentation](./components/button.mdx): try the interactive playground, compare variants, and copy an example for your framework.
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+## Run this repository
 
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
+Use the pnpm version specified in the root `package.json`. From the repository root:
 
 ```bash
-npm init docusaurus@latest my-website classic
+pnpm install --frozen-lockfile
+pnpm build:packages
+pnpm dev:docs
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+Build the packages before starting documentation so the local component imports are available.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+## Choose your framework
 
-## Start your site
+| Framework | Component package | Example app |
+| --- | --- | --- |
+| React | `@componentry-ui/react` | `pnpm dev:react` |
+| Vue | `@componentry-ui/vue` | `pnpm dev:vue` |
+| Angular | `@componentry-ui/angular` | `pnpm dev:angular` |
+| HTML | `@componentry-ui/stencil` | `pnpm dev:stencil` |
 
-Run the development server:
+## Load a theme
 
-```bash
-cd my-website
-npm run start
+Import the shared theme once in your application's entry point:
+
+```ts
+import '@componentry-ui/theme/styles/light.css';
+import '@componentry-ui/theme/styles/dark.css';
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Apply `c-theme-light` or `c-theme-dark` to your document's root element to select a theme. The documentation previews follow the theme toggle in the navigation bar.

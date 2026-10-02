@@ -1,0 +1,171 @@
+---
+title: Themes & tokens
+description: A live guide to @componentry-ui/theme. Explore light and dark modes, CSS tokens, scoped themes, and your own brand palette.
+hide_title: true
+toc_max_heading_level: 2
+---
+
+import ThemeWorkbench from '@site/src/components/ThemeWorkbench';
+
+<div className="eyebrow">FOUNDATIONS / YOUR VISUAL LANGUAGE</div>
+
+# A theme that feels like you.
+
+<p className="doc-lead">Color is just the beginning. Shape, space, and typography turn separate components into a system. This is where you make that system yours.</p>
+
+<div className="doc-badges"><span>CSS custom properties</span><span>@componentry-ui/theme</span><span>Framework independent</span></div>
+
+## The live workbench
+
+Pick a palette. Soften the edges. Switch the lighting — or use **⇄** to put light and dark side by side. These are real Componentry cards and buttons, using the same theme package as this documentation.
+
+<ThemeWorkbench showCode />
+
+The recipe updates as you experiment. Copy it into your stylesheet after the theme imports, and apply `my-brand` alongside your theme class. This demo stays local; “Count me in” only changes the preview state.
+
+## Load the package
+
+Inside this repository, build `@componentry-ui/theme` before consuming its CSS:
+
+```bash
+pnpm --filter @componentry-ui/theme build
+```
+
+In a workspace application, add `"@componentry-ui/theme": "workspace:*"` to its dependencies, then run `pnpm install` from the repository root.
+
+Import the theme styles once in your application entry point:
+
+```ts
+import '@componentry-ui/theme/styles/light.css';
+import '@componentry-ui/theme/styles/dark.css';
+```
+
+These CSS files are the theme's public entry points. They work with React, Vue, Angular, or a bundler-based vanilla JavaScript application. No theme provider is required.
+
+For a plain HTML site without a bundler, serve the built CSS files as static assets and load them with `<link rel="stylesheet">`.
+
+## Switch the lighting
+
+Apply one theme class to the root element. Light styles include `:root` defaults; dark styles activate with `c-theme-dark`.
+
+```html
+<html class="c-theme-light">
+  <!-- Your application -->
+</html>
+```
+
+```ts
+function setTheme(mode: 'light' | 'dark') {
+  const root = document.documentElement;
+  root.classList.toggle('c-theme-dark', mode === 'dark');
+  root.classList.toggle('c-theme-light', mode === 'light');
+}
+```
+
+The package supplies CSS; it does not store a preference or add a toggle. Your application decides when to call `setTheme`. For an initial system preference:
+
+```ts
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+setTheme(prefersDark.matches ? 'dark' : 'light');
+```
+
+In an SSR application, use a server-known preference on the root when available, or run an initialization script before first paint. Read browser APIs only in the browser.
+
+## One theme, every layer
+
+Your components inherit `--c-*` properties through the DOM, including into their shadow roots. The surrounding application can use those same properties.
+
+```css
+.application-surface {
+  background: var(--c-color-neutral-0);
+  color: var(--c-color-neutral-900);
+  border: 1px solid var(--c-color-neutral-200);
+  border-radius: var(--c-border-radius-large);
+  font-family: var(--c-font-sans);
+  padding: var(--c-spacing-large);
+}
+```
+
+<div className="doc-note"><strong>This documentation uses the same system.</strong> Docusaurus's color, surface, border, typography, and syntax-highlighting values are mapped to Componentry tokens. The navigation toggle changes the root theme class, so the page and live components respond together.</div>
+
+## Give it your signature
+
+The default primary palette is sky. Theme files include gray, red, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, and rose primitives.
+
+To create a brand palette from those primitives, remap every primary shade on the **same element as the theme class**, after importing the theme styles:
+
+```css
+.my-brand {
+  --c-color-primary-50: var(--c-color-violet-50);
+  --c-color-primary-100: var(--c-color-violet-100);
+  --c-color-primary-200: var(--c-color-violet-200);
+  --c-color-primary-300: var(--c-color-violet-300);
+  --c-color-primary-400: var(--c-color-violet-400);
+  --c-color-primary-500: var(--c-color-violet-500);
+  --c-color-primary-600: var(--c-color-violet-600);
+  --c-color-primary-700: var(--c-color-violet-700);
+  --c-color-primary-800: var(--c-color-violet-800);
+  --c-color-primary-900: var(--c-color-violet-900);
+  --c-color-primary-950: var(--c-color-violet-950);
+}
+```
+
+```html
+<html class="c-theme-light my-brand">
+```
+
+Remapping the scale keeps hover, outline, and focus colors related. The primitive palettes change between light and dark; keep the same brand class when you switch modes.
+
+You can supply your own colors instead. Check contrast for text, focus rings, and every interactive state in both modes before shipping.
+
+## Tokens worth knowing
+
+| Family | Examples | Controls |
+| --- | --- | --- |
+| Neutrals | `--c-color-neutral-0`, `--c-color-neutral-900` | Surface and text colors that adapt to the theme. |
+| Primary | `--c-color-primary-50` through `--c-color-primary-950` | Main action, hover, outline, and focus colors. |
+| Status | `--c-color-success-600`, `--c-color-warning-600`, `--c-color-danger-600` | Semantic action colors. |
+| Typography | `--c-font-sans`, `--c-font-mono`, `--c-font-size-medium` | Font families and type scale. |
+| Spacing | `--c-spacing-small`, `--c-spacing-medium`, `--c-spacing-large` | Shared layout spacing. |
+| Corners | `--c-border-radius-small`, `--c-border-radius-large` | Container shape. |
+| Controls | `--c-input-border-radius-medium`, `--c-input-height-medium` | Control shape and size. |
+| Elevation | `--c-shadow-small`, `--c-shadow-large` | Shadows and depth. |
+| Focus | `--c-focus-ring-color`, `--c-focus-ring-width` | Visible keyboard focus. |
+| Motion | `--c-transition-fast`, `--c-transition-medium` | Transition durations. |
+
+The package's light and dark CSS files are the full token reference. Control tokens often reference foundational tokens; customize the smallest scope that meets your needs.
+
+## Theme a section
+
+A theme can live on a container instead of the entire page. This is useful for a dark preview on a light documentation page.
+
+```html
+<div class="c-theme-dark my-brand">
+  <c-card>
+    <c-card-content>A different mood. The same components.</c-card-content>
+    <c-card-footer>
+      <c-button variant="primary">Keep exploring</c-button>
+    </c-card-footer>
+  </c-card>
+</div>
+```
+
+Apply overrides on the themed container itself. CSS variable aliases resolve where they are declared; changing a primitive on a descendant does not automatically recalculate every inherited alias. Components rendered outside the container will inherit their actual DOM ancestors' theme.
+
+## Tokens or shadow parts?
+
+Use **tokens** when several components should share a visual decision. Use a **CSS part** when one component needs a specific adjustment.
+
+```css
+/* Shared control shape in this themed scope */
+.my-brand {
+  --c-input-border-radius-medium: 12px;
+}
+
+/* One button's local treatment */
+c-button.special-action::part(base) {
+  letter-spacing: 0.03em;
+}
+```
+
+Each component documents its supported parts. Start with [Button](./components/button.mdx) to see variants, slots, states, and styling together.

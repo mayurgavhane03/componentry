@@ -18,7 +18,7 @@ export default function FrameworkTabs({
   html,
 }: FrameworkTabsProps) {
   return (
-    <Tabs defaultValue="react">
+    <Tabs defaultValue="react" groupId="componentry-framework">
       <TabItem value="react" label="React">
         <CodeBlock language="tsx">{react}</CodeBlock>
       </TabItem>
