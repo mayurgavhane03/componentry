@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CButton } from '@componentry-ui/react';
-import FrameworkTabs from './FrameworkTabs';
+import FrameworkTabs from '../FrameworkTabs';
 
 type Variant = 'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text';
 type Size = 'small' | 'medium' | 'large';

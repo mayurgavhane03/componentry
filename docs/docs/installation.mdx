@@ -1,0 +1,442 @@
+---
+title: Installation & Usage Guide
+description: Learn all the ways to install and consume Componentry across React, Vue, Angular, Web Components, and CDN.
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import FrameworkTabs from '@site/src/components/FrameworkTabs';
+
+<div className="eyebrow">GETTING STARTED</div>
+
+# Installation & Usage
+
+<p className="doc-lead">
+  Componentry is built with Stencil web components as the single source of truth, offering first-class native wrappers for every major modern frontend ecosystem.
+</p>
+
+---
+
+## Packages Directory
+
+Componentry is distributed as modular, independently publishable npm packages:
+
+| Package | Environment | Purpose |
+|---|---|---|
+| **`@componentry-ui/react`** | React 18 & 19 | Typed React components with synthetic events and ref forwarding |
+| **`@componentry-ui/vue`** | Vue 3 | Native Vue 3 components compatible with `<script setup>` & Vite/Nuxt |
+| **`@componentry-ui/angular`** | Angular 17+ | Standalone directives and components for modern Angular |
+| **`@componentry-ui/stencil`** | Any / Web Components | Core Custom Elements for Svelte, Solid, Astro, or custom bundlers |
+| **`@componentry-ui/theme`** | Universal CSS | Centralized CSS tokens for light/dark themes, spacing, and colors |
+
+---
+
+## 1. Using with React
+
+`@componentry-ui/react` provides native React components that automatically register their underlying custom elements when imported.
+
+### Installation
+
+<Tabs groupId="pkg-manager">
+  <TabItem value="pnpm" label="pnpm">
+```bash
+pnpm add @componentry-ui/react @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+```bash
+npm install @componentry-ui/react @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+```bash
+yarn add @componentry-ui/react @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="bun" label="bun">
+```bash
+bun add @componentry-ui/react @componentry-ui/theme
+```
+  </TabItem>
+</Tabs>
+
+### Load Theme Styles
+
+Import the theme stylesheets once at your app's root (e.g. `main.tsx`, `index.tsx`, or `_app.tsx`):
+
+```tsx
+// main.tsx or App.tsx
+import '@componentry-ui/theme/styles/light.css';
+import '@componentry-ui/theme/styles/dark.css';
+```
+
+### Component Usage
+
+```tsx
+import React, { useState } from 'react';
+import { CButton, CBadge, CCard, CCardHeader, CCardTitle, CCardContent, CCardFooter } from '@componentry-ui/react';
+
+export function UserCard() {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <CCard>
+      <CCardHeader>
+        <div slot="title" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <CCardTitle>Enterprise Workspace</CCardTitle>
+          <CBadge variant="success" pill pulse>Active</CBadge>
+        </div>
+      </CCardHeader>
+
+      <CCardContent>
+        <p>Full access to all 25+ design system components.</p>
+      </CCardContent>
+
+      <CCardFooter>
+        <CButton
+          variant="primary"
+          loading={loading}
+          onClick={() => {
+            setLoading(true);
+            setTimeout(() => setLoading(false), 1500);
+          }}
+        >
+          {loading ? 'Syncing...' : 'Sync Workspace'}
+        </CButton>
+      </CCardFooter>
+    </CCard>
+  );
+}
+```
+
+### Next.js App Router (SSR)
+
+When using Next.js App Router, add `'use client'` to components that import `@componentry-ui/react`:
+
+```tsx
+'use client';
+
+import { CButton } from '@componentry-ui/react';
+
+export default function ClientAction() {
+  return <CButton variant="primary">Launch App</CButton>;
+}
+```
+
+---
+
+## 2. Using with Vue 3
+
+`@componentry-ui/vue` provides components designed for Vue 3 and Vite, fully compatible with the Composition API and `<script setup>`.
+
+### Installation
+
+<Tabs groupId="pkg-manager">
+  <TabItem value="pnpm" label="pnpm">
+```bash
+pnpm add @componentry-ui/vue @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+```bash
+npm install @componentry-ui/vue @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+```bash
+yarn add @componentry-ui/vue @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="bun" label="bun">
+```bash
+bun add @componentry-ui/vue @componentry-ui/theme
+```
+  </TabItem>
+</Tabs>
+
+### Load Theme Styles
+
+Import the theme in your `main.ts`:
+
+```ts
+// main.ts
+import { createApp } from 'vue';
+import App from './App.vue';
+
+import '@componentry-ui/theme/styles/light.css';
+import '@componentry-ui/theme/styles/dark.css';
+
+createApp(App).mount('#app');
+```
+
+### Component Usage
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue';
+import { CButton, CBadge, CCard, CCardHeader, CCardTitle, CCardContent } from '@componentry-ui/vue';
+
+const count = ref(0);
+const isLoading = ref(false);
+
+function triggerAction() {
+  isLoading.value = true;
+  setTimeout(() => {
+    count.value++;
+    isLoading.value = false;
+  }, 1000);
+}
+</script>
+
+<template>
+  <CCard>
+    <CCardHeader>
+      <div slot="title" style="display: flex; justify-content: space-between;">
+        <CCardTitle>Vue 3 Integration</CCardTitle>
+        <CBadge variant="primary" pill>Count: {{ count }}</CBadge>
+      </div>
+    </CCardHeader>
+
+    <CCardContent>
+      <CButton
+        variant="primary"
+        :loading="isLoading"
+        @click="triggerAction"
+      >
+        Increment Action ↗
+      </CButton>
+    </CCardContent>
+  </CCard>
+</template>
+```
+
+---
+
+## 3. Using with Angular
+
+`@componentry-ui/angular` exposes standalone components and directives compatible with Angular 17, 18, 19, and beyond.
+
+### Installation
+
+<Tabs groupId="pkg-manager">
+  <TabItem value="pnpm" label="pnpm">
+```bash
+pnpm add @componentry-ui/angular @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="npm" label="npm">
+```bash
+npm install @componentry-ui/angular @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+```bash
+yarn add @componentry-ui/angular @componentry-ui/theme
+```
+  </TabItem>
+  <TabItem value="bun" label="bun">
+```bash
+bun add @componentry-ui/angular @componentry-ui/theme
+```
+  </TabItem>
+</Tabs>
+
+### Load Theme Styles
+
+Add the stylesheet imports to your `styles.css` (or `angular.json` styles array):
+
+```css
+/* styles.css */
+@import "@componentry-ui/theme/styles/light.css";
+@import "@componentry-ui/theme/styles/dark.css";
+```
+
+### Standalone Component Usage
+
+Add the desired Componentry components directly to your component's `imports` array:
+
+```typescript
+import { Component } from '@angular/core';
+import { CButton, CCard, CCardHeader, CCardTitle, CCardContent, CBadge } from '@componentry-ui/angular';
+
+@Component({
+  selector: 'app-dashboard',
+  standalone: true,
+  imports: [CButton, CCard, CCardHeader, CCardTitle, CCardContent, CBadge],
+  template: `
+    <c-card>
+      <c-card-header>
+        <div slot="title" style="display: flex; justify-content: space-between;">
+          <c-card-title>Angular Standalone</c-card-title>
+          <c-badge variant="success" pill>Connected</c-badge>
+        </div>
+      </c-card-header>
+
+      <c-card-content>
+        <c-button
+          variant="primary"
+          [loading]="isWorking"
+          (cClick)="onExecute()"
+        >
+          Execute Task
+        </c-button>
+      </c-card-content>
+    </c-card>
+  `
+})
+export class DashboardComponent {
+  isWorking = false;
+
+  onExecute() {
+    this.isWorking = true;
+    setTimeout(() => (this.isWorking = false), 1500);
+  }
+}
+```
+
+---
+
+## 4. Using Web Components via Bundler (`@componentry-ui/stencil`)
+
+For **Svelte**, **SolidJS**, **Astro**, or custom Webpack/Vite bundlers, you can import the core web components package directly.
+
+### Installation
+
+```bash
+pnpm add @componentry-ui/stencil @componentry-ui/theme
+```
+
+### Option A: Automatic Loader (All Components)
+
+Call `defineCustomElements()` once at app initialization:
+
+```typescript
+import { defineCustomElements } from '@componentry-ui/stencil/loader';
+import '@componentry-ui/theme/styles/light.css';
+import '@componentry-ui/theme/styles/dark.css';
+
+defineCustomElements();
+```
+
+Now use standard custom elements anywhere in your HTML or templates:
+
+```html
+<c-button variant="primary">Launch</c-button>
+<c-badge variant="success" pill>Active</c-badge>
+```
+
+### Option B: Tree-Shaken Custom Elements (Selective Import)
+
+For maximum bundle optimization, import and define only the exact components you need:
+
+```typescript
+import { defineCustomElement as defineCButton } from '@componentry-ui/stencil/dist/components/c-button.js';
+import { defineCustomElement as defineCBadge } from '@componentry-ui/stencil/dist/components/c-badge.js';
+
+// Registers only <c-button> and <c-badge>
+defineCButton();
+defineCBadge();
+```
+
+---
+
+## 5. Zero-Build / CDN Script Tag (No Node.js Required)
+
+You can use Componentry directly in static HTML pages, WordPress, Django, Laravel, Rails, or CodePen without installing anything via npm.
+
+### Quick Start HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en" class="c-theme-light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Componentry CDN Demo</title>
+
+  <!-- 1. Load Componentry Theme Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@componentry-ui/theme/dist/styles.css" />
+
+  <!-- 2. Load Core Web Components -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@componentry-ui/stencil/dist/componentry/componentry.esm.js"></script>
+</head>
+<body style="padding: 2rem; font-family: sans-serif;">
+
+  <c-card style="max-width: 400px;">
+    <c-card-header>
+      <div slot="title" style="display: flex; justify-content: space-between;">
+        <c-card-title>CDN Setup</c-card-title>
+        <c-badge variant="success" pill pulse>Zero Build</c-badge>
+      </div>
+    </c-card-header>
+
+    <c-card-content>
+      <p>Running directly in the browser via native ES Modules.</p>
+    </c-card-content>
+
+    <c-card-footer>
+      <c-button variant="primary" onclick="alert('Clicked!')">
+        Test Action
+      </c-button>
+    </c-card-footer>
+  </c-card>
+
+</body>
+</html>
+```
+
+---
+
+## 6. Theme Switching & Design Tokens
+
+Componentry uses CSS custom properties so you can switch between Light and Dark mode without re-rendering or recalculating runtime JavaScript.
+
+### Switching Light and Dark Themes
+
+Add or toggle `.c-theme-light` or `.c-theme-dark` on your `<html>` or `<body>` tag:
+
+```javascript
+// Toggle dark mode in JavaScript
+function toggleTheme(isDark) {
+  const root = document.documentElement;
+  root.classList.toggle('c-theme-dark', isDark);
+  root.classList.toggle('c-theme-light', !isDark);
+}
+```
+
+### Overriding Brand Tokens
+
+Customize the design system to match your brand by overriding CSS variables in your stylesheet:
+
+```css
+:root {
+  /* Customize Primary Color Scale */
+  --c-color-primary-500: #6366f1;
+  --c-color-primary-600: #4f46e5;
+  --c-color-primary-700: #4338ca;
+
+  /* Customize Global Corner Radius */
+  --c-input-border-radius-medium: 8px;
+  --c-border-radius-large: 12px;
+}
+```
+
+---
+
+## Summary Checklist
+
+| Framework | Package to Install | Setup Step |
+|---|---|---|
+| **React** | `@componentry-ui/react` | Import `@componentry-ui/theme/styles/light.css` in root file |
+| **Vue 3** | `@componentry-ui/vue` | Import theme in `main.ts`, use components in `<script setup>` |
+| **Angular** | `@componentry-ui/angular` | Add components to `imports: [...]` in standalone `@Component` |
+| **Web Components** | `@componentry-ui/stencil` | Call `defineCustomElements()` from loader in your app entry |
+| **Vanilla HTML** | CDN Script Tag | Link CSS and add `<script type="module">` tag in `<head>` |
+
+---
+
+## Next Steps
+
+- Explore the [Theme Guide](/docs/theme) to learn about all color palettes and custom token recipes.
+- Browse the component reference starting with [Button](/docs/components/button) and [Card](/docs/components/card).
