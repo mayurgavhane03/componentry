@@ -25,7 +25,7 @@ const config: Config = {
     theme: { customCss: ['./src/css/custom.css', './src/css/studio.css'] },
   } satisfies Preset.Options]],
   themeConfig: {
-    colorMode: { defaultMode: 'light', respectPrefersColorScheme: true },
+    colorMode: { defaultMode: 'light', respectPrefersColorScheme: false },
     navbar: {
       title: 'componentry',
       logo: { alt: '', src: 'img/componentry.svg' },
@@ -41,6 +41,7 @@ const config: Config = {
     tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
     prism: { theme: tokenCodeTheme, darkTheme: tokenCodeTheme, additionalLanguages: ['bash', 'typescript', 'css'] },
   } satisfies Preset.ThemeConfig,
+  clientModules: ['./src/clientModules/themeSync.ts'],
   scripts: [{ src: '/theme-sync.js', async: false }],
 };
 export default config;

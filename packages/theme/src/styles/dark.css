@@ -1,5 +1,7 @@
 :host,
-.c-theme-dark {
+.c-theme-dark,
+:root[data-theme='dark'],
+[data-theme='dark'] {
   color-scheme: dark;
 
   /*

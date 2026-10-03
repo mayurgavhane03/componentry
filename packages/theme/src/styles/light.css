@@ -1,6 +1,8 @@
 :root,
 :host,
-.c-theme-light {
+.c-theme-light,
+:root[data-theme='light'],
+[data-theme='light'] {
   color-scheme: light;
 
   /*
